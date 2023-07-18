@@ -42,9 +42,6 @@ concurrency:
 #         id: deployment
 #         uses: actions/deploy-pages@v2
 
-
-name: Deploy to GitHub Pages
-
 on:
   push:
     branches:
