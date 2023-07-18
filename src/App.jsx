@@ -1,6 +1,5 @@
-import logo from "./logo.svg";
 import "./App.css";
-import { Box, Button, CardContent, Typography } from "@mui/material";
+import { Box, CardContent, Typography } from "@mui/material";
 import QRsvg from "./components/qrsvg";
 
 function Logo() {
@@ -44,6 +43,7 @@ function App() {
           >
       
         <Typography
+          paddingBottom={2}
           variant="h4"
           sx={{
             background: 'linear-gradient(to bottom, #555, #999)',
@@ -66,9 +66,7 @@ function App() {
           Frontend developers use a combination of programming languages, frameworks, and tools to build dynamic, responsive, and visually appealing web applications.
         </Typography>
 
-          </CardContent>
-
-          <a
+        <a padding="8px"
           className="App-link"
           href="https://t.me/makcext"
           target="_blank"
@@ -77,7 +75,11 @@ function App() {
           connect
           </a>
 
-          <Typography variant="overline" align="right"> version</Typography>
+          </CardContent>
+
+
+
+          <Typography className="App-version" variant="subtitle1" align="right" >ver0.0.1  .</Typography>
 
         </Box>
 
