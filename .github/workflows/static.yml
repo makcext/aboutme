@@ -42,11 +42,6 @@ concurrency:
 #         id: deployment
 #         uses: actions/deploy-pages@v2
 
-on:
-  push:
-    branches:
-      - master
-
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
