@@ -1,11 +1,14 @@
 import React from 'react';
+import { Box } from '@mui/material';
+
 
 function qrsvg() {
   return (
-<svg version="1.0" xmlns="http://www.w3.org/2000/svg"
-     width="200.000000pt" height="200.000000pt" viewBox="0 0 200.000000 200.000000"
+    <Box>
+      <svg version="1.0" xmlns="http://www.w3.org/2000/svg"
+    //  width="200.000000pt" height="200.000000pt" viewBox="0 0 200.000000 200.000000"
      preserveAspectRatio="xMidYMid meet"
-     style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', zIndex: 1, width: '50vw', height: '50vw', maxWidth: '250px', maxHeight: '250px' }}>
+     style={{ position: 'fixed', left: '50%', top:'300px', transform: 'translate(-50%, -50%)', zIndex: 1, width: '200px', height: '200px', maxWidth: '300px', maxHeight: '300px' }}>
     <g><rect x="0" y="0" width="200" height="200" fill="rgba(40, 44, 52, 0)" />
     <g transform="translate(0.000000,200.000000) scale(0.026882,-0.026882)"
     fill="rgba(255, 255, 255, 1)" stroke="none">
@@ -82,6 +85,8 @@ function qrsvg() {
     <path d="M6240 840 l0 -120 240 0 240 0 0 120 0 120 -240 0 -240 0 0 -120z"/>
     </g>
     </g></svg>
+
+    </Box>
   );
 }
 
