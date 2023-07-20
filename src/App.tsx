@@ -29,17 +29,19 @@ function App() {
           makcext front-end developer
         </Typography>
 
-        <Typography variant="body1">
-          scan <code>&amp;</code> save.
-        </Typography>
+
 
         <Typography variant="body1">
           react <code>|</code> material-ui <code>|</code> mobx <code>|</code> graphql
         </Typography>
      
-        <Box maxWidth="lg" sx={{ minWidth: 300 }}>
-        <CardContent>
-        <Typography paddingBottom={0} variant="h4"
+        <Typography variant="body2">
+          scan <code>&amp;</code> save.
+        </Typography>
+
+        <Box maxWidth="lg" sx={{ minWidth: 300}}>
+        <CardContent >
+        <Typography variant="h5" 
           sx={{
             background: 'linear-gradient(to bottom, #555, #999)',
             WebkitBackgroundClip: 'text',
@@ -51,6 +53,7 @@ function App() {
             // WebkitBoxOrient: 'vertical',
             position: 'relative',
             textAlign: 'justify',
+            minHeight: 250,
           }}
         >    
         <QRsvg />
