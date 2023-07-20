@@ -1,15 +1,11 @@
+import React from 'react';
 import "./App.css";
 import { Box, CardContent, Typography } from "@mui/material";
 import QRsvg from "./components/qrsvg";
 
 function Logo() {
   return (
-
-
-
-
-    
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100" className="App-logo" style={{ padding: '8px' }}>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100" style={{ padding: '8px', height: '10vmin', pointerEvents: 'none', animation: 'App-logo-spin infinite 50s linear' }}>
       <rect x="0" y="0" width="100" height="100" fill="#282c34" />
       <text x="50" y="60" fontSize="50" fill="#fff" textAnchor="middle">dev</text>
     </svg>
@@ -20,7 +16,7 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <Logo className="App-logo" />
+        <Logo />
 
         <Typography variant="overline" fontSize={24} component="div" gutterBottom>
           makcext front-end developer
@@ -66,14 +62,16 @@ function App() {
           Frontend developers use a combination of programming languages, frameworks, and tools to build dynamic, responsive, and visually appealing web applications.
         </Typography>
 
-        <a padding="8px"
-          className="App-link"
-          href="https://t.me/makcext"
-          target="_blank"
-          rel="noopener noreferrer"
-          >
-          connect
-          </a>
+        <Box padding="8px">
+  <a
+    className="App-link"
+    href="https://t.me/makcext"
+    target="_blank"
+    rel="noopener noreferrer"
+  >
+    connect
+  </a>
+</Box>
 
           </CardContent>
 
