@@ -1,10 +1,11 @@
 import React from 'react';
-import { Alert, Box, Button, CardContent, Chip, Container, Typography } from '@mui/material';
+import { Box, CardContent, Chip, Container, Typography } from '@mui/material';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
-import QRsvg from './components/qrsvg';
-import Logo from './components/logosvg';
-import LoadSkeleton from './components/container/index';
+import QRsvg from './components/svg/qrsvg';
+import Logo from './components/svg/logosvg';
+import LoadSkeleton from './components/Skeleton/index';
+import PaperMid from './components/paper/index';
 
 const darkTheme = createTheme({
   palette: {
@@ -21,13 +22,17 @@ function App() {
     <ThemeProvider theme={darkTheme}>
       <CssBaseline />
 
+<div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+<Logo  />
+
+</div>
       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '8px' }}>
-        <Logo />
+        
 
         <Box maxWidth="lg" sx={{ minWidth: 300 }}>
           <Container sx={{ textAlign: 'justify', minHeight: 250 }}>
             <Typography variant="subtitle1" fontSize={24} sx={{ textAlign: 'center' }}>
-              makcext front-end developer
+              const front-end developer
             </Typography>
 
             <Box display="flex" justifyContent="center">
@@ -47,7 +52,7 @@ function App() {
                 overflow: 'hidden',
               }}
             >
-              <QRsvg />
+              {/* <QRsvg /> */}
               
 
               It involves the implementation of designs and interactions that users see and interact with directly in
@@ -61,10 +66,25 @@ function App() {
           </Container>
         </Box>
 
-        <Typography paddingBottom={3} variant="subtitle2" sx={{ textAlign: 'right' }}>
+
+        
+      </div>
+      <div style={{ display: 'flex', gap: '16px', justifyContent:'center'}}>
+      <PaperMid />
+      <PaperMid />
+      {/* <PaperMid /> */}
+
+      </div>
+
+
+
+
+
+
+
+      <Typography paddingBottom={3} variant="subtitle2" sx={{ textAlign: 'right' }}>
           0.0.1___
         </Typography>
-      </div>
     </ThemeProvider>
   );
 }
