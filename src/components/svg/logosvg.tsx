@@ -2,6 +2,10 @@ import React from 'react';
 
 import { styled, keyframes } from '@mui/material/styles';
 
+type LogoProps = {
+  sx?: Record<string, unknown>;
+};
+
 const LogoSvg = styled('svg')({
   paddingBottom: '8px',
   height: '48px',
@@ -16,11 +20,11 @@ const LogoSvg = styled('svg')({
   })} infinite 50s linear`,
 });
 
-function Logo() {
+function Logo(props: LogoProps) {
   return (
-    <LogoSvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100">
+    <LogoSvg {...props.sx} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100">
       <rect x="0" y="0" width="100" height="100" fill="transparent" />
-      <text x="50" y="70" fontSize="64" fill="#fff" textAnchor="middle">
+      <text x="50" y="70" fontSize="64" fill="#be3455" textAnchor="middle">
         ★
       </text>
     </LogoSvg>
