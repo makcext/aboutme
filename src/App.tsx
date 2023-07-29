@@ -1,15 +1,8 @@
 import React from 'react';
 import { Box, CardContent, Chip, Container, Typography } from '@mui/material';
-import { AppBar } from '@mui/material';
-import { Toolbar } from '@mui/material';
-import { IconButton } from '@mui/material';
-import Grid from '@mui/material/Grid';
-import MenuIcon from '@mui/icons-material/Menu';
-import { Button } from '@mui/material';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import QRsvg from './components/svg/qrsvg';
-// import Logo from './components/svg/logosvg';
 import LoadSkeleton from './components/Skeleton/index';
 import PaperMid from './components/PaperMid/index';
 import Layout from './components/layout/index';
@@ -47,20 +40,8 @@ function App() {
               scan <code>&amp;</code> go.
             </Typography>
 
-
-
-
             <QRsvg />
             <PaperMid />
-
-            <div>
-              {/* <Box display="block" justifyContent="Left" textAlign={'left'}>
-                <Typography variant='h2' > Education </Typography>
-                <Typography variant='h5' > Bachelor of Science in Computer Science </Typography>
-              </Box> */}
-            
-            </div>
-
 
             <Typography variant="h5"
               sx={{
@@ -73,33 +54,13 @@ function App() {
               to build dynamic, responsive, and visually appealing web applications.
             </Typography>
 
-            {/* <div>
-              <Box display="block" justifyContent="Left">
-                <Typography variant='h2' > Education </Typography>
-                <Typography variant='h5' > Athens Univercity of Economics and Business </Typography>
-              </Box>
-            </div> */}
-
             <CardContent>
               <LoadSkeleton />
             </CardContent>
           </Container>
         </Box>
-
-
-
-
         
       </div>
-      <div style={{ display: 'flex', gap: '16px', justifyContent:'center'}}>
-      
-
-
-
-      </div>
-
-
-
     </ThemeProvider>
   );
 }
