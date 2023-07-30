@@ -16,14 +16,14 @@ const images: Image[] = [
 
 ];
 
-function ImageGrid() {
+function Education() {
 
   return (
 		<>
 		<Box display="block" justifyContent="Left" textAlign={'left'} >
       
       <Paper elevation={4}>
-      <Paper variant="outlined" sx={{ borderRadius: '16px' }}>
+      <Paper variant="outlined">
 			<Typography variant='h3' > Education </Typography>
 			<Typography variant='h5' > Bachelor of Computer Science </Typography>
 
@@ -50,4 +50,4 @@ function ImageGrid() {
   );
 }
 
-export default ImageGrid;
+export default Education;
