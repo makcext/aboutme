@@ -1,6 +1,6 @@
 {
-  "short_name": "aboutme",
-  "name": "my app",
+  "short_name": "ext.abtm",
+  "name": "ext.app",
   "icons": [
     {
       "src": "favicon.ico",

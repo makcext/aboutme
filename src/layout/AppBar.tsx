@@ -3,7 +3,7 @@ import React from "react";
 
 import { AppBar, Button, IconButton, Toolbar, Grid } from "@mui/material";
 import MenuIcon from '@mui/icons-material/Menu';
-import Logo from '../svg/logosvg';
+import Logo from '../components/svg/logosvg';
 
 function ApplBar() {
   return (
@@ -19,7 +19,7 @@ function ApplBar() {
             <Logo />
           </Grid>
           <Grid>
-            <Button color="warning" sx={{ textTransform: 'none' }}>v 0.0.2</Button>
+            <Button color="warning" sx={{ textTransform: 'none' }}>v 0.0.3</Button>
           </Grid>
         </Grid>
       </Toolbar>
