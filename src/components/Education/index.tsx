@@ -31,7 +31,7 @@ function Education() {
         
         {images.map(image => (
           <Grid item key={image.id}  xs={6} sm={12} p={1} height={"100%"}>
-            <Paper variant={"outlined"} elevation={4}  sx={{ display: 'flex', justifyContent: 'center', padding:'8px' }}>
+            <Paper variant={"outlined"} elevation={0}  sx={{ display: 'flex', justifyContent: 'center', padding:'8px' }}>
               {image.src ? (
                 <img src={image.src} alt='aueb logo' style={{ height: '100%', width: '100%' }} />
               ) : (
