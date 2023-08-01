@@ -35,7 +35,7 @@ const TechStack = () => {
 
 				{tech.map(tech => (
 					<Grid item key={tech.id}  xs={6} sm={12} p={1} height={"100%"}>
-						<Paper variant={"outlined"} elevation={4}  sx={{ display: 'flex', justifyContent: 'center', padding:'8px' }}>
+						<Paper variant={"outlined"} elevation={0}  sx={{ display: 'flex', justifyContent: 'center', padding:'8px' }}>
 						{tech.text && (
   						<Typography variant="body2" align="center">{tech.text}</Typography>
 						)}
