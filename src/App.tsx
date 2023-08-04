@@ -26,6 +26,7 @@ const darkTheme = createTheme({
       xl: 1536,
     },
   },
+  spacing: 8,
 });
 
 
