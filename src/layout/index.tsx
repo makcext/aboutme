@@ -14,9 +14,9 @@ const Layout = () => {
     <>
       <ApplBar />
 
-      <Box maxWidth="sm" padding={1}>
+      <Box maxWidth="md" padding={1}>
         <HelloBlock />
-        <TechStack />
+        <TechStack id="tech-stack" paddingBottom={2} />
         <Education />
       </Box>
     </>

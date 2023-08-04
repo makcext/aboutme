@@ -26,6 +26,7 @@ const darkTheme = createTheme({
       xl: 1536,
     },
   },
+  spacing: 8,
 });
 
 
@@ -69,7 +70,7 @@ function App() {
         <Layout />
       </div>
         <Container sx={{ textAlign: 'justify', minHeight: 250 }}>
-            <Typography variant="h5"
+            <Typography variant="body2"
               sx={{
                 background: 'linear-gradient(to bottom, #555, #999)',
                 WebkitBackgroundClip: 'text',

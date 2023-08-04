@@ -19,7 +19,7 @@ function ApplBar() {
             <Logo />
           </Grid>
           <Grid>
-            <Button color="warning" sx={{ textTransform: 'none' }}>v 0.0.3</Button>
+            <Button color="warning" sx={{ textTransform: 'none' }}>v 0.0.3(a)</Button>
           </Grid>
         </Grid>
       </Toolbar>
