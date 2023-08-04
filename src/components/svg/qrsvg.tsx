@@ -8,8 +8,8 @@ function qrsvg() {
       <svg version="1.0" xmlns="http://www.w3.org/2000/svg"
     //  width="200.000000pt" height="200.000000pt" viewBox="0 0 200.000000 200.000000"
      preserveAspectRatio="xMidYMid meet"
-     style={{ position: 'relative' , left: '50%', top:'100px', transform: 'translate(-50%, -50%)', width: '200px', height: '220px', maxWidth: '300px', maxHeight: '300px' }}>
-    <g><rect x="0" y="0" width="200" height="200" fill="rgba(40, 44, 52, 0)" />
+     style={{ position: 'relative' , left: '50%', top:'100px', transform: 'translate(-50%, -50%)', width: '200px', height: '220px', maxWidth: '200px', maxHeight: '200px' }}>
+    <g><rect x="0" y="0" width="100" height="100" fill="rgba(40, 44, 52, 0)" />
     <g transform="translate(0.000000,200.000000) scale(0.026882,-0.026882)"
     fill="rgba(255, 255, 255, 1)" stroke="none">
     <path d="M720 5880 l0 -840 840 0 840 0 0 840 0 840 -840 0 -840 0 0 -840z

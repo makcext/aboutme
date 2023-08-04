@@ -1,20 +1,19 @@
 import React from "react";
 
-import { Avatar, Box, Chip, Container, Grid, Typography } from "@mui/material";
+import { Avatar, Box, Chip, Grid, Typography } from "@mui/material";
 import QRsvg from '../svg/qrsvg';
 
 import PlaceIcon from '@mui/icons-material/Place';
 import TwitterIcon from '@mui/icons-material/Twitter';
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
 import PanoramaFishEyeIcon from '@mui/icons-material/PanoramaFishEye';
-import '@fontsource/roboto/300.css';
+import '@fontsource/roboto/400.css';
 
-// const avatarpng = require('./avatar.png');
 
 const HelloBlock = () => {
 	return (
       <div  >
-        <Box paddingBottom={1} >
+        <Box paddingBottom={0} >
         <Grid container justifyContent={"space-evenly"}>    
 
         <Grid item xs={4} md={6} paddingTop={0} >
@@ -47,13 +46,13 @@ const HelloBlock = () => {
 
 
         <Grid item  xs={7} md={6} >
-          <Typography variant="subtitle1" fontSize={16} sx={{ textAlign: 'center' }}>
+          <Typography variant="body1" fontSize={16} sx={{ textAlign: 'center' }}>
             front-end developer
           </Typography>
           <Box display="flex" justifyContent="center">
-            <Chip label="react | material | mobx | graphql" variant="outlined" color="warning" />
+            <Chip sx={{ fontSize: 12 }} label="react | material | mobx | graphql" variant="outlined" color="warning" />
           </Box>
-          <Typography  sx={{ textAlign: 'center' }}>
+          <Typography variant="body2" sx={{ textAlign: 'center' }}>
           let's go
           </Typography>
           <QRsvg />

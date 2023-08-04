@@ -2,7 +2,6 @@ import { Box, Paper, Typography} from "@mui/material";
 import React from "react";
 import Grid from '@mui/material/Grid';
 
-import PlaceIcon from '@mui/icons-material/Place';
 
 interface Image {
   id: number;

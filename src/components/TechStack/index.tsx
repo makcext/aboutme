@@ -14,7 +14,6 @@ interface TechProps {
   id: string;
   paddingBottom?: number;
 }
-// const auebPng = require('./aueb.png');
 
 const tech: Tech[] = [
 	{ id: 1, text: 'React' },
