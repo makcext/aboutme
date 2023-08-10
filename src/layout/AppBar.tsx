@@ -9,7 +9,7 @@ function ApplBar() {
   return (
     <AppBar position="static">
       <Toolbar>
-        <Grid container alignItems="center" justifyContent="space-between">
+        <Grid container  justifyContent="space-between">
           <Grid>
             <IconButton aria-label="menu">
               <MenuIcon />
