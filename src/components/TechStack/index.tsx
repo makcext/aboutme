@@ -1,18 +1,15 @@
 import React from 'react';
 import { Box, Grid, Paper, Typography } from "@mui/material";
 
-// import { useTheme } from '@mui/material/styles';
-// import { useMediaQuery } from '@mui/material';
 interface Tech {
   id: number;
   src?: string;
 	text?: string;
-	paddingBottom?: number;
 }
 
 interface TechProps {
   id: string;
-  paddingBottom?: number;
+  paddingBottom: number;
 }
 
 const tech: Tech[] = [
@@ -28,15 +25,6 @@ const tech: Tech[] = [
 ];
 
 const TechStack = ({ paddingBottom }: TechProps) => {
-  // const theme = useTheme();
-  // const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'));
-  // const isMediumScreen = useMediaQuery(theme.breakpoints.between('sm', 'md'));
-  // const isLargeScreen = useMediaQuery(theme.breakpoints.up('lg'));
-
-
-	// const typographyColor = isSmallScreen ? 'red' : isMediumScreen ? 'blue' : isLargeScreen ? 'green' : '';
-
-
 	return (
 		<>
 		<Box paddingBottom={paddingBottom} display="block" justifyContent="Left" textAlign={'left'} >
@@ -55,11 +43,9 @@ const TechStack = ({ paddingBottom }: TechProps) => {
   						<Typography variant="body2"  align="center">{tech.text}</Typography>
 						)}
 						</Paper>
-						
 					</Grid>
 				))}
-        
-        
+         
       </Grid>
       </Paper>
       </Paper>

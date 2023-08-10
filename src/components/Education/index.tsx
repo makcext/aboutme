@@ -9,6 +9,11 @@ interface Image {
   text?: string;
 }
 
+interface EducationProps {
+  id: string;
+  paddingBottom?: number;
+}
+
 const auebPng = require('./aueb.png');
 
 const images: Image[] = [
@@ -16,11 +21,11 @@ const images: Image[] = [
   { id: 2, src: auebPng },
 ];
 
-function Education() {
+const Education = ({ paddingBottom }: EducationProps) => {
 
   return (
     <>
-      <Box display="block" justifyContent="Left" textAlign={'left'} >
+      <Box paddingBottom={paddingBottom} display="block" justifyContent="Left" textAlign={'left'} >
         <Paper elevation={4}>
           <Paper variant="outlined">
             <Typography variant='h3' > Education </Typography>
