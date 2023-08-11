@@ -1,10 +1,15 @@
 import React from 'react';
 import { Box, Grid, Paper, Typography } from "@mui/material";
 
+
+import { useState, useEffect } from 'react';
+import TouchAppIcon from '@mui/icons-material/TouchApp';
+import { AlignHorizontalRight } from '@mui/icons-material';
+
+
 interface Tech {
   id: number;
-  src?: string;
-	text?: string;
+	text: string;
 }
 
 interface TechProps {
@@ -15,30 +20,51 @@ interface TechProps {
 const tech: Tech[] = [
 	{ id: 1, text: 'React' },
   { id: 2, text: 'Mobx' },
-	{ id: 3, text: 'Material UI' },
+	{ id: 3, text: 'MUI' },
 	{ id: 4, text: 'Typescript' },
 	{ id: 5, text: 'Javascript' },
-	{ id: 6, text: 'HTML' },
-	{ id: 7, text: 'CSS' },
+	{ id: 6, text: 'CSS' },
+	{ id: 7, text: 'HTML' },
 	{ id: 8, text: 'Graphql' },
 
 ];
 
-const TechStack = ({ paddingBottom }: TechProps) => {
+function TechStack ({ id, paddingBottom }: TechProps) {
+	const [selectedTech, setSelectedTech] = useState('');
+	
+		useEffect(() => {
+			function shuffleTech() {
+				const shuffledTech = [...tech].sort(() => Math.random() - 0.5);
+				setSelectedTech(shuffledTech[0].text);
+				// console.log('from-useEffect', shuffledTech);
+			}
+	
+			shuffleTech();
+		}, []);
+	
+		function handleClick() {
+			const shuffledTech = [...tech].sort(() => Math.random() - 0.5);
+			setSelectedTech(shuffledTech[0].text);
+			// console.log('from-handleClick', shuffledTech);
+
+		}
+
+
+
 	return (
 		<>
-		<Box paddingBottom={paddingBottom} display="block" justifyContent="Left" textAlign={'left'} >
+		<Box paddingBottom={paddingBottom} display="inline" justifyContent="space-around" textAlign={'left'} >
       
       <Paper elevation={4}>
-      <Paper variant="outlined">
-			<Typography variant='h3' > Tech stack </Typography>
-			<Typography variant='h5' >  Developer who wants to explore every tech  </Typography>
+      <Paper variant="outlined" sx={{ borderColor: 'gray' }} >
+				<Typography style={{ flex: 1 }} variant='h3' sx={{ padding: '8px' }} onClick={handleClick} > Tech stack </Typography>
+			<Typography variant='h5' sx={{ padding: '8px' }} >  Developer who wants to explore {selectedTech?.toString()} tech  </Typography>
 
       <Grid container spacing={0}  justifyItems={"center"} alignItems={"center"} sx={{ height: '100%' }}>
 
 				{tech.map(tech => (
-					<Grid item key={tech.id}  xs={4} sm={3} p={1} height={"50%"}>
-						<Paper variant={"outlined"} elevation={0}  sx={{ display: 'flex', justifyContent: 'center', padding:'8px' }}>
+					<Grid item key={tech.id}  xs={3} sm={3} p={1} height={"50%"}>
+						<Paper  elevation={8}  sx={{ display: 'flex', justifyContent: 'center', padding:'8px' }}>
 						{tech.text && (
   						<Typography variant="body2"  align="center">{tech.text}</Typography>
 						)}
