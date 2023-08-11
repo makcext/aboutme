@@ -66,7 +66,7 @@ function TechStack ({ id, paddingBottom }: TechProps) {
       
       <Paper elevation={4}>
       <Paper variant="outlined" sx={{ borderColor: 'gray' }}  >
-				<Button  sx={{ flex: 1, typography: 'h3', textTransform: 'capitalize', margin:'8px'}} variant='text' color='warning' onClick={handleClick}>Tech stack</Button>
+				<Button  sx={{ width: '100%', justifyContent: 'flex-start', flex: 1, typography: 'h3', textTransform: 'capitalize', }} variant='text' color='warning' onClick={handleClick}>Tech stack</Button>
 			<Typography variant='h5' sx={{ display:'flex', padding: '8px' }} >  Developer who wants to explore {selectedTech?.toString()} tech  </Typography>
       <Grid container spacing={0}  justifyItems={"center"} alignItems={"center"} sx={{ height: '100%' }}>
 
