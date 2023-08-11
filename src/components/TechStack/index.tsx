@@ -1,10 +1,19 @@
 import React from 'react';
-import { Box, Grid, Paper, Typography } from "@mui/material";
+import { Box, Button, Grid, Paper, Typography } from "@mui/material";
 
 
 import { useState, useEffect } from 'react';
-import TouchAppIcon from '@mui/icons-material/TouchApp';
-import { AlignHorizontalRight } from '@mui/icons-material';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+
+const theme = createTheme({
+	palette: {
+    mode: 'dark',
+    //TODO: add custom colors
+    warning: {
+      main: '#ff9800',
+    },
+  },
+});
 
 
 interface Tech {
@@ -31,42 +40,41 @@ const tech: Tech[] = [
 
 function TechStack ({ id, paddingBottom }: TechProps) {
 	const [selectedTech, setSelectedTech] = useState('');
+	const [shuffledTech, setShuffledTech] = useState<string[]>([]);
 	
-		useEffect(() => {
-			function shuffleTech() {
-				const shuffledTech = [...tech].sort(() => Math.random() - 0.5);
-				setSelectedTech(shuffledTech[0].text);
-				// console.log('from-useEffect', shuffledTech);
-			}
-	
-			shuffleTech();
-		}, []);
-	
-		function handleClick() {
-			const shuffledTech = [...tech].sort(() => Math.random() - 0.5);
-			setSelectedTech(shuffledTech[0].text);
-			// console.log('from-handleClick', shuffledTech);
+	function shuffleTech() {
+		const shuffled = [...tech].sort(() => Math.random() - 0.5);
+		const shuffledText = shuffled.map((tech) => tech.text);
+		setShuffledTech(shuffledText);
+		setSelectedTech(shuffledText[0]);
+	}
 
-		}
+  useEffect(() => {
+    shuffleTech();
+  }, []);
 
+  function handleClick() {
+    shuffleTech();
+  }
 
+	const warningColor = theme.palette.warning.main;
 
 	return (
 		<>
+		<ThemeProvider theme={theme}>
 		<Box paddingBottom={paddingBottom} display="inline" justifyContent="space-around" textAlign={'left'} >
       
       <Paper elevation={4}>
-      <Paper variant="outlined" sx={{ borderColor: 'gray' }} >
-				<Typography style={{ flex: 1 }} variant='h3' sx={{ padding: '8px' }} onClick={handleClick} > Tech stack </Typography>
-			<Typography variant='h5' sx={{ padding: '8px' }} >  Developer who wants to explore {selectedTech?.toString()} tech  </Typography>
-
+      <Paper variant="outlined" sx={{ borderColor: 'gray' }}  >
+				<Button  sx={{ flex: 1, typography: 'h3', textTransform: 'capitalize', margin:'8px'}} variant='text' color='warning' onClick={handleClick}>Tech stack</Button>
+			<Typography variant='h5' sx={{ display:'flex', padding: '8px' }} >  Developer who wants to explore {selectedTech?.toString()} tech  </Typography>
       <Grid container spacing={0}  justifyItems={"center"} alignItems={"center"} sx={{ height: '100%' }}>
 
 				{tech.map(tech => (
 					<Grid item key={tech.id}  xs={3} sm={3} p={1} height={"50%"}>
 						<Paper  elevation={8}  sx={{ display: 'flex', justifyContent: 'center', padding:'8px' }}>
 						{tech.text && (
-  						<Typography variant="body2"  align="center">{tech.text}</Typography>
+  						<Typography variant="body2"  align="center" style={{ color: shuffledTech[0] === tech.text ? warningColor : 'inherit' }}>{tech.text}</Typography>
 						)}
 						</Paper>
 					</Grid>
@@ -77,6 +85,7 @@ function TechStack ({ id, paddingBottom }: TechProps) {
       </Paper>
       
 		</Box>
+		</ThemeProvider>
 		</>
   );
 }
