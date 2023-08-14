@@ -1,4 +1,4 @@
-import { Box, Paper, Typography} from "@mui/material";
+import { Box, Button, Paper, Typography} from "@mui/material";
 import React, { useState, useEffect } from "react";
 import Grid from '@mui/material/Grid';
 
@@ -42,18 +42,19 @@ const Education = ({ paddingBottom }: EducationProps) => {
 
   return (
     <>
-      <Box paddingBottom={paddingBottom} display="block" justifyContent="Left" textAlign={'left'} >
+      <Box paddingBottom={paddingBottom}  justifyContent="Left" textAlign={'left'} >
         <Paper elevation={4}>
-          <Paper variant="outlined">
-            <Typography variant='h3' onClick={swapImages} > Education </Typography>
-            <Typography variant='h5' > Bachelor of Computer Science </Typography>
+        <Paper variant="outlined" sx={{ borderColor: 'gray' }}  >
+            {/* <Typography variant='h3' onClick={swapImages} > Education </Typography> */}
+            <Button  sx={{ width: '100%', justifyContent: 'flex-start', flex: 1, typography: 'h3', textTransform: 'capitalize', }} variant='text' color='warning' onClick={swapImages}>Education</Button>
+            <Typography variant='h6' sx={{ display:'flex', padding: '8px' }} > Bachelor of Computer Science </Typography>
             {/* <button onClick={swapImages}>Swap Images</button> */}
             <Grid container spacing={0} justifyItems={"center"} alignItems={"center"} sx={{ height: '100%' }}>
               {shuffledImages.map(image => (
                 <Grid item key={image.id} xs={6} sm={6} p={1} height={"100%"}>
                   <Paper variant={"outlined"} elevation={0} sx={{ display: 'flex', justifyContent: 'center', padding: '8px' }}>
                     {image.src ? (
-                      <img src={image.src} alt='aueb logo' style={{ height: '100%', width: '100%' }} />
+                      <img src={image.src} alt='aueb logo' style={{ height: '75%', width: '75%' }} />
                     ) : (
                       <Typography variant="body2" align="center">{image.text}</Typography>
                     )}

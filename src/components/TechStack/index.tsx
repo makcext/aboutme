@@ -59,10 +59,11 @@ function TechStack ({ id, paddingBottom }: TechProps) {
 
 	const warningColor = theme.palette.warning.main;
 
+	console.log(paddingBottom);
 	return (
 		<>
-		<ThemeProvider theme={theme}>
-		<Box paddingBottom={paddingBottom} display="inline" justifyContent="space-around" textAlign={'left'} >
+		{/* <ThemeProvider theme={theme}> */}
+		<Box paddingBottom={paddingBottom}  justifyContent="space-around" textAlign={'left'} >
       
       <Paper elevation={4}>
       <Paper variant="outlined" sx={{ borderColor: 'gray' }}  >
@@ -85,7 +86,7 @@ function TechStack ({ id, paddingBottom }: TechProps) {
       </Paper>
       
 		</Box>
-		</ThemeProvider>
+		{/* </ThemeProvider> */}
 		</>
   );
 }
