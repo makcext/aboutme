@@ -3,6 +3,7 @@ import React from "react";
 
 import ApplBar from "./AppBar";
 import HelloBlock from "../components/HelloBlock";
+import Wolt from "../components/Wolt";
 import TechStack from "../components/TechStack";
 import Education from "../components/Education";
 import Footer from "../components/Footer";
@@ -19,6 +20,8 @@ const Layout = () => {
         <HelloBlock />
         <TechStack id="tech-stack" paddingBottom={2} />
         <Education id="Education" paddingBottom={2} />
+        <Wolt id="wolt" paddingBottom={2} />
+
         <Footer />
       </Box>
     </>
