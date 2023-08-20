@@ -59,7 +59,7 @@ function TechStack ({ id, paddingBottom }: TechProps) {
 
 	const warningColor = theme.palette.warning.main;
 
-	console.log(paddingBottom);
+	// console.log(paddingBottom);
 	return (
 		<>
 		{/* <ThemeProvider theme={theme}> */}
