@@ -111,42 +111,64 @@ function Wolt({ paddingBottom }: WoltProps)  {
           <Typography variant="h3" >
             {data.title}
           </Typography>
-  
+
+					<Grid container spacing={2}>
+      <Grid item xs={6}>
+        <Grid container spacing={2}>
+          <Grid item xs={12}>
 					<TextField
 						sx={{ display: 'block', padding: 0 }}
 						label={data.cartLabel}
 						name="cartValue"
+						size='small'
 						// value={submitedData.cartValue}
 						onChange={handleInputChange}
-					/>
-
+					/>          
+					</Grid>
+          <Grid item xs={12}>
 					<TextField
 						sx={{ display: 'block', padding: 0 }}
 						label={data.distanceLabel}
 						name='deliveryDistance'
+						size='small'
 						// value={submitedData.deliveryDistance}
 						onChange={handleInputChange}
-					/>
-
+					/>          
+					</Grid>
+          <Grid item xs={12}>
 					<TextField
 						sx={{ display: 'block', padding: 0 }}
 						label={data.amountLabel}
 						name='amountOfItems'
+						size='small'
 						// value={submitedData.amountOfItems}
 						onChange={handleInputChange}
-					/>
-
+					/>          
+					</Grid>
+          <Grid item xs={12}>
 					<LocalizationProvider dateAdapter={AdapterMoment}>
 						<DateTimePicker
-              sx={{ display: 'block', padding: 0 }}
+              sx={{ display: 'block', padding: 0}}
               label={data.timeLabel}
 							onChange={handleDataChange}
+							
             />
 					</LocalizationProvider>
-                      
-          <Typography variant="h6">{`Delivery price: ${submitedData.deliveryFee }€`}</Typography>
-					<Button size='large' onClick={handleButtonClick}>{data.buttonLabel}</Button>
-
+          </Grid>
+        </Grid>
+      </Grid>
+      <Grid item xs={6}>
+        <Grid container spacing={2}>
+				<Grid item xs={12}>
+					<Button variant='outlined' color='warning' size='large' onClick={handleButtonClick}>{data.buttonLabel}</Button>
+          </Grid>
+          <Grid item xs={12}>
+          <Typography variant="body2">{`Delivery price: ${submitedData.deliveryFee} €`}</Typography>
+          </Grid>
+          
+        </Grid>
+      </Grid>
+    </Grid>
 
 				</Paper>
 			</Paper>
