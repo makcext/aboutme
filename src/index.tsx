@@ -15,4 +15,4 @@ if (rootElement) {
   );
 }
 
-console.log("hi from index.jsx");
+// console.log("hi from index.jsx");
