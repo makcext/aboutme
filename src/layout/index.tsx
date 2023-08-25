@@ -31,11 +31,11 @@ const Layout = () => {
       <ApplBar />
 
       <Box maxWidth="md" padding={1}>
-        <HelloBlock />
+        <HelloBlock weather={weather} />
         <TechStack id="tech-stack" paddingBottom={2} />
         <Education id="Education" paddingBottom={2} />
         <Wolt id="wolt" paddingBottom={2} />
-        <WeatherView weather={weather} />
+        {/* <WeatherView weather={weather} /> */}
 
         <Footer />
       </Box>
