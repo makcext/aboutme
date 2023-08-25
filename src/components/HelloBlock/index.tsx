@@ -9,14 +9,19 @@ import AccessTimeIcon from '@mui/icons-material/AccessTime';
 import PanoramaFishEyeIcon from '@mui/icons-material/PanoramaFishEye';
 import '@fontsource/roboto/400.css';
 
+import WeatherData from '../Weather/WeatherModel';
 
-const HelloBlock = () => {
+interface WeatherViewProps {
+  weather: WeatherData | null;
+}
+
+const HelloBlock: React.FC<WeatherViewProps> = ( { weather } ) => {
 	return (
       <div  >
         <Box paddingBottom={0} >
         <Grid container justifyContent={"space-evenly"}>    
 
-        <Grid item xs={4} md={6} paddingTop={0} >
+        <Grid item xs={5} md={6} paddingTop={0} >
         <Avatar  alt="ext Route" src = "" sx={{ width: 96, height: 96, bgcolor: "black" }} >
           <PanoramaFishEyeIcon color="warning" sx={{ fontSize:80 }}/>
         </Avatar>
@@ -42,15 +47,25 @@ const HelloBlock = () => {
             <Typography variant="h4" fontSize={14} sx={{ textAlign: 'left' }} gutterBottom>@makcext</Typography>
           </Box>
             
+          <Box>
+            {weather ? (
+              <>
+                <Typography variant="h4" fontSize={14} sx={{ textAlign: 'left' }} gutterBottom>{weather.main.temp}°C [{weather.weather[0].description}]</Typography>
+              </>
+            ) : (
+              <Typography>Loading weather data...</Typography>
+            )}
+          </Box>
+
         </Grid>
 
 
-        <Grid item  xs={7} md={6} >
+        <Grid item  xs={6} md={6} >
           <Typography variant="body1" fontSize={16} sx={{ textAlign: 'center' }}>
             front-end developer
           </Typography>
           <Box display="flex" justifyContent="center">
-            <Chip sx={{ fontSize: 12 }} label="react | material | mobx | graphql" variant="outlined" color="warning" />
+            <Chip sx={{ fontSize: 12 }} label="react | ts | mobx | graphql" variant="outlined" color="warning" />
           </Box>
           <Typography variant="body2" sx={{ textAlign: 'center' }}>
           let's go
