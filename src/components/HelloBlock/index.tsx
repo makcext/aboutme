@@ -21,7 +21,7 @@ const HelloBlock: React.FC<WeatherViewProps> = ( { weather } ) => {
         <Box paddingBottom={0} >
         <Grid container justifyContent={"space-evenly"}>    
 
-        <Grid item xs={5} md={6} paddingTop={0} >
+        <Grid item xs={6} md={6} paddingTop={0} >
         <Avatar  alt="ext Route" src = "" sx={{ width: 96, height: 96, bgcolor: "black" }} >
           <PanoramaFishEyeIcon color="warning" sx={{ fontSize:80 }}/>
         </Avatar>
