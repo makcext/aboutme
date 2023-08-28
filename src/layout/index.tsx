@@ -12,6 +12,8 @@ import Footer from "../components/Footer";
 import WeatherView from "../components/Weather/WeatherView";
 import fetchWeatherData from "../components/Weather/WeatherController";
 import WeatherData from "../components/Weather/WeatherModel";
+import WoltView from "../components/Wolt/WoltView"; 
+import TaskView from "../components/ToDo/TaskView";
 
 import { Box } from "@mui/material";
 
@@ -32,13 +34,13 @@ const Layout = () => {
 
       <Box maxWidth="md" padding={1}>
         <HelloBlock weather={weather} />
-        {/* <TechStack id="tech-stack" paddingBottom={2} /> */}
+        <TaskView />
         <TechStack />
 
         <Education id="Education" paddingBottom={2} />
         <Wolt id="wolt" paddingBottom={2} />
         {/* <WeatherView weather={weather} /> */}
-
+        <WoltView paddingBottom={2}  />
         <Footer />
       </Box>
     </>

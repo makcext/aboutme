@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Button, Grid, Paper, Typography } from '@mui/material';
+import { Box, Button, Grid, Grow, Paper, Typography } from '@mui/material';
 import { useTechStack } from './TechController';
 import { TechText } from  './TechModel';
 
@@ -27,9 +27,9 @@ const TechStack: React.FC = () => {
           >
             Tech stack
           </Button>
-          <Typography variant="h6" sx={{ display: 'flex', padding: '8px' }}>
-            Developer who wants to explore {selectedTech?.toString()} tech
-          </Typography>
+          <Grow in={true} style={{ transformOrigin: '0 1 0' }} {...(true ? { timeout: 2000 } : {})} >
+            <Typography variant='h6' sx={{ display:'flex', padding: '8px' }} > Developer who wants to explore {selectedTech?.toString()} tech </Typography>
+            </Grow>
           <Grid
             container
             spacing={0}
