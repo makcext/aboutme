@@ -8,6 +8,10 @@ import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
+import Grid from '@mui/material/Grid';
+import Paper from '@mui/material/Paper';
+import Box from '@mui/material/Box';
+
 
 import { Task } from './TaskModel';
 
@@ -41,22 +45,32 @@ const TaskView: React.FC = () => {
   };
 
   return (
-    <div>
+    <>
+        <Box paddingBottom={3} justifyContent="space-around" textAlign="left">
+      <Paper elevation={4}>
+        <Paper variant="outlined" sx={{ borderColor: 'gray' }}>
       <h1>Todo List</h1>
-      <div>
+      <>
+      <Grid container spacing={1}>
+        <Grid item xs={6}>
         <TextField
           label="New Task"
           value={newTaskTitle}
           onChange={handleTaskTitleChange}
+          size = 'small'
         />
-        <Button variant="contained" onClick={handleCreateTask}>
+        </Grid>
+        <Grid item xs={6}>
+        <Button variant="outlined" color='warning' onClick={handleCreateTask}>
           Add Task
         </Button>
-      </div>
+        </Grid>
+        </Grid>
+      </>
       <List>
         {tasks.map(task => (
           <ListItem key={task.id}>
-            <Checkbox
+            <Checkbox color='warning'
               checked={task.completed}
               onChange={() => handleTaskCompletionToggle(task.id)}
             />
@@ -64,7 +78,18 @@ const TaskView: React.FC = () => {
           </ListItem>
         ))}
       </List>
-    </div>
+      </Paper>
+      </Paper>
+    
+      </Box>
+
+
+
+
+
+
+
+    </>
   );
 };
 
