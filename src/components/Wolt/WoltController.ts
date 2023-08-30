@@ -1,20 +1,74 @@
-import { useState } from 'react';
-import WoltModel from './WoltModel';
+import { useState, useEffect } from 'react';
+import { Cart, DeliveryOptions, calculateDeliveryFee } from './WoltModel';
 
+export const useWoltController = () => {
+  const [cart, setCart] = useState<Cart>({
+    cartValue: 12,
+    numItems: 3,
+    deliveryDistance: 1523,
+    orderTime: 11
+  });
 
+  const [deliveryOptions] = useState<DeliveryOptions>({
+    baseFee: 2,
+    maxFee: 15,
+    smallOrderSurchargeThreshold: 10,
+    distanceThreshold: 1000,
+    additionalDistanceFee: 1,
+    itemSurchargeThreshold: 5,
+    itemSurcharge: 0.5,
+    bulkItemFee: 1.2,
+    freeDeliveryThreshold: 100,
+    rushHourMultiplier: 1.2,
+    rushHourStart: 15,
+    rushHourEnd: 19
+  });
 
-export function useWoltController(): [typeof WoltModel['data'], (data: typeof WoltModel['data']) => void, () => void] {
-  const [submitedData, setSubmitedData] = useState<typeof WoltModel['data']>(WoltModel.data);
+  const [fee, setFee] = useState<number>(0);
 
-  const handleDataChange = (data: typeof WoltModel['data']) => {
-    const deliveryFee = WoltModel.calculate(data);
-    setSubmitedData(prevState => ({ ...prevState, ...data, deliveryFee }));
+  useEffect(() => {
+    const initialFee = calculateDeliveryFee(cart, deliveryOptions);
+    setFee(initialFee);
+  }, [cart, deliveryOptions]);
+
+  const handleCartValueChange = (newCartValue: number) => {
+    const newCart = { ...cart, cartValue: newCartValue };
+    setCart(newCart);
+    const newFee = calculateDeliveryFee(newCart, deliveryOptions);
+    setFee(newFee);
+    console.log(newCart)
+
+    
   };
 
-  const handleButtonClick = () => {
-    WoltModel.data = submitedData;
-    handleDataChange(submitedData);
+  const handleDeliveryDistanceChange = (newDeliveryDistance: number) => {
+    const newCart = { ...cart, deliveryDistance: newDeliveryDistance };
+    setCart(newCart);
+    const newFee = calculateDeliveryFee(newCart, deliveryOptions);
+    setFee(newFee);
   };
 
-  return [submitedData, handleDataChange, handleButtonClick];
-}
+  const handleNumItemsChange = (newNumItems: number) => {
+    const newCart = { ...cart, numItems: newNumItems };
+    setCart(newCart);
+    const newFee = calculateDeliveryFee(newCart, deliveryOptions);
+    setFee(newFee);
+  };
+
+  const handleOrderTimeChange = (newOrderTime: number) => {
+    const newCart = { ...cart, orderTime: newOrderTime };
+    setCart(newCart);
+    const newFee = calculateDeliveryFee(newCart, deliveryOptions);
+    setFee(newFee);
+  };
+
+  return {
+    cart,
+    fee,
+    // feeRun,
+    handleCartValueChange,
+    handleDeliveryDistanceChange,
+    handleNumItemsChange,
+    handleOrderTimeChange
+  };
+};

@@ -46,7 +46,7 @@ const TaskView: React.FC = () => {
 
   return (
     <>
-        <Box paddingBottom={3} justifyContent="space-around" textAlign="left">
+        <Box paddingBottom={2} justifyContent="space-around" textAlign="left">
       <Paper elevation={4}>
         <Paper variant="outlined" sx={{ borderColor: 'gray' }}>
       <h1>Todo List</h1>

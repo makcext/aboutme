@@ -13,7 +13,7 @@ import WeatherView from "../components/Weather/WeatherView";
 import fetchWeatherData from "../components/Weather/WeatherController";
 import WeatherData from "../components/Weather/WeatherModel";
 import WoltView from "../components/Wolt/WoltView";
-import WoltView1 from "../components/Wolt1/WoltView";
+// import WoltView1 from "../components/Wolt1/WoltView";
 
 import TaskView from "../components/ToDo/TaskView";
 
@@ -36,14 +36,16 @@ const Layout = () => {
 
       <Box maxWidth="md" padding={1}>
         <HelloBlock weather={weather} />
-        <TaskView />
+
+        <WoltView paddingBottom={2}  />
+        <TaskView  />
+
         <TechStack />
 
         <Education id="Education" paddingBottom={2} />
-        <Wolt id="wolt" paddingBottom={2} />
+        {/* <Wolt id="wolt" paddingBottom={2} /> */}
         {/* <WeatherView weather={weather} /> */}
-        <WoltView paddingBottom={2}  />
-        <WoltView1 paddingBottom={2}  />
+        {/* <WoltView paddingBottom={2}  /> */}
         <Footer />
       </Box>
     </>
