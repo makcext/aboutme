@@ -1,8 +1,8 @@
 import { Box, Button, Grid, Paper, TextField, Typography } from '@mui/material';
 import React, { useState } from 'react';
-import { Fee } from './WoltController';
-// import WoltModel from './WoltModel';
-import { calculateDeliveryFee, cart, deliveryOptions } from './WoltModel';
+import { Fee, handleCartValueChange } from './WoltController';
+
+import { calculateDeliveryFee, cart, deliveryOptions, updateCartValue  } from './WoltModel';
 
 interface Props {
   paddingBottom: number;
@@ -10,14 +10,6 @@ interface Props {
 
 const WoltView: React.FC<Props> = ({ paddingBottom }) => {
   
-
-
-
-
-
-
-
-
 const label = {
   cartValueLabel: 'Cart value',
   deliveryDistanceLabel: 'Delivery distance',
@@ -25,6 +17,12 @@ const label = {
   timeAndDateLabel: 'Time and date',
   buttonLabel: 'Calculate delivery fee'
 };
+
+
+
+
+
+
 
 
   return (
@@ -38,6 +36,7 @@ const label = {
                 label={label.cartValueLabel}
                 name="cartValue"
                 value={cart.cartValue}
+                onChange={handleCartValueChange}
               />
             </Grid>
             <Grid item xs={12} sm={6}>

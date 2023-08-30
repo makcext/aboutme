@@ -106,7 +106,10 @@ console.log('calculateDeliveryFee1', cart, deliveryOptions);
 export const fee = calculateDeliveryFee(cart, deliveryOptions);
 console.log(`Delivery fee: ${fee}€`);
 
-
+export const updateCartValue = (value: number) => {
+  console.log('updateCartValue', value);
+  cart.cartValue = value;
+};
 
 
 

@@ -1,5 +1,5 @@
 // WoltController.ts
-import {calculateDeliveryFee} from './WoltModel';
+import {calculateDeliveryFee, updateCartValue} from './WoltModel';
 
 
 
@@ -8,6 +8,12 @@ const Fee = () => {
   
   const deliveryFee = calculateDeliveryFee;
   return { deliveryFee };
+};
+
+const handleCartValueChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  console.log('New value:', event.target.value);
+  const newValue = Number(event.target.value);
+  updateCartValue(newValue);
 };
 
 
@@ -20,6 +26,4 @@ const Fee = () => {
 
 
 
-
-
-export  { Fee };
+export  { Fee, handleCartValueChange };
