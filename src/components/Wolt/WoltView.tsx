@@ -87,6 +87,7 @@ function Wolt({ paddingBottom }: WoltProps) {
             </Button>
 						<Grid item xs={12}>
           <Typography variant="body2">{`Delivery price: ${submitedData.deliveryFee} €`}</Typography>
+          <Typography variant="body2">{`Delivery price: ${submitedData.deliveryFee} €`}</Typography>
           </Grid>
           </Box>
         </Paper>

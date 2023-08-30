@@ -12,7 +12,9 @@ import Footer from "../components/Footer";
 import WeatherView from "../components/Weather/WeatherView";
 import fetchWeatherData from "../components/Weather/WeatherController";
 import WeatherData from "../components/Weather/WeatherModel";
-import WoltView from "../components/Wolt/WoltView"; 
+import WoltView from "../components/Wolt/WoltView";
+import WoltView1 from "../components/Wolt1/WoltView";
+
 import TaskView from "../components/ToDo/TaskView";
 
 import { Box } from "@mui/material";
@@ -41,6 +43,7 @@ const Layout = () => {
         <Wolt id="wolt" paddingBottom={2} />
         {/* <WeatherView weather={weather} /> */}
         <WoltView paddingBottom={2}  />
+        <WoltView1 paddingBottom={2}  />
         <Footer />
       </Box>
     </>
