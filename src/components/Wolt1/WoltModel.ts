@@ -75,42 +75,6 @@ export const calculateDeliveryFee = (cart: Cart, options: DeliveryOptions): numb
   return Math.min(deliveryFee, maxFee);
 };
 
-// Example usage
-export const cart: Cart = {
-  cartValue: 10,
-  numItems: 4,
-  deliveryDistance: 1234,
-  orderTime: 15
-};
-
-
-export const deliveryOptions: DeliveryOptions = {
-  baseFee: 3,
-  maxFee: 15,
-  smallOrderSurchargeThreshold: 10,
-  distanceThreshold: 1000,
-  additionalDistanceFee: 1,
-  itemSurchargeThreshold: 5,
-  itemSurcharge: 0.5,
-  bulkItemFee: 1.2,
-  freeDeliveryThreshold: 100,
-  rushHourMultiplier: 1.2,
-  rushHourStart: 15,
-  rushHourEnd: 19
-};
-
-// calculateDeliveryFee1(cart, deliveryOptions);
-console.log('calculateDeliveryFee1', cart, deliveryOptions);
-
-
-export const fee = calculateDeliveryFee(cart, deliveryOptions);
-console.log(`Delivery fee: ${fee}€`);
-
-export const updateCartValue = (value: number) => {
-  console.log('updateCartValue', value);
-  cart.cartValue = value;
-};
-
 
 
 

@@ -1,29 +1,21 @@
-import { Box, Button, Grid, Paper, TextField, Typography } from '@mui/material';
-import React, { useState } from 'react';
-import { Fee, handleCartValueChange } from './WoltController';
+import React from 'react';
+import { Box, Grid, Paper, TextField, Typography } from '@mui/material';
+import { useWoltController } from './WoltController';
 
-import { calculateDeliveryFee, cart, deliveryOptions, updateCartValue  } from './WoltModel';
-
-interface Props {
-  paddingBottom: number;
+interface WoltViewProps {
+  paddingBottom?: number;
 }
 
-const WoltView: React.FC<Props> = ({ paddingBottom }) => {
-  
-const label = {
-  cartValueLabel: 'Cart value',
-  deliveryDistanceLabel: 'Delivery distance',
-  amountOfItemsLabel: 'Amount of items',
-  timeAndDateLabel: 'Time and date',
-  buttonLabel: 'Calculate delivery fee'
-};
-
-
-
-
-
-
-
+const WoltView = (props: WoltViewProps) => {
+  const { paddingBottom = 0 } = props;
+  const {
+    cart,
+    fee,
+    handleCartValueChange,
+    handleDeliveryDistanceChange,
+    handleNumItemsChange,
+    handleOrderTimeChange
+  } = useWoltController();
 
   return (
     <Box paddingBottom={paddingBottom}>
@@ -33,48 +25,46 @@ const label = {
             <Grid item xs={12} sm={6}>
               <TextField
                 fullWidth
-                label={label.cartValueLabel}
+                label="Cart Value"
                 name="cartValue"
-                value={cart.cartValue}
-                onChange={handleCartValueChange}
+                // value={cart.cartValue}
+                onChange={(event) => handleCartValueChange(Number(event.target.value))}
               />
             </Grid>
             <Grid item xs={12} sm={6}>
               <TextField
                 fullWidth
-                label={label.deliveryDistanceLabel}
+                label="Delivery Distance"
                 name="deliveryDistance"
-                value={cart.deliveryDistance}
+                // value={cart.deliveryDistance}
+                onChange={(event) => handleDeliveryDistanceChange(Number(event.target.value))}
               />
             </Grid>
             <Grid item xs={12} sm={6}>
               <TextField
                 fullWidth
-                label={label.amountOfItemsLabel}
+                label="Number of Items"
                 name="numItems"
-                value={cart.numItems}
+                // value={cart.numItems}
+                onChange={(event) => handleNumItemsChange(Number(event.target.value))}
               />
             </Grid>
             <Grid item xs={12} sm={6}>
               <TextField
                 fullWidth
-                label={label.timeAndDateLabel}
-                name="timeAndDate"
+                label="Order Time"
+                name="orderTime"
                 // type="datetime-local"
-                value={cart.orderTime}
+                // value={cart.orderTime}
+                onChange={(event) => handleOrderTimeChange(Number(event.target.value))}
                 InputLabelProps={{
                   shrink: true
                 }}
               />
             </Grid>
             <Grid item xs={12}>
-            {/* <Button variant="contained" color="primary" >
-  {label.buttonLabel}
-</Button> */}
-            </Grid>
-            <Grid item xs={12}>
               <Typography variant="h6">
-                Delivery fee: {calculateDeliveryFee(cart, deliveryOptions)} €
+                Delivery fee: {fee} €
               </Typography>
             </Grid>
           </Grid>
