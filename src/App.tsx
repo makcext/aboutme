@@ -48,7 +48,7 @@ function App() {
   });
 
   useEffect(() => {
-    console.log("Current media query:", currentMediaQuery);
+    // console.log("Current media query:", currentMediaQuery);
   }, [currentMediaQuery]);
 
   useEffect(() => {
