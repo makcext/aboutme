@@ -12,7 +12,7 @@ import Logo from '../components/svg/logosvg';
 const appBarItems = [
   { id: 1, component: <MenuIcon />, },
   { id: 2, component: <div><Logo /></div> },
-  { id: 3, component: <Button color="warning" sx={{ textTransform: 'none' }}>v 0.0.3(a)</Button> },
+  { id: 3, component: <Button color="warning" sx={{ textTransform: 'none' }}>v 0.0.3(b)</Button> },
 ];
 
 

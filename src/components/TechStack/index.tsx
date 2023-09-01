@@ -10,7 +10,7 @@ const TechStack: React.FC = () => {
   const warningColor = '#ff9800'; // Extract this from your theme or define it
 
   return (
-    <Box paddingBottom={3} justifyContent="space-around" textAlign="left">
+    <Box paddingBottom={2} justifyContent="space-around" textAlign="left">
       <Paper elevation={4}>
         <Paper variant="outlined" sx={{ borderColor: 'gray' }}>
           <Button
@@ -27,6 +27,7 @@ const TechStack: React.FC = () => {
           >
             Tech stack
           </Button>
+
           <Grow in={true} style={{ transformOrigin: '0 1 0' }} {...(true ? { timeout: 2000 } : {})} >
             <Typography variant='h6' sx={{ display:'flex', padding: '8px' }} > Developer who wants to explore {selectedTech?.toString()} tech </Typography>
             </Grow>

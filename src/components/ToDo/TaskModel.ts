@@ -9,6 +9,12 @@ export interface Task {
 let nextId = 1;
 const tasks: Task[] = [];
 
+addTask("Buy groceries"); // Pre-rendered as not completed
+
+
+
+
+
 export function addTask(title: string): Task {
   const task: Task = {
     id: nextId++,
@@ -19,12 +25,14 @@ export function addTask(title: string): Task {
   return task;
 }
 
-addTask("Buy groceries"); // Pre-rendered as not completed
-addTask("Walk the dog"); // Pre-rendered as not completed
-addTask("Do laundry"); 
 
 export function getTasks(): Task[] {
   return tasks;
+}
+
+export function deleteTask(id: number): void {
+  const newTasks = tasks.filter(task => task.id !== id);
+  tasks.splice(0, tasks.length, ...newTasks);
 }
 
 export function toggleTaskCompletion(id: number): void {
@@ -33,3 +41,4 @@ export function toggleTaskCompletion(id: number): void {
     task.completed = !task.completed;
   }
 }
+
