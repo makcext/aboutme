@@ -14,6 +14,7 @@ import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
 import Box from '@mui/material/Box';
+import { Typography } from '@mui/material';
 
 
 import { Task } from './TaskModel';
@@ -54,53 +55,49 @@ const TaskView: React.FC = () => {
 
   return (
     <>
-        <Box paddingBottom={2} justifyContent="space-around" textAlign="left">
-      <Paper elevation={4}>
-        <Paper variant="outlined" sx={{ borderColor: 'gray' }}>
-      <h1>Todo List</h1>
-      <>
-      <Grid container spacing={1}>
-        <Grid item xs={6}>
-        <TextField
-          label="New Task"
-          value={newTaskTitle}
-          onChange={handleTaskTitleChange}
-          size = 'small'
-        />
-        </Grid>
-        <Grid item xs={6}>
-        <Button variant="outlined" color='warning' onClick={handleCreateTask}>
-          Add Task
-        </Button>
-        </Grid>
-        </Grid>
-      </>
-      <List>
-  {tasks.map(task => (
-    <ListItem key={task.id}>
-      <Checkbox
-        checked={task.completed}
-        onChange={() => handleTaskCompletionToggle(task.id)}
-      />
-      <ListItemText primary={task.title} />
-      <ListItemSecondaryAction>
+      <Box paddingBottom={2} justifyContent="space-around" textAlign="left">
+      <Paper variant="outlined" sx={{ borderColor: 'gray', padding: 1 }}>
+
+        <Typography variant="h3" >Todo List</Typography>
+        
+        <Grid  container spacing={1} style={{ paddingTop: '8px' }}>
+          <Grid item xs={6}>
+          <TextField
+            label="New Task"
+            value={newTaskTitle}
+            onChange={handleTaskTitleChange}
+            size = 'small'
+          />
+          </Grid>
+          <Grid item xs={6}>
+          <Button variant="outlined" color='warning' onClick={handleCreateTask}>
+            Add Task
+          </Button>
+          </Grid>
+          </Grid>
+        
+        <List>
+        {tasks.map(task => (
+  <ListItem key={task.id}>
+    <Checkbox
+      checked={task.completed}
+      onChange={() => handleTaskCompletionToggle(task.id)}
+    />
+    <ListItemText
+      primaryTypographyProps={{ variant: 'subtitle2' }}
+      primary={task.title}
+    />
+    <ListItemSecondaryAction>
       <IconButton onClick={() => handleRemoveTask(task.id)}>
-          <DeleteIcon />
-        </IconButton>
-      </ListItemSecondaryAction>
-    </ListItem>
-  ))}
-</List>
-      </Paper>
-      </Paper>
+        <DeleteIcon color="error" />
+      </IconButton>
+    </ListItemSecondaryAction>
+  </ListItem>
+))}
+  </List>
+        </Paper>
     
       </Box>
-
-
-
-
-
-
 
     </>
   );

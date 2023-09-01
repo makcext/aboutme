@@ -10,8 +10,8 @@ let nextId = 1;
 const tasks: Task[] = [];
 
 addTask("Buy groceries"); // Pre-rendered as not completed
-addTask("Walk the dog"); // Pre-rendered as not completed
-addTask("Do laundry"); 
+
+
 
 
 

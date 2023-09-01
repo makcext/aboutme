@@ -5,7 +5,7 @@ export const useWoltController = () => {
   const [cart, setCart] = useState<Cart>({
     cartValue: 12,
     numItems: 3,
-    deliveryDistance: 1523,
+    deliveryDistance: 1499,
     orderTime: 11
   });
 
@@ -31,14 +31,12 @@ export const useWoltController = () => {
     setFee(initialFee);
   }, [cart, deliveryOptions]);
 
-  const handleCartValueChange = (newCartValue: number) => {
-    const newCart = { ...cart, cartValue: newCartValue };
+  const handleCartValueChange = (value: number | string) => {
+    // const newValue = value ;
+    const newCart = { ...cart, cartValue: Number(value) };
     setCart(newCart);
     const newFee = calculateDeliveryFee(newCart, deliveryOptions);
     setFee(newFee);
-    console.log(newCart)
-
-    
   };
 
   const handleDeliveryDistanceChange = (newDeliveryDistance: number) => {

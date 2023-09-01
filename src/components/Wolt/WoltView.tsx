@@ -1,6 +1,7 @@
 import React from 'react';
 import { Box, Grid, Paper, TextField, Typography } from '@mui/material';
 import { useWoltController } from './WoltController';
+import { blue } from '@mui/material/colors';
 
 interface WoltViewProps {
   paddingBottom?: number;
@@ -27,36 +28,42 @@ const WoltView = (props: WoltViewProps) => {
         <Box padding={2}>
 
           <Grid container spacing={2}>
-            <Grid item xs={12} sm={6}>
+            <Grid item xs={6} sm={6}>
               <TextField
                 fullWidth
+                size='small'
                 label="Cart Value €"
                 name="cartValue"
                 value={cart.cartValue}
                 onChange={(event) => handleCartValueChange(Number(event.target.value))}
+                // type='number'
+                // inputMode='numeric'
               />
             </Grid>
-            <Grid item xs={12} sm={6}>
+            <Grid item xs={6} sm={6}>
               <TextField
                 fullWidth
+                size='small'
                 label="Delivery Distance"
                 name="deliveryDistance"
                 value={cart.deliveryDistance}
                 onChange={(event) => handleDeliveryDistanceChange(Number(event.target.value))}
               />
             </Grid>
-            <Grid item xs={12} sm={6}>
+            <Grid item xs={6} sm={6}>
               <TextField
                 fullWidth
+                size='small'
                 label="Number of Items"
                 name="numItems"
                 value={cart.numItems}
                 onChange={(event) => handleNumItemsChange(Number(event.target.value))}
               />
             </Grid>
-            <Grid item xs={12} sm={6}>
+            <Grid item xs={6} sm={6}>
               <TextField
                 fullWidth
+                size='small'
                 label="Order Time"
                 name="orderTime"
                 // type="datetime-local"
@@ -68,7 +75,7 @@ const WoltView = (props: WoltViewProps) => {
               />
             </Grid>
             <Grid item xs={12}>
-              <Typography variant="h6" >
+              <Typography variant="h6" align='right' >
                 Delivery fee: {fee} €
               </Typography>
             </Grid>

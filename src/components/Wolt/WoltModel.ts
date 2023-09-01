@@ -50,10 +50,7 @@ export const calculateDeliveryFee = (cart: Cart, options: DeliveryOptions): numb
     deliveryFee += smallOrderSurchargeThreshold - cartValue;
   }
   const additionalDistance = Math.max(deliveryDistance - distanceThreshold, 0);
-  console.log("additional distance is", additionalDistance);
   
-  console.log(Math.ceil(additionalDistance / 500) * additionalDistanceFee);
-
   const distanceFee = Math.ceil(additionalDistance / 500) * additionalDistanceFee;
 
   deliveryFee += Math.max(distanceFee, additionalDistanceFee);
@@ -73,12 +70,9 @@ export const calculateDeliveryFee = (cart: Cart, options: DeliveryOptions): numb
   }
 
   const deliveryFee1 = Math.min(deliveryFee, maxFee);
-  console.log("delivery fee is", deliveryFee1);
   const roundedFee = Number(deliveryFee1.toFixed(2)); // round to two decimal places
-  // console.log("delivery rounder fee is", roundedFee);
   return roundedFee;
 
 
-  // return Math.min(deliveryFee, maxFee);
   
 };
