@@ -1,11 +1,14 @@
 // taskview.tsx
 
 import React, { useState } from 'react';
-import { createTask, getAllTasks, updateTaskCompletion } from './TaskController';
+import { createTask, getAllTasks, updateTaskCompletion, removeTask } from './TaskController';
 import Checkbox from '@mui/material/Checkbox';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
+import ListItemSecondaryAction from '@mui/material/ListItemSecondaryAction';
+import IconButton from '@mui/material/IconButton';
+import DeleteIcon from '@mui/icons-material/Delete';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
@@ -32,7 +35,6 @@ const TaskView: React.FC = () => {
   };
 
   const handleTaskCompletionToggle = (id: number) => {
-    // debugger; 
     const updatedTasks = tasks.map(task => {
       if (task.id === id) {
         return { ...task, completed: !task.completed };
@@ -40,9 +42,15 @@ const TaskView: React.FC = () => {
       return task;
     });
     setTasks(updatedTasks);
-    console.log(updatedTasks);
     updateTaskCompletion(id); // Update the completion status in the database
   };
+
+  const handleRemoveTask = (id: number) => {
+    const updatedTasks = tasks.filter(task => task.id !== id);
+    setTasks(updatedTasks);
+    removeTask(id); // Remove the task from the database
+  };
+
 
   return (
     <>
@@ -68,16 +76,21 @@ const TaskView: React.FC = () => {
         </Grid>
       </>
       <List>
-        {tasks.map(task => (
-          <ListItem key={task.id}>
-            <Checkbox color='warning'
-              checked={task.completed}
-              onChange={() => handleTaskCompletionToggle(task.id)}
-            />
-            <ListItemText primary={task.title} />
-          </ListItem>
-        ))}
-      </List>
+  {tasks.map(task => (
+    <ListItem key={task.id}>
+      <Checkbox
+        checked={task.completed}
+        onChange={() => handleTaskCompletionToggle(task.id)}
+      />
+      <ListItemText primary={task.title} />
+      <ListItemSecondaryAction>
+      <IconButton onClick={() => handleRemoveTask(task.id)}>
+          <DeleteIcon />
+        </IconButton>
+      </ListItemSecondaryAction>
+    </ListItem>
+  ))}
+</List>
       </Paper>
       </Paper>
     

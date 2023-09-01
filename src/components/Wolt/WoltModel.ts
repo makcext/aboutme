@@ -1,8 +1,4 @@
 // WoltModel.ts
-
-
-
-
 export interface Cart {
   cartValue: number;
   numItems: number;
@@ -85,20 +81,4 @@ export const calculateDeliveryFee = (cart: Cart, options: DeliveryOptions): numb
 
   // return Math.min(deliveryFee, maxFee);
   
-
-  
 };
-
-
-
-
-
-
-
-
-
-
-
-
-
-
