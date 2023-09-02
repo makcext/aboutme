@@ -8,6 +8,8 @@ import HelloBlock from "../components/HelloBlock";
 import TechStack from "../components/TechStack";
 import Education from "../components/Education";
 import Footer from "../components/Footer";
+import { Grid } from "@mui/material";
+
 
 import WeatherView from "../components/Weather/WeatherView";
 import fetchWeatherData from "../components/Weather/WeatherController";
@@ -37,8 +39,14 @@ const Layout = () => {
       <Box maxWidth="md" padding={1}>
         <HelloBlock weather={weather} />
 
-        <WoltView paddingBottom={2}  />
-        <TaskView  />
+        <Grid container spacing={2}>
+  <Grid item xs={12} sm={6}>
+    <WoltView paddingBottom={2} />
+  </Grid>
+  <Grid item xs={12} sm={6}>
+    <TaskView  />
+  </Grid>
+</Grid>
 
         <TechStack />
 
