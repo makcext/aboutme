@@ -8,6 +8,7 @@
     "@mui/icons-material": "^5.14.1",
     "@mui/material": "^5.14.1",
     "@mui/x-date-pickers": "^6.11.1",
+    "concurrently": "^8.2.1",
     "mobx": "^6.10.0",
     "mobx-react-lite": "^4.0.3",
     "moment": "^2.29.4",
@@ -19,7 +20,8 @@
     "app:dev": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "server": "node src/server.js"
   },
   "eslintConfig": {
     "extends": [
@@ -43,6 +45,7 @@
     "@types/react": "^18.2.21",
     "@types/react-dom": "^18.2.7",
     "axios": "^1.4.0",
+    "express": "^4.18.2",
     "typescript": "^5.1.6"
   }
 }
