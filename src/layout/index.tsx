@@ -11,11 +11,13 @@ import Footer from "../components/Footer";
 import { Grid } from "@mui/material";
 
 
-import WeatherView from "../components/Weather/WeatherView";
+// import WeatherView from "../components/Weather/WeatherView";
 import fetchWeatherData from "../components/Weather/WeatherController";
 import WeatherData from "../components/Weather/WeatherModel";
 import WoltView from "../components/Wolt/WoltView";
 // import WoltView1 from "../components/Wolt1/WoltView";
+// import MyLastTweet from "../components/Twitter/MyLastTweet";
+// import Tweet from "../components/Twitter/Tweet";
 
 import TaskView from "../components/ToDo/TaskView";
 
@@ -47,13 +49,12 @@ const Layout = () => {
     <TaskView  />
   </Grid>
 </Grid>
-
+        {/* <Tweet /> */}
         <TechStack />
 
         <Education id="Education" paddingBottom={2} />
-        {/* <Wolt id="wolt" paddingBottom={2} /> */}
-        {/* <WeatherView weather={weather} /> */}
-        {/* <WoltView paddingBottom={2}  /> */}
+
+
         <Footer />
       </Box>
     </>
