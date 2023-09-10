@@ -32,14 +32,21 @@ export const useWoltController = () => {
   }, [cart, deliveryOptions]);
 
   const handleCartValueChange = (value: number | string) => {
-    // const newValue = value ;
-    const newCart = { ...cart, cartValue: Number(value) };
+    const newValue = Number(value);
+    if (isNaN(newValue)) {
+      return;
+    }
+    const newCart = { ...cart, cartValue: newValue };
     setCart(newCart);
     const newFee = calculateDeliveryFee(newCart, deliveryOptions);
     setFee(newFee);
   };
 
   const handleDeliveryDistanceChange = (newDeliveryDistance: number) => {
+    const newValue = Number(newDeliveryDistance);
+    if (isNaN(newValue)) {
+      return;
+    }
     const newCart = { ...cart, deliveryDistance: newDeliveryDistance };
     setCart(newCart);
     const newFee = calculateDeliveryFee(newCart, deliveryOptions);
@@ -47,6 +54,10 @@ export const useWoltController = () => {
   };
 
   const handleNumItemsChange = (newNumItems: number) => {
+    const newValue = Number(newNumItems);
+    if (isNaN(newValue)) {
+      return;
+    }
     const newCart = { ...cart, numItems: newNumItems };
     setCart(newCart);
     const newFee = calculateDeliveryFee(newCart, deliveryOptions);
@@ -54,6 +65,10 @@ export const useWoltController = () => {
   };
 
   const handleOrderTimeChange = (newOrderTime: number) => {
+    const newValue = Number(newOrderTime);
+    if (isNaN(newValue)) {
+      return;
+    }
     const newCart = { ...cart, orderTime: newOrderTime };
     setCart(newCart);
     const newFee = calculateDeliveryFee(newCart, deliveryOptions);
