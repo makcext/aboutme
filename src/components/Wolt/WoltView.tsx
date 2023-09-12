@@ -1,7 +1,6 @@
 import React from 'react';
 import { Box, Grid, Paper, TextField, Typography } from '@mui/material';
 import { useWoltController } from './WoltController';
-import { blue } from '@mui/material/colors';
 
 interface WoltViewProps {
   paddingBottom?: number;

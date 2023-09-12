@@ -3,8 +3,6 @@ import axios from 'axios';
 import WeatherData from './WeatherModel';
 
 const API_KEY = '149da3eb9110b7e6ba636b8ec43ac79a';
-const CITY_NAME = 'Athens';
-const COUNTRY_CODE = 'GR';
 
 const fetchWeatherData = async (): Promise<WeatherData> => {
 	try {

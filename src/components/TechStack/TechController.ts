@@ -15,6 +15,7 @@ export function useTechStack() {
 
   useEffect(() => {
     shuffleTech();
+		// eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return { selectedTech, shuffledTech, shuffleTech };

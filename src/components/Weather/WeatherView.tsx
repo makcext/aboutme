@@ -14,6 +14,9 @@ const WeatherView: React.FC<WeatherViewProps> = ({ weather }) => {
           <h2>Weather in Athens, Greece</h2>
           <p>Temperature: {weather.main.temp}°C</p>
           <p>Weather: {weather.weather[0].description}</p>
+          <p>Weather: {weather.weather[0].id}</p>
+          <p>Weather: {weather.weather[0].description}</p>
+
         </div>
       ) : (
         <p>Loading weather data...</p>

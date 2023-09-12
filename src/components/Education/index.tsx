@@ -28,6 +28,10 @@ const Education = ({ paddingBottom }: EducationProps) => {
 
   const [shuffledImages, setShuffledImages] = useState(images);
 
+
+  
+
+
   const swapImages = () => {
     const index1 = Math.floor(Math.random() * shuffledImages.length);
     let index2 = Math.floor(Math.random() * shuffledImages.length);
@@ -41,6 +45,7 @@ const Education = ({ paddingBottom }: EducationProps) => {
 
   useEffect(() => {
     swapImages();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

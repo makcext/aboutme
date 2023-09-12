@@ -45,18 +45,3 @@ function ApplBar() {
 }
 
 export default ApplBar;
-
-
-{/* <Grid container  justifyContent="space-between">
-<Grid>
-  <IconButton aria-label="menu">
-    <MenuIcon />
-  </IconButton>
-</Grid>
-<Grid>
-  <Logo />
-</Grid>
-<Grid>
-  <Button color="warning" sx={{ textTransform: 'none' }}>v 0.0.3(a)</Button>
-</Grid>
-</Grid> */}
