@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-import { Avatar, Box, Chip, Grid, Typography } from "@mui/material";
+import { Avatar, Box, Chip, Grid, Grow, Typography } from "@mui/material";
 import QRsvg from '../svg/qrsvg';
 
 import PlaceIcon from '@mui/icons-material/Place';
@@ -58,7 +58,9 @@ const HelloBlock = () => {
             <Box sx={{ marginRight: 1 }}>
             <TwitterIcon />
             </Box>
+            <Grow in={true} style={{ transformOrigin: '0 1 0' }} {...(true ? { timeout: 1000 } : {})} >
             <Typography variant="h4" fontSize={14} sx={{ textAlign: 'left' }} gutterBottom>@makcext</Typography>
+            </Grow>
           </Box>
 
           <Box>
@@ -68,9 +70,11 @@ const HelloBlock = () => {
         </Grid>
 
         <Grid item  xs={6} md={6} >
+        <Grow in={true} style={{ transformOrigin: '0 1 0' }} {...(true ? { timeout: 1000 } : {})} >
           <Typography variant="body1" fontSize={16} sx={{ textAlign: 'center' }}>
             front-end developer
           </Typography>
+          </Grow>
           <Box display="flex" justifyContent="center">
             <Chip sx={{ fontSize: 12 }} label="react | ts | mobx | graphql" variant="outlined" color="warning" />
           </Box>

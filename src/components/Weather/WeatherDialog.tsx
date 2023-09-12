@@ -20,7 +20,7 @@ interface WeatherProps {
 const WeatherDialog: React.FC<WeatherProps> = ({ weather }) => {
   const [isDialogOpen, setDialogOpen] = useState(false);
 
-	console.log(weather)
+	console.log(weather?.main)
 
 	return (
 		<>
@@ -29,7 +29,7 @@ const WeatherDialog: React.FC<WeatherProps> = ({ weather }) => {
         {weather ? (
           <>
             <Typography variant="h4" fontSize={14} sx={{ textAlign: 'left' }} gutterBottom>
-              {weather.main.temp}°C [{weather.weather[0].description}] 
+              {weather.main.temp}°C [ {weather.weather[0].description} ] 
             </Typography>
           </>
         ) : (
@@ -44,14 +44,18 @@ const WeatherDialog: React.FC<WeatherProps> = ({ weather }) => {
             <DialogContentText>
               Temperature: {weather.main.temp}°C <br />
               Description: {weather.weather[0].description} <br />
-							{/* TemperatureMax: {weather.main.temp_max}°C <br /> */}
+              Feels like: {weather.main.feels_like}°C <br />
+              Min/Max: {weather.main.temp_min} - {weather.main.temp_max}°C <br />
+							Pressure: {weather?.main.pressure} hPa <br />
+              Humidity: {weather?.main.humidity} % <br />
+              
               
             </DialogContentText>
           ) : (
             <DialogContentText>Loading weather data...</DialogContentText>
           )}
         </DialogContent>
-        <Button onClick={() => setDialogOpen(false)}>Close</Button>
+        <Button color="warning" onClick={() => setDialogOpen(false)}>Close</Button>
       </Dialog>
 
 

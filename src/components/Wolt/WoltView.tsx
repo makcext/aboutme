@@ -24,7 +24,7 @@ const WoltView = (props: WoltViewProps) => {
         <Typography variant="h3">
             Wolt Calc Fee
           </Typography>
-        <Box padding={2}>
+        <Box padding={1}>
 
           <Grid container spacing={2}>
             <Grid item xs={6} sm={6}>

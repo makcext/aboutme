@@ -22,7 +22,7 @@ const Layout = () => {
 
         <Grid container spacing={2}>
           <Grid item xs={12} sm={6}>
-            <WoltView paddingBottom={2} />
+            <WoltView paddingBottom={0} />
           </Grid>
           <Grid item xs={12} sm={6}>
             <TaskView  />
