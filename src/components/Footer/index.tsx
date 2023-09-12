@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Box, Container, Typography, CardContent } from "@mui/material";
+import { Box, Typography, CardContent } from "@mui/material";
 import LoadSkeleton from '../Skeleton/index';
 
 const Footer = () => {

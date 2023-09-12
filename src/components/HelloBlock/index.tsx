@@ -11,6 +11,10 @@ import '@fontsource/roboto/400.css';
 
 import WeatherData from '../Weather/WeatherModel';
 
+import WeatherDialog from '../Weather/WeatherDialog'
+
+
+
 interface WeatherViewProps {
   weather: WeatherData | null;
 }
@@ -47,15 +51,23 @@ const HelloBlock: React.FC<WeatherViewProps> = ( { weather } ) => {
             <Typography variant="h4" fontSize={14} sx={{ textAlign: 'left' }} gutterBottom>@makcext</Typography>
           </Box>
             
-          <Box>
+          {/* <Box>
             {weather ? (
               <>
-                <Typography variant="h4" fontSize={14} sx={{ textAlign: 'left' }} gutterBottom>{weather.main.temp}°C [{weather.weather[0].description}]</Typography>
+                <Typography variant="h4" fontSize={14} sx={{ textAlign: 'left' }} gutterBottom>{weather.main.temp}°C [{weather.weather[0].description}] , [{weather.weather[0].id}]</Typography>
               </>
             ) : (
               <Typography>Loading weather data...</Typography>
             )}
+          </Box> */}
+
+          <Box>
+            <WeatherDialog weather={weather} />
           </Box>
+
+
+
+
 
         </Grid>
 
