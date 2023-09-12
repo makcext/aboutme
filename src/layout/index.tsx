@@ -25,13 +25,13 @@ import { Box } from "@mui/material";
 
 const Layout = () => {
 
-  const [weather, setWeather] = useState<WeatherData | null>(null);
+  // const [weather, setWeather] = useState<WeatherData | null>(null);
 
-  useEffect(() => {
-    fetchWeatherData()
-      .then((data) => setWeather(data))
-      .catch((error) => console.error(error));
-  }, []);
+  // useEffect(() => {
+  //   fetchWeatherData()
+  //     .then((data) => setWeather(data))
+  //     .catch((error) => console.error(error));
+  // }, []);
 
 
   return (
@@ -39,22 +39,22 @@ const Layout = () => {
       <ApplBar />
 
       <Box maxWidth="md" padding={1}>
-        <HelloBlock weather={weather} />
+      <HelloBlock />
+
+        {/* <HelloBlock weather={weather} /> */}
 
         <Grid container spacing={2}>
-  <Grid item xs={12} sm={6}>
-    <WoltView paddingBottom={2} />
-  </Grid>
-  <Grid item xs={12} sm={6}>
-    <TaskView  />
-  </Grid>
-</Grid>
-        {/* <Tweet /> */}
+          <Grid item xs={12} sm={6}>
+            <WoltView paddingBottom={2} />
+          </Grid>
+
+          <Grid item xs={12} sm={6}>
+            <TaskView  />
+          </Grid>
+        </Grid>
+
         <TechStack />
-
         <Education id="Education" paddingBottom={2} />
-
-
         <Footer />
       </Box>
     </>

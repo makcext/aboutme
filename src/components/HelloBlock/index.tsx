@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 import { Avatar, Box, Chip, Grid, Typography } from "@mui/material";
 import QRsvg from '../svg/qrsvg';
@@ -10,8 +10,10 @@ import PanoramaFishEyeIcon from '@mui/icons-material/PanoramaFishEye';
 import '@fontsource/roboto/400.css';
 
 import WeatherData from '../Weather/WeatherModel';
-
+import fetchWeatherData from "../Weather/WeatherController";
 import WeatherDialog from '../Weather/WeatherDialog'
+
+
 
 
 
@@ -19,8 +21,20 @@ interface WeatherViewProps {
   weather: WeatherData | null;
 }
 
-const HelloBlock: React.FC<WeatherViewProps> = ( { weather } ) => {
-	return (
+const HelloBlock = () => {
+	
+  const [weather, setWeather] = useState<WeatherData | null>(null);
+
+  useEffect(() => {
+    fetchWeatherData()
+      .then((data) => setWeather(data))
+      .catch((error) => console.error(error));
+  }, []);
+
+
+
+  
+  return (
       <div  >
         <Box paddingBottom={0} >
         <Grid container justifyContent={"space-evenly"}>    
