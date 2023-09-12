@@ -13,13 +13,9 @@ import WeatherData from '../Weather/WeatherModel';
 import fetchWeatherData from "../Weather/WeatherController";
 import WeatherDialog from '../Weather/WeatherDialog'
 
-
-
-
-
-interface WeatherViewProps {
-  weather: WeatherData | null;
-}
+// interface WeatherViewProps {
+//   weather: WeatherData | null;
+// }
 
 const HelloBlock = () => {
 	
@@ -64,27 +60,12 @@ const HelloBlock = () => {
             </Box>
             <Typography variant="h4" fontSize={14} sx={{ textAlign: 'left' }} gutterBottom>@makcext</Typography>
           </Box>
-            
-          {/* <Box>
-            {weather ? (
-              <>
-                <Typography variant="h4" fontSize={14} sx={{ textAlign: 'left' }} gutterBottom>{weather.main.temp}°C [{weather.weather[0].description}] , [{weather.weather[0].id}]</Typography>
-              </>
-            ) : (
-              <Typography>Loading weather data...</Typography>
-            )}
-          </Box> */}
 
           <Box>
             <WeatherDialog weather={weather} />
           </Box>
 
-
-
-
-
         </Grid>
-
 
         <Grid item  xs={6} md={6} >
           <Typography variant="body1" fontSize={16} sx={{ textAlign: 'center' }}>
