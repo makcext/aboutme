@@ -17,17 +17,17 @@ const Layout = () => {
     <>
       <ApplBar />
 
-      <Box maxWidth="md" padding={1}>
+      <Box maxWidth="md" padding={1} sx={{ overflowX: "hidden" }}>
         <HelloBlock />
 
-        <Grid container spacing={2}>
-          <Grid item xs={12} sm={6}>
-            <WoltView paddingBottom={0} />
-          </Grid>
-          <Grid item xs={12} sm={6}>
-            <TaskView  />
-          </Grid>
-        </Grid>
+<Grid container spacing={1} alignItems="start" paddingBottom={1}>
+  <Grid item xs={12} sm={6}>
+    <WoltView />
+  </Grid>
+  <Grid item xs={12} sm={6}>
+    <TaskView />
+  </Grid>
+</Grid>
 
         <TechStack />
         <Education id="Education" paddingBottom={2} />
