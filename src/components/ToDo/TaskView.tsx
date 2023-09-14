@@ -54,25 +54,26 @@ const TaskView: React.FC = () => {
 
 
   return (
-    <>
-      <Box paddingBottom={2} justifyContent="space-around" textAlign="left">
+      <Box paddingBottom={0} justifyContent="space-around" >
       <Paper variant="outlined" sx={{ borderColor: 'gray', padding: 1 }}>
+      <Typography variant="h3" >Todo List</Typography>
 
-        <Typography variant="h3" >Todo List</Typography>
+      <Box padding={1}>
+
         
-        <Grid  container spacing={1} style={{ paddingTop: '8px' }}>
-          <Grid item xs={6}>
-          <TextField
-            label="New Task"
-            value={newTaskTitle}
-            onChange={handleTaskTitleChange}
-            size = 'small'
-          />
+        <Grid  container spacing={2}  >
+          <Grid item xs={8}>
+            <TextField
+              label="New Task"
+              value={newTaskTitle}
+              onChange={handleTaskTitleChange}
+              size = 'small'
+            />
           </Grid>
-          <Grid item xs={6}>
-          <Button variant="outlined" color='warning' onClick={handleCreateTask}>
-            Add Task
-          </Button>
+          <Grid item xs={4} >
+            <Button variant="outlined" color='warning' onClick={handleCreateTask} >
+              Add Task
+            </Button>
           </Grid>
           </Grid>
         
@@ -95,11 +96,12 @@ const TaskView: React.FC = () => {
   </ListItem>
 ))}
   </List>
+  </Box>
         </Paper>
     
       </Box>
 
-    </>
+  
   );
 };
 

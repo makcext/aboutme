@@ -38,7 +38,7 @@ const WeatherDialog: React.FC<WeatherProps> = ({ weather }) => {
       </Box>
 
       <Dialog open={isDialogOpen} onClose={() => setDialogOpen(false)}>
-        <DialogTitle>Weather Details</DialogTitle>
+        <DialogTitle>Weather Detailss</DialogTitle>
         <DialogContent>
           {weather ? (
             <DialogContentText>
