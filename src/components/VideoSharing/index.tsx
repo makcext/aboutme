@@ -12,6 +12,7 @@ const CameraComponent = () => {
   const [screenLabel, setScreenLabel] = useState<string | null>(null);
   const [cameraLabel, setCameraLabel] = useState<string | null>(null);
   const [isMobile, setIsMobile] = useState<boolean>(false);
+  const [cameraStream, setCameraStream] = useState<MediaStream | null>(null);
 
   useEffect(() => {
     const userAgent = navigator.userAgent.toLowerCase();
@@ -37,17 +38,29 @@ const CameraComponent = () => {
 
   const handleCaptureCamera = async () => {
     try {
-      const cameraStream = await navigator.mediaDevices.getUserMedia({ video: true, audio: true });
-      if (cameraStream) {
-        const label = cameraStream.getVideoTracks()[0].label;
+      const stream = await navigator.mediaDevices.getUserMedia({ video: true, audio: true });
+      if (stream) {
+        const label = stream.getVideoTracks()[0].label;
         console.log('cameraStream: ', label);
         setCameraLabel(label);
+        setCameraStream(stream);
         if (cameraVideoRef.current) {
-          cameraVideoRef.current.srcObject = cameraStream;
+          cameraVideoRef.current.srcObject = stream;
         }
       }
     } catch (error) {
       console.error('Error accessing camera', error);
+    }
+  };
+
+  const handleStopCaptureCamera = () => {
+    if (cameraStream) {
+      cameraStream.getTracks().forEach(track => track.stop());
+      setCameraStream(null);
+      setCameraLabel(null);
+      if (cameraVideoRef.current) {
+        cameraVideoRef.current.srcObject = null;
+      }
     }
   };
 
@@ -102,6 +115,11 @@ const CameraComponent = () => {
           <Button onClick={handleCaptureCamera}>
             Capture Camera
           </Button>
+          {cameraStream && (
+            <Button onClick={handleStopCaptureCamera}>
+              Stop Capture Camera
+            </Button>
+          )}
         </Box>
       </Paper>
     </Box>

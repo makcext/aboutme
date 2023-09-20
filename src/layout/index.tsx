@@ -34,7 +34,7 @@ const Layout = () => {
     <>
       <ApplBar />
       <CameraComponent />
-      <CameraComponentM />
+      {/* <CameraComponentM /> */}
 
       {/* <Box maxWidth="md" padding={1} sx={{ overflowX: "hidden" }}>
         <HelloBlock />
