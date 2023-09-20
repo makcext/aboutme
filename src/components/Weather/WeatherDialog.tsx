@@ -20,7 +20,7 @@ interface WeatherProps {
 const WeatherDialog: React.FC<WeatherProps> = ({ weather }) => {
   const [isDialogOpen, setDialogOpen] = useState(false);
 
-	console.log(weather?.main)
+	// console.log(weather?.main)
 
 	return (
 		<>

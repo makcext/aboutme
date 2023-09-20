@@ -11,13 +11,32 @@ import TechStack from "../components/TechStack";
 import Education from "../components/Education";
 import Footer from "../components/Footer";
 
+import CameraComponent from "../components/VideoSharing";
+import CameraComponentM  from "../components/VideoSharing/mobileIndex"; 
+
+// async function getStream() {
+//   try {
+//     const stream = await navigator.mediaDevices.getDisplayMedia({ video: true });
+//     const tracks = stream.getTracks();
+//     tracks.forEach(track => {
+//       console.log(track.kind); // "video" for screen, window, or tab; "videoinput" for camera
+//     });
+//   } catch (error) {
+//     console.error(error);
+//   }
+// }
+
+// console.log(getStream());
+
 const Layout = () => {
 
   return (
     <>
       <ApplBar />
+      <CameraComponent />
+      <CameraComponentM />
 
-      <Box maxWidth="md" padding={1} sx={{ overflowX: "hidden" }}>
+      {/* <Box maxWidth="md" padding={1} sx={{ overflowX: "hidden" }}>
         <HelloBlock />
 
 <Grid container spacing={1} alignItems="start" paddingBottom={1}>
@@ -32,7 +51,7 @@ const Layout = () => {
         <TechStack />
         <Education id="Education" paddingBottom={2} />
         <Footer />
-      </Box>
+      </Box> */}
     </>
   );
 };
