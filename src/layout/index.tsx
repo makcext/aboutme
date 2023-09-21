@@ -12,7 +12,7 @@ import Education from "../components/Education";
 import Footer from "../components/Footer";
 
 import CameraComponent from "../components/VideoSharing";
-import CameraComponentM  from "../components/VideoSharing/mobileIndex"; 
+// import CameraComponentM  from "../components/VideoSharing/mobileIndex"; 
 
 // async function getStream() {
 //   try {
@@ -33,11 +33,12 @@ const Layout = () => {
   return (
     <>
       <ApplBar />
-      <CameraComponent />
+      
       {/* <CameraComponentM /> */}
 
-      {/* <Box maxWidth="md" padding={1} sx={{ overflowX: "hidden" }}>
+      <Box maxWidth="md" padding={1} sx={{ overflowX: "hidden" }}>
         <HelloBlock />
+        <CameraComponent />
 
 <Grid container spacing={1} alignItems="start" paddingBottom={1}>
   <Grid item xs={12} sm={6}>
@@ -51,7 +52,7 @@ const Layout = () => {
         <TechStack />
         <Education id="Education" paddingBottom={2} />
         <Footer />
-      </Box> */}
+      </Box>
     </>
   );
 };

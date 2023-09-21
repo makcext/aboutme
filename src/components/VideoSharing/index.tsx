@@ -1,6 +1,7 @@
 import React, { useRef, useState, useEffect } from 'react';
 import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
+import Item from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
 import Box from '@mui/material/Box';
 import { Typography } from '@mui/material';
@@ -9,10 +10,17 @@ import { Typography } from '@mui/material';
 const CameraComponent = () => {
   const screenVideoRef = useRef<HTMLVideoElement>(null);
   const cameraVideoRef = useRef<HTMLVideoElement>(null);
+
   const [screenLabel, setScreenLabel] = useState<string | null>(null);
   const [cameraLabel, setCameraLabel] = useState<string | null>(null);
+
   const [isMobile, setIsMobile] = useState<boolean>(false);
+
   const [cameraStream, setCameraStream] = useState<MediaStream | null>(null);
+  const [screenStream, setScreenStream] = useState<MediaStream | null>(null);
+
+  const [isScreenRunning, setIsScreenRunning] = useState<boolean>(false);
+  const [isCameraRunning, setIsCameraRunning] = useState<boolean>(false);
 
   useEffect(() => {
     const userAgent = navigator.userAgent.toLowerCase();
@@ -20,30 +28,45 @@ const CameraComponent = () => {
   }, []);
 
   const handleCaptureScreen = async () => {
-    if (isMobile) {
-      alert('Screen capture is not supported on mobile devices.');
-      return;
+    try {
+      const stream = await navigator.mediaDevices.getDisplayMedia({ video: true, audio: true });
+      if (stream) {
+        const track = stream.getVideoTracks()[0];
+        const label = track.label;
+        console.log('screenStream: ', label);
+        setScreenLabel(label);
+        setScreenStream(stream);
+        setIsScreenRunning(true); // set isScreenRunning to true
+        if (screenVideoRef.current) {
+          screenVideoRef.current.srcObject = stream;
+        }
+      }
+    } catch (error) {
+      console.error('Error accessing screen capture', error);
     }
-    const screenStream: MediaStream | null = await getStream('getDisplayMedia', { video: true });
+  };
+  
+  const handleStopCaptureScreen = () => {
     if (screenStream) {
-      const label = screenStream.getVideoTracks()[0].label;
-      console.log('screenStream: ', label);
-      setScreenLabel(label);
+      screenStream.getTracks().forEach(track => track.stop());
+      setScreenStream(null);
+      setScreenLabel(null);
+      setIsScreenRunning(false); // set isScreenRunning to false
       if (screenVideoRef.current) {
-        screenVideoRef.current.srcObject = screenStream;
-        // screenVideoRef.current.style.border = 'solid green 5px';
+        screenVideoRef.current.srcObject = null;
       }
     }
   };
 
   const handleCaptureCamera = async () => {
     try {
-      const stream = await navigator.mediaDevices.getUserMedia({ video: true, audio: true });
+      const stream = await navigator.mediaDevices.getUserMedia({ video: true, audio: false });
       if (stream) {
         const label = stream.getVideoTracks()[0].label;
         console.log('cameraStream: ', label);
         setCameraLabel(label);
         setCameraStream(stream);
+        setIsCameraRunning(true); // set isCameraRunning to true
         if (cameraVideoRef.current) {
           cameraVideoRef.current.srcObject = stream;
         }
@@ -58,68 +81,79 @@ const CameraComponent = () => {
       cameraStream.getTracks().forEach(track => track.stop());
       setCameraStream(null);
       setCameraLabel(null);
+      setIsCameraRunning(false); // set isCameraRunning to false
       if (cameraVideoRef.current) {
         cameraVideoRef.current.srcObject = null;
       }
     }
   };
 
-  const getStream = async (method: 'getDisplayMedia' | 'getUserMedia', options?: MediaStreamConstraints) => {
-    if (!navigator.mediaDevices || !navigator.mediaDevices[method]) {
-      console.error(`${method} is not supported`);
-      return null;
-    }
-    try {
-      const stream = await navigator.mediaDevices[method]({
-        video: true,
-        audio: false,
-        ...options,
-      });
-      return stream;
-    } catch (error) {
-      console.error(`Error accessing ${method === 'getDisplayMedia' ? 'display' : 'user'} media`, error);
-      return null;
-    }
-  };
-
   return (
-    <Box paddingBottom={0} justifyContent="space-around" >
+    <Box paddingBottom={1} justifyContent="space-around" >
       <Paper variant="outlined" sx={{ borderColor: 'gray', padding: 1 }}>
-        <Typography variant="h3" >stream indetificator</Typography>
+        <Typography variant="h4" >Stream Indetificator</Typography>
 
         <Box padding={1}>
-          <Grid container spacing={2}>
+
+
+        <Grid container  direction="row" justifyContent="space-between" alignItems="center" >
+
+<Grid item xs={6} >
+    <Item>
+      {isCameraRunning ? (
+        <Button variant='outlined' color='error' onClick={handleStopCaptureCamera}>
+          Stop Camera
+        </Button>
+      ) : (
+        <Button variant='outlined' color='success' onClick={handleCaptureCamera}>
+          Capture Camera
+        </Button>
+      )}
+    </Item>
+</Grid>
+
+<Grid item xs={6}>
+  {!isMobile && (
+    <Item>
+      {isScreenRunning ? (
+        <Button variant='outlined' color='error' onClick={handleStopCaptureScreen}>
+          Stop Screen
+        </Button>
+      ) : (
+        <Button variant='outlined' color='success' onClick={handleCaptureScreen}>
+          Capture Screen
+        </Button>
+      )}
+    </Item>
+  )}
+</Grid>
+</Grid>
+<Grid container  direction="row" justifyContent="end" alignItems="center" >
+<Grid item xs={6} >
+{cameraLabel && <Typography variant="caption" >{cameraLabel}</Typography>}
+</Grid>
+<Grid item xs={6} >
+{screenLabel && <Typography variant="caption" >{screenLabel}</Typography>}
+</Grid>
+</Grid>
+
+
+
+          <Grid container spacing={0} justifyContent="space-between" alignItems="center"   >
             <Grid item xs={6}>
-              {!isMobile && <video ref={screenVideoRef} autoPlay style={{ width: '150px' }}/>}
+              <video ref={cameraVideoRef} autoPlay style={{ width: '250px' }}/>
             </Grid>
             <Grid item xs={6}>
-              <video ref={cameraVideoRef} autoPlay style={{ width: '150px' }}/>
+              {!isMobile && <video ref={screenVideoRef} autoPlay style={{ width: '250px' }}/>}
             </Grid>
           </Grid>
 
-          <Box>
-            {screenLabel && <Typography variant="caption" >{screenLabel}</Typography>}
-            {cameraLabel && <Typography variant="caption" >{cameraLabel}</Typography>}
-          </Box>
 
-          {!isMobile && (
-            <Button onClick={handleCaptureScreen}>
-              Capture Screen
-            </Button>
-          )}
-          {isMobile && (
-            <Typography variant="caption" >
-              Screen capture is not supported on mobile devices.
-            </Typography>
-          )}
-          <Button onClick={handleCaptureCamera}>
-            Capture Camera
-          </Button>
-          {cameraStream && (
-            <Button onClick={handleStopCaptureCamera}>
-              Stop Capture Camera
-            </Button>
-          )}
+
+
+
+
+
         </Box>
       </Paper>
     </Box>
