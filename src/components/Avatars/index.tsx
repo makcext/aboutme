@@ -15,8 +15,8 @@ const Avatar = () => {
     setIndex((index + 1) % 5);
   };
 
-  const avatars = Array.from({ length: 5 }, (_, i) => createAvatar(style, { seed: i.toString() }));
-
+	const avatars = Array.from({ length: 5 }, () => createAvatar(style, { seed: Math.random().toString() }));
+	
   return (
 
 
