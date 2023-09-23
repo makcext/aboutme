@@ -39,8 +39,9 @@ const Layout = () => {
 
       <Box maxWidth="md" padding={1} sx={{ overflowX: "hidden" }}>
         <HelloBlock />
-        <CameraComponent />
         <Avatar />
+
+        <CameraComponent />
 
 <Grid container spacing={1} alignItems="start" paddingBottom={1}>
   <Grid item xs={12} sm={6}>
