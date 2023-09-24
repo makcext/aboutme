@@ -139,14 +139,26 @@ const CameraComponent = () => {
 
 
 
-          <Grid container spacing={0} justifyContent="space-between" alignItems="center"   >
-            <Grid item xs={6}>
-              <video ref={cameraVideoRef} autoPlay style={{ width: '250px' }}/>
-            </Grid>
-            <Grid item xs={6}>
-              {!isMobile && <video ref={screenVideoRef} autoPlay style={{ width: '250px' }}/>}
-            </Grid>
-          </Grid>
+<Grid container spacing={0} justifyContent="space-between" alignItems="center">
+  <Grid item xs={6}>
+    {cameraVideoRef.current?.srcObject ? (
+      <video ref={cameraVideoRef} autoPlay style={{ width: '150px' }} />
+    ) : (
+      <video ref={cameraVideoRef} autoPlay style={{ width: '0px' }} />
+    )}
+  </Grid>
+  <Grid item xs={6}>
+    {!isMobile && (
+      <>
+        {screenVideoRef.current?.srcObject ? (
+          <video ref={screenVideoRef} autoPlay style={{ width: '150px' }} />
+        ) : (
+          <video ref={screenVideoRef} autoPlay style={{ width: '0px' }} />
+        )}
+      </>
+    )}
+  </Grid>
+</Grid>
 
 
 
