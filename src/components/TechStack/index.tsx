@@ -18,7 +18,7 @@ const TechStack: React.FC = () => {
               width: '100%',
               justifyContent: 'flex-start',
               flex: 1,
-              typography: 'h3',
+              typography: 'h4',
               textTransform: 'capitalize',
             }}
             variant="text"

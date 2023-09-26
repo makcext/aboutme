@@ -21,7 +21,7 @@ const WoltView = (props: WoltViewProps) => {
   return (
     <Box paddingBottom={0} justifyContent="space-around">
         <Paper variant="outlined" sx={{ borderColor: 'gray', padding: 1 }}>
-        <Typography variant="h3" >Wolt Calc Fee</Typography>
+        <Typography variant="h4" >Wolt Calc Fee</Typography>
         <Box padding={1}>
 
           <Grid container spacing={2}>
