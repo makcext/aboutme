@@ -11,6 +11,7 @@ import TechStack from "../components/TechStack";
 import Education from "../components/Education";
 import Footer from "../components/Footer";
 import Avatar from "../components/Avatars";
+import GridComp from "../components/Grid";
 
 import CameraComponent from "../components/VideoSharing";
 // import CameraComponentM  from "../components/VideoSharing/mobileIndex"; 
@@ -35,10 +36,10 @@ const Layout = () => {
     <>
       <ApplBar />
 
-      {/* <CameraComponentM /> */}
-
       <Box maxWidth="md" padding={1} sx={{ overflowX: "hidden" }}>
+      {/* <GridCwomp /> */}
         <HelloBlock />
+        
         <Avatar />
 
         <CameraComponent />
@@ -53,7 +54,7 @@ const Layout = () => {
         </Grid>
 
         <TechStack />
-        <Education id="Education" paddingBottom={2} />
+        <Education  />
         <Footer />
       </Box>
     </>

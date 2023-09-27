@@ -10,7 +10,7 @@ const TechStack: React.FC = () => {
   const warningColor = '#ff9800'; // Extract this from your theme or define it
 
   return (
-    <Box paddingBottom={2} justifyContent="space-around" textAlign="left">
+    <Box paddingBottom={1} justifyContent="space-around" textAlign="left">
       <Paper elevation={4}>
         <Paper variant="outlined" sx={{ borderColor: 'gray' }}>
           <Button
@@ -22,7 +22,7 @@ const TechStack: React.FC = () => {
               textTransform: 'capitalize',
             }}
             variant="text"
-            color="warning"
+            color='inherit'
             onClick={shuffleTech}
           >
             Tech stack
@@ -45,7 +45,7 @@ const TechStack: React.FC = () => {
                 xs={3}
                 sm={3}
                 p={1}
-                height="50%"
+                
               >
                 <Paper elevation={8} sx={{ display: 'flex', justifyContent: 'center', padding: '8px' }}>
                   {tech.text && (
