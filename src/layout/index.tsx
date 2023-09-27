@@ -34,7 +34,7 @@ const Layout = () => {
   return (
     <>
       <ApplBar />
-      
+
       {/* <CameraComponentM /> */}
 
       <Box maxWidth="md" padding={1} sx={{ overflowX: "hidden" }}>
@@ -43,14 +43,14 @@ const Layout = () => {
 
         <CameraComponent />
 
-<Grid container spacing={1} alignItems="start" paddingBottom={1}>
-  <Grid item xs={12} sm={6}>
-    <WoltView />
-  </Grid>
-  <Grid item xs={12} sm={6}>
-    <TaskView />
-  </Grid>
-</Grid>
+        <Grid container spacing={1} alignItems="start" paddingBottom={1}>
+          <Grid item xs={12} sm={6}>
+            <WoltView />
+          </Grid>
+          <Grid item xs={12} sm={6}>
+            <TaskView />
+          </Grid>
+        </Grid>
 
         <TechStack />
         <Education id="Education" paddingBottom={2} />

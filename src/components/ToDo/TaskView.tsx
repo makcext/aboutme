@@ -54,54 +54,55 @@ const TaskView: React.FC = () => {
 
 
   return (
-      <Box paddingBottom={0} justifyContent="space-around" >
+    <Box paddingBottom={0} justifyContent="space-around" >
       <Paper variant="outlined" sx={{ borderColor: 'gray', padding: 1 }}>
-      <Typography variant="h4" >Todo List</Typography>
+        <Typography variant="h4" >Todo List</Typography>
 
-      <Box padding={1}>
+        <Box padding={1}>
 
-        
-        <Grid  container spacing={2}  >
-          <Grid item xs={8}>
-            <TextField
-              label="New Task"
-              value={newTaskTitle}
-              onChange={handleTaskTitleChange}
-              size = 'small'
-            />
-          </Grid>
-          <Grid item xs={4} >
-            <Button variant="outlined" color='warning' onClick={handleCreateTask} >
-              Add Task
-            </Button>
-          </Grid>
-          </Grid>
-        
-        <List>
-        {tasks.map(task => (
-  <ListItem key={task.id}>
-    <Checkbox
-      checked={task.completed}
-      onChange={() => handleTaskCompletionToggle(task.id)}
-    />
-    <ListItemText
-      primaryTypographyProps={{ variant: 'subtitle2' }}
-      primary={task.title}
-    />
-    <ListItemSecondaryAction>
-      <IconButton onClick={() => handleRemoveTask(task.id)}>
-        <DeleteIcon color="error" />
-      </IconButton>
-    </ListItemSecondaryAction>
-  </ListItem>
-))}
-  </List>
-  </Box>
-        </Paper>
-    
-      </Box>
 
-  
+          <Grid container spacing={2}  >
+            <Grid item xs={8}>
+              <TextField
+                label="New Task"
+                value={newTaskTitle}
+                onChange={handleTaskTitleChange}
+                size='small'
+              />
+
+            </Grid>
+            <Grid item xs={4} >
+              <Button variant="outlined" color='warning' onClick={handleCreateTask} >
+                Add Task
+              </Button>
+            </Grid>
+          </Grid>
+
+          <List>
+            {tasks.map(task => (
+              <ListItem key={task.id}>
+                <Checkbox
+                  checked={task.completed}
+                  onChange={() => handleTaskCompletionToggle(task.id)}
+                />
+                <ListItemText
+                  primaryTypographyProps={{ variant: 'subtitle2' }}
+                  primary={task.title}
+                />
+                <ListItemSecondaryAction>
+                  <IconButton onClick={() => handleRemoveTask(task.id)}>
+                    <DeleteIcon color="error" />
+                  </IconButton>
+                </ListItemSecondaryAction>
+              </ListItem>
+            ))}
+          </List>
+        </Box>
+      </Paper>
+
+    </Box>
+
+
   );
 };
 

@@ -6,7 +6,7 @@ import Box from '@mui/material/Box';
 
 // Type annotations
 interface AvatarProps {
-	
+
 
 }
 

@@ -7,7 +7,6 @@ import Box from '@mui/material/Box';
 import { Typography } from '@mui/material';
 import Alert from '@mui/material/Alert';
 
-
 const CameraComponent = () => {
   const screenVideoRef = useRef<HTMLVideoElement>(null);
   const cameraVideoRef = useRef<HTMLVideoElement>(null);
@@ -25,14 +24,10 @@ const CameraComponent = () => {
 
   const [showAlert, setShowAlert] = useState(false);
 
-  
-
   useEffect(() => {
     const userAgent = navigator.userAgent.toLowerCase();
     setIsMobile(/android|webos|iphone|ipad|ipod|blackberry|iemobile|opera mini/i.test(userAgent));
   }, []);
-
-
 
   const handleCaptureScreen = async () => {
     try {
@@ -53,7 +48,7 @@ const CameraComponent = () => {
       console.error('Error accessing screen capture', error);
     }
   };
-  
+
   const handleStopCaptureScreen = () => {
     if (screenStream) {
       screenStream.getTracks().forEach(track => track.stop());
@@ -97,92 +92,71 @@ const CameraComponent = () => {
   };
 
   return (
-    <Box paddingBottom={1}  >
+    <Box paddingBottom={1}>
       <Paper variant="outlined" sx={{ borderColor: 'gray', padding: 1 }}>
-        <Typography variant="h4" >Stream Indetificator</Typography>
-
+        <Typography variant="h4">Stream Indetificator</Typography>
         <Box padding={1}>
-
-
-        <Grid container  direction="row" justifyContent="space-between" alignItems="center" >
-
-<Grid item xs={6} justifyContent={'center'} justifyItems={'center'} >
-{
-    <Item>
-  {isScreenRunning ? (
-    <Button variant='outlined' color='error' onClick={handleStopCaptureScreen} disabled={isMobile}>
-      Stop
-    </Button>
-  ) : (
-    <Button variant='outlined' color='success' onClick={handleCaptureScreen} disabled={isMobile}>
-      Screen
-    </Button>
-    
-  )}
-    </Item>
-  }
-
-</Grid>
-
-<Grid item xs={6}>
-<Item>
-      {isCameraRunning ? (
-        <Button variant='outlined' color='error' onClick={handleStopCaptureCamera}>
-          Stop
-        </Button>
-      ) : (
-        <Button variant='outlined' color='success' onClick={handleCaptureCamera}>
-          Camera
-        </Button>
-      )}
-    </Item>
-
-
-</Grid>
-
-</Grid>
-<Grid container  direction="row" justifyContent="end" alignItems="center" >
-<Grid item xs={6} >
-{cameraLabel && <Typography variant="caption" >{cameraLabel}</Typography>}
-</Grid>
-<Grid item xs={6} >
-{screenLabel && <Typography variant="caption" >{screenLabel}</Typography>}
-</Grid>
-</Grid>
-
-
-
-<Grid container spacing={0} justifyContent="space-between" alignItems="center">
-  <Grid item xs={6}>
-    {cameraVideoRef.current?.srcObject ? (
-      <video ref={cameraVideoRef} autoPlay style={{ width: '150px' }} />
-    ) : (
-      <video ref={cameraVideoRef} autoPlay style={{ width: '0px' }} />
-    )}
-  </Grid>
-  <Grid item xs={6}>
-    {!isMobile && (
-      <>
-        {screenVideoRef.current?.srcObject ? (
-          <video ref={screenVideoRef} autoPlay style={{ width: '150px' }} />
-        ) : (
-          <video ref={screenVideoRef} autoPlay style={{ width: '0px' }} />
-        )}
-      </>
-    )}
-  </Grid>
-
-  {isMobile && (
-  <Alert severity="warning">screen sharing is not available on mobile</Alert>
-)}
-</Grid>
-
-
-
-
-
-
-
+          <Grid container direction="row" justifyContent="space-between" alignItems="center">
+            <Grid item xs={6} justifyContent={'center'} justifyItems={'center'}>
+              {isScreenRunning ? (
+                <Item>
+                  <Button variant='outlined' color='error' onClick={handleStopCaptureScreen} disabled={isMobile}>
+                    Stop
+                  </Button>
+                </Item>
+              ) : (
+                <Item>
+                  <Button variant='outlined' color='success' onClick={handleCaptureScreen} disabled={isMobile}>
+                    Screen
+                  </Button>
+                </Item>
+              )}
+            </Grid>
+            <Grid item xs={6}>
+              <Item>
+                {isCameraRunning ? (
+                  <Button variant='outlined' color='error' onClick={handleStopCaptureCamera}>
+                    Stop
+                  </Button>
+                ) : (
+                  <Button variant='outlined' color='success' onClick={handleCaptureCamera}>
+                    Camera
+                  </Button>
+                )}
+              </Item>
+            </Grid>
+          </Grid>
+          <Grid container direction="row" justifyContent="end" alignItems="center">
+            <Grid item xs={6}>
+              {cameraLabel && <Typography variant="caption">{cameraLabel}</Typography>}
+            </Grid>
+            <Grid item xs={6}>
+              {screenLabel && <Typography variant="caption">{screenLabel}</Typography>}
+            </Grid>
+          </Grid>
+          <Grid container spacing={0} justifyContent="space-between" alignItems="center">
+            <Grid item xs={6}>
+              {cameraVideoRef.current?.srcObject ? (
+                <video ref={cameraVideoRef} autoPlay style={{ width: '150px' }} />
+              ) : (
+                <video ref={cameraVideoRef} autoPlay style={{ width: '0px' }} />
+              )}
+            </Grid>
+            <Grid item xs={6}>
+              {!isMobile && (
+                <>
+                  {screenVideoRef.current?.srcObject ? (
+                    <video ref={screenVideoRef} autoPlay style={{ width: '150px' }} />
+                  ) : (
+                    <video ref={screenVideoRef} autoPlay style={{ width: '0px' }} />
+                  )}
+                </>
+              )}
+            </Grid>
+            {isMobile && (
+              <Alert severity="warning">screen sharing is not available on mobile</Alert>
+            )}
+          </Grid>
         </Box>
       </Paper>
     </Box>

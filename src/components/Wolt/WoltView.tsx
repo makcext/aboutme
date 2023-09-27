@@ -1,5 +1,7 @@
 import React from 'react';
 import { Box, Grid, Paper, TextField, Typography } from '@mui/material';
+import TuneIcon from '@mui/icons-material/Tune';
+
 import { useWoltController } from './WoltController';
 
 interface WoltViewProps {
@@ -7,7 +9,7 @@ interface WoltViewProps {
 }
 
 const WoltView = (props: WoltViewProps) => {
-  const { paddingBottom = 0 } = props;
+  // const { paddingBottom = 1 } = props;
   const {
     cart,
     fee,
@@ -20,7 +22,7 @@ const WoltView = (props: WoltViewProps) => {
 
   return (
     <Box paddingBottom={0} justifyContent="space-around">
-        <Paper variant="outlined" sx={{ borderColor: 'gray', padding: 1 }}>
+      <Paper variant="outlined" sx={{ borderColor: 'gray', padding: 1 }}>
         <Typography variant="h4" >Wolt Calc Fee</Typography>
         <Box padding={1}>
 
@@ -33,8 +35,8 @@ const WoltView = (props: WoltViewProps) => {
                 name="cartValue"
                 value={cart.cartValue}
                 onChange={(event) => handleCartValueChange(Number(event.target.value))}
-                // type='number'
-                // inputMode='numeric'
+              // type='number'
+              // inputMode='numeric'
               />
             </Grid>
             <Grid item xs={6} sm={6}>
@@ -66,17 +68,33 @@ const WoltView = (props: WoltViewProps) => {
                 // type="datetime-local"
                 value={cart.orderTime}
                 onChange={(event) => handleOrderTimeChange(Number(event.target.value))}
-                // InputLabelProps={{
-                //   shrink: true
-                // }}
+              // InputLabelProps={{
+              //   shrink: true
+              // }}
               />
             </Grid>
-            <Grid item xs={12}>
-              <Typography variant="h6" align='right' >
-                Delivery fee: {fee} €
-              </Typography>
-            </Grid>
+
+
+
+
+
           </Grid>
+
+
+          <Grid container spacing={2} padding={1} alignContent={'center'}>
+              <Grid item xs={6} sm={6} >
+                <TuneIcon />
+              </Grid>
+              <Grid item xs={6} sm={6}>
+                <Typography variant="h6" align="right">
+                  Delivery fee: {fee} €
+                </Typography>
+              </Grid>
+            </Grid>
+
+
+
+
         </Box>
       </Paper>
     </Box>
