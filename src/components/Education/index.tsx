@@ -1,4 +1,4 @@
-import { Box, Button, Grow, Paper, Typography} from "@mui/material";
+import { Box, Button, Grow, Paper, Typography } from "@mui/material";
 import React, { useState, useEffect } from "react";
 import Grid from '@mui/material/Grid';
 
@@ -9,10 +9,7 @@ interface Image {
   text?: string;
 }
 
-interface EducationProps {
-  id: string;
-  paddingBottom?: number;
-}
+
 
 const auebPng = require('./aueb.png');
 
@@ -24,12 +21,12 @@ const images: Image[] = [
 
 
 
-const Education = ({ paddingBottom }: EducationProps) => {
+const Education = () => {
 
   const [shuffledImages, setShuffledImages] = useState(images);
 
 
-  
+
 
 
   const swapImages = () => {
@@ -50,12 +47,12 @@ const Education = ({ paddingBottom }: EducationProps) => {
 
   return (
     <>
-      <Box paddingBottom={paddingBottom}  justifyContent="Left" textAlign={'left'} >
+      <Box justifyContent="Left" textAlign={'left'} >
         <Paper elevation={4}>
-        <Paper variant="outlined" sx={{ borderColor: 'gray' }}  >
-            <Button  sx={{ width: '100%', justifyContent: 'flex-start', flex: 1, typography: 'h3', textTransform: 'capitalize', }} variant='text' color='warning' onClick={swapImages}>Education</Button>
+          <Paper variant="outlined" sx={{ borderColor: 'gray' }}  >
+            <Button sx={{ width: '100%', justifyContent: 'flex-start', flex: 1, typography: 'h4', textTransform: 'capitalize', }} variant='text' color='inherit' onClick={swapImages}>Education</Button>
             <Grow in={true} style={{ transformOrigin: '0 1 0' }} {...(true ? { timeout: 2000 } : {})} >
-            <Typography variant='h6' sx={{ display:'flex', padding: '8px' }} > Bachelor of Computer Science </Typography>
+              <Typography variant='h6' sx={{ display: 'flex', padding: '8px' }} > Bachelor of Computer Science </Typography>
             </Grow>
             <Grid container spacing={0} justifyItems={"center"} alignItems={"center"} sx={{ height: '100%' }}>
               {shuffledImages.map(image => (

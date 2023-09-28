@@ -11,6 +11,7 @@ import TechStack from "../components/TechStack";
 import Education from "../components/Education";
 import Footer from "../components/Footer";
 import Avatar from "../components/Avatars";
+import GridComp from "../components/Grid";
 
 import CameraComponent from "../components/VideoSharing";
 // import CameraComponentM  from "../components/VideoSharing/mobileIndex"; 
@@ -34,26 +35,25 @@ const Layout = () => {
   return (
     <>
       <ApplBar />
-      
-      {/* <CameraComponentM /> */}
 
       <Box maxWidth="md" padding={1} sx={{ overflowX: "hidden" }}>
         <HelloBlock />
+        <GridComp />
         <Avatar />
 
         <CameraComponent />
 
-<Grid container spacing={1} alignItems="start" paddingBottom={1}>
-  <Grid item xs={12} sm={6}>
-    <WoltView />
-  </Grid>
-  <Grid item xs={12} sm={6}>
-    <TaskView />
-  </Grid>
-</Grid>
+        <Grid container spacing={1} alignItems="start" paddingBottom={1}>
+          <Grid item xs={12} sm={6}>
+            <WoltView />
+          </Grid>
+          <Grid item xs={12} sm={6}>
+            <TaskView />
+          </Grid>
+        </Grid>
 
         <TechStack />
-        <Education id="Education" paddingBottom={2} />
+        <Education  />
         <Footer />
       </Box>
     </>

@@ -1,28 +1,36 @@
 import React, { useState, useEffect } from 'react';
 import { createAvatar } from '@dicebear/avatars';
 import * as style from '@dicebear/avatars-avataaars-sprites';
-import { Button, Grid, Paper, Typography } from '@mui/material';
+import { Grid, Paper, Typography } from '@mui/material';
 import Box from '@mui/material/Box';
 
-const Avatar = () => {
-  const [index, setIndex] = useState(0);
-  const [avatars, setAvatars] = useState(Array.from({ length: 5 }, () => createAvatar(style, { seed: Math.random().toString() })));
+// Type annotations
+interface AvatarProps {
 
-  const handlePrev = () => {
-    setIndex((index - 1 + avatars.length) % avatars.length);
+
+}
+
+const Avatar: React.FC<AvatarProps> = () => {
+  // Extract the createAvatars function
+  const createAvatars = () => {
+    return Array.from({ length: 5 }, () => createAvatar(style, { seed: Math.random().toString() }));
   };
 
-  const handleNext = () => {
-    setIndex((index + 1) % avatars.length);
-  };
+  // Use a more descriptive variable name for the index state variable
+  const [currentAvatarIndex, setCurrentAvatarIndex] = useState(0);
 
+  // Use the createAvatars function to create the initial avatars
+  const avatars = createAvatars();
+
+  // Cycle through the avatars every second
   useEffect(() => {
     const intervalId = setInterval(() => {
-      setIndex((index + 1) % avatars.length);
+      setCurrentAvatarIndex((currentAvatarIndex + 1) % avatars.length);
     }, 1000);
     return () => clearInterval(intervalId);
-  }, [index, avatars.length]);
+  }, [currentAvatarIndex, avatars.length]);
 
+  // Render the current avatar
   return (
     <Box paddingBottom={1} justifyContent="space-around">
       <Paper variant="outlined" sx={{ borderColor: 'gray', padding: 1 }}>
@@ -30,38 +38,16 @@ const Avatar = () => {
         <Grid container spacing={2}>
           <Grid item xs={12}>
             <Paper style={{ padding: 16, textAlign: 'center', color: 'text.secondary' }}>
-              <div style={{ width: '150px', height: '150px', margin: '0 auto' }} dangerouslySetInnerHTML={{ __html: avatars[index] }} />
+              <div style={{ width: '150px', height: '150px', margin: '0 auto' }} dangerouslySetInnerHTML={{ __html: avatars[currentAvatarIndex] }} />
             </Paper>
           </Grid>
-          {/* <Grid item xs={12}>
-            <Button variant="outlined" color="warning" onClick={handlePrev}>
-              Prev
-            </Button>
-            <Button variant="outlined" color="warning" onClick={handleNext}>
-              Next
-            </Button>
-          </Grid>
-          <Grid item xs={12}>
-            <Button variant="outlined" color="error" onClick={() => {
-              const newAvatars = [...avatars];
-              newAvatars.splice(index, 1);
-              setAvatars(newAvatars);
-              setIndex(Math.min(index, newAvatars.length - 1));
-            }}>
-              Delete
-            </Button>
-            <Button variant="outlined" color="success" onClick={() => {
-              const newAvatar = createAvatar(style, { seed: Math.random().toString() });
-              setAvatars([...avatars, newAvatar]);
-              setIndex(avatars.length);
-            }}>
-              Add
-            </Button>
-          </Grid> */}
         </Grid>
       </Paper>
     </Box>
   );
 };
+
+// Add documentation
+Avatar.propTypes = {};
 
 export default Avatar;

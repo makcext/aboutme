@@ -3,10 +3,10 @@ import { Cart, DeliveryOptions, calculateDeliveryFee } from './WoltModel';
 
 export const useWoltController = () => {
   const [cart, setCart] = useState<Cart>({
-    cartValue: 12,
+    cartValue: '',
     numItems: 3,
     deliveryDistance: 1499,
-    orderTime: 11
+    orderTime: new Date(0, 0, 0, 17, 35)  
   });
 
   const [deliveryOptions] = useState<DeliveryOptions>({
@@ -20,26 +20,33 @@ export const useWoltController = () => {
     bulkItemFee: 1.2,
     freeDeliveryThreshold: 100,
     rushHourMultiplier: 1.2,
-    rushHourStart: 15,
-    rushHourEnd: 19
+    rushHourStart: new Date(0, 0, 0, 17, 0),
+    rushHourEnd: new Date(0, 0, 0, 19, 0)
   });
 
   const [fee, setFee] = useState<number>(0);
 
   useEffect(() => {
+    if (cart.cartValue === '') {
+      setFee(0);
+      return;
+    }
     const initialFee = calculateDeliveryFee(cart, deliveryOptions);
     setFee(initialFee);
   }, [cart, deliveryOptions]);
 
-  const handleCartValueChange = (value: number | string) => {
-    const newValue = Number(value);
+
+  const handleCartValueChange = (value: string) => {
+    const newValue = parseFloat(value.replace(',', '.'));
     if (isNaN(newValue)) {
-      return;
+      console.log(newValue);
     }
-    const newCart = { ...cart, cartValue: newValue };
+    const newCart = { ...cart, cartValue: newValue.toString() };
     setCart(newCart);
-    const newFee = calculateDeliveryFee(newCart, deliveryOptions);
-    setFee(newFee);
+    if (value !== '' && newValue !== 0) {
+      const newFee = calculateDeliveryFee(newCart, deliveryOptions);
+      setFee(newFee);
+    }
   };
 
   const handleDeliveryDistanceChange = (newDeliveryDistance: number) => {
@@ -64,12 +71,11 @@ export const useWoltController = () => {
     setFee(newFee);
   };
 
-  const handleOrderTimeChange = (newOrderTime: number) => {
-    const newValue = Number(newOrderTime);
-    if (isNaN(newValue)) {
-      return;
-    }
-    const newCart = { ...cart, orderTime: newOrderTime };
+  const handleOrderTimeChange = (hour: number, minute: number) => {
+    const newDate = new Date(cart.orderTime);
+    newDate.setHours(hour);
+    newDate.setMinutes(minute);
+    const newCart = { ...cart, orderTime: newDate };
     setCart(newCart);
     const newFee = calculateDeliveryFee(newCart, deliveryOptions);
     setFee(newFee);

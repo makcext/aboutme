@@ -64,9 +64,9 @@ function App() {
   return (
     <ThemeProvider theme={darkTheme}>
       <CssBaseline />
-      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '0px' }}>
+      <div style={{ display: 'grid', placeItems: 'center' }}>
         <Layout />
-      </div>       
+      </div>
     </ThemeProvider>
   );
 }

@@ -1,9 +1,9 @@
 // WoltModel.ts
 export interface Cart {
-  cartValue: number;
+  cartValue: string;
   numItems: number;
   deliveryDistance: number;
-  orderTime: number; // Hours in UTC
+  orderTime: Date; // Hours in UTC
 }
 
 export interface DeliveryOptions {
@@ -17,18 +17,11 @@ export interface DeliveryOptions {
   bulkItemFee: number;
   freeDeliveryThreshold: number;
   rushHourMultiplier: number;
-  rushHourStart: number;
-  rushHourEnd: number;
+  rushHourStart: Date;
+  rushHourEnd: Date;
 }
 
 export const calculateDeliveryFee = (cart: Cart, options: DeliveryOptions): number => {
-  const {
-    cartValue,
-    numItems,
-    deliveryDistance,
-    orderTime
-  } = cart;
-
   const {
     baseFee,
     maxFee,
@@ -44,35 +37,34 @@ export const calculateDeliveryFee = (cart: Cart, options: DeliveryOptions): numb
     rushHourEnd
   } = options;
 
+  const cartValueNumber = parseFloat(cart.cartValue);
+
   let deliveryFee = baseFee;
 
-  if (cartValue < smallOrderSurchargeThreshold) {
-    deliveryFee += smallOrderSurchargeThreshold - cartValue;
+  if (cartValueNumber < smallOrderSurchargeThreshold) {
+    deliveryFee += smallOrderSurchargeThreshold - cartValueNumber;
   }
-  const additionalDistance = Math.max(deliveryDistance - distanceThreshold, 0);
-  
+  const additionalDistance = Math.max(cart.deliveryDistance - distanceThreshold, 0);
+
   const distanceFee = Math.ceil(additionalDistance / 500) * additionalDistanceFee;
 
   deliveryFee += Math.max(distanceFee, additionalDistanceFee);
 
-  if (numItems >= itemSurchargeThreshold && numItems < 12) {
-    deliveryFee += (numItems - itemSurchargeThreshold + 1) * itemSurcharge;
-  } else if (numItems >= 12) {
+  if (cart.numItems >= itemSurchargeThreshold && cart.numItems < 12) {
+    deliveryFee += (cart.numItems - itemSurchargeThreshold + 1) * itemSurcharge;
+  } else if (cart.numItems >= 12) {
     deliveryFee *= bulkItemFee;
   }
 
-  if (cartValue >= freeDeliveryThreshold) {
+  if (cartValueNumber >= freeDeliveryThreshold) {
     return 0;
   }
 
-  if (orderTime >= rushHourStart && orderTime <= rushHourEnd) {
+  if (cart.orderTime.getTime() >= rushHourStart.getTime() && cart.orderTime.getTime() <= rushHourEnd.getTime()) {
     deliveryFee *= rushHourMultiplier;
   }
 
   const deliveryFee1 = Math.min(deliveryFee, maxFee);
   const roundedFee = Number(deliveryFee1.toFixed(2)); // round to two decimal places
   return roundedFee;
-
-
-  
 };
