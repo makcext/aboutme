@@ -37,9 +37,8 @@ const Layout = () => {
       <ApplBar />
 
       <Box maxWidth="md" padding={1} sx={{ overflowX: "hidden" }}>
-      {/* <GridCwomp /> */}
         <HelloBlock />
-        
+        <GridComp />
         <Avatar />
 
         <CameraComponent />
