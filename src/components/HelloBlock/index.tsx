@@ -12,6 +12,8 @@ import '@fontsource/roboto/400.css';
 import WeatherData from '../Weather/WeatherModel';
 import fetchWeatherData from "../Weather/WeatherController";
 import WeatherDialog from '../Weather/WeatherDialog'
+import BackStatus from "../BackStatus"
+
 
 // interface WeatherViewProps {
 //   weather: WeatherData | null;
@@ -62,6 +64,14 @@ const HelloBlock = () => {
             <Typography variant="h4" fontSize={14} sx={{ textAlign: 'left' }} gutterBottom>@makcext</Typography>
             </Grow>
           </Box>
+
+          <Box paddingTop={0} display="flex" paddingBottom={0} alignItems="center">
+
+            <Grow in={true} style={{ transformOrigin: '0 1 0' }} {...(true ? { timeout: 1000 } : {})} >
+            <Typography variant='inherit' fontSize={14} sx={{ textAlign: 'left' }} gutterBottom>backend is: <BackStatus /> </Typography>
+            </Grow>
+          </Box>
+
 
           <Box>
             <WeatherDialog weather={weather} />

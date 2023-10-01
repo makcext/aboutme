@@ -12,6 +12,7 @@ import Education from "../components/Education";
 import Footer from "../components/Footer";
 import Avatar from "../components/Avatars";
 import GridComp from "../components/Grid";
+import BackStatus from "../components/BackStatus";
 
 import CameraComponent from "../components/VideoSharing";
 // import CameraComponentM  from "../components/VideoSharing/mobileIndex"; 
@@ -40,7 +41,6 @@ const Layout = () => {
         <HelloBlock />
         {/* <GridComp /> */}
         <Avatar />
-
         <CameraComponent />
 
         <Grid container spacing={1} alignItems="start" paddingBottom={1}>
