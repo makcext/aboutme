@@ -12,7 +12,6 @@ import Education from "../components/Education";
 import Footer from "../components/Footer";
 import Avatar from "../components/Avatars";
 import GridComp from "../components/Grid";
-import BackStatus from "../components/BackStatus";
 
 import CameraComponent from "../components/VideoSharing";
 // import CameraComponentM  from "../components/VideoSharing/mobileIndex"; 

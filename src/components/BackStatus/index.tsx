@@ -17,6 +17,8 @@ function BackendData() {
     fetchData();
   }, []);
 
+console.log(data);
+
   return (
     <Typography>
       {data !== null ? `backend is: ${data}` : '...'}
