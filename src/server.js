@@ -1,5 +1,5 @@
-const express = require('express');
-const { json } = require('express');
+import express from 'express';
+import { json } from 'express';
 
 const app = express();
 
