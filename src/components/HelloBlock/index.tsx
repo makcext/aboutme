@@ -67,9 +67,7 @@ const HelloBlock = () => {
 
           <Box paddingTop={0} display="flex" paddingBottom={0} alignItems="center">
 
-            <Grow in={true} style={{ transformOrigin: '0 1 0' }} {...(true ? { timeout: 1000 } : {})} >
-            <Typography variant='inherit' fontSize={14} sx={{ textAlign: 'left' }} gutterBottom><BackStatus /> </Typography>
-            </Grow>
+            <BackStatus /> 
           </Box>
 
 

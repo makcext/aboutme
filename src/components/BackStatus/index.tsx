@@ -20,8 +20,8 @@ function BackendData() {
 console.log(data);
 
   return (
-    <Typography>
-      {data !== null ? `backend is: ${data}` : '...'}
+    <Typography variant='inherit'>
+      backend is: {data}
     </Typography>
   );
 }
