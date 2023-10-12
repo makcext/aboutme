@@ -5,9 +5,9 @@ import App from './App';
 
 import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
 
-// import LayoutV5 from "./LayoutV5";
+
 const client = new ApolloClient({
-  uri: 'http://localhost:4000/graphql',
+  uri: 'https://abtm-c97ea3f9a33e.herokuapp.com/status',
   cache: new InMemoryCache()
 });
 
@@ -19,7 +19,6 @@ if (rootElement) {
     <React.StrictMode>
       <ApolloProvider client={client}>
         <App />
-      <App />
       </ApolloProvider>
     </React.StrictMode>
   );
