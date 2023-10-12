@@ -21,6 +21,9 @@ concurrency:
   group: "pages"
   cancel-in-progress: false
 
+env:
+  REACT_APP_API_URL: ${{ secrets.GITHUB_TOKEN }}
+
 jobs:
   # Single deploy job since we're just deploying
   deploy:
@@ -38,11 +41,10 @@ jobs:
         with:
           # Upload entire repository
           path: build
+      - name: Set backend API URL
+        run: echo "REACT_APP_API_URL=${REACT_APP_API_URI}" >> .env
       - name: Deploy to GitHub Pages
         id: deployment
+        env:
+          REACT_APP_API_URL: ${{ secrets.GITHUB_TOKEN }}
         uses: actions/deploy-pages@v2
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./build
-
-
