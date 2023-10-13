@@ -7,7 +7,7 @@ import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
 
 
 const client = new ApolloClient({
-  uri: process.env.REACT_APP_API_URI,
+  uri: 'https://abtm-c97ea3f9a33e.herokuapp.com/status',
   cache: new InMemoryCache()
 });
 
