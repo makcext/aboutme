@@ -1,6 +1,8 @@
 import React from 'react';
 import { useQuery, gql } from '@apollo/client';
 
+import { Paper, Typography } from '@mui/material';
+
 interface Book {
 	_id: string;
 	author: string;
@@ -25,17 +27,17 @@ function Books() {
 	if (loading) return <p>Loading...</p>;
 	if (error) return <p>Error :(</p>;
 
-	return (
-		<div>
-			{data?.getBooks.map(({ _id, author, title, year }) => (
-				<div key={_id}>
-					<p>{author}</p>
-					<p>{title}</p>
-					<p>{year}</p>
-				</div>
-			))}
-		</div>
-	);
+  return (
+    <Paper style={{ padding: '16px', margin: '16px' }}>
+      {data?.getBooks.map(({ _id, author, title, year }) => (
+        <div key={_id} style={{ marginBottom: '16px' }}>
+          <Typography variant="h6">{title}</Typography>
+          <Typography variant="subtitle1">{author}</Typography>
+          <Typography variant="subtitle2">{year}</Typography>
+        </div>
+      ))}
+    </Paper>
+  );
 }
 
 export default Books;
