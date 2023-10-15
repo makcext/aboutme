@@ -18,6 +18,8 @@ import BackStatus from "../BackStatus"
 // interface WeatherViewProps {
 //   weather: WeatherData | null;
 // }
+const avatarImage = require('./avatar.png');
+
 
 const HelloBlock = () => {
 	
@@ -30,7 +32,6 @@ const HelloBlock = () => {
   }, []);
 
 
-
   
   return (
       <div  >
@@ -38,11 +39,12 @@ const HelloBlock = () => {
         <Grid container justifyContent={"space-evenly"}>    
 
         <Grid item xs={6} md={6} paddingTop={0} >
-        <Avatar  alt="ext Route" src = "" sx={{ width: 96, height: 96, bgcolor: "black" }} >
-          <PanoramaFishEyeIcon color="warning" sx={{ fontSize:80 }}/>
+        <Avatar  alt="ext - route" src = {avatarImage} sx={{ width: 96, height: 96 }} >
+          {/* <PanoramaFishEyeIcon color="warning" sx={{ fontSize:80 }}/> */}
         </Avatar>
+        
 
-          <Box display="flex" paddingBottom={0} alignItems="center" >
+          <Box display="flex" paddingTop={1} alignItems="center" >
           <Box sx={{ marginRight: 1 }}>
             <PlaceIcon />
           </Box>
@@ -67,7 +69,7 @@ const HelloBlock = () => {
 
           <Box paddingTop={0} display="flex" paddingBottom={0} alignItems="center">
 
-            <BackStatus /> 
+            {/* <BackStatus />  */}
           </Box>
 
 

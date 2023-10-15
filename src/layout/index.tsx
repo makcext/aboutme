@@ -14,6 +14,7 @@ import Education from "../components/Education";
 import Footer from "../components/Footer";
 import Avatar from "../components/Avatars";
 import Books from "../components/BooksGql"
+import AddBook from "../components/BookGqlMutation"
 
 
 import CameraComponent from "../components/VideoSharing";
@@ -55,8 +56,10 @@ const Layout = () => {
         </Grid>
 
         <TechStack />
-        <Books />
+        {/* <Books /> */}
+
         <Education  />
+        <AddBook />
         <Footer />
       </Box>
     </>
