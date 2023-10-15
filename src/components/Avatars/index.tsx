@@ -35,7 +35,7 @@ const Avatar: React.FC<AvatarProps> = () => {
     <Box paddingBottom={1} justifyContent="space-around">
       <Paper variant="outlined" sx={{ borderColor: 'gray', padding: 1 }}>
         <Typography variant="h4">Avatars</Typography>
-        <Grid container spacing={2}>
+        <Grid container spacing={1}>
           <Grid item xs={12}>
             <Paper style={{ padding: 16, textAlign: 'center', color: 'text.secondary' }}>
               <div style={{ width: '150px', height: '150px', margin: '0 auto' }} dangerouslySetInnerHTML={{ __html: avatars[currentAvatarIndex] }} />
