@@ -1,28 +1,30 @@
 import React, { useEffect, useState } from "react";
-
 import { Avatar, Box, Chip, Grid, Grow, Typography } from "@mui/material";
 import QRsvg from '../svg/qrsvg';
-
 import PlaceIcon from '@mui/icons-material/Place';
 import TwitterIcon from '@mui/icons-material/Twitter';
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
-import PanoramaFishEyeIcon from '@mui/icons-material/PanoramaFishEye';
 import '@fontsource/roboto/400.css';
-
 import WeatherData from '../Weather/WeatherModel';
 import fetchWeatherData from "../Weather/WeatherController";
 import WeatherDialog from '../Weather/WeatherDialog'
-import BackStatus from "../BackStatus"
-
-
-// interface WeatherViewProps {
-//   weather: WeatherData | null;
-// }
+import Avatars from "../Avatars";
+// import avatarImage from './avatar.png';
 const avatarImage = require('./avatar.png');
 
+type InfoBlockProps = {
+  icon: React.ReactNode;
+  text: string;
+};
+
+const InfoBlock: React.FC<InfoBlockProps> = ({ icon, text })  => (
+  <Box display="flex" alignItems="center">
+    <Box sx={{ marginRight: 1 }}>{icon}</Box>
+    <Typography variant="h4" fontSize={14} sx={{ textAlign: 'left' }}>{text}</Typography>
+  </Box>
+);
 
 const HelloBlock = () => {
-	
   const [weather, setWeather] = useState<WeatherData | null>(null);
 
   useEffect(() => {
@@ -31,71 +33,38 @@ const HelloBlock = () => {
       .catch((error) => console.error(error));
   }, []);
 
-
-  
   return (
-      <div  >
-        <Box paddingBottom={0} >
-        <Grid container justifyContent={"space-evenly"}>    
-
-        <Grid item xs={6} md={6} paddingTop={0} >
-        <Avatar  alt="ext - route" src = {avatarImage} sx={{ width: 96, height: 96 }} >
-          {/* <PanoramaFishEyeIcon color="warning" sx={{ fontSize:80 }}/> */}
-        </Avatar>
-        
-
-          <Box display="flex" paddingTop={1} alignItems="center" >
-          <Box sx={{ marginRight: 1 }}>
-            <PlaceIcon />
-          </Box>
-            <Typography variant="h4" fontSize={14} sx={{ textAlign: 'left'  }}>ath, att, gr</Typography>
-          </Box>
-
-          <Box display="flex" paddingBottom={0} alignItems="center">
-            <Box sx={{ marginRight: 1 }}>
-            <AccessTimeIcon />
+    <div>
+      <Box paddingBottom={0}>
+        <Grid container justifyContent={"space-evenly"}>
+          <Grid item xs={6} md={6} paddingTop={0}>
+            <Avatar alt="ext - route" src={avatarImage} sx={{ width: 96, height: 96 }} />
+            <InfoBlock icon={<PlaceIcon />} text="ath, att, gr" />
+            <InfoBlock icon={<AccessTimeIcon />} text="UTC +03:00" />
+            <InfoBlock icon={<TwitterIcon />} text="@makcext" />
+            <Box>
+              <WeatherDialog weather={weather} />
             </Box>
-            <Typography variant="h4" fontSize={14} sx={{ textAlign: 'left' }}>UTC +03:00</Typography>
-          </Box>
-
-          <Box paddingTop={0} display="flex" paddingBottom={0} alignItems="center">
-            <Box sx={{ marginRight: 1 }}>
-            <TwitterIcon />
-            </Box>
-            <Grow in={true} style={{ transformOrigin: '0 1 0' }} {...(true ? { timeout: 1000 } : {})} >
-            <Typography variant="h4" fontSize={14} sx={{ textAlign: 'left' }} gutterBottom>@makcext</Typography>
+          </Grid>
+          <Grid item xs={6} md={6}>
+            <Grow in={true} style={{ transformOrigin: '0 1 0' }} {...(true ? { timeout: 1000 } : {})}>
+              <Typography variant="body1" fontSize={16} sx={{ textAlign: 'center' }}>
+                front-end developer
+              </Typography>
             </Grow>
-          </Box>
+            <Box display="flex" justifyContent="center">
+              <Chip sx={{ fontSize: 12 }} label="react | ts | mobx | graphql" variant="outlined" color="warning" />
+            </Box>
+            <Typography variant="body2" sx={{ textAlign: 'center' }}>
+              let's go
+            </Typography>
+            {/* <QRsvg /> */}
+            {/* <Avatars /> */}
 
-          <Box paddingTop={0} display="flex" paddingBottom={0} alignItems="center">
-
-            {/* <BackStatus />  */}
-          </Box>
-
-
-          <Box>
-            <WeatherDialog weather={weather} />
-          </Box>
-
+          </Grid>
         </Grid>
-
-        <Grid item  xs={6} md={6} >
-        <Grow in={true} style={{ transformOrigin: '0 1 0' }} {...(true ? { timeout: 1000 } : {})} >
-          <Typography variant="body1" fontSize={16} sx={{ textAlign: 'center' }}>
-            front-end developer
-          </Typography>
-          </Grow>
-          <Box display="flex" justifyContent="center">
-            <Chip sx={{ fontSize: 12 }} label="react | ts | mobx | graphql" variant="outlined" color="warning" />
-          </Box>
-          <Typography variant="body2" sx={{ textAlign: 'center' }}>
-          let's go
-          </Typography>
-          <QRsvg />
-        </Grid>
-      </Grid>
-        </Box>
-      </div>
+      </Box>
+    </div>
   );
 }
 
