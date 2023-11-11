@@ -56,7 +56,7 @@ const HelloBlock = () => {
               <Chip sx={{ fontSize: 12 }} label="react | ts | mobx | graphql" variant="outlined" color="warning" />
             </Box>
             <Typography variant="body2" sx={{ textAlign: 'center' }}>
-              let's go
+              let's go!
             </Typography>
             {/* <QRsvg /> */}
             {/* <Avatars /> */}
