@@ -59,7 +59,7 @@ const HelloBlock = () => {
               let's go!
             </Typography>
             {/* <QRsvg /> */}
-            {/* <Avatars /> */}
+            <Avatars />
 
           </Grid>
         </Grid>
