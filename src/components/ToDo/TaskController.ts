@@ -1,8 +1,8 @@
 
 // taskcontroller.ts
 
-import { addTask, getTasks, toggleTaskCompletion, deleteTask, updateTaskTitle } from './TaskModel';
-import { Task } from './TaskModel';
+import { Task, addTask, getTasks, toggleTaskCompletion, deleteTask, updateTaskTitle } from './TaskModel';
+
 
 export function createTask(title: string): Task {
   const task = addTask(title);

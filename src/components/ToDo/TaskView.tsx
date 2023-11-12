@@ -1,21 +1,18 @@
 // taskview.tsx
-
 import React, { useState } from 'react';
-import { createTask, getAllTasks, updateTaskCompletion, removeTask, updateTask } from './TaskController';
+
+// Material UI imports
 import Checkbox from '@mui/material/Checkbox';
 import Dialog from '@mui/material/Dialog';
 import DialogTitle from '@mui/material/DialogTitle';
 import DialogContent from '@mui/material/DialogContent';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContentText from '@mui/material/DialogContentText';
-
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
 import ListItemSecondaryAction from '@mui/material/ListItemSecondaryAction';
 import IconButton from '@mui/material/IconButton';
-import EditIcon from '@mui/icons-material/Edit';
-import DeleteIcon from '@mui/icons-material/Delete';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
@@ -23,31 +20,46 @@ import Paper from '@mui/material/Paper';
 import Box from '@mui/material/Box';
 import { Typography } from '@mui/material';
 
+// Material UI icons
+import EditIcon from '@mui/icons-material/Edit';
+import DeleteIcon from '@mui/icons-material/Delete';
 
+// Local imports
+import { createTask, getAllTasks, updateTaskCompletion, removeTask, updateTask } from './TaskController';
 import { Task } from './TaskModel';
 
 const TaskView: React.FC = () => {
   const [tasks, setTasks] = useState<Task[]>(getAllTasks());
   const [newTaskTitle, setNewTaskTitle] = useState('');
   const [editTaskId, setEditTaskId] = useState<number | null>(null);
-  const [open, setOpen] = useState(false);
   const [editTaskTitle, setEditTaskTitle] = useState('');
+  const [open, setOpen] = useState(false);
 
-  const handleClickOpen = (task: Task) => {
-    setEditTaskId(task.id);
-    setEditTaskTitle(task.title);
-    setOpen(true);
-  };
-  
-  const handleClose = () => {
-    setOpen(false);
+
+  const handleCreateTask = (): void => {
+    if (newTaskTitle.trim() !== '') {
+      createTask(newTaskTitle);
+      try {
+        const tasks = getAllTasks();
+        setTasks(tasks);
+      } catch (error) {
+        console.error('Failed to get all tasks:', error);
+        // Handle the error appropriately in your UI
+      }
+      setNewTaskTitle('');
+    }
   };
 
-  const handleEditTaskTitleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setEditTaskTitle(event.target.value);
+  const handleTaskCompletionToggle = (id: number): void => {
+    setTasks((prevTasks) =>
+      prevTasks.map((task) =>
+        task.id === id ? { ...task, completed: !task.completed } : task
+      )
+    );
+    updateTaskCompletion(id);
   };
-  
-  const handleUpdateTask = () => {
+
+  const handleUpdateTask = (): void => {
     if (editTaskId !== null) {
       updateTask(editTaskId, editTaskTitle);
       setTasks(getAllTasks());
@@ -55,39 +67,30 @@ const TaskView: React.FC = () => {
     }
   };
 
-  const handleTaskTitleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleEditTaskTitle = (event: React.ChangeEvent<HTMLInputElement>): void => {
+    setEditTaskTitle(event.target.value);
+  };
+
+  const handleNewTaskTitle = (event: React.ChangeEvent<HTMLInputElement>): void => {
     setNewTaskTitle(event.target.value);
   };
 
-  const handleEditTask = (id: number) => {
-    setEditTaskId(id);
-  };
-
-  const handleCreateTask = () => {
-    if (newTaskTitle.trim() !== '') {
-      createTask(newTaskTitle);
-      setTasks(getAllTasks());
-      setNewTaskTitle('');
-    }
-  };
-
-  const handleTaskCompletionToggle = (id: number) => {
-    const updatedTasks = tasks.map(task => {
-      if (task.id === id) {
-        return { ...task, completed: !task.completed };
-      }
-      return task;
-    });
-    setTasks(updatedTasks);
-    updateTaskCompletion(id); // Update the completion status in the database
-  };
-
   const handleRemoveTask = (id: number) => {
+    removeTask(id); // Remove the task from the database
+
     const updatedTasks = tasks.filter(task => task.id !== id);
     setTasks(updatedTasks);
-    removeTask(id); // Remove the task from the database
   };
 
+  const openTaskEditor = (task: Task): void => {
+    setEditTaskId(task.id);
+    setEditTaskTitle(task.title);
+    setOpen(true);
+  };
+  
+  const closeTaskEditor = (): void => {
+    setOpen(false);
+  };
 
   return (
     <Box paddingBottom={0} justifyContent="space-around" >
@@ -102,7 +105,7 @@ const TaskView: React.FC = () => {
               <TextField
                 label="New Task"
                 value={newTaskTitle}
-                onChange={handleTaskTitleChange}
+                onChange={handleNewTaskTitle}
                 size='small'
               />
 
@@ -126,7 +129,7 @@ const TaskView: React.FC = () => {
                   primary={task.title}
                 />
                 <ListItemSecondaryAction>
-                  <IconButton onClick={() => handleClickOpen(task)}>
+                  <IconButton onClick={() => openTaskEditor(task)}>
                     <EditIcon color="warning" />
                   </IconButton>
                   <IconButton onClick={() => handleRemoveTask(task.id)}>
@@ -137,7 +140,7 @@ const TaskView: React.FC = () => {
             ))}
           </List>
 
-          <Dialog open={open} onClose={handleClose}>
+          <Dialog open={open} onClose={closeTaskEditor}>
           <DialogTitle>Edit Task</DialogTitle>
           <DialogContent>
             <DialogContentText>
@@ -150,11 +153,11 @@ const TaskView: React.FC = () => {
               type="text"
               fullWidth
               value={editTaskTitle}
-              onChange={handleEditTaskTitleChange}
+              onChange={handleEditTaskTitle}
             />
           </DialogContent>
           <DialogActions>
-            <Button onClick={handleClose}>Cancel</Button>
+            <Button onClick={closeTaskEditor}>Cancel</Button>
             <Button onClick={handleUpdateTask}>Submit</Button>
           </DialogActions>
         </Dialog>

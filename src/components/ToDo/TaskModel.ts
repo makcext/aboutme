@@ -11,7 +11,6 @@ const tasks: Task[] = [];
 
 addTask("Buy groceries"); // Pre-rendered as not completed
 
-
 export function addTask(title: string): Task {
   const task: Task = {
     id: nextId++,
@@ -22,27 +21,25 @@ export function addTask(title: string): Task {
   return task;
 }
 
-
 export function getTasks(): Task[] {
   return tasks;
 }
 
 export function deleteTask(id: number): void {
-  const newTasks = tasks.filter(task => task.id !== id);
-  tasks.splice(0, tasks.length, ...newTasks);
+  tasks.splice(0, tasks.length, ...tasks.filter(task => task.id !== id));
 }
 
 export function toggleTaskCompletion(id: number): void {
-  const task = tasks.find(task => task.id === id);
-  if (task) {
-    task.completed = !task.completed;
+  const index = tasks.findIndex(task => task.id === id);
+  if (index !== -1) {
+    tasks[index].completed = !tasks[index].completed;
   }
 }
 
 export function updateTaskTitle(id: number, newTitle: string): void {
-  const task = tasks.find(task => task.id === id);
-  if (task) {
-    task.title = newTitle;
+  const index = tasks.findIndex(task => task.id === id);
+  if (index !== -1) {
+    tasks[index].title = newTitle;
   }
 }
 
