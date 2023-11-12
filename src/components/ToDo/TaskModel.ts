@@ -39,6 +39,13 @@ export function toggleTaskCompletion(id: number): void {
   }
 }
 
+export function updateTaskTitle(id: number, newTitle: string): void {
+  const task = tasks.find(task => task.id === id);
+  if (task) {
+    task.title = newTitle;
+  }
+}
+
 
 
 
