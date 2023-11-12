@@ -1,7 +1,7 @@
 
 // taskcontroller.ts
 
-import { Task, addTask, getTasks, toggleTaskCompletion, deleteTask, updateTaskTitle } from './TaskModel';
+import { Task, addTask, getTasks, toggleTaskCompletion, deleteTask, editTask } from './TaskModel';
 
 
 export function createTask(title: string): Task {
@@ -22,5 +22,5 @@ export function removeTask(id: number): void {
 } 
 
 export function updateTask(id: number, newTitle: string): void {
-  updateTaskTitle(id, newTitle);
+  editTask(id, newTitle);
 }

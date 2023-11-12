@@ -25,9 +25,6 @@ export function getTasks(): Task[] {
   return tasks;
 }
 
-export function deleteTask(id: number): void {
-  tasks.splice(0, tasks.length, ...tasks.filter(task => task.id !== id));
-}
 
 export function toggleTaskCompletion(id: number): void {
   const index = tasks.findIndex(task => task.id === id);
@@ -36,12 +33,18 @@ export function toggleTaskCompletion(id: number): void {
   }
 }
 
-export function updateTaskTitle(id: number, newTitle: string): void {
+export function editTask(id: number, newTitle: string): void {
   const index = tasks.findIndex(task => task.id === id);
   if (index !== -1) {
     tasks[index].title = newTitle;
   }
 }
+
+export function deleteTask(id: number): void {
+  tasks.splice(0, tasks.length, ...tasks.filter(task => task.id !== id));
+}
+
+
 
 
 
