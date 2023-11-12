@@ -57,10 +57,6 @@ const TaskView: React.FC = () => {
 
   const handleTaskTitleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setNewTaskTitle(event.target.value);
-    if (editTaskId !== null) {
-      updateTask(editTaskId, event.target.value);
-      setTasks(getAllTasks());
-    }
   };
 
   const handleEditTask = (id: number) => {
