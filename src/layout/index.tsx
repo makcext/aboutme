@@ -8,6 +8,7 @@ import { Grid } from "@mui/material";
 import ApplBar from "./AppBar";
 import HelloBlock from "../components/HelloBlock";
 import WoltView from "../components/Wolt/WoltView";
+import WoltCalc from "../components/Woltt/WoltView";
 import TaskView from "../components/ToDo/TaskView";
 import TechStack from "../components/TechStack";
 import Education from "../components/Education";
@@ -48,7 +49,7 @@ const Layout = () => {
 
         <Grid container spacing={1} alignItems="start" paddingBottom={1}>
           <Grid item xs={12} sm={6}>
-            <WoltView />
+            <WoltCalc />
           </Grid>
           <Grid item xs={12} sm={6}>
             <TaskView />
