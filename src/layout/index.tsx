@@ -43,10 +43,6 @@ const Layout = () => {
 
       <Box maxWidth="md" padding={1} sx={{ overflowX: "hidden" }}>
         <HelloBlock />
-        {/* <GridComp /> */}
-        <Avatar />
-        <CameraComponent />
-
         <Grid container spacing={1} alignItems="start" paddingBottom={1}>
           <Grid item xs={12} sm={6}>
             <WoltCalc />
@@ -55,6 +51,8 @@ const Layout = () => {
             <TaskView />
           </Grid>
         </Grid>
+        <Avatar />
+        <CameraComponent />
 
         <TechStack />
         {/* <Books /> */}

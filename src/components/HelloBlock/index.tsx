@@ -35,7 +35,7 @@ const HelloBlock = () => {
 
   return (
     <div>
-      <Box paddingBottom={0}>
+      <Box paddingBottom={1}>
         <Grid container justifyContent={"space-evenly"}>
           <Grid item xs={6} md={6} paddingTop={0}>
             <Avatar alt="ext - route" src={avatarImage} sx={{ width: 96, height: 96 }} />
