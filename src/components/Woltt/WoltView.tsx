@@ -238,23 +238,23 @@ const WoltCalculator = () => {
           <Grid container spacing={2} padding={1}>
             <Grid item xs={6} sm={6}>
               <Button onClick={handleClickOptions}>
-                <TuneIcon />
+                <TuneIcon color="warning" />
               </Button>
             </Grid>
             <Dialog open={open} onClose={handleClickOptions}>
               <DialogTitle>
                 Delivery Options
                 <Button onClick={handleClickOptions} aria-label="close">
-                  <CloseIcon />
+                  <CloseIcon color="action" />
                 </Button>
               </DialogTitle>
               <DialogContent>
                 {Object.keys(deliveryOptions).map((key) => (
-                  <Typography key={key} variant="body1" gutterBottom>
-                    {key}: <strong>{typeof deliveryOptions[key as keyof DeliveryOptions] === 'object'
-                      ? formatTime(new Date(deliveryOptions[key as keyof DeliveryOptions])).toString()
-                      : deliveryOptions[key as keyof DeliveryOptions].toString()}</strong>
-                  </Typography>
+                  <Typography key={key} variant="subtitle1" gutterBottom style={{ whiteSpace: 'nowrap' }}>
+  {key}: {typeof deliveryOptions[key as keyof DeliveryOptions] === 'object'
+    ? <Typography color="orange" display="inline">{formatTime(new Date(deliveryOptions[key as keyof DeliveryOptions])).toString()}</Typography>
+    : <Typography color="orange" display="inline">{deliveryOptions[key as keyof DeliveryOptions].toString()}</Typography>}
+</Typography>
                 ))}
               </DialogContent>
             </Dialog>
