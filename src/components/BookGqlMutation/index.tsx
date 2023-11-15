@@ -6,9 +6,6 @@ import { useQuery, gql } from '@apollo/client';
 import { Box, ListItem } from "@mui/material";
 import { Paper } from "@mui/material";
 import { TextField } from "@mui/material";
-import { Button } from "@mui/material";
-import { InputAdornment } from "@mui/material";
-import { Input } from "@mui/material";
 import { List } from "@mui/material";
 import ListItemText from '@mui/material/ListItemText';
 import ListItemSecondaryAction from '@mui/material/ListItemSecondaryAction';
@@ -66,13 +63,6 @@ const AddBook = () => {
   const [createBook] = useMutation(CREATE_BOOK);
   const [deleteBook] = useMutation(DELETE_BOOK);
   const { loading, error, data } = useQuery(GET_BOOKS);
-  // const [bookData, setBookData] = useState({ getBooks: [] });
-
-  // const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
-  // 	const { name, value } = event.target;
-  // 	const parsedValue = name === 'year' ? parseInt(value, 10) : value;
-  // 	setBookInput({ ...bookInput, [name]: parsedValue });
-  // };
 
   const handleAddBook = () => {
     createBook({
@@ -117,10 +107,12 @@ const AddBook = () => {
   console.log(data.getBooks);
 
   return (
-    <>
+    
       <Box paddingTop={1} justifyContent="space-around" textAlign="left">
         <Paper elevation={4}>
           <Paper variant="outlined" sx={{ borderColor: 'gray', padding: 1 }}>
+          <Typography variant="h5" >Book graphQL mongo db</Typography>
+          <Box padding={1}>
             <Grid container spacing={3} alignItems="center">
               <Grid item xs>
                 <TextField
@@ -184,11 +176,11 @@ const AddBook = () => {
 
 
 
-
+</Box>
           </Paper>
         </Paper>
       </Box>
-    </>
+    
   );
 };
 
