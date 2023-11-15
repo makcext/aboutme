@@ -1,7 +1,15 @@
 // WoltCalculator.tsx
 import React, { useState, useEffect } from 'react';
-import { Box, Grid, Paper, TextField, Typography } from '@mui/material';
+import { Box, Button, Grid, Paper, TextField, Typography } from '@mui/material';
 import TuneIcon from '@mui/icons-material/Tune';
+
+// Add this to your existing imports
+import Dialog from '@mui/material/Dialog';
+import DialogTitle from '@mui/material/DialogTitle';
+import DialogContent from '@mui/material/DialogContent';
+
+// import Button from '@mui/material';
+import CloseIcon from '@mui/icons-material/Close';
 
 export interface Cart {
   cartValue: string;
@@ -25,56 +33,64 @@ export interface DeliveryOptions {
   rushHourEnd: Date;
 }
 
-export const calculateDeliveryFee = (cart: Cart, options: DeliveryOptions): number => {
-  const {
-    baseFee,
-    maxFee,
-    smallOrderSurchargeThreshold,
-    distanceThreshold,
-    additionalDistanceFee,
-    itemSurchargeThreshold,
-    itemSurcharge,
-    bulkItemFee,
-    freeDeliveryThreshold,
-    rushHourMultiplier,
-    rushHourStart,
-    rushHourEnd,
-  } = options;
 
-  const cartValueNumber = parseFloat(cart.cartValue);
+interface DeliveryFeeCalculator {
+  calculate(cart: Cart, options: DeliveryOptions): number;
+}
 
-  let deliveryFee = baseFee;
+class DeliveryFeeCalculator implements DeliveryFeeCalculator {
+  calculate(cart: Cart, options: DeliveryOptions): number {
+    // ... existing implementation ...
+    const {
+      baseFee,
+      maxFee,
+      smallOrderSurchargeThreshold,
+      distanceThreshold,
+      additionalDistanceFee,
+      itemSurchargeThreshold,
+      itemSurcharge,
+      bulkItemFee,
+      freeDeliveryThreshold,
+      rushHourMultiplier,
+      rushHourStart,
+      rushHourEnd,
+    } = options;
 
-  if (cartValueNumber < smallOrderSurchargeThreshold) {
-    deliveryFee += smallOrderSurchargeThreshold - cartValueNumber;
+    const cartValueNumber = parseFloat(cart.cartValue);
+
+    let deliveryFee = baseFee;
+
+    if (cartValueNumber < smallOrderSurchargeThreshold) {
+      deliveryFee += smallOrderSurchargeThreshold - cartValueNumber;
+    }
+    const additionalDistance = Math.max(cart.deliveryDistance - distanceThreshold, 0);
+
+    const distanceFee = Math.ceil(additionalDistance / 500) * additionalDistanceFee;
+
+    deliveryFee += Math.max(distanceFee, additionalDistanceFee);
+
+    if (cart.numItems >= itemSurchargeThreshold && cart.numItems < 12) {
+      deliveryFee += (cart.numItems - itemSurchargeThreshold + 1) * itemSurcharge;
+    } else if (cart.numItems >= 12) {
+      deliveryFee *= bulkItemFee;
+    }
+
+    if (cartValueNumber >= freeDeliveryThreshold) {
+      return 0;
+    }
+
+    if (
+      cart.orderTime.getTime() >= rushHourStart.getTime() &&
+      cart.orderTime.getTime() <= rushHourEnd.getTime()
+    ) {
+      deliveryFee *= rushHourMultiplier;
+    }
+
+    const deliveryFee1 = Math.min(deliveryFee, maxFee);
+    const roundedFee = Number(deliveryFee1.toFixed(2)); // round to two decimal places
+    return roundedFee;
   }
-  const additionalDistance = Math.max(cart.deliveryDistance - distanceThreshold, 0);
-
-  const distanceFee = Math.ceil(additionalDistance / 500) * additionalDistanceFee;
-
-  deliveryFee += Math.max(distanceFee, additionalDistanceFee);
-
-  if (cart.numItems >= itemSurchargeThreshold && cart.numItems < 12) {
-    deliveryFee += (cart.numItems - itemSurchargeThreshold + 1) * itemSurcharge;
-  } else if (cart.numItems >= 12) {
-    deliveryFee *= bulkItemFee;
-  }
-
-  if (cartValueNumber >= freeDeliveryThreshold) {
-    return 0;
-  }
-
-  if (
-    cart.orderTime.getTime() >= rushHourStart.getTime() &&
-    cart.orderTime.getTime() <= rushHourEnd.getTime()
-  ) {
-    deliveryFee *= rushHourMultiplier;
-  }
-
-  const deliveryFee1 = Math.min(deliveryFee, maxFee);
-  const roundedFee = Number(deliveryFee1.toFixed(2)); // round to two decimal places
-  return roundedFee;
-};
+}
 
 const WoltCalculator = () => {
   const [cart, setCart] = useState<Cart>({
@@ -99,17 +115,19 @@ const WoltCalculator = () => {
     rushHourEnd: new Date(0, 0, 0, 19, 0),
   });
 
+
+
   const [fee, setFee] = useState<number>(0);
   const [errorMessage, setErrorMessage] = useState<string>('');
-
+  const [deliveryFeeCalculator] = useState<DeliveryFeeCalculator>(new DeliveryFeeCalculator());
   useEffect(() => {
     if (cart.cartValue === '') {
       setFee(0);
       return;
     }
-    const newFee = calculateDeliveryFee(cart, deliveryOptions);
+    const newFee = deliveryFeeCalculator.calculate(cart, deliveryOptions);
     setFee(newFee);
-  }, [cart, deliveryOptions]);
+  }, [cart, deliveryOptions, deliveryFeeCalculator]);
 
   const handleCartValueChange = (value: string) => {
     const newValue = parseFloat(value.replace(',', '.'));
@@ -150,6 +168,19 @@ const WoltCalculator = () => {
     newDate.setMinutes(minute);
     const newCart = { ...cart, orderTime: newDate };
     setCart(newCart);
+  };
+
+  const [open, setOpen] = useState(false);
+
+  // Modify your existing handleClick function
+  const handleClickOptions = () => {
+    setOpen(prevOpen => !prevOpen);
+  };
+
+  const formatTime = (date: Date) => {
+    const hours = date.getHours();
+    const minutes = date.getMinutes();
+    return `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}`;
   };
 
   return (
@@ -206,8 +237,27 @@ const WoltCalculator = () => {
           </Grid>
           <Grid container spacing={2} padding={1}>
             <Grid item xs={6} sm={6}>
-              <TuneIcon />
+              <Button onClick={handleClickOptions}>
+                <TuneIcon />
+              </Button>
             </Grid>
+            <Dialog open={open} onClose={handleClickOptions}>
+              <DialogTitle>
+                Delivery Options
+                <Button onClick={handleClickOptions} aria-label="close">
+                  <CloseIcon />
+                </Button>
+              </DialogTitle>
+              <DialogContent>
+                {Object.keys(deliveryOptions).map((key) => (
+                  <Typography key={key} variant="body1" gutterBottom>
+                    {key}: <strong>{typeof deliveryOptions[key as keyof DeliveryOptions] === 'object'
+                      ? formatTime(new Date(deliveryOptions[key as keyof DeliveryOptions])).toString()
+                      : deliveryOptions[key as keyof DeliveryOptions].toString()}</strong>
+                  </Typography>
+                ))}
+              </DialogContent>
+            </Dialog>
             <Grid item xs={6} sm={6}>
               {errorMessage ? (
                 <Typography variant="subtitle2" color="error">
