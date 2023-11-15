@@ -3,12 +3,20 @@ import { useMutation } from '@apollo/client';
 import { useQuery, gql } from '@apollo/client';
 
 //mui imports
-import { Box } from "@mui/material";
+import { Box, ListItem } from "@mui/material";
 import { Paper } from "@mui/material";
 import { TextField } from "@mui/material";
 import { Button } from "@mui/material";
 import { InputAdornment } from "@mui/material";
 import { Input } from "@mui/material";
+import { List } from "@mui/material";
+import ListItemText from '@mui/material/ListItemText';
+import ListItemSecondaryAction from '@mui/material/ListItemSecondaryAction';
+import Typography from '@mui/material/Typography';
+import IconButton from '@mui/material/IconButton';
+import DeleteIcon from '@mui/icons-material/Delete';
+import AddIcon from '@mui/icons-material/Add';
+import Grid from '@mui/material/Grid';
 
 
 interface BookInput {
@@ -113,41 +121,69 @@ const AddBook = () => {
       <Box paddingTop={1} justifyContent="space-around" textAlign="left">
         <Paper elevation={4}>
           <Paper variant="outlined" sx={{ borderColor: 'gray', padding: 1 }}>
-            <ul>
+            <Grid container spacing={3} alignItems="center">
+              <Grid item xs>
+                <TextField
+                  type="text"
+                  placeholder="Author"
+                  name="author"
+                  value={bookInput.author}
+                  onChange={handleInputChange}
+                  size="small"
+                />
+              </Grid>
+              <Grid item xs>
+                <TextField
+                  type="text"
+                  placeholder="Title"
+                  name="title"
+                  value={bookInput.title}
+                  onChange={handleInputChange}
+                  size="small"
+                />
+              </Grid>
+              <Grid item xs>
+                <TextField
+                  type="number"
+                  placeholder="Year"
+                  name="year"
+                  value={bookInput.year ?? ''}
+                  onChange={handleInputChange}
+                  size="small"
+                />
+              </Grid>
+              <Grid item>
+                <IconButton onClick={handleAddBook}>
+                  <AddIcon color="success" />
+                </IconButton>
+              </Grid>
+            </Grid>
+
+
+
+            <List>
               {data.getBooks.map((book: Book) => (
-                <li key={book._id}>
-                  {book.title} by {book.author} ({book.year})
-                  <button onClick={() => handleDeleteBook(book._id)}>deleteBook</button>
-                </li>
+                <ListItem key={book._id}>
+                  <ListItemText>
+                    <Typography variant="subtitle1">
+                      {book.title} by {book.author} ({book.year})
+                    </Typography>
+                  </ListItemText>
+
+                  <ListItemSecondaryAction>
+                    <IconButton onClick={() => handleDeleteBook(book._id)}>
+                      <DeleteIcon color="error" />
+                    </IconButton>
+
+
+                  </ListItemSecondaryAction>
+                </ListItem>
               ))}
-            </ul>
+            </List>
 
 
-            <TextField
-              type="text"
-              placeholder="Author"
-              name="author"
-              value={bookInput.author}
-              onChange={handleInputChange}
-              size="small"
-            />
-            <TextField
-              type="text"
-              placeholder="Title"
-              name="title"
-              value={bookInput.title}
-              onChange={handleInputChange}
-              size="small"
-            />
-            <TextField
-              type="number"
-              placeholder="Year"
-              name="year"
-              value={bookInput.year ?? ''} // Use an empty string if year is null
-              onChange={handleInputChange}
-              size="small"
-            />
-            <Button onClick={handleAddBook} size="small">Add Book</Button>
+
+
 
           </Paper>
         </Paper>
