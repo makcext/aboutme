@@ -14,6 +14,7 @@ import IconButton from '@mui/material/IconButton';
 import DeleteIcon from '@mui/icons-material/Delete';
 import AddIcon from '@mui/icons-material/Add';
 import Grid from '@mui/material/Grid';
+import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 
 
 interface BookInput {
@@ -107,80 +108,83 @@ const AddBook = () => {
   console.log(data.getBooks);
 
   return (
-    
-      <Box paddingTop={1} justifyContent="space-around" textAlign="left">
-        <Paper elevation={4}>
-          <Paper variant="outlined" sx={{ borderColor: 'gray', padding: 1 }}>
-          <Typography variant="h5" >Book graphQL mongo db</Typography>
-          <Box padding={1}>
-            <Grid container spacing={3} alignItems="center">
-              <Grid item xs>
-                <TextField
-                  type="text"
-                  placeholder="Author"
-                  name="author"
-                  value={bookInput.author}
-                  onChange={handleInputChange}
-                  size="small"
-                />
-              </Grid>
-              <Grid item xs>
-                <TextField
-                  type="text"
-                  placeholder="Title"
-                  name="title"
-                  value={bookInput.title}
-                  onChange={handleInputChange}
-                  size="small"
-                />
-              </Grid>
-              <Grid item xs>
-                <TextField
-                  type="number"
-                  placeholder="Year"
-                  name="year"
-                  value={bookInput.year ?? ''}
-                  onChange={handleInputChange}
-                  size="small"
-                />
-              </Grid>
-              <Grid item>
-                <IconButton onClick={handleAddBook}>
-                  <AddIcon color="success" />
-                </IconButton>
-              </Grid>
+
+    <Box paddingTop={0} justifyContent="space-around" textAlign="left">
+      {/* <Paper elevation={4}> */}
+      <Paper variant="outlined" sx={{ borderColor: 'gray', padding: 1 }}>
+        <Grid container alignItems="center" justifyContent="space-between">
+          <Typography variant="h5">Book graphQL mongo db</Typography>
+          <InfoOutlinedIcon color='success' />
+        </Grid>
+        <Box padding={1}>
+          <Grid container spacing={2} >
+            <Grid item xs>
+              <TextField
+                type="text"
+                placeholder="Author"
+                name="author"
+                value={bookInput.author}
+                onChange={handleInputChange}
+                size="small"
+              />
             </Grid>
+            <Grid item xs>
+              <TextField
+                type="text"
+                placeholder="Title"
+                name="title"
+                value={bookInput.title}
+                onChange={handleInputChange}
+                size="small"
+              />
+            </Grid>
+            <Grid item xs>
+              <TextField
+                type="number"
+                placeholder="Year"
+                name="year"
+                value={bookInput.year ?? ''}
+                onChange={handleInputChange}
+                size="small"
+              />
+            </Grid>
+            <Grid item>
+              <IconButton onClick={handleAddBook}>
+                <AddIcon color="success" />
+              </IconButton>
+            </Grid>
+          </Grid>
 
 
 
-            <List>
-              {data.getBooks.map((book: Book) => (
-                <ListItem key={book._id}>
-                  <ListItemText>
-                    <Typography variant="subtitle1">
-                      {book.title} by {book.author} ({book.year})
-                    </Typography>
-                  </ListItemText>
+          <List>
+            {data.getBooks.map((book: Book) => (
+              <ListItem key={book._id}>
+                <ListItemText>
+                  <Typography variant="subtitle2">
+                    {book.title} by {book.author} ({book.year})
+                  </Typography>
+                </ListItemText>
 
-                  <ListItemSecondaryAction>
-                    <IconButton onClick={() => handleDeleteBook(book._id)}>
-                      <DeleteIcon color="error" />
-                    </IconButton>
-
-
-                  </ListItemSecondaryAction>
-                </ListItem>
-              ))}
-            </List>
+                <ListItemSecondaryAction>
+                  <IconButton onClick={() => handleDeleteBook(book._id)}>
+                    <DeleteIcon color="error" />
+                  </IconButton>
 
 
+                </ListItemSecondaryAction>
+              </ListItem>
+            ))}
+          </List>
 
 
-</Box>
-          </Paper>
-        </Paper>
-      </Box>
-    
+
+
+        </Box>
+      </Paper>
+      {/* </Paper> */}
+    </Box>
+
   );
 };
 

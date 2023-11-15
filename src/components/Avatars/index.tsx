@@ -3,6 +3,7 @@ import { createAvatar } from '@dicebear/avatars';
 import * as style from '@dicebear/avatars-avataaars-sprites';
 import { Grid, Paper, Typography } from '@mui/material';
 import Box from '@mui/material/Box';
+import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 
 // Type annotations
 interface AvatarProps {
@@ -32,13 +33,16 @@ const Avatar: React.FC<AvatarProps> = () => {
 
   // Render the current avatar
   return (
-    <Box paddingBottom={1} justifyContent="space-around">
+    <Box paddingBottom={0} justifyContent="space-around">
       <Paper variant="outlined" sx={{ borderColor: 'gray', padding: 1 }}>
-        <Typography variant="h4">Avatars</Typography>
+        <Grid container alignItems="center" justifyContent="space-between">
+          <Typography variant="h5">Avatars</Typography>
+          <InfoOutlinedIcon color='success' />
+        </Grid>
         <Grid container spacing={1}>
           <Grid item xs={12}>
             <Paper style={{ padding: 16, textAlign: 'center', color: 'text.secondary' }}>
-              <div style={{ width: '150px', height: '150px', margin: '0 auto' }} dangerouslySetInnerHTML={{ __html: avatars[currentAvatarIndex] }} />
+              <div style={{ width: '132px', height: '132px', margin: '0 auto' }} dangerouslySetInnerHTML={{ __html: avatars[currentAvatarIndex] }} />
             </Paper>
           </Grid>
         </Grid>

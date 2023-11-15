@@ -20,6 +20,7 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 // import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
+import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 
 import { Task } from './TaskModel';
 import { createTask, getAllTasks, updateTaskCompletion, removeTask, updateTask } from './TaskController';
@@ -78,12 +79,13 @@ const TaskView: React.FC = () => {
   };
 
   return (
-    <Box paddingTop={1} justifyContent="space-around" >
+    <Box paddingTop={0} justifyContent="space-around" textAlign="left">
       <Paper variant="outlined" sx={{ borderColor: 'gray', padding: 1 }}>
-        <Typography variant="h5" >Todo List</Typography>
-
+        <Grid container alignItems="center" justifyContent="space-between">
+          <Typography variant="h5">Todo List</Typography>
+          <InfoOutlinedIcon color='success' />
+        </Grid>
         <Box padding={1}>
-
           <Grid container spacing={2}  >
             <Grid item xs={8}>
               <TextField
@@ -107,6 +109,7 @@ const TaskView: React.FC = () => {
                 <Checkbox
                   checked={task.completed}
                   onChange={() => handleTaskCompletionToggle(task.id)}
+                  sx={{ padding: '0' }}
                 />
                 <ListItemText
                   primaryTypographyProps={{ variant: 'subtitle2' }}
@@ -141,7 +144,7 @@ const TaskView: React.FC = () => {
             color='warning'
             size='small'
             value={currentTask ? currentTask.title : ''}
-            onChange={(event) => setCurrentTask({ ...currentTask, id: currentTask?.id || 0, completed: currentTask?.completed || false, title: event.target.value })}          />
+            onChange={(event) => setCurrentTask({ ...currentTask, id: currentTask?.id || 0, completed: currentTask?.completed || false, title: event.target.value })} />
         </DialogContent>
         <DialogActions>
           <Button variant="outlined" color='warning' onClick={handleCloseDialog}>Cancel</Button>

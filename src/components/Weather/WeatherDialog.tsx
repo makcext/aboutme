@@ -10,26 +10,25 @@ import DialogTitle from '@mui/material/DialogTitle';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import Button from '@mui/material/Button';
+import Paper from '@mui/material/Paper';
 
 import WeatherData from './WeatherModel';
+
 
 interface WeatherProps {
   weather: WeatherData | null;
 }
 
+
 const WeatherDialog: React.FC<WeatherProps> = ({ weather }) => {
   const [isDialogOpen, setDialogOpen] = useState(false);
-
-	// console.log(weather?.main)
-
-	return (
-		<>
-
-<Box onClick={() => setDialogOpen(true)}>
+  return (
+    <>
+      <Box onClick={() => setDialogOpen(true)}>
         {weather ? (
           <>
             <Typography variant="h4" fontSize={14} sx={{ textAlign: 'left' }} gutterBottom>
-              {weather.main.temp}°C [ {weather.weather[0].description} ] 
+              {weather.main.temp}°C [ {weather.weather[0].description} ]
             </Typography>
           </>
         ) : (
@@ -38,31 +37,33 @@ const WeatherDialog: React.FC<WeatherProps> = ({ weather }) => {
       </Box>
 
       <Dialog open={isDialogOpen} onClose={() => setDialogOpen(false)}>
-        <DialogTitle>Weather Detailss</DialogTitle>
-        <DialogContent>
-          {weather ? (
-            <DialogContentText>
-              Temperature: {weather.main.temp}°C <br />
-              Description: {weather.weather[0].description} <br />
-              Feels like: {weather.main.feels_like}°C <br />
-              Min/Max: {weather.main.temp_min} - {weather.main.temp_max}°C <br />
-							Pressure: {weather?.main.pressure} hPa <br />
-              Humidity: {weather?.main.humidity} % <br />
-              
-              
-            </DialogContentText>
-          ) : (
-            <DialogContentText>Loading weather data...</DialogContentText>
-          )}
-        </DialogContent>
-        <Button color="warning" onClick={() => setDialogOpen(false)}>Close</Button>
+        <Paper elevation={2} >
+          <DialogTitle>Weather Details</DialogTitle>
+          <DialogContent>
+
+            {weather ? (
+              <DialogContentText>
+                Temperature: {weather.main.temp}°C <br />
+                Description: {weather.weather[0].description} <br />
+                Feels like: {weather.main.feels_like}°C <br />
+                Min/Max: {weather.main.temp_min} - {weather.main.temp_max}°C <br />
+                Pressure: {weather?.main.pressure} hPa <br />
+                Humidity: {weather?.main.humidity} % <br />
+
+
+              </DialogContentText>
+            ) : (
+              <DialogContentText>Loading weather data...</DialogContentText>
+            )}
+
+          </DialogContent>
+          <Box display="flex" justifyContent="center">
+            <Button color="warning" onClick={() => setDialogOpen(false)}>Close</Button>
+          </Box>        </Paper>
       </Dialog>
 
-
-
-
-		</>
-	);
+    </>
+  );
 };
 
-	export default WeatherDialog;
+export default WeatherDialog;

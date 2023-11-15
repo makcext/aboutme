@@ -8,6 +8,7 @@ import Dialog from '@mui/material/Dialog';
 import DialogTitle from '@mui/material/DialogTitle';
 import DialogContent from '@mui/material/DialogContent';
 
+import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 // import Button from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 
@@ -186,7 +187,10 @@ const WoltCalculator = () => {
   return (
     <Box paddingBottom={0} justifyContent="space-around">
       <Paper variant="outlined" sx={{ borderColor: 'gray', padding: 1 }}>
-        <Typography variant="h4">Wolt Calc Fee</Typography>
+        <Grid container alignItems="center" justifyContent="space-between">
+          <Typography variant="h5">Wolt Calc Fee</Typography>
+          <InfoOutlinedIcon color='success' />
+        </Grid>
 
         <Box padding={1}>
           <Grid container spacing={2}>

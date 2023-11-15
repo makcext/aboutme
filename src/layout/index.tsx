@@ -42,25 +42,35 @@ const Layout = () => {
       <ApplBar />
 
       <Box maxWidth="md" padding={1} sx={{ overflowX: "hidden" }}>
-        <HelloBlock />
-        <WoltCalc />
-        <Grid container spacing={1} alignItems="start" paddingBottom={1}>
-        
+      <HelloBlock />
+
+        <Grid container spacing={1} alignItems="stretch" paddingBottom={1}>
+
           <Grid item xs={12} sm={6}>
-          <AddBook />
+            <WoltCalc />
+          </Grid>
+          <Grid item xs={12} sm={6}>
+            <Avatar />      
+          </Grid>
+        </Grid>
+
+        <Grid container spacing={1} alignItems="start" paddingBottom={1}>
+          <Grid item xs={12} sm={6}>
+            <AddBook />
           </Grid>
           <Grid item xs={12} sm={6}>
             <TaskView />
           </Grid>
         </Grid>
-        <Avatar />
+
+
         <CameraComponent />
 
         <TechStack />
         {/* <Books /> */}
 
-        <Education  />
-        
+        <Education />
+
         <Footer />
       </Box>
     </>

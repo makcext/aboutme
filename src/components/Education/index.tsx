@@ -1,6 +1,7 @@
 import { Box, Button, Grow, Paper, Typography } from "@mui/material";
 import React, { useState, useEffect } from "react";
 import Grid from '@mui/material/Grid';
+import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 
 
 interface Image {
@@ -50,9 +51,14 @@ const Education = () => {
       <Box justifyContent="Left" textAlign={'left'} >
         <Paper elevation={4}>
           <Paper variant="outlined" sx={{ borderColor: 'gray' }}  >
-            <Button sx={{ width: '100%', justifyContent: 'flex-start', flex: 1, typography: 'h4', textTransform: 'capitalize', }} variant='text' color='inherit' onClick={swapImages}>Education</Button>
+            <Button sx={{ width: '100%', justifyContent: 'flex-start', flex: 1, typography: 'h4', textTransform: 'capitalize', }} variant='text' color='inherit' onClick={swapImages}>
+            <Grid container alignItems="center" justifyContent="space-between">
+          <Typography variant="h5">Education</Typography>
+          <InfoOutlinedIcon color="success" />
+        </Grid>
+              </Button>
             <Grow in={true} style={{ transformOrigin: '0 1 0' }} {...(true ? { timeout: 2000 } : {})} >
-              <Typography variant='h6' sx={{ display: 'flex', padding: '8px' }} > Bachelor of Computer Science </Typography>
+              <Typography variant='subtitle1' sx={{ display: 'flex', padding: '8px' }} > Bachelor of Computer Science </Typography>
             </Grow>
             <Grid container spacing={0} justifyItems={"center"} alignItems={"center"} sx={{ height: '100%' }}>
               {shuffledImages.map(image => (

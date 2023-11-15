@@ -6,6 +6,7 @@ import Paper from '@mui/material/Paper';
 import Box from '@mui/material/Box';
 import { Typography } from '@mui/material';
 import Alert from '@mui/material/Alert';
+import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 
 const CameraComponent = () => {
   const screenVideoRef = useRef<HTMLVideoElement>(null);
@@ -55,6 +56,7 @@ const CameraComponent = () => {
       setScreenStream(null);
       setScreenLabel(null);
       setIsScreenRunning(false); // set isScreenRunning to false
+      setShowAlert(false);
       if (screenVideoRef.current) {
         screenVideoRef.current.srcObject = null;
       }
@@ -94,7 +96,11 @@ const CameraComponent = () => {
   return (
     <Box paddingBottom={1}>
       <Paper variant="outlined" sx={{ borderColor: 'gray', padding: 1 }}>
-        <Typography variant="h4">Stream Indetificator</Typography>
+        {/* <Typography variant="h4">Stream Indetificator</Typography> */}
+        <Grid container alignItems="center" justifyContent="space-between">
+          <Typography variant="h5">Stream Indetificator</Typography>
+          <InfoOutlinedIcon color="success" />
+        </Grid>
         <Box padding={1}>
           <Grid container direction="row" justifyContent="space-between" alignItems="center">
             <Grid item xs={6} justifyContent={'center'} justifyItems={'center'}>
@@ -158,6 +164,8 @@ const CameraComponent = () => {
             )}
           </Grid>
         </Box>
+        {showAlert && <Alert severity="info">Screen capture started</Alert>}
+
       </Paper>
     </Box>
   );

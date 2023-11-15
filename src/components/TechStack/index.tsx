@@ -2,6 +2,7 @@ import React from 'react';
 import { Box, Button, Grid, Grow, Paper, Typography } from '@mui/material';
 import { useTechStack } from './TechController';
 import { TechText } from './TechModel';
+import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 
 
 
@@ -25,11 +26,16 @@ const TechStack: React.FC = () => {
             color='inherit'
             onClick={shuffleTech}
           >
-            Tech stack
+         <Grid container alignItems="center" justifyContent="space-between">
+          <Typography variant="h5">Tech stack</Typography>
+          <InfoOutlinedIcon color="success" />
+        </Grid>
           </Button>
+ 
+
 
           <Grow in={true} style={{ transformOrigin: '0 1 0' }} {...(true ? { timeout: 2000 } : {})} >
-            <Typography variant='h6' sx={{ display: 'flex', padding: '8px' }} > Developer who wants to explore {selectedTech?.toString()} tech </Typography>
+            <Typography variant='subtitle1' sx={{ display: 'flex', padding: '8px' }} > Developer who wants to explore {selectedTech?.toString()} tech </Typography>
           </Grow>
           <Grid
             container
