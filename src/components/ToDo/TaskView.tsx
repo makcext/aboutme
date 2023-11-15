@@ -20,7 +20,7 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 // import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
-import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
+// import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 
 import { Task } from './TaskModel';
 import { createTask, getAllTasks, updateTaskCompletion, removeTask, updateTask } from './TaskController';
@@ -83,7 +83,7 @@ const TaskView: React.FC = () => {
       <Paper variant="outlined" sx={{ borderColor: 'gray', padding: 1 }}>
         <Grid container alignItems="center" justifyContent="space-between">
           <Typography variant="h5">Todo List</Typography>
-          <InfoOutlinedIcon color='success' />
+          {/* <InfoOutlinedIcon color='success' /> */}
         </Grid>
         <Box padding={1}>
           <Grid container spacing={2}  >

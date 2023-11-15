@@ -15,6 +15,13 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import AddIcon from '@mui/icons-material/Add';
 import Grid from '@mui/material/Grid';
 import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
+import { Button } from '@mui/material';
+
+import Dialog from '@mui/material/Dialog';
+import DialogTitle from '@mui/material/DialogTitle';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogActions from '@mui/material/DialogActions';
 
 
 interface BookInput {
@@ -102,10 +109,24 @@ const AddBook = () => {
       .catch(error => console.error('Error deleting book:', error));
   };
 
+
+  // Add this state variable at the top of your component
+  const [infoDialogOpen, setInfoDialogOpen] = useState(false);
+
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error :(</p>;
 
+  // Add this function to handle the click event of the InfoOutlinedIcon
+  const handleInfoIconClick = () => {
+    setInfoDialogOpen(prevState => !prevState);
+  };
+
+
+
+
   console.log(data.getBooks);
+
+
 
   return (
 
@@ -114,7 +135,29 @@ const AddBook = () => {
       <Paper variant="outlined" sx={{ borderColor: 'gray', padding: 1 }}>
         <Grid container alignItems="center" justifyContent="space-between">
           <Typography variant="h5">Book graphQL mongo db</Typography>
-          <InfoOutlinedIcon color='success' />
+          <InfoOutlinedIcon color='success' onClick={handleInfoIconClick} />
+
+          <Dialog
+          open={infoDialogOpen}
+          onClose={handleInfoIconClick}
+        >
+          <DialogTitle>{"Book graphQL mongo db"}</DialogTitle>
+          <DialogContent>
+            <DialogContentText>
+              <Typography variant='subtitle2'>
+                The Book graphQL mongo db React component is a CRUD interface for interacting with a GraphQL book database. It allows users to add new books, view existing books, and delete books. The component uses Apollo Client's useMutation and useQuery hooks to interact with the server, and it uses Material UI for its UI components.
+              </Typography>
+            </DialogContentText>
+          </DialogContent>
+          <DialogActions>
+            <Button variant='outlined' color='warning' onClick={handleInfoIconClick} >
+              Close
+            </Button>
+          </DialogActions>
+        </Dialog>
+
+
+
         </Grid>
         <Box padding={1}>
           <Grid container spacing={2} >

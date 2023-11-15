@@ -1,5 +1,5 @@
 import React from "react";
-import { gql } from '@apollo/client';
+// import { gql } from '@apollo/client';
 
 
 import { Box } from "@mui/material";
@@ -7,14 +7,14 @@ import { Grid } from "@mui/material";
 
 import ApplBar from "./AppBar";
 import HelloBlock from "../components/HelloBlock";
-import WoltView from "../components/Wolt/WoltView";
+// import WoltView from "../components/Wolt/WoltView";
 import WoltCalc from "../components/Woltt/WoltView";
 import TaskView from "../components/ToDo/TaskView";
 import TechStack from "../components/TechStack";
 import Education from "../components/Education";
 import Footer from "../components/Footer";
 import Avatar from "../components/Avatars";
-import Books from "../components/BooksGql"
+// import Books from "../components/BooksGql"
 import AddBook from "../components/BookGqlMutation"
 
 

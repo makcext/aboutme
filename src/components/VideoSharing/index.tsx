@@ -6,7 +6,7 @@ import Paper from '@mui/material/Paper';
 import Box from '@mui/material/Box';
 import { Typography } from '@mui/material';
 import Alert from '@mui/material/Alert';
-import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
+// import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 
 const CameraComponent = () => {
   const screenVideoRef = useRef<HTMLVideoElement>(null);
@@ -99,7 +99,7 @@ const CameraComponent = () => {
         {/* <Typography variant="h4">Stream Indetificator</Typography> */}
         <Grid container alignItems="center" justifyContent="space-between">
           <Typography variant="h5">Stream Indetificator</Typography>
-          <InfoOutlinedIcon color="success" />
+          {/* <InfoOutlinedIcon color="success" /> */}
         </Grid>
         <Box padding={1}>
           <Grid container direction="row" justifyContent="space-between" alignItems="center">

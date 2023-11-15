@@ -3,14 +3,17 @@ import React, { useState, useEffect } from 'react';
 import { Box, Button, Grid, Paper, TextField, Typography } from '@mui/material';
 import TuneIcon from '@mui/icons-material/Tune';
 
-// Add this to your existing imports
 import Dialog from '@mui/material/Dialog';
 import DialogTitle from '@mui/material/DialogTitle';
 import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogActions from '@mui/material/DialogActions';
 
 import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 // import Button from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
+
+
 
 export interface Cart {
   cartValue: string;
@@ -184,13 +187,48 @@ const WoltCalculator = () => {
     return `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}`;
   };
 
+  // Add this state variable at the top of your component
+  const [infoDialogOpen, setInfoDialogOpen] = useState(false);
+
+  // Add this function to handle the click event of the InfoOutlinedIcon
+  const handleInfoIconClick = () => {
+    setInfoDialogOpen(prevState => !prevState);
+  };
+
   return (
     <Box paddingBottom={0} justifyContent="space-around">
       <Paper variant="outlined" sx={{ borderColor: 'gray', padding: 1 }}>
         <Grid container alignItems="center" justifyContent="space-between">
           <Typography variant="h5">Wolt Calc Fee</Typography>
-          <InfoOutlinedIcon color='success' />
+          <InfoOutlinedIcon color='success' onClick={handleInfoIconClick} />
         </Grid>
+
+        <Dialog
+          open={infoDialogOpen}
+          onClose={handleInfoIconClick}
+        >
+          <DialogTitle>{"Wolt Calculator Information"}</DialogTitle>
+          <DialogContent>
+            <DialogContentText>
+              <Typography variant='subtitle2'>
+                This is a TypeScript React component named WoltCalculator. It's a calculator for delivery fees, presumably for a service like Wolt.
+                The component uses Material UI for its UI components and state management is done using React's useState and useEffect hooks.
+                The calculator takes into account various factors such as cart value, number of items, delivery distance, and order time to calculate the delivery fee.
+                The DeliveryFeeCalculator class is used to encapsulate the logic for calculating the delivery fee based on a Cart and DeliveryOptions objects.
+                The component also includes a dialog box that displays the current delivery options when a button is clicked.
+              </Typography>
+              </DialogContentText>
+          </DialogContent>
+          <DialogActions>
+            <Button variant='outlined' color='warning' onClick={handleInfoIconClick} >
+              Close
+            </Button>
+          </DialogActions>
+        </Dialog>
+
+
+
+
 
         <Box padding={1}>
           <Grid container spacing={2}>
@@ -255,10 +293,10 @@ const WoltCalculator = () => {
               <DialogContent>
                 {Object.keys(deliveryOptions).map((key) => (
                   <Typography key={key} variant="subtitle1" gutterBottom style={{ whiteSpace: 'nowrap' }}>
-  {key}: {typeof deliveryOptions[key as keyof DeliveryOptions] === 'object'
-    ? <Typography color="orange" display="inline">{formatTime(new Date(deliveryOptions[key as keyof DeliveryOptions])).toString()}</Typography>
-    : <Typography color="orange" display="inline">{deliveryOptions[key as keyof DeliveryOptions].toString()}</Typography>}
-</Typography>
+                    {key}: {typeof deliveryOptions[key as keyof DeliveryOptions] === 'object'
+                      ? <Typography color="orange" display="inline">{formatTime(new Date(deliveryOptions[key as keyof DeliveryOptions])).toString()}</Typography>
+                      : <Typography color="orange" display="inline">{deliveryOptions[key as keyof DeliveryOptions].toString()}</Typography>}
+                  </Typography>
                 ))}
               </DialogContent>
             </Dialog>
