@@ -2,11 +2,11 @@
 
 1. **Frontend Development:**
     
-    - **React and Material-UI Integration:**
+- **React and Material-UI Integration:**
         
-        - Utilization of React for building the frontend.
-        - Integration of Material-UI for consistent and modern UI components. 🚀
-    - **Graphical Elements:**
+    - Utilization of React for building the frontend.
+    - Integration of Material-UI for consistent and modern UI components. 🚀
+- **Graphical Elements:**
         
         - Incorporation of avatar generation using @dicebear/avatars-avataaars-sprites.
         - Usage of Material-UI icons from @mui/icons-material for visual enhancements. 🎨
