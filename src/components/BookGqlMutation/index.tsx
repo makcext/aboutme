@@ -1,3 +1,4 @@
+//index.tsx
 import React, { useState, ChangeEvent } from 'react';
 import { useMutation } from '@apollo/client';
 import { useQuery, gql } from '@apollo/client';
@@ -28,6 +29,7 @@ interface BookInput {
   author: string;
   title: string;
   year: number | null | undefined; // Allow undefined
+
 }
 
 interface Book {
@@ -69,6 +71,8 @@ const AddBook = () => {
   });
 
   const [createBook] = useMutation(CREATE_BOOK);
+
+  
   const [deleteBook] = useMutation(DELETE_BOOK);
   const { loading, error, data } = useQuery(GET_BOOKS);
 
@@ -79,6 +83,7 @@ const AddBook = () => {
           author: bookInput.author,
           title: bookInput.title,
           year: bookInput.year ?? '',
+          userId: '6558cd6d7071bf798487fce0',
         },
       },
       refetchQueries: [{ query: GET_BOOKS }],
