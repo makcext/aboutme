@@ -77,22 +77,24 @@ const AddBook = () => {
   const { loading, error, data } = useQuery(GET_BOOKS);
 
   const handleAddBook = () => {
+    const userId = '6558cd6d7071bf798487fce0'; // Implement this function to extract userId from token
+  
     createBook({
       variables: {
         bookInput: {
           author: bookInput.author,
           title: bookInput.title,
           year: bookInput.year ?? '',
-          userId: '6558cd6d7071bf798487fce0',
+          userId: userId,
         },
       },
       refetchQueries: [{ query: GET_BOOKS }],
     })
-      .then(response => {
-        console.log('Book added:', response.data.createBook);
-        setBookInput({ author: '', title: '', year: null });
-      })
-      .catch(error => console.error('Error adding book:', error));
+    .then(response => {
+      console.log('Book added:', response.data.createBook);
+      setBookInput({ author: '', title: '', year: null });
+    })
+    .catch(error => console.error('Error adding book:', error));
   };
 
   const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
