@@ -24,12 +24,14 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogActions from '@mui/material/DialogActions';
 
+import LoginForm from '../authForm/index';
+
 
 interface BookInput {
   author: string;
   title: string;
   year: number | null | undefined; // Allow undefined
-
+  userId: string;
 }
 
 interface Book {
@@ -64,10 +66,12 @@ const GET_BOOKS = gql`
 `;
 
 const AddBook = () => {
+  
   const [bookInput, setBookInput] = useState<BookInput>({
     author: '',
     title: '',
     year: undefined, // Changed from null to undefined
+    userId: '',
   });
 
   const [createBook] = useMutation(CREATE_BOOK);
@@ -92,7 +96,7 @@ const AddBook = () => {
     })
     .then(response => {
       console.log('Book added:', response.data.createBook);
-      setBookInput({ author: '', title: '', year: null });
+      setBookInput({ author: '', title: '', year: null, userId: '' });
     })
     .catch(error => console.error('Error adding book:', error));
   };
@@ -163,7 +167,7 @@ const AddBook = () => {
           </DialogActions>
         </Dialog>
 
-
+        <LoginForm />
 
         </Grid>
         <Box padding={1}>
