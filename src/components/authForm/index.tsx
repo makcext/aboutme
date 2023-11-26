@@ -1,6 +1,7 @@
 import React, { useState, ChangeEvent, FormEvent } from 'react';
 import { Grid, TextField, Button } from '@mui/material';
 import { gql, useMutation } from '@apollo/client';
+import Cookies from 'js-cookie';
 
 const REGISTER_USER = gql`
   mutation Register($email: String!, $password: String!) {
@@ -10,12 +11,15 @@ const REGISTER_USER = gql`
 
 const LOGIN_USER = gql`
   mutation Login($email: String!, $password: String!) {
-    login(email: $email, password: $password) {
-      email
-      password
+    login(userInput: { email: $email, password: $password }) {
+      token
     }
   }
 `;
+
+function saveTokenInCookie(token: string) {
+  Cookies.set('jwt', token, { expires: 7 }); // The token will expire after 7 days
+}
 
 const LoginForm = () => {
   // State for login form
@@ -31,6 +35,8 @@ const LoginForm = () => {
     e.preventDefault();
     try {
       const { data } = await registerUser({ variables: registerData });
+      // how to call saveTokenInCookie(data.register)
+      saveTokenInCookie(data.register)
       console.log(data);
     } catch (error) {
       console.error(error);

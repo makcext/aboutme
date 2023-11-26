@@ -16,6 +16,7 @@
     "@mui/x-date-pickers": "^6.11.1",
     "concurrently": "^8.2.1",
     "graphql": "^16.8.1",
+    "js-cookie": "^3.0.5",
     "mobx": "^6.10.0",
     "mobx-react-lite": "^4.0.3",
     "moment": "^2.29.4",
@@ -53,6 +54,7 @@
   },
   "devDependencies": {
     "@dicebear/avatars": "^4.10.8",
+    "@types/js-cookie": "^3.0.6",
     "@types/react": "^18.2.21",
     "@types/react-dom": "^18.2.7",
     "axios": "^1.4.0",
