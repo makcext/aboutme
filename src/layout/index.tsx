@@ -16,6 +16,7 @@ import Footer from "../components/Footer";
 import Avatar from "../components/Avatars";
 // import Books from "../components/BooksGql"
 import AddBook from "../components/BookGqlMutation"
+import AuthForm from "../components/authForm";
 
 
 import CameraComponent from "../components/VideoSharing";
@@ -43,7 +44,7 @@ const Layout = () => {
 
       <Box maxWidth="md" padding={1} sx={{ overflowX: "hidden" }}>
       <HelloBlock />
-
+<AuthForm />
         <Grid container spacing={1} alignItems="stretch" paddingBottom={1}>
 
           <Grid item xs={12} sm={6}>

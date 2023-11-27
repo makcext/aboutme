@@ -1,7 +1,13 @@
 //index.tsx
 import React, { useState, ChangeEvent } from 'react';
+import { useEffect } from 'react';
 import { useMutation } from '@apollo/client';
 import { useQuery, gql } from '@apollo/client';
+import Cookies from 'js-cookie';
+import { jwtDecode } from 'jwt-decode';
+import userStore from '../../store/userStore';
+import { observer } from 'mobx-react';
+
 
 //mui imports
 import { Box, ListItem } from "@mui/material";
@@ -56,17 +62,59 @@ mutation Mutation($id: ID!) {
 
 const GET_BOOKS = gql`
   query GetBooks {
-  getBooks(limit: 10) {
-    _id
-    author
-    title
-    year
-  }
+    getBooks(limit: 10) {
+      _id
+      author
+      title
+      year
+    }
   }
 `;
 
-const AddBook = () => {
+const GET_USER_BOOKS = gql`
+  query GetUserBooks($userId: ID!) {
+    getUserBooks(userId: $userId) {
+      _id
+      author
+      title
+      year
+    }
+  }
+`;
+
+
+const isUserLoggedIn = () => {
+  const token = Cookies.get('jwt');
+  if (!token) {
+    return false;
+  }
+
+  try {
+    jwtDecode(token);
+    return true;
+  } catch (error) {
+    console.error("Invalid token", error);
+    return false;
+  }
+};
+
+console.log("user login", isUserLoggedIn());
+
+const AuthBooks = observer(() => {
+
+  useEffect(() => {
+    const jwt = Cookies.get('jwt');
+    if (jwt) {
+      userStore.logIn();
+    } else {
+      userStore.logOut();
+    }
+  }, [Cookies.get('jwt')]);
   
+  // const [jwtToken, setJwtToken] = useState(Cookies.get('jwt'));
+  // Add this state variable at the top of your component
+  const [infoDialogOpen, setInfoDialogOpen] = useState(false);
+
   const [bookInput, setBookInput] = useState<BookInput>({
     author: '',
     title: '',
@@ -75,30 +123,71 @@ const AddBook = () => {
   });
 
   const [createBook] = useMutation(CREATE_BOOK);
+  const [deleteBook] = useMutation(DELETE_BOOK);
+
+  // const { loading, error, data } = useQuery(GET_BOOKS);
+
+  // const token = Cookies.get('jwt');
+  // const decoded: any = jwtDecode(token || '');
+  // let userId = decoded.userId;
+
+
+  const token = Cookies.get('jwt');
+  let userId = '';
+  let userLoggedIn = false;
+  
+  if (token) {
+    try {
+      const decodedToken: any = jwtDecode(token);
+      if (decodedToken && decodedToken.exp) {
+        userLoggedIn = decodedToken.exp * 1000 > Date.now();
+        userId = decodedToken.userId; // Extract userId from the decoded token
+      }
+    } catch (error) {
+      console.error("Invalid token", error);
+    }
+
+    
+  }
 
   
-  const [deleteBook] = useMutation(DELETE_BOOK);
-  const { loading, error, data } = useQuery(GET_BOOKS);
+  const [jwtToken, setJwtToken] = useState(Cookies.get('jwt'));
+
+  useEffect(() => {
+    setJwtToken(Cookies.get('jwt'));
+  }, [jwtToken]);
+
+
+  const { loading: loadingU, error: errorU, data: dataU, refetch: refetchUserBooks } = useQuery(GET_USER_BOOKS, {
+    variables: { userId: userId },
+    skip: !userLoggedIn, // Skip the query if the user is not logged in
+  });
+    if (loadingU) return <p>Loading...</p>;
+  if (errorU) return <p>Please login & restart page</p>;
+
+
+
+
 
   const handleAddBook = () => {
-    const userId = '6558cd6d7071bf798487fce0'; // Implement this function to extract userId from token
-  
+    const userIdd = userId; // Implement this function to extract userId from token
+
     createBook({
       variables: {
         bookInput: {
           author: bookInput.author,
           title: bookInput.title,
           year: bookInput.year ?? '',
-          userId: userId,
+          userId: userIdd,
         },
       },
       refetchQueries: [{ query: GET_BOOKS }],
     })
-    .then(response => {
-      console.log('Book added:', response.data.createBook);
-      setBookInput({ author: '', title: '', year: null, userId: '' });
-    })
-    .catch(error => console.error('Error adding book:', error));
+      .then(response => {
+        console.log('Book added:', response.data.createBook);
+        setBookInput({ author: '', title: '', year: null, userId: '' });
+      })
+      .catch(error => console.error('Error adding book:', error));
   };
 
   const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
@@ -121,11 +210,9 @@ const AddBook = () => {
   };
 
 
-  // Add this state variable at the top of your component
-  const [infoDialogOpen, setInfoDialogOpen] = useState(false);
 
-  if (loading) return <p>Loading...</p>;
-  if (error) return <p>Error :(</p>;
+
+
 
   // Add this function to handle the click event of the InfoOutlinedIcon
   const handleInfoIconClick = () => {
@@ -135,7 +222,7 @@ const AddBook = () => {
 
 
 
-  console.log(data.getBooks);
+  // console.log(data.getBooks);
 
 
 
@@ -149,25 +236,25 @@ const AddBook = () => {
           <InfoOutlinedIcon color='success' onClick={handleInfoIconClick} />
 
           <Dialog
-          open={infoDialogOpen}
-          onClose={handleInfoIconClick}
-        >
-          <DialogTitle>{"Book graphQL mongo db"}</DialogTitle>
-          <DialogContent>
-            <DialogContentText>
-              <Typography variant='subtitle2'>
-                The Book graphQL mongo db React component is a CRUD interface for interacting with a GraphQL book database. It allows users to add new books, view existing books, and delete books. The component uses Apollo Client's useMutation and useQuery hooks to interact with the server, and it uses Material UI for its UI components.
-              </Typography>
-            </DialogContentText>
-          </DialogContent>
-          <DialogActions>
-            <Button variant='outlined' color='warning' onClick={handleInfoIconClick} >
-              Close
-            </Button>
-          </DialogActions>
-        </Dialog>
+            open={infoDialogOpen}
+            onClose={handleInfoIconClick}
+          >
+            <DialogTitle>{"Book graphQL mongo db"}</DialogTitle>
+            <DialogContent>
+              <DialogContentText>
+                <Typography variant='subtitle2'>
+                  The Book graphQL mongo db React component is a CRUD interface for interacting with a GraphQL book database. It allows users to add new books, view existing books, and delete books. The component uses Apollo Client's useMutation and useQuery hooks to interact with the server, and it uses Material UI for its UI components.
+                </Typography>
+              </DialogContentText>
+            </DialogContent>
+            <DialogActions>
+              <Button variant='outlined' color='warning' onClick={handleInfoIconClick} >
+                Close
+              </Button>
+            </DialogActions>
+          </Dialog>
 
-        <LoginForm />
+          {/* <LoginForm /> */}
 
         </Grid>
         <Box padding={1}>
@@ -211,25 +298,29 @@ const AddBook = () => {
 
 
 
-          <List>
-            {data.getBooks.map((book: Book) => (
-              <ListItem key={book._id}>
-                <ListItemText>
-                  <Typography variant="subtitle2">
-                    {book.title} by {book.author} ({book.year})
-                  </Typography>
-                </ListItemText>
+          {userStore.isLoggedIn ? (
+            <List>
+              {dataU.getUserBooks.map((book: Book) => (
+                <ListItem key={book._id}>
+                  <ListItemText>
+                    <Typography variant="subtitle2">
+                      {book.title} by {book.author} ({book.year})
+                    </Typography>
+                  </ListItemText>
 
-                <ListItemSecondaryAction>
-                  <IconButton onClick={() => handleDeleteBook(book._id)}>
-                    <DeleteIcon color="error" />
-                  </IconButton>
-
-
-                </ListItemSecondaryAction>
-              </ListItem>
-            ))}
-          </List>
+                  <ListItemSecondaryAction>
+                    <IconButton onClick={() => handleDeleteBook(book._id)}>
+                      <DeleteIcon color="error" />
+                    </IconButton>
+                  </ListItemSecondaryAction>
+                </ListItem>
+              ))}
+            </List>
+          ) : (
+            <Typography variant="subtitle2">
+              Please login to view list
+            </Typography>
+          )}
 
 
 
@@ -240,6 +331,6 @@ const AddBook = () => {
     </Box>
 
   );
-};
+});
 
-export default AddBook;
+export default AuthBooks;

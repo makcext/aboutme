@@ -1,7 +1,12 @@
 import React, { useState, ChangeEvent, FormEvent } from 'react';
-import { Grid, TextField, Button } from '@mui/material';
+import { Grid, TextField, Button, Typography } from '@mui/material';
 import { gql, useMutation } from '@apollo/client';
 import Cookies from 'js-cookie';
+import userStore from '../../store/userStore';
+import Box from '@mui/material/Box';
+import Paper from '@mui/material/Paper';
+
+
 
 const REGISTER_USER = gql`
   mutation Register($email: String!, $password: String!) {
@@ -21,6 +26,13 @@ function saveTokenInCookie(token: string) {
   Cookies.set('jwt', token, { expires: 7 }); // The token will expire after 7 days
 }
 
+const isUserLoggedIn = () => {
+  const token = Cookies.get('jwt');
+  return !!token;
+};
+
+console.log(isUserLoggedIn());
+
 const LoginForm = () => {
   // State for login form
   const [loginData, setLoginData] = useState({ email: '', password: '' });
@@ -35,7 +47,6 @@ const LoginForm = () => {
     e.preventDefault();
     try {
       const { data } = await registerUser({ variables: registerData });
-      // how to call saveTokenInCookie(data.register)
       saveTokenInCookie(data.register)
       console.log(data);
     } catch (error) {
@@ -46,10 +57,13 @@ const LoginForm = () => {
 
   const handleLoginSubmit = async (e: FormEvent) => {
     e.preventDefault();
-		console.log(loginData);
     try {
       const { data } = await loginUser({ variables: loginData });
       console.log(data);
+      if (data && data.login.token) {
+        Cookies.set('jwt', data.login.token, { expires: 7 }); // The token will expire after 7 days
+        userStore.logIn(); // Update UserStore
+      }
     } catch (error) {
       console.error(error);
     }
@@ -65,32 +79,34 @@ const LoginForm = () => {
     setRegisterData({ ...registerData, [e.target.name]: e.target.value });
   };
 
-  // // Handle form submission
-  // const handleSubmit = (e: FormEvent) => {
-  //   e.preventDefault();
-  //   // Add logic for form submission
-  // };
-
   // JSX
   return (
+    <Box paddingBottom={1} justifyContent="space-around" textAlign="left">
+      {/* <Paper elevation={4}> */}
+      <Paper variant="outlined" sx={{ borderColor: 'gray', padding: 1 }}>
+        <Grid container alignItems="center" justifyContent="space-between"></Grid>
     <Grid container spacing={2}>
       <Grid item xs>
-        <h2>Login</h2>
+        <Typography>Login</Typography>
         <form onSubmit={handleLoginSubmit}>
-          <TextField name="email" value={loginData.email} onChange={handleLoginChange} placeholder="email" />
-          <TextField name="password" value={loginData.password} onChange={handleLoginChange} placeholder="Password" type="password" />
-          <Button type="submit" >Login</Button>
+          <TextField size='small' name="email" value={loginData.email} onChange={handleLoginChange} placeholder="email" />
+          <TextField size='small' name="password" value={loginData.password} onChange={handleLoginChange} placeholder="Password" type="password" />
+          <Button size='small' variant='outlined' color='warning' type="submit" >Login</Button>
         </form>
       </Grid>
       <Grid item xs>
-        <h2>Register</h2>
+      <Typography>Register</Typography>
         <form onSubmit={handleRegisterSubmit}>
-          <TextField name="email" value={registerData.email} onChange={handleRegisterChange} placeholder="email" />
-          <TextField name="password" value={registerData.password} onChange={handleRegisterChange} placeholder="Password" type="password" />
-          <Button type="submit">Register</Button>
+          <TextField size='small' name="email" value={registerData.email} onChange={handleRegisterChange} placeholder="email" />
+          <TextField size='small' name="password" value={registerData.password} onChange={handleRegisterChange} placeholder="Password" type="password" />
+          <Button size='small' variant='outlined' color='warning' type="submit">Register</Button>
         </form>
       </Grid>
     </Grid>
+    
+      </Paper>
+      {/* </Paper> */}
+    </Box>
   );
 };
 
