@@ -30,9 +30,6 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogActions from '@mui/material/DialogActions';
 
-import LoginForm from '../authForm/index';
-
-
 interface BookInput {
   author: string;
   title: string;
@@ -82,37 +79,18 @@ const GET_USER_BOOKS = gql`
   }
 `;
 
-
-const isUserLoggedIn = () => {
-  const token = Cookies.get('jwt');
-  if (!token) {
-    return false;
-  }
-
-  try {
-    jwtDecode(token);
-    return true;
-  } catch (error) {
-    console.error("Invalid token", error);
-    return false;
-  }
-};
-
-console.log("user login", isUserLoggedIn());
-
 const AuthBooks = observer(() => {
 
+  const jwt = Cookies.get('jwt');
+
   useEffect(() => {
-    const jwt = Cookies.get('jwt');
     if (jwt) {
       userStore.logIn();
     } else {
       userStore.logOut();
     }
-  }, [Cookies.get('jwt')]);
-  
-  // const [jwtToken, setJwtToken] = useState(Cookies.get('jwt'));
-  // Add this state variable at the top of your component
+  }, [jwt]);
+
   const [infoDialogOpen, setInfoDialogOpen] = useState(false);
 
   const [bookInput, setBookInput] = useState<BookInput>({
@@ -125,17 +103,10 @@ const AuthBooks = observer(() => {
   const [createBook] = useMutation(CREATE_BOOK);
   const [deleteBook] = useMutation(DELETE_BOOK);
 
-  // const { loading, error, data } = useQuery(GET_BOOKS);
-
-  // const token = Cookies.get('jwt');
-  // const decoded: any = jwtDecode(token || '');
-  // let userId = decoded.userId;
-
-
   const token = Cookies.get('jwt');
   let userId = '';
   let userLoggedIn = false;
-  
+
   if (token) {
     try {
       const decodedToken: any = jwtDecode(token);
@@ -147,27 +118,21 @@ const AuthBooks = observer(() => {
       console.error("Invalid token", error);
     }
 
-    
+
   }
 
-  
   const [jwtToken, setJwtToken] = useState(Cookies.get('jwt'));
-
   useEffect(() => {
     setJwtToken(Cookies.get('jwt'));
   }, [jwtToken]);
 
 
-  const { loading: loadingU, error: errorU, data: dataU, refetch: refetchUserBooks } = useQuery(GET_USER_BOOKS, {
+  const { loading: loadingU, error: errorU, data: dataU } = useQuery(GET_USER_BOOKS, {
     variables: { userId: userId },
     skip: !userLoggedIn, // Skip the query if the user is not logged in
   });
-    if (loadingU) return <p>Loading...</p>;
+  if (loadingU) return <p>Loading...</p>;
   if (errorU) return <p>Please login & restart page</p>;
-
-
-
-
 
   const handleAddBook = () => {
     const userIdd = userId; // Implement this function to extract userId from token
@@ -209,22 +174,10 @@ const AuthBooks = observer(() => {
       .catch(error => console.error('Error deleting book:', error));
   };
 
-
-
-
-
-
   // Add this function to handle the click event of the InfoOutlinedIcon
   const handleInfoIconClick = () => {
     setInfoDialogOpen(prevState => !prevState);
   };
-
-
-
-
-  // console.log(data.getBooks);
-
-
 
   return (
 
@@ -253,8 +206,6 @@ const AuthBooks = observer(() => {
               </Button>
             </DialogActions>
           </Dialog>
-
-          {/* <LoginForm /> */}
 
         </Grid>
         <Box padding={1}>
@@ -296,11 +247,9 @@ const AuthBooks = observer(() => {
             </Grid>
           </Grid>
 
-
-
           {userStore.isLoggedIn ? (
             <List>
-              {dataU.getUserBooks.map((book: Book) => (
+              {dataU && dataU.getUserBooks.map((book: Book) => (
                 <ListItem key={book._id}>
                   <ListItemText>
                     <Typography variant="subtitle2">
@@ -323,11 +272,8 @@ const AuthBooks = observer(() => {
           )}
 
 
-
-
         </Box>
       </Paper>
-      {/* </Paper> */}
     </Box>
 
   );
