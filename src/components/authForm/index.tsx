@@ -1,4 +1,4 @@
-import React, { useState, ChangeEvent, FormEvent } from 'react';
+import React, { useState, ChangeEvent, useEffect, FormEvent } from 'react';
 import { Grid, TextField, Button, Typography } from '@mui/material';
 import { gql, useMutation } from '@apollo/client';
 import Cookies from 'js-cookie';
@@ -22,8 +22,10 @@ const LOGIN_USER = gql`
   }
 `;
 
+
+
 function saveTokenInCookie(token: string) {
-  Cookies.set('jwt', token, { expires: 7 }); // The token will expire after 7 days
+  Cookies.set('jwt', token);
 }
 
 const isUserLoggedIn = () => {
@@ -34,6 +36,10 @@ const isUserLoggedIn = () => {
 console.log(isUserLoggedIn());
 
 const LoginForm = () => {
+
+  useEffect(() => {
+    Cookies.remove('jwt');
+  }, []);
   // State for login form
   const [loginData, setLoginData] = useState({ email: '', password: '' });
 
@@ -61,7 +67,7 @@ const LoginForm = () => {
       const { data } = await loginUser({ variables: loginData });
       console.log(data);
       if (data && data.login.token) {
-        Cookies.set('jwt', data.login.token, { expires: 7 }); // The token will expire after 7 days
+        Cookies.set('jwt', data.login.token); // The token will expire after 7 days
         userStore.logIn(); // Update UserStore
       }
     } catch (error) {
