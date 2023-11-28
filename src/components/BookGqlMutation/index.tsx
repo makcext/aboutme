@@ -110,15 +110,13 @@ const AuthBooks = observer(() => {
   if (token) {
     try {
       const decodedToken: any = jwtDecode(token);
-      if (decodedToken && decodedToken.exp) {
-        userLoggedIn = decodedToken.exp * 1000 > Date.now();
+      if (decodedToken) {
         userId = decodedToken.userId; // Extract userId from the decoded token
+        userLoggedIn = true;
       }
     } catch (error) {
       console.error("Invalid token", error);
     }
-
-
   }
 
   const [jwtToken, setJwtToken] = useState(Cookies.get('jwt'));
