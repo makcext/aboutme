@@ -20,7 +20,7 @@ import AuthForm from "../components/authForm";
 import Join from "../components/Join";
 
 
-import CameraComponent from "../components/VideoSharing";
+import ScreenShareIdentification from "../components/screen-share-identification/screen-share-identification";
 // import CameraComponentM  from "../components/VideoSharing/mobileIndex"; 
 
 // async function getStream() {
@@ -65,7 +65,7 @@ const Layout = () => {
         </Grid>
 
 
-        <CameraComponent />
+        <ScreenShareIdentification />
 
         <TechStack />
         {/* <Books /> */}

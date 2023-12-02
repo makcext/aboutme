@@ -8,7 +8,7 @@ import { Typography } from '@mui/material';
 import Alert from '@mui/material/Alert';
 // import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 
-const CameraComponent = () => {
+const ScreenShareIdentification = () => {
   const screenVideoRef = useRef<HTMLVideoElement>(null);
   const cameraVideoRef = useRef<HTMLVideoElement>(null);
 
@@ -98,7 +98,7 @@ const CameraComponent = () => {
       <Paper variant="outlined" sx={{ borderColor: 'gray', padding: 1 }}>
         {/* <Typography variant="h4">Stream Indetificator</Typography> */}
         <Grid container alignItems="center" justifyContent="space-between">
-          <Typography variant="h5">Stream Indetificator</Typography>
+          <Typography variant="h5">screen share identification</Typography>
           {/* <InfoOutlinedIcon color="success" /> */}
         </Grid>
         <Box padding={1}>
@@ -171,4 +171,4 @@ const CameraComponent = () => {
   );
 };
 
-export default CameraComponent;
+export default ScreenShareIdentification;
