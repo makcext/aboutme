@@ -18,4 +18,8 @@ class UserStore {
   }
 }
 
-export default new UserStore();
+const userStore = new UserStore();
+
+// Perform some operations on userStore here if needed
+
+export default userStore;
