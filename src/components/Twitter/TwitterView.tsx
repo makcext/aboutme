@@ -9,7 +9,7 @@ export function Tweet({ text }: TweetProps) {
   return (
     <>
       <Typography>Last {Tweet.name}</Typography>
-      <p>{text}</p>
+      <Typography>{text}</Typography>
     </>
   );
 }

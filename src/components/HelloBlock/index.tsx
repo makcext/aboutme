@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Avatar, Box, Chip, Grid, Grow, Typography } from "@mui/material";
+import { Avatar, Box, Chip, Divider, Grid, Grow, Typography } from "@mui/material";
 import QRsvg from '../svg/qrsvg';
 import PlaceIcon from '@mui/icons-material/Place';
 import TwitterIcon from '@mui/icons-material/Twitter';
@@ -10,6 +10,14 @@ import fetchWeatherData from "../Weather/WeatherController";
 import WeatherDialog from '../Weather/WeatherDialog'
 import Avatars from "../Avatars";
 // import avatarImage from './avatar.png';
+import Join from "../Join";
+
+
+
+
+
+
+
 const avatarImage = require('./avatar.png');
 
 type InfoBlockProps = {
@@ -17,7 +25,7 @@ type InfoBlockProps = {
   text: string;
 };
 
-const InfoBlock: React.FC<InfoBlockProps> = ({ icon, text })  => (
+const InfoBlock: React.FC<InfoBlockProps> = ({ icon, text }) => (
   <Box display="flex" alignItems="center">
     <Box sx={{ marginRight: 1 }}>{icon}</Box>
     <Typography variant="h4" fontSize={14} sx={{ textAlign: 'left' }}>{text}</Typography>
@@ -54,10 +62,16 @@ const HelloBlock = () => {
             </Grow>
             <Box display="flex" justifyContent="center">
               <Chip sx={{ fontSize: 12 }} label="react | ts | mobx | graphql" variant="outlined" color="warning" />
+              
             </Box>
-            <Typography variant="body2" sx={{ textAlign: 'center' }}>
+            <Typography variant="body1" sx={{ textAlign: 'center' }}>
               let's go!
-            </Typography>
+            </Typography >
+            <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+              
+            <Join />
+            </div>
+
             {/* <QRsvg /> */}
             {/* <Avatars /> */}
 

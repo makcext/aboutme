@@ -129,8 +129,8 @@ const AuthBooks = observer(() => {
     variables: { userId: userId },
     skip: !userLoggedIn, // Skip the query if the user is not logged in
   });
-  if (loadingU) return <p>Loading...</p>;
-  if (errorU) return <p>Please login & restart page</p>;
+  if (loadingU) return <Typography>Loading...</Typography>;
+  if (errorU) return <Typography>Please login & restart page</Typography>;
 
   const handleAddBook = () => {
     const userIdd = userId; // Implement this function to extract userId from token

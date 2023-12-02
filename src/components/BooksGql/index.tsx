@@ -35,8 +35,8 @@ const CREATE_BOOK = gql`
 function Books() {
   const { loading, error, data } = useQuery<{ getBooks: Book[] }>(GET_BOOKS);
 
-  if (loading) return <p>Loading...</p>;
-  if (error) return <p>Error :(</p>;
+  if (loading) return <Typography>Loading...</Typography>;
+  if (error) return < Typography>Error </Typography>;
 
   const handleCreateClick = () => {
     // Handle create button click event here
