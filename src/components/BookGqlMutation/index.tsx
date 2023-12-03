@@ -38,7 +38,7 @@ interface BookInput {
 }
 
 interface Book {
-  // id: string;
+  //  id: string;
   _id: any;
   author: string;
   title: string;
@@ -100,7 +100,18 @@ const AuthBooks = observer(() => {
     userId: '',
   });
 
-  const [createBook] = useMutation(CREATE_BOOK);
+  const [createBook] = useMutation(CREATE_BOOK, {
+    update(cache, { data: { createBook } }) {
+      const existingBooks: any = cache.readQuery({ query: GET_USER_BOOKS, variables: { userId: userId } });
+      cache.writeQuery({
+        query: GET_USER_BOOKS,
+        variables: { userId: userId },
+        data: { getUserBooks: [...existingBooks.getUserBooks, createBook] },
+      });
+    },
+  });
+  
+  
   const [deleteBook] = useMutation(DELETE_BOOK);
 
   const token = Cookies.get('jwt');

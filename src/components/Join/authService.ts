@@ -28,7 +28,7 @@ export const useRegister = () => {
       console.error(error);
     }
   };
-
+  
   return { register, data, error };
 };
 
