@@ -1,44 +1,26 @@
-//index.tsx
-import React, { useState, ChangeEvent } from 'react';
-import { useEffect } from 'react';
-import { useMutation } from '@apollo/client';
-import { useQuery, gql } from '@apollo/client';
+import React, { useState, useEffect, ChangeEvent } from 'react';
+import { useMutation, useQuery, gql } from '@apollo/client';
 import Cookies from 'js-cookie';
 import { jwtDecode } from 'jwt-decode';
 import userStore from '../../store/userStore';
 import { observer } from 'mobx-react';
-
-
-//mui imports
-import { Box, ListItem } from "@mui/material";
-import { Paper } from "@mui/material";
-import { TextField } from "@mui/material";
-import { List } from "@mui/material";
-import ListItemText from '@mui/material/ListItemText';
-import ListItemSecondaryAction from '@mui/material/ListItemSecondaryAction';
-import Typography from '@mui/material/Typography';
-import IconButton from '@mui/material/IconButton';
+import { 
+  Box, ListItem, Paper, TextField, List, Typography, IconButton, 
+  Grid, Button, Dialog, DialogTitle, DialogContent, DialogContentText, 
+  DialogActions, ListItemText, ListItemSecondaryAction 
+} from "@mui/material";
 import DeleteIcon from '@mui/icons-material/Delete';
 import AddIcon from '@mui/icons-material/Add';
-import Grid from '@mui/material/Grid';
 import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
-import { Button } from '@mui/material';
-
-import Dialog from '@mui/material/Dialog';
-import DialogTitle from '@mui/material/DialogTitle';
-import DialogContent from '@mui/material/DialogContent';
-import DialogContentText from '@mui/material/DialogContentText';
-import DialogActions from '@mui/material/DialogActions';
 
 interface BookInput {
   author: string;
   title: string;
-  year: number | null | undefined; // Allow undefined
+  year: number | null | undefined;
   userId: string;
 }
 
 interface Book {
-  //  id: string;
   _id: any;
   author: string;
   title: string;
@@ -46,15 +28,15 @@ interface Book {
 }
 
 const CREATE_BOOK = gql`
-	mutation CreateBook($bookInput: BookInput!) {
-		createBook(bookInput: $bookInput)
-	}
+  mutation CreateBook($bookInput: BookInput!) {
+    createBook(bookInput: $bookInput)
+  }
 `;
 
 const DELETE_BOOK = gql`
-mutation Mutation($id: ID!) {
-  deleteBook(ID: $id)
-}
+  mutation Mutation($id: ID!) {
+    deleteBook(ID: $id)
+  }
 `;
 
 const GET_BOOKS = gql`
@@ -90,6 +72,18 @@ const AuthBooks = observer(() => {
       userStore.logOut();
     }
   }, [jwt]);
+
+  useEffect(() => {
+    if (!userStore.isLoggedIn) {
+      setBookInput({
+        author: '',
+        title: '',
+        year: undefined,
+        userId: '',
+      });
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [userStore.isLoggedIn]);
 
   const [infoDialogOpen, setInfoDialogOpen] = useState(false);
 

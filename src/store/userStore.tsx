@@ -17,6 +17,10 @@ class UserStore {
     this.isLoggedIn = false;
     Cookies.remove('jwt'); // Remove the JWT from cookies when logging out
   }
+
+  changeIsLoggedIn(value: boolean) {
+    this.isLoggedIn = value;
+  }
 }
 
 const userStore = new UserStore();
@@ -36,14 +40,33 @@ export const isLoggedIn = () => {
 // }
 
 
+export const login = () => {
+  // Call the login mutation and save the returned token to cookies
+  // Return the token
+  UserStore.prototype.logIn();
+  userStore.isLoggedIn = Cookies.get('jwt') ? true : false;
+  console.log('userStore.isLoggedIn', userStore.isLoggedIn);
+}
+
+
+
 export const logout = () => {
   // Clear the user data from the store
   Cookies.remove('jwt');
-  userStore.logOut();
+  UserStore.prototype.logOut();
   userStore.isLoggedIn = Cookies.get('jwt') ? true : false;
   // This will depend on how you're managing state in your store
 };
 
+
+
+
+
+
+
+
 export default userStore;
+
+
 
 

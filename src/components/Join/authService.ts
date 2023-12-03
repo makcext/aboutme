@@ -1,6 +1,7 @@
 // authService.ts
 import { gql, useMutation } from '@apollo/client';
 import Cookies from 'js-cookie';
+import userStore from '../../store/userStore'; 
 
 const REGISTER_USER = gql`
   mutation Register($email: String!, $password: String!) {
@@ -23,6 +24,8 @@ export const useRegister = () => {
     try {
       const response = await registerUser({ variables: { email, password } });
       Cookies.set('jwt', response.data.register);
+      console.log(response.data);
+
       return response.data;
     } catch (error) {
       console.error(error);
@@ -40,6 +43,8 @@ export const useLogin = () => {
       const response = await loginUser({ variables: { email, password } });
       if (response.data && response.data.login.token) {
         Cookies.set('jwt', response.data.login.token);
+        console.log(response.data);
+        userStore.logIn(); // update the isLoggedIn state in userStore
         return response.data;
       }
     } catch (error) {
