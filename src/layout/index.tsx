@@ -20,7 +20,7 @@ import AuthForm from "../components/authForm";
 import Join from "../components/Join";
 
 
-import ScreenShareIdentification from "../components/screen-share-identification/screen-share-identification";
+import ScreenShareIdentification from "../components/screen-share-identification/ScreenShareIdentification";
 // import CameraComponentM  from "../components/VideoSharing/mobileIndex"; 
 
 // async function getStream() {
@@ -42,27 +42,34 @@ const Layout = () => {
   return (
     <>
       <ApplBar />
-      <Box maxWidth="md" padding={1} sx={{ overflowX: "hidden" }}>
-      <HelloBlock />
-{/* <AuthForm /> */}
+      <Box maxWidth="lg" padding={1} sx={{ overflowX: "hidden" }}>
+        <HelloBlock />
+        {/* <AuthForm /> */}
         <Grid container spacing={1} alignItems="stretch" paddingBottom={1}>
 
+          {/* <Grid container spacing={1} alignItems="start" paddingBottom={1}> */}
+            <Grid item xs={12} sm={6}>
+              <AddBook />
+            </Grid>
+            <Grid item xs={12} sm={6}>
+              <TaskView />
+            </Grid>
+            {/* <Grid item xs={12} sm={4}>
+              <TaskView />
+            </Grid> */}
+          {/* </Grid> */}
+
+          {/* <Grid container spacing={1} alignItems="start" paddingBottom={1}> */}
           <Grid item xs={12} sm={6}>
             <WoltCalc />
           </Grid>
           <Grid item xs={12} sm={6}>
-            <Avatar />      
+            <Avatar />
           </Grid>
+        {/* </Grid> */}
+
         </Grid>
 
-        <Grid container spacing={1} alignItems="start" paddingBottom={1}>
-          <Grid item xs={12} sm={6}>
-            <AddBook />
-          </Grid>
-          <Grid item xs={12} sm={6}>
-            <TaskView />
-          </Grid>
-        </Grid>
 
 
         <ScreenShareIdentification />

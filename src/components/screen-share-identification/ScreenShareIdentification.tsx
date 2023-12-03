@@ -134,20 +134,13 @@ const ScreenShareIdentification = () => {
           </Grid>
           <Grid container direction="row" justifyContent="end" alignItems="center">
             <Grid item xs={6}>
-              {cameraLabel && <Typography variant="caption">{cameraLabel}</Typography>}
+              {screenLabel && <Typography variant="caption">{screenLabel}</Typography>}
             </Grid>
             <Grid item xs={6}>
-              {screenLabel && <Typography variant="caption">{screenLabel}</Typography>}
+              {cameraLabel && <Typography variant="caption">{cameraLabel}</Typography>}
             </Grid>
           </Grid>
           <Grid container spacing={0} justifyContent="space-between" alignItems="center">
-            <Grid item xs={6}>
-              {cameraVideoRef.current?.srcObject ? (
-                <video ref={cameraVideoRef} autoPlay style={{ width: '150px' }} />
-              ) : (
-                <video ref={cameraVideoRef} autoPlay style={{ width: '0px' }} />
-              )}
-            </Grid>
             <Grid item xs={6}>
               {!isMobile && (
                 <>
@@ -159,13 +152,19 @@ const ScreenShareIdentification = () => {
                 </>
               )}
             </Grid>
+            <Grid item xs={6}>
+              {cameraVideoRef.current?.srcObject ? (
+                <video ref={cameraVideoRef} autoPlay style={{ width: '150px' }} />
+              ) : (
+                <video ref={cameraVideoRef} autoPlay style={{ width: '0px' }} />
+              )}
+            </Grid>
             {isMobile && (
               <Alert severity="warning">screen sharing is not available on mobile</Alert>
             )}
           </Grid>
         </Box>
         {showAlert && <Alert severity="info">Screen capture started</Alert>}
-
       </Paper>
     </Box>
   );

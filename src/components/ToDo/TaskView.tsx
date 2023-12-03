@@ -21,7 +21,7 @@ import DialogContent from '@mui/material/DialogContent';
 // import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 // import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
-
+import AddIcon from '@mui/icons-material/Add';
 import { Task } from './TaskModel';
 import { createTask, getAllTasks, updateTaskCompletion, removeTask, updateTask } from './TaskController';
 
@@ -85,21 +85,25 @@ const TaskView: React.FC = () => {
           <Typography variant="h5">Todo List</Typography>
           {/* <InfoOutlinedIcon color='success' /> */}
         </Grid>
+
         <Box padding={1}>
-          <Grid container spacing={2}  >
-            <Grid item xs={8}>
+
+          <Grid container spacing={1}>
+
+            <Grid item xs={10} md={10}>
               <TextField
+                fullWidth
                 label="New Task"
                 value={newTaskTitle}
                 onChange={handleTaskTitleChange}
                 size='small'
               />
-
             </Grid>
-            <Grid item xs={4} >
-              <Button variant="outlined" color='warning' onClick={handleCreateTask} >
-                Add Task
-              </Button>
+
+            <Grid item xs={2} md={2} container justifyContent="flex-end">
+              <IconButton onClick={handleCreateTask}>
+                <AddIcon color="success" />
+              </IconButton>
             </Grid>
           </Grid>
 
