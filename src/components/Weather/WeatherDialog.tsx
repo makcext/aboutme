@@ -1,5 +1,4 @@
 //WeatherDialog.tsx
-
 import React from 'react';
 import { useState } from 'react';
 
@@ -14,11 +13,9 @@ import Paper from '@mui/material/Paper';
 
 import WeatherData from './WeatherModel';
 
-
 interface WeatherProps {
   weather: WeatherData | null;
 }
-
 
 const WeatherDialog: React.FC<WeatherProps> = ({ weather }) => {
   const [isDialogOpen, setDialogOpen] = useState(false);
@@ -49,8 +46,6 @@ const WeatherDialog: React.FC<WeatherProps> = ({ weather }) => {
                 Min/Max: {weather.main.temp_min} - {weather.main.temp_max}°C <br />
                 Pressure: {weather?.main.pressure} hPa <br />
                 Humidity: {weather?.main.humidity} % <br />
-
-
               </DialogContentText>
             ) : (
               <DialogContentText>Loading weather data...</DialogContentText>
@@ -59,9 +54,9 @@ const WeatherDialog: React.FC<WeatherProps> = ({ weather }) => {
           </DialogContent>
           <Box display="flex" justifyContent="center">
             <Button color="warning" onClick={() => setDialogOpen(false)}>Close</Button>
-          </Box>        </Paper>
+          </Box>
+        </Paper>
       </Dialog>
-
     </>
   );
 };

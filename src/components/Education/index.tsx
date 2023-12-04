@@ -63,9 +63,9 @@ const Education = () => {
             <Grid container spacing={0} justifyItems={"center"} alignItems={"center"} sx={{ height: '100%' }}>
               {shuffledImages.map(image => (
                 <Grid item key={image.id} xs={6} sm={6} p={1} height={"100%"}>
-                  <Paper variant={"outlined"} elevation={0} sx={{ display: 'flex', justifyContent: 'center', padding: '8px' }}>
+                  <Paper elevation={1} sx={{ display: 'flex', justifyContent: 'center', padding: '8px' }}>
                     {image.src ? (
-                      <img src={image.src} alt='aueb logo' style={{ height: '75%', width: '75%' }} />
+                      <img src={image.src} alt='aueb logo' style={{ height: '100px', width: '100px' }} />
                     ) : (
                       <Typography variant="body2" align="center">{image.text}</Typography>
                     )}

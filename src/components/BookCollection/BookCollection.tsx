@@ -5,13 +5,14 @@ import { jwtDecode } from 'jwt-decode';
 import userStore from '../../store/userStore';
 import { observer } from 'mobx-react';
 import { 
-  Box, ListItem, Paper, TextField, List, Typography, IconButton, 
+  Alert, Box, ListItem, Paper, TextField, List, Typography, IconButton, 
   Grid, Button, Dialog, DialogTitle, DialogContent, 
   DialogActions, ListItemText, ListItemSecondaryAction 
 } from "@mui/material";
 import DeleteIcon from '@mui/icons-material/Delete';
 import AddIcon from '@mui/icons-material/Add';
 import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
+import { Padding } from '@mui/icons-material';
 
 interface BookInput {
   author: string;
@@ -210,7 +211,7 @@ const AuthBooks = observer(() => {
 
         </Grid>
         <Box padding={1}>
-          <Grid container spacing={2} >
+          <Grid container spacing={2} paddingBottom={2}>
             <Grid item xs>
               <TextField
                 type="text"
@@ -267,9 +268,9 @@ const AuthBooks = observer(() => {
               ))}
             </List>
           ) : (
-            <Typography variant="subtitle2">
-              Please login to view list
-            </Typography>
+
+            <Alert  severity="warning">please login to view list</Alert>
+
           )}
 
 

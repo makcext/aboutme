@@ -13,7 +13,7 @@ import TechStack from "../components/TechStack";
 import Education from "../components/Education";
 import Footer from "../components/Footer";
 import Avatar from "../components/Avatars";
-import AddBook from "../components/BookCollection";
+import AddBook from "../components/BookCollection/BookCollection";
 import ScreenShareIdentification from "../components/ScreenShareIdentification/ScreenShareIdentification";
 
 

@@ -4,8 +4,6 @@ import { useTechStack } from './TechController';
 import { TechText } from './TechModel';
 import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 
-
-
 const TechStack: React.FC = () => {
   const { selectedTech, shuffledTech, shuffleTech } = useTechStack();
   const warningColor = '#ff9800'; // Extract this from your theme or define it
