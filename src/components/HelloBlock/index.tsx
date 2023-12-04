@@ -62,14 +62,14 @@ const HelloBlock = () => {
             </Grow>
             <Box display="flex" justifyContent="center">
               <Chip sx={{ fontSize: 12 }} label="react | ts | mobx | graphql" variant="outlined" color="warning" />
-              
+
             </Box>
             <Typography variant="body1" sx={{ textAlign: 'center' }}>
               let's go!
             </Typography >
             <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-              
-            <Join />
+
+              <Join />
             </div>
 
             {/* <QRsvg /> */}

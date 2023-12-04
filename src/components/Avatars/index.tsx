@@ -3,11 +3,8 @@ import { createAvatar } from '@dicebear/avatars';
 import * as style from '@dicebear/avatars-avataaars-sprites';
 import { Grid, Paper, Typography } from '@mui/material';
 import Box from '@mui/material/Box';
-// import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 
-// Type annotations
 interface AvatarProps {
-
 
 }
 
