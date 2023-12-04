@@ -5,7 +5,7 @@ import { useMediaQuery } from "@mui/material";
 
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
-import Layout from './layout/index';
+import Layout from './layout/Layout';
 
 const darkTheme = createTheme({
   palette: {

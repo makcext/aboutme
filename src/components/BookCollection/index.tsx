@@ -6,7 +6,7 @@ import userStore from '../../store/userStore';
 import { observer } from 'mobx-react';
 import { 
   Box, ListItem, Paper, TextField, List, Typography, IconButton, 
-  Grid, Button, Dialog, DialogTitle, DialogContent, DialogContentText, 
+  Grid, Button, Dialog, DialogTitle, DialogContent, 
   DialogActions, ListItemText, ListItemSecondaryAction 
 } from "@mui/material";
 import DeleteIcon from '@mui/icons-material/Delete';
@@ -197,11 +197,9 @@ const AuthBooks = observer(() => {
           >
             <DialogTitle>{"Book graphQL mongo db"}</DialogTitle>
             <DialogContent>
-              <DialogContentText>
                 <Typography variant='subtitle2'>
                   The Book graphQL mongo db React component is a CRUD interface for interacting with a GraphQL book database. It allows users to add new books, view existing books, and delete books. The component uses Apollo Client's useMutation and useQuery hooks to interact with the server, and it uses Material UI for its UI components.
                 </Typography>
-              </DialogContentText>
             </DialogContent>
             <DialogActions>
               <Button variant='outlined' color='warning' onClick={handleInfoIconClick} >

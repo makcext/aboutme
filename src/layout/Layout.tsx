@@ -1,23 +1,19 @@
+// React import
 import React from "react";
-import { Box } from "@mui/material";
-import { Grid } from "@mui/material";
 
+// Material UI imports
+import { Box, Grid } from "@mui/material";
+
+// Component imports
 import ApplBar from "./AppBar";
-import HelloBlock from "../components/HelloBlock";
-// import WoltView from "../components/Wolt/WoltView";
+import HelloBlock from "../components/HelloBlock/HelleBlock";
 import WoltCalc from "../components/WoltFee/WoltView";
 import TaskView from "../components/ToDo/TaskView";
 import TechStack from "../components/TechStack";
 import Education from "../components/Education";
 import Footer from "../components/Footer";
 import Avatar from "../components/Avatars";
-// import Books from "../components/BooksGql"
-import AddBook from "../components/BookCollection"
-
-import AuthForm from "../components/authForm";
-import Join from "../components/Join";
-
-
+import AddBook from "../components/BookCollection";
 import ScreenShareIdentification from "../components/Screen-share-identification/ScreenShareIdentification";
 
 

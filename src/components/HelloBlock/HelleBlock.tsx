@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { Avatar, Box, Chip, Divider, Grid, Grow, Typography } from "@mui/material";
-import QRsvg from '../svg/qrsvg';
+import { Avatar, Box, Chip, Grid, Grow, Typography } from "@mui/material";
+// import QRsvg from '../svg/qrsvg';
 import PlaceIcon from '@mui/icons-material/Place';
 import TwitterIcon from '@mui/icons-material/Twitter';
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
@@ -8,14 +8,7 @@ import '@fontsource/roboto/400.css';
 import WeatherData from '../Weather/WeatherModel';
 import fetchWeatherData from "../Weather/WeatherController";
 import WeatherDialog from '../Weather/WeatherDialog'
-import Avatars from "../Avatars";
-// import avatarImage from './avatar.png';
-import Join from "../Join";
-
-
-
-
-
+import Join from "../Join/Join";
 
 
 const avatarImage = require('./avatar.png');

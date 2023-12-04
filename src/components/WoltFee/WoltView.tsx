@@ -6,7 +6,6 @@ import TuneIcon from '@mui/icons-material/Tune';
 import Dialog from '@mui/material/Dialog';
 import DialogTitle from '@mui/material/DialogTitle';
 import DialogContent from '@mui/material/DialogContent';
-import DialogContentText from '@mui/material/DialogContentText';
 import DialogActions from '@mui/material/DialogActions';
 
 import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
@@ -209,7 +208,6 @@ const WoltCalculator = () => {
         >
           <DialogTitle>{"Wolt Calculator Information"}</DialogTitle>
           <DialogContent>
-            <DialogContentText>
               <Typography variant='subtitle2'>
                 This is a TypeScript React component named WoltCalculator. It's a calculator for delivery fees, presumably for a service like Wolt.
                 The component uses Material UI for its UI components and state management is done using React's useState and useEffect hooks.
@@ -217,12 +215,10 @@ const WoltCalculator = () => {
                 The DeliveryFeeCalculator class is used to encapsulate the logic for calculating the delivery fee based on a Cart and DeliveryOptions objects.
                 The component also includes a dialog box that displays the current delivery options when a button is clicked.
               </Typography>
-              </DialogContentText>
           </DialogContent>
           <DialogActions>
-            <Button variant='outlined' color='warning' onClick={handleInfoIconClick} >
-              Close
-            </Button>
+          <Button  size={'small'} color="success" variant='outlined' onClick={handleInfoIconClick}>Close</Button>
+
           </DialogActions>
         </Dialog>
 
