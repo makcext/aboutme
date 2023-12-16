@@ -1,66 +1,20 @@
 import React, { useState, useEffect, ChangeEvent } from 'react';
-import { useMutation, useQuery, gql } from '@apollo/client';
+import { useMutation, useQuery } from '@apollo/client';
 import Cookies from 'js-cookie';
 import { jwtDecode } from 'jwt-decode';
 import userStore from '../../store/userStore';
 import { observer } from 'mobx-react';
-import { 
-  Alert, Box, ListItem, Paper, TextField, List, Typography, IconButton, 
-  Grid, Button, Dialog, DialogTitle, DialogContent, 
-  DialogActions, ListItemText, ListItemSecondaryAction 
+import {
+  Alert, Box, ListItem, Paper, TextField, List, Typography, IconButton,
+  Grid, Button, Dialog, DialogTitle, DialogContent,
+  DialogActions, ListItemText, ListItemSecondaryAction
 } from "@mui/material";
 import DeleteIcon from '@mui/icons-material/Delete';
 import AddIcon from '@mui/icons-material/Add';
 import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
-import { Padding } from '@mui/icons-material';
-
-interface BookInput {
-  author: string;
-  title: string;
-  year: number | null | undefined;
-  userId: string;
-}
-
-interface Book {
-  _id: any;
-  author: string;
-  title: string;
-  year: number | null;
-}
-
-const CREATE_BOOK = gql`
-  mutation CreateBook($bookInput: BookInput!) {
-    createBook(bookInput: $bookInput)
-  }
-`;
-
-const DELETE_BOOK = gql`
-  mutation Mutation($id: ID!) {
-    deleteBook(ID: $id)
-  }
-`;
-
-const GET_BOOKS = gql`
-  query GetBooks {
-    getBooks(limit: 10) {
-      _id
-      author
-      title
-      year
-    }
-  }
-`;
-
-const GET_USER_BOOKS = gql`
-  query GetUserBooks($userId: ID!) {
-    getUserBooks(userId: $userId) {
-      _id
-      author
-      title
-      year
-    }
-  }
-`;
+import { CREATE_BOOK, DELETE_BOOK, GET_BOOKS, GET_USER_BOOKS } from './GraphQLQueries';
+import { BookInput, Book } from './BookTypes';
+import BookCollectionDialog from '../BookCollection/components/BookCollectionDialog';
 
 const AuthBooks = observer(() => {
 
@@ -83,7 +37,7 @@ const AuthBooks = observer(() => {
         userId: '',
       });
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [userStore.isLoggedIn]);
 
   const [infoDialogOpen, setInfoDialogOpen] = useState(false);
@@ -105,8 +59,8 @@ const AuthBooks = observer(() => {
       });
     },
   });
-  
-  
+
+
   const [deleteBook] = useMutation(DELETE_BOOK);
 
   const token = Cookies.get('jwt');
@@ -183,6 +137,15 @@ const AuthBooks = observer(() => {
     setInfoDialogOpen(prevState => !prevState);
   };
 
+  const fields = [
+    { type: "text", placeholder: "Author", name: "author", value: bookInput.author },
+    { type: "text", placeholder: "Title", name: "title", value: bookInput.title },
+    { type: "number", placeholder: "Year", name: "year", value: bookInput.year ?? '' },
+  ];
+
+
+
+
   return (
 
     <Box paddingTop={0} justifyContent="space-around" textAlign="left">
@@ -192,56 +155,25 @@ const AuthBooks = observer(() => {
           <Typography variant="h5">Books collection</Typography>
           <InfoOutlinedIcon color='success' onClick={handleInfoIconClick} />
 
-          <Dialog
-            open={infoDialogOpen}
-            onClose={handleInfoIconClick}
-          >
-            <DialogTitle>{"Book graphQL mongo db"}</DialogTitle>
-            <DialogContent>
-                <Typography variant='subtitle2'>
-                  The Book graphQL mongo db React component is a CRUD interface for interacting with a GraphQL book database. It allows users to add new books, view existing books, and delete books. The component uses Apollo Client's useMutation and useQuery hooks to interact with the server, and it uses Material UI for its UI components.
-                </Typography>
-            </DialogContent>
-            <DialogActions>
-              <Button variant='outlined' color='warning' onClick={handleInfoIconClick} >
-                Close
-              </Button>
-            </DialogActions>
-          </Dialog>
+          <BookCollectionDialog open={infoDialogOpen} onClose={handleInfoIconClick} />
+
 
         </Grid>
+
         <Box padding={1}>
           <Grid container spacing={2} paddingBottom={2}>
-            <Grid item xs>
-              <TextField
-                type="text"
-                placeholder="Author"
-                name="author"
-                value={bookInput.author}
-                onChange={handleInputChange}
-                size="small"
-              />
-            </Grid>
-            <Grid item xs>
-              <TextField
-                type="text"
-                placeholder="Title"
-                name="title"
-                value={bookInput.title}
-                onChange={handleInputChange}
-                size="small"
-              />
-            </Grid>
-            <Grid item xs>
-              <TextField
-                type="number"
-                placeholder="Year"
-                name="year"
-                value={bookInput.year ?? ''}
-                onChange={handleInputChange}
-                size="small"
-              />
-            </Grid>
+            {fields.map(field => (
+              <Grid item xs key={field.name}>
+                <TextField
+                  type={field.type}
+                  placeholder={field.placeholder}
+                  name={field.name}
+                  value={field.value}
+                  onChange={handleInputChange}
+                  size="small"
+                />
+              </Grid>
+            ))}
             <Grid item>
               <IconButton onClick={handleAddBook}>
                 <AddIcon color="success" />
@@ -269,7 +201,7 @@ const AuthBooks = observer(() => {
             </List>
           ) : (
 
-            <Alert  severity="warning">please login to view list</Alert>
+            <Alert severity="warning">please login to view list</Alert>
 
           )}
 
@@ -282,3 +214,26 @@ const AuthBooks = observer(() => {
 });
 
 export default AuthBooks;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

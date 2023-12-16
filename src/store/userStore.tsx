@@ -1,8 +1,17 @@
 import Cookies from 'js-cookie';
 import { makeAutoObservable } from "mobx";
 
+interface Book {
+  _id: string;
+  title: string;
+  author: string;
+  year: number;
+  // Add other properties if needed
+}
+
 class UserStore {
   isLoggedIn = Cookies.get('jwt') ? true : false;
+  books: Book[] = [];
 
   constructor() {
     makeAutoObservable(this);
@@ -20,6 +29,15 @@ class UserStore {
 
   changeIsLoggedIn(value: boolean) {
     this.isLoggedIn = value;
+  }
+  
+  //////books
+  addBook(book: Book) {
+    this.books.push(book);
+  }
+
+  deleteBook(id: string) {
+    this.books = this.books.filter(book => book._id !== id);
   }
 }
 

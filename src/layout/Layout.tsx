@@ -15,7 +15,7 @@ import Footer from "../components/Footer";
 import Avatar from "../components/Avatars";
 import AddBook from "../components/BookCollection/BookCollection";
 import ScreenShareIdentification from "../components/ScreenShareIdentification/ScreenShareIdentification";
-
+// import AuthBooks from "../components/BookCollection/AuthBooks";
 
 const Layout = () => {
 
@@ -28,6 +28,7 @@ const Layout = () => {
 
           <Grid item xs={12} sm={6}>
             <AddBook />
+            {/* <AuthBooks /> */}
           </Grid>
           <Grid item xs={12} sm={6}>
             <TaskView />
