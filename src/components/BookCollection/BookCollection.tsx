@@ -124,7 +124,7 @@ const AuthBooks = observer(() => {
       variables: {
         id: id,
       },
-      refetchQueries: [{ query: GET_BOOKS }],
+      refetchQueries: [{ query: GET_USER_BOOKS, variables: { userId: userId } }],
     })
       .then(response => {
         console.log('Book deleted:', response.data.deleteBook);
