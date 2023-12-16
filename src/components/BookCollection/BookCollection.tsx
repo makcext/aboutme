@@ -49,7 +49,7 @@ const AuthBooks = observer(() => {
     userId: '',
   });
 
-  const [createBook] = useMutation(CREATE_BOOK, {
+  const [addBook] = useMutation(CREATE_BOOK, {
     update(cache, { data: { createBook } }) {
       const existingBooks: any = cache.readQuery({ query: GET_USER_BOOKS, variables: { userId: userId } });
       cache.writeQuery({
@@ -93,18 +93,17 @@ const AuthBooks = observer(() => {
   if (errorU) return <Typography>Please login & restart page</Typography>;
 
   const handleAddBook = () => {
-    const userIdd = userId; // Implement this function to extract userId from token
-
-    createBook({
+    const id = userId; // Implement this function to extract userId from token
+    addBook({
       variables: {
         bookInput: {
           author: bookInput.author,
           title: bookInput.title,
           year: bookInput.year ?? '',
-          userId: userIdd,
+          userId: id,
         },
       },
-      refetchQueries: [{ query: GET_BOOKS }],
+      refetchQueries: [{ query: GET_USER_BOOKS }],
     })
       .then(response => {
         console.log('Book added:', response.data.createBook);
@@ -113,17 +112,9 @@ const AuthBooks = observer(() => {
       .catch(error => console.error('Error adding book:', error));
   };
 
-  const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = event.target;
-    const parsedValue = name === 'year' ? parseInt(value || '0', 10) : value;
-    setBookInput({ ...bookInput, [name]: parsedValue });
-  };
-
-  const handleDeleteBook = (id: any) => {
+  const handleDeleteBook = (id: string) => {
     deleteBook({
-      variables: {
-        id: id,
-      },
+      variables: { id },
       refetchQueries: [{ query: GET_USER_BOOKS, variables: { userId: userId } }],
     })
       .then(response => {
@@ -131,6 +122,25 @@ const AuthBooks = observer(() => {
       })
       .catch(error => console.error('Error deleting book:', error));
   };
+
+  const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = event.target;
+    const parsedValue = name === 'year' ? parseInt(value || '0', 10) : value;
+    setBookInput({ ...bookInput, [name]: parsedValue });
+  };
+
+  // const handleDeleteBook = (id: any) => {
+  //   deleteBook({
+  //     variables: {
+  //       id: id,
+  //     },
+  //     refetchQueries: [{ query: GET_USER_BOOKS, variables: { userId: userId } }],
+  //   })
+  //     .then(response => {
+  //       console.log('Book deleted:', response.data.deleteBook);
+  //     })
+  //     .catch(error => console.error('Error deleting book:', error));
+  // };
 
   // Add this function to handle the click event of the InfoOutlinedIcon
   const handleInfoIconClick = () => {
@@ -214,26 +224,3 @@ const AuthBooks = observer(() => {
 });
 
 export default AuthBooks;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

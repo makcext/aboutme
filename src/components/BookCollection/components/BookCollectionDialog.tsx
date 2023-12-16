@@ -9,11 +9,16 @@ interface BookCollectionDialogProps {
 const BookCollectionDialog: React.FC<BookCollectionDialogProps> = ({ open, onClose }) => {
 	return (
 		<Dialog open={open} onClose={onClose}>
-			<DialogTitle>{"Book graphQL mongo db"}</DialogTitle>
+			<DialogTitle>{"Book collection info"}</DialogTitle>
 			<DialogContent>
 				<Typography variant='subtitle2'>
-					The Book graphQL mongo db React component is a CRUD interface for interacting with a GraphQL book database. It allows users to add new books, view existing books, and delete books. The component uses Apollo Client's useMutation and useQuery hooks to interact with the server, and it uses Material UI for its UI components.
-				</Typography>
+				This AuthBooks component is all about managing a collection of books for logged-in users.
+
+It checks if you're logged in using a JWT token. If you are, it shows you a list of your books. You can add a new book to the list by filling in the author, title, and year fields and clicking the 'Add' button. You can also delete a book from the list by clicking the 'Delete' button next to it.
+
+If you're not logged in, it shows a warning message and doesn't let you see or manage the book list.
+
+There's also an 'Info' button that opens a dialog with more info about the book collection.				</Typography>
 			</DialogContent>
 			<DialogActions>
 				<Button variant='outlined' color='warning' onClick={onClose} >
