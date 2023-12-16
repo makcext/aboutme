@@ -129,18 +129,6 @@ const AuthBooks = observer(() => {
     setBookInput({ ...bookInput, [name]: parsedValue });
   };
 
-  // const handleDeleteBook = (id: any) => {
-  //   deleteBook({
-  //     variables: {
-  //       id: id,
-  //     },
-  //     refetchQueries: [{ query: GET_USER_BOOKS, variables: { userId: userId } }],
-  //   })
-  //     .then(response => {
-  //       console.log('Book deleted:', response.data.deleteBook);
-  //     })
-  //     .catch(error => console.error('Error deleting book:', error));
-  // };
 
   // Add this function to handle the click event of the InfoOutlinedIcon
   const handleInfoIconClick = () => {
@@ -171,7 +159,7 @@ const AuthBooks = observer(() => {
         </Grid>
 
         <Box padding={1}>
-          <Grid container spacing={2} paddingBottom={2}>
+          <Grid container spacing={2} paddingBottom={0}>
             {fields.map(field => (
               <Grid item xs key={field.name}>
                 <TextField
