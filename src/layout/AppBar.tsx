@@ -5,9 +5,6 @@ import { AppBar, Button, IconButton, Toolbar, Grid } from "@mui/material";
 import MenuIcon from '@mui/icons-material/Menu';
 import Logo from '../components/svg/logosvg';
 
-// write object with menuitem, logo, button
-//map appBarItems to create the appbar use grid.
-//put logo ot the center, menu on the left and button on the right
 
 const appBarItems = [
   { id: 1, component: <MenuIcon />, },

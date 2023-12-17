@@ -5,21 +5,18 @@ import { jwtDecode } from 'jwt-decode';
 import userStore from '../../store/userStore';
 import { observer } from 'mobx-react';
 import {
-  Alert, Box, ListItem, Paper, TextField, List, Typography, IconButton,
-  Grid, Button, Dialog, DialogTitle, DialogContent,
-  DialogActions, ListItemText, ListItemSecondaryAction
+  Alert, Box, Paper, TextField, Typography, IconButton,
+  Grid
 } from "@mui/material";
-import DeleteIcon from '@mui/icons-material/Delete';
 import AddIcon from '@mui/icons-material/Add';
 import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
-import { CREATE_BOOK, DELETE_BOOK, GET_BOOKS, GET_USER_BOOKS } from './GraphQLQueries';
-import { BookInput, Book } from './BookTypes';
+import { CREATE_BOOK, DELETE_BOOK, GET_USER_BOOKS } from './GraphQLQueries';
+import { BookInput } from './BookTypes';
 import BookCollectionDialog from '../BookCollection/components/BookCollectionDialog';
+import BookList from '../BookCollection/components/BookList'; // Import the new component
 
 const AuthBooks = observer(() => {
-
   const jwt = Cookies.get('jwt');
-
   useEffect(() => {
     if (jwt) {
       userStore.logIn();
@@ -59,7 +56,6 @@ const AuthBooks = observer(() => {
       });
     },
   });
-
 
   const [deleteBook] = useMutation(DELETE_BOOK);
 
@@ -129,7 +125,6 @@ const AuthBooks = observer(() => {
     setBookInput({ ...bookInput, [name]: parsedValue });
   };
 
-
   // Add this function to handle the click event of the InfoOutlinedIcon
   const handleInfoIconClick = () => {
     setInfoDialogOpen(prevState => !prevState);
@@ -141,23 +136,15 @@ const AuthBooks = observer(() => {
     { type: "number", placeholder: "Year", name: "year", value: bookInput.year ?? '' },
   ];
 
-
-
-
   return (
 
     <Box paddingTop={0} justifyContent="space-around" textAlign="left">
-      {/* <Paper elevation={4}> */}
       <Paper variant="outlined" sx={{ borderColor: 'gray', padding: 1 }}>
         <Grid container alignItems="center" justifyContent="space-between">
           <Typography variant="h5">Books collection</Typography>
           <InfoOutlinedIcon color='success' onClick={handleInfoIconClick} />
-
           <BookCollectionDialog open={infoDialogOpen} onClose={handleInfoIconClick} />
-
-
         </Grid>
-
         <Box padding={1}>
           <Grid container spacing={2} paddingBottom={0}>
             {fields.map(field => (
@@ -180,34 +167,13 @@ const AuthBooks = observer(() => {
           </Grid>
 
           {userStore.isLoggedIn ? (
-            <List>
-              {dataU && dataU.getUserBooks.map((book: Book) => (
-                <ListItem key={book._id}>
-                  <ListItemText>
-                    <Typography variant="subtitle2">
-                      {book.title} by {book.author} ({book.year})
-                    </Typography>
-                  </ListItemText>
-
-                  <ListItemSecondaryAction>
-                    <IconButton onClick={() => handleDeleteBook(book._id)}>
-                      <DeleteIcon color="error" />
-                    </IconButton>
-                  </ListItemSecondaryAction>
-                </ListItem>
-              ))}
-            </List>
+            <BookList dataU={dataU} handleDeleteBook={handleDeleteBook} />
           ) : (
-
             <Alert severity="warning">please login to view list</Alert>
-
           )}
-
-
         </Box>
       </Paper>
     </Box>
-
   );
 });
 
