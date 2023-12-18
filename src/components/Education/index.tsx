@@ -50,22 +50,22 @@ const Education = () => {
     <>
       <Box justifyContent="Left" textAlign={'left'} >
         <Paper elevation={4}>
-          <Paper variant="outlined" sx={{ borderColor: 'gray' }}  >
+          <Paper variant="outlined" sx={{ borderColor: 'gray', height: 214 }}  >
             <Button sx={{ width: '100%', justifyContent: 'flex-start', flex: 1, typography: 'h4', textTransform: 'capitalize', }} variant='text' color='inherit' onClick={swapImages}>
-            <Grid container alignItems="center" justifyContent="space-between">
-          <Typography variant="h5">Education</Typography>
-          <InfoOutlinedIcon color="success" />
-        </Grid>
-              </Button>
-            <Grow in={true} style={{ transformOrigin: '0 1 0' }} {...(true ? { timeout: 2000 } : {})} >
+              <Grid container alignItems="center" justifyContent="space-between">
+                <Typography variant="h5">Education</Typography>
+                <InfoOutlinedIcon color="success" />
+              </Grid>
+            </Button>
+            {/* <Grow in={true} style={{ transformOrigin: '0 1 0' }} {...(true ? { timeout: 2000 } : {})} >
               <Typography variant='subtitle1' sx={{ display: 'flex', padding: '8px' }} > Bachelor of Computer Science </Typography>
-            </Grow>
-            <Grid container spacing={0} justifyItems={"center"} alignItems={"center"} sx={{ height: '100%' }}>
+            </Grow> */}
+            <Grid container spacing={0} justifyItems={"center"} alignItems={"center"} >
               {shuffledImages.map(image => (
                 <Grid item key={image.id} xs={6} sm={6} p={1} height={"100%"}>
                   <Paper elevation={1} sx={{ display: 'flex', justifyContent: 'center', padding: '8px' }}>
                     {image.src ? (
-                      <img src={image.src} alt='aueb logo' style={{ height: '100px', width: '100px' }} />
+                      <img src={image.src} alt='aueb logo' style={{ height: '50%', width: '50%' }} />
                     ) : (
                       <Typography variant="body2" align="center">{image.text}</Typography>
                     )}

@@ -94,8 +94,8 @@ const ScreenShareIdentification = () => {
   };
 
   return (
-    <Box paddingBottom={1}>
-      <Paper variant="outlined" sx={{ borderColor: 'gray', padding: 1 }}>
+    <Box paddingBottom={0} sx={{ minHeight: '214px' }}>
+      <Paper variant="outlined" sx={{ borderColor: 'gray', padding: 1, minHeight: '214px'  }}>
         {/* <Typography variant="h4">Stream Indetificator</Typography> */}
         <Grid container alignItems="center" justifyContent="space-between">
           <Typography variant="h5">screen share identification</Typography>

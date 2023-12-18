@@ -9,9 +9,9 @@ const TechStack: React.FC = () => {
   const warningColor = '#ff9800'; // Extract this from your theme or define it
 
   return (
-    <Box paddingBottom={1} justifyContent="space-around" textAlign="left">
-      <Paper elevation={4}>
-        <Paper variant="outlined" sx={{ borderColor: 'gray' }}>
+    <Box paddingBottom={0} justifyContent="space-around" textAlign="left">
+      {/* <Paper sx={{ height: 222 }}> */}
+        <Paper elevation={4}  variant="outlined" sx={{ borderColor: 'gray', height: 214 }}>
           <Button
             sx={{
               width: '100%',
@@ -24,12 +24,12 @@ const TechStack: React.FC = () => {
             color='inherit'
             onClick={shuffleTech}
           >
-         <Grid container alignItems="center" justifyContent="space-between">
-          <Typography variant="h5">Tech stack</Typography>
-          <InfoOutlinedIcon color="success" />
-        </Grid>
+            <Grid container alignItems="center" justifyContent="space-between">
+              <Typography variant="h5">Tech stack</Typography>
+              <InfoOutlinedIcon color="success" />
+            </Grid>
           </Button>
- 
+
 
 
           <Grow in={true} style={{ transformOrigin: '0 1 0' }} {...(true ? { timeout: 2000 } : {})} >
@@ -40,7 +40,7 @@ const TechStack: React.FC = () => {
             spacing={0}
             justifyItems="center"
             alignItems="center"
-            sx={{ height: '100%' }}
+            // sx={{ height: '100%' }}
           >
             {TechText.map((tech) => (
               <Grid
@@ -49,9 +49,9 @@ const TechStack: React.FC = () => {
                 xs={3}
                 sm={3}
                 p={1}
-                
+
               >
-                <Paper elevation={8} sx={{ display: 'flex', justifyContent: 'center', padding: '8px' }}>
+                <Paper elevation={4} sx={{ display: 'flex', justifyContent: 'center', padding: '8px' }}>
                   {tech.text && (
                     <Typography
                       variant="body2"
@@ -68,7 +68,7 @@ const TechStack: React.FC = () => {
             ))}
           </Grid>
         </Paper>
-      </Paper>
+      {/* </Paper> */}
     </Box>
   );
 };
