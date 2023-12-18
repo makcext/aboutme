@@ -29,17 +29,18 @@ const Layout = () => {
 
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
+  const isTablet = useMediaQuery(theme.breakpoints.down('md'));
 
   return (
     <>
       <ApplBar />
       <Box maxWidth="lg" padding={1} sx={{ overflowX: "hidden" }}>
         <HelloBlock />
-        <Grid container spacing={isMobile ? 1 : 4} alignItems="stretch" paddingBottom={1}>
-          <Grid item xs={12} sm={6} md={6}>
+        <Grid container spacing={isMobile ? 1 : isTablet ? 2 : 4} alignItems="stretch" paddingBottom={1}>
+          <Grid item xs={12} sm={12} md={6}>
             <AddBook />
           </Grid>
-          <Grid item xs={12} sm={6}>
+          <Grid item xs={12} sm={12} md={6}> 
             <TaskView />
           </Grid>
           <Grid item xs={12} sm={6} md={4}>
@@ -48,17 +49,17 @@ const Layout = () => {
           <Grid item xs={6} sm={6} md={4}>
             <Avatar />
           </Grid>
-          <Grid item xs={12} sm={6} md={4}>
+          <Grid item xs={12} sm={12} md={4}>
             <ScreenShareIdentification />
           </Grid>
 
-          <Grid item xs={12} sm={6} md={6}>
+          <Grid item xs={12} sm={12} md={6}>
             <TechStack />
           </Grid>
-          <Grid item xs={12} sm={6} md={6}>
+          <Grid item xs={12} sm={12} md={6}>
             <Education />
           </Grid>
-          
+
         </Grid>
 
 

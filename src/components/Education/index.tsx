@@ -50,7 +50,7 @@ const Education = () => {
     <>
       <Box justifyContent="Left" textAlign={'left'} >
         <Paper elevation={4}>
-          <Paper variant="outlined" sx={{ borderColor: 'gray', height: 214 }}  >
+          <Paper variant="outlined" sx={{ borderColor: 'gray', height: 'auto' }}  >
             <Button sx={{ width: '100%', justifyContent: 'flex-start', flex: 1, typography: 'h4', textTransform: 'capitalize', }} variant='text' color='inherit' onClick={swapImages}>
               <Grid container alignItems="center" justifyContent="space-between">
                 <Typography variant="h5">Education</Typography>
@@ -62,7 +62,7 @@ const Education = () => {
             </Grow> */}
             <Grid container spacing={0} justifyItems={"center"} alignItems={"center"} >
               {shuffledImages.map(image => (
-                <Grid item key={image.id} xs={6} sm={6} p={1} height={"100%"}>
+                <Grid item key={image.id} xs={6} sm={6} p={1} height={"10%"}>
                   <Paper elevation={1} sx={{ display: 'flex', justifyContent: 'center', padding: '8px' }}>
                     {image.src ? (
                       <img src={image.src} alt='aueb logo' style={{ height: '50%', width: '50%' }} />

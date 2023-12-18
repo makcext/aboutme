@@ -11,7 +11,7 @@ const TechStack: React.FC = () => {
   return (
     <Box paddingBottom={0} justifyContent="space-around" textAlign="left">
       {/* <Paper sx={{ height: 222 }}> */}
-        <Paper elevation={4}  variant="outlined" sx={{ borderColor: 'gray', height: 214 }}>
+        <Paper elevation={4}  variant="outlined" sx={{ borderColor: 'gray', height: 'auto' }}>
           <Button
             sx={{
               width: '100%',
