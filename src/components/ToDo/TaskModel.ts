@@ -25,6 +25,10 @@ export function getTasks(): Task[] {
   return tasks;
 }
 
+// getSoneTasks(): Task[] {
+//   return tasks.filter(task => task.completed === true);
+// }
+
 
 export function toggleTaskCompletion(id: number): void {
   const index = tasks.findIndex(task => task.id === id);

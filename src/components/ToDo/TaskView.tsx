@@ -1,89 +1,127 @@
-// taskview.tsx
 import React, { useState } from 'react';
-
-import Checkbox from '@mui/material/Checkbox';
-import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
-import ListItemText from '@mui/material/ListItemText';
-import ListItemSecondaryAction from '@mui/material/ListItemSecondaryAction';
-import IconButton from '@mui/material/IconButton';
-import DeleteIcon from '@mui/icons-material/Delete';
-import EditIcon from '@mui/icons-material/Edit';
-import TextField from '@mui/material/TextField';
-import Button from '@mui/material/Button';
-import Grid from '@mui/material/Grid';
-import Paper from '@mui/material/Paper';
-import Box from '@mui/material/Box';
-import { Typography } from '@mui/material';
-import Dialog from '@mui/material/Dialog';
-import DialogActions from '@mui/material/DialogActions';
-import DialogContent from '@mui/material/DialogContent';
-// import DialogContentText from '@mui/material/DialogContentText';
-import DialogTitle from '@mui/material/DialogTitle';
-// import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
+import { observer } from 'mobx-react-lite';
+import { makeAutoObservable } from 'mobx';
+import { Button, Checkbox, Grid, TextField, Box, Paper, Typography, IconButton, List, ListItem, ListItemText, ListItemSecondaryAction, Dialog, DialogTitle, DialogContent, DialogActions } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
-import { Task } from './TaskModel';
-import { createTask, getAllTasks, updateTaskCompletion, removeTask, updateTask } from './TaskController';
+import EditIcon from '@mui/icons-material/Edit';
+import DeleteIcon from '@mui/icons-material/Delete';
 
-const TaskView: React.FC = () => {
-  const [tasks, setTasks] = useState<Task[]>(getAllTasks());
+class Task {
+  id: number;
+  title: string;
+  done: boolean;
+
+  constructor(id: number, title: string) {
+    this.id = id;
+    this.title = title;
+    this.done = false;
+    makeAutoObservable(this);
+
+  }
+
+  updateTitle(title: string) {
+    this.title = title;
+  }
+
+  toggleDone() {
+    this.done = !this.done;
+  }
+}
+
+enum FilterType {
+  All = 'ALL',
+  Done = 'DONE',
+  NotDone = 'NOT_DONE'
+}
+
+class TaskStore {
+  tasks: Task[] = [];
+
+  filterType: FilterType = FilterType.All;
+
+  constructor() {
+    makeAutoObservable(this);
+    this.addTask("Random Task 1");
+    this.addTask("Random Task 2");
+    this.addTask("Random Task 3");
+  }
+  setFilterType(filterType: FilterType) {
+    this.filterType = filterType;
+  }
+
+  addTask(title: string) {
+    const id = this.tasks.length > 0 ? this.tasks[this.tasks.length - 1].id + 1 : 1;
+    this.tasks.push(new Task(id, title));
+  }
+
+  deleteTask(id: number) {
+    this.tasks = this.tasks.filter(task => task.id !== id);
+  }
+
+}
+
+const taskStore = new TaskStore();
+
+const TaskView: React.FC = observer(() => {
   const [newTaskTitle, setNewTaskTitle] = useState('');
   const [open, setOpen] = useState(false);
   const [currentTask, setCurrentTask] = useState<Task | null>(null);
 
   const handleTaskTitleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setNewTaskTitle(event.target.value);
+    setNewTaskTitle(event.target.value.trim());
   };
-
+  
   const handleCreateTask = () => {
-    if (newTaskTitle.trim() !== '') {
-      createTask(newTaskTitle);
-      setTasks(getAllTasks());
+    if (newTaskTitle !== '') {
+      taskStore.addTask(newTaskTitle);
       setNewTaskTitle('');
     }
   };
 
   const handleTaskCompletionToggle = (id: number) => {
-    const updatedTasks = tasks.map(task => {
-      if (task.id === id) {
-        return { ...task, completed: !task.completed };
-      }
-      return task;
-    });
-    setTasks(updatedTasks);
-    updateTaskCompletion(id); // Update the completion status in the database
-  };
-
-  const handleUpdateTask = () => {
-    if (currentTask?.title.trim() !== '') {
-      updateTask(currentTask?.id || 0, currentTask?.title || '');
-      setTasks(getAllTasks());
-      setCurrentTask(null);
-      setOpen(false);
-    }
+    taskStore.tasks.find(task => task.id === id)?.toggleDone();
   };
 
   const handleRemoveTask = (id: number) => {
-    const updatedTasks = tasks.filter(task => task.id !== id);
-    setTasks(updatedTasks);
-    removeTask(id); // Remove the task from the database
+    taskStore.deleteTask(id);
   };
 
   const handleOpenDialog = (task: Task) => {
     setCurrentTask(task);
     setOpen(true);
   };
+  const handleCloseDialog = () => setOpen(false);
 
-  const handleCloseDialog = () => {
+  const handleUpdateTask = () => {
+    if (currentTask) {
+      const task = taskStore.tasks.find(task => task.id === currentTask.id);
+      task?.updateTitle(currentTask.title);
+    }
     setOpen(false);
   };
+
+  const handleSetFilterType = (filterType: FilterType) => {
+    taskStore.setFilterType(filterType);
+  };
+
+  let tasksToShow: Task[] = [];
+  switch (taskStore.filterType) {
+    case FilterType.All:
+      tasksToShow = taskStore.tasks;
+      break;
+    case FilterType.Done:
+      tasksToShow = taskStore.tasks.filter(task => task.done);
+      break;
+    case FilterType.NotDone:
+      tasksToShow = taskStore.tasks.filter(task => !task.done);
+      break;
+  }
 
   return (
     <Box paddingTop={0} justifyContent="space-around" textAlign="left">
       <Paper variant="outlined" sx={{ borderColor: 'gray', padding: 1 }}>
         <Grid container alignItems="center" justifyContent="space-between">
           <Typography variant="h5">Todo List</Typography>
-          {/* <InfoOutlinedIcon color='success' /> */}
         </Grid>
 
         <Box padding={1}>
@@ -108,10 +146,10 @@ const TaskView: React.FC = () => {
           </Grid>
 
           <List>
-            {tasks.map(task => (
+            {tasksToShow.map(task => (
               <ListItem key={task.id}>
                 <Checkbox
-                  checked={task.completed}
+                  checked={task.done}
                   onChange={() => handleTaskCompletionToggle(task.id)}
                   sx={{ padding: '0' }}
                 />
@@ -130,15 +168,23 @@ const TaskView: React.FC = () => {
               </ListItem>
             ))}
           </List>
+          <Grid container spacing={2}>
+      <Grid item xs={4}>
+        <Button variant="text" fullWidth size="small" color="info" onClick={() => handleSetFilterType(FilterType.All)}>All</Button>
+      </Grid>
+      <Grid item xs={4}>
+        <Button variant="text" fullWidth size="small" color="info" onClick={() => handleSetFilterType(FilterType.NotDone)}>Some</Button>
+      </Grid>
+      <Grid item xs={4}>
+        <Button variant="text" fullWidth size="small" color="info" onClick={() => handleSetFilterType(FilterType.Done)}>Done</Button>
+      </Grid>
+    </Grid>
         </Box>
       </Paper>
 
       <Dialog open={open} onClose={handleCloseDialog}>
         <DialogTitle>Edit task</DialogTitle>
         <DialogContent>
-          {/* <DialogContentText>
-            Please enter the updated task title.
-          </DialogContentText> */}
           <TextField
             autoFocus
             margin="dense"
@@ -148,7 +194,7 @@ const TaskView: React.FC = () => {
             color='warning'
             size='small'
             value={currentTask ? currentTask.title : ''}
-            onChange={(event) => setCurrentTask({ ...currentTask, id: currentTask?.id || 0, completed: currentTask?.completed || false, title: event.target.value })} />
+            onChange={(event) => setCurrentTask(new Task(currentTask?.id || 0, event.target.value))} />
         </DialogContent>
         <DialogActions>
           <Button variant="outlined" color='warning' onClick={handleCloseDialog}>Cancel</Button>
@@ -160,6 +206,26 @@ const TaskView: React.FC = () => {
 
 
   );
-};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+});
 
 export default TaskView;
