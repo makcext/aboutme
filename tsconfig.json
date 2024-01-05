@@ -34,7 +34,8 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     "lib/ThemeProvider.tsx",
-    "build/types/**/*.ts"
+    "build/types/**/*.ts",
+    "build-next/types/**/*.ts"
   ],
   "exclude": [
     "node_modules"
