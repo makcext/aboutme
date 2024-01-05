@@ -39,12 +39,12 @@ const NavBar = () => {
               </IconButton>
           </Grid>
           <Grid item>
-            <IconButton color="inherit" aria-label="login">
+            {/* <IconButton color="inherit" aria-label="login">
               <AccountCircleIcon />
-            </IconButton>
-            {/* <IconButton color="inherit" aria-label="toggle theme" onClick={toggleDarkMode}>
-              {darkMode ? <Brightness7Icon /> : <Brightness4Icon />}
             </IconButton> */}
+            <IconButton color="inherit" aria-label="toggle theme" onClick={toggleDarkMode}>
+              {darkMode ? <Brightness7Icon /> : <Brightness4Icon />}
+            </IconButton>
           </Grid>
         </Grid>
       </Toolbar>

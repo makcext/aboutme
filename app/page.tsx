@@ -2,6 +2,7 @@ import dynamic from "next/dynamic";
 
 // Dynamic import for NavBar
 const Navbar = dynamic(() => import("../lib/NavBar"), { ssr: false });
+const HelloBlock = dynamic(() => import("../widgets/HelloBlock/HelloBlock"), { ssr: false });
 
 // Import ThemeContext inside the component
 export default function Page() {
@@ -10,6 +11,7 @@ export default function Page() {
   return (
     <>
       <Navbar />
+      <HelloBlock />
       <h1>article</h1>
       <p>article</p>
       </>
