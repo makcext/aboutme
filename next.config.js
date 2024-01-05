@@ -1,6 +1,10 @@
-/** @type {import('next').NextConfig} */
-const nextConfig = {
-	distDir: 'build-next', // Specify the output directory for the build
-}
-
-module.exports = nextConfig
+module.exports = {
+  distDir: 'build-next',
+  exportPathMap: async function (
+    defaultPathMap,
+    { dev, dir, outDir, distDir, buildId }
+  ) {
+    return defaultPathMap;
+  },
+  assetPrefix: process.env.NODE_ENV === 'production' ? '/{master}' : '',
+};
