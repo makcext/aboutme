@@ -1,7 +1,6 @@
 {
   "name": "aboutme",
   "version": "0.1.0",
-  "type": "module",
   "homepage": "https://makcext.github.io/aboutme/",
   "private": true,
   "dependencies": {
