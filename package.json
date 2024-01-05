@@ -7,11 +7,11 @@
   "dependencies": {
     "@apollo/client": "^3.8.5",
     "@dicebear/avatars-avataaars-sprites": "^4.10.8",
-    "@emotion/react": "^11.11.1",
+    "@emotion/react": "^11.11.3",
     "@emotion/styled": "^11.11.0",
     "@fontsource/roboto": "^5.0.7",
-    "@mui/icons-material": "^5.14.1",
-    "@mui/material": "^5.14.1",
+    "@mui/icons-material": "^5.15.2",
+    "@mui/material": "^5.15.2",
     "@mui/styles": "^5.14.18",
     "@mui/x-date-pickers": "^6.11.1",
     "concurrently": "^8.2.1",
@@ -22,6 +22,7 @@
     "mobx-react": "^9.1.0",
     "mobx-react-lite": "^4.0.3",
     "moment": "^2.29.4",
+    "next": "^14.0.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-scripts": "5.0.1"
@@ -34,7 +35,11 @@
     "server": "node src/server.js",
     "start": "node src/server.js",
     "tweet": "node src/tweet.js",
-    "tweett": "node src/user_tweets.js"
+    "tweett": "node src/user_tweets.js",
+    "next dev": "next dev",
+    "next build": "next build",
+    "next start": "next start",
+    "next lint": "next lint"
   },
   "eslintConfig": {
     "extends": [
