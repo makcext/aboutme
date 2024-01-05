@@ -12,8 +12,8 @@ export default function Page() {
     <>
       <Navbar />
       <HelloBlock />
-      <h1>article</h1>
-      <p>article</p>
+      <h1>abtme</h1>
+      <p>abtme-ssr</p>
       </>
   );
 }
