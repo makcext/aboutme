@@ -3,10 +3,12 @@
 
 
 /ENV
+/.next
 # dependencies
 /node_modules
 /.pnp
 .pnp.js
+.next
 
 # testing
 /coverage
