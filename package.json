@@ -4,7 +4,8 @@
   "homepage": "https://makcext.github.io/aboutme/",
   "private": true,
   "dependencies": {
-    "@apollo/client": "^3.8.5",
+    "@apollo/client": "^3.8.8",
+    "@apollo/experimental-nextjs-app-support": "^0.6.0",
     "@dicebear/avatars-avataaars-sprites": "^4.10.8",
     "@emotion/react": "^11.11.3",
     "@emotion/styled": "^11.11.0",

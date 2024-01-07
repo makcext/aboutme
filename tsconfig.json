@@ -33,7 +33,7 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts",
-    "lib/ThemeProvider.tsx",
+    "components/ThemeProvider.tsx",
     "build/types/**/*.ts",
     "build-next/types/**/*.ts"
   ],

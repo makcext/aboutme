@@ -1,6 +1,10 @@
-import ThemeProvider from '../lib/ThemeProvider'
-import Box from '@mui/material/Box'
+import ThemeProvider from '../components/ThemeProvider'
 import CssBaseline from '@mui/material/CssBaseline'
+import { ApolloWrapper } from "../components/ApolloWrapper";
+
+
+
+
 export const metadata = {
   title: 'abtme',
   description: 'abtme',
@@ -13,15 +17,20 @@ export default function RootLayout({
 }) {
 
   return (
-    <html lang="en">
 
-      <body>
-        <ThemeProvider>
-          <CssBaseline />
-          {children}
-        </ThemeProvider>
-      </body>
+      <html lang="en">
 
-    </html>
+        <body>
+          <ApolloWrapper>
+          <ThemeProvider>
+            <CssBaseline />
+
+            {children}
+          </ThemeProvider>
+</ApolloWrapper>
+        </body>
+
+      </html>
+
   )
 }
