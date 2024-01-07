@@ -8,7 +8,7 @@ import '@fontsource/roboto/400.css';
 // import WeatherData from '../Weather/WeatherModel';
 // import fetchWeatherData from "../Weather/WeatherController";
 // import WeatherDialog from '../Weather/WeatherDialog'
-// import Join from "../Join/Join";
+import Join from "../Join/Join";
 import Image from 'next/image';
 import avatarImage from '../../public/avatar.png';
 
@@ -65,7 +65,7 @@ const HelloBlock = () => {
 						</Typography >
 						<div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
 
-							{/* <Join /> */}
+							<Join />
 						</div>
 
 						{/* <QRsvg /> */}
