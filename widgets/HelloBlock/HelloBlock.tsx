@@ -1,3 +1,4 @@
+"use client";
 import React, { useEffect, useState } from "react";
 import { Avatar, Box, Chip, Grid, Grow, Typography } from "@mui/material";
 // import QRsvg from '../svg/qrsvg';
@@ -5,9 +6,9 @@ import PlaceIcon from '@mui/icons-material/Place';
 import TwitterIcon from '@mui/icons-material/Twitter';
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
 import '@fontsource/roboto/400.css';
-// import WeatherData from '../Weather/WeatherModel';
-// import fetchWeatherData from "../Weather/WeatherController";
-// import WeatherDialog from '../Weather/WeatherDialog'
+import WeatherData from '../Weather/WeatherModel';
+import fetchWeatherData from "../Weather/WeatherController";
+import WeatherDialog from '../Weather/WeatherDialog'
 import Join from "../Join/Join";
 import Image from 'next/image';
 import avatarImage from '../../public/avatar.png';
@@ -28,13 +29,13 @@ const InfoBlock: React.FC<InfoBlockProps> = ({ icon, text }) => (
 );
 
 const HelloBlock = () => {
-	// const [weather, setWeather] = useState<WeatherData | null>(null);
+	const [weather, setWeather] = useState<WeatherData | null>(null);
 
-	// useEffect(() => {
-	//   fetchWeatherData()
-	//     .then((data) => setWeather(data))
-	//     .catch((error) => console.error(error));
-	// }, []);
+	useEffect(() => {
+		fetchWeatherData()
+			.then((data) => setWeather(data))
+			.catch((error) => console.error(error));
+	}, []);
 
 	return (
 		<div>
@@ -44,11 +45,14 @@ const HelloBlock = () => {
 						<Avatar alt="ext - route" sx={{ width: 96, height: 96 }}>
 							<Image src={avatarImage} alt="ext - route" width={128} height={96} />
 						</Avatar>
-            <InfoBlock icon={<PlaceIcon />} text="ath, att, gr" />
+						<InfoBlock icon={<PlaceIcon />} text="ath, att, gr" />
 						<InfoBlock icon={<AccessTimeIcon />} text="UTC +03:00" />
 						<InfoBlock icon={<TwitterIcon />} text="@makcext" />
 						<Box>
-							{/* <WeatherDialog weather={weather} /> */}
+							<WeatherDialog weather={weather} />
+						</Box>
+						<Box>
+
 						</Box>
 					</Grid>
 					<Grid item xs={6} md={6}>
@@ -71,9 +75,16 @@ const HelloBlock = () => {
 						</div>
 						<div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
 
-						<Link href="/newpage">newpage</Link>
+							<Link 
+								href="/newpage" 
+								style={{ textDecoration: 'none', color: 'inherit' }}
+							>
+								<Typography variant="h4" fontSize={14} sx={{ textAlign: 'left' }} gutterBottom>
+									{weather ? `${weather.main.temp}°C [ ${weather.weather[0].description} ]` : 'Loading weather data...'}
+								</Typography>
+							</Link>
 
-</div>
+						</div>
 
 						{/* <QRsvg /> */}
 						{/* <Avatars /> */}
