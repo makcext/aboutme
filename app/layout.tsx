@@ -1,8 +1,7 @@
 import ThemeProvider from '../components/ThemeProvider'
 import CssBaseline from '@mui/material/CssBaseline'
 import { ApolloWrapper } from "../components/ApolloWrapper";
-
-
+import NavBar from '@/widgets/NavBar/NavBar';
 
 
 export const metadata = {
@@ -18,19 +17,19 @@ export default function RootLayout({
 
   return (
 
-      <html lang="en">
+    <html lang="en">
 
-        <body>
-          <ApolloWrapper>
+      <body>
+        <ApolloWrapper>
           <ThemeProvider>
             <CssBaseline />
-
+            <NavBar />
             {children}
           </ThemeProvider>
-</ApolloWrapper>
-        </body>
+        </ApolloWrapper>
+      </body>
 
-      </html>
+    </html>
 
   )
 }

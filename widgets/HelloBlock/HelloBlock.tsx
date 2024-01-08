@@ -11,6 +11,7 @@ import '@fontsource/roboto/400.css';
 import Join from "../Join/Join";
 import Image from 'next/image';
 import avatarImage from '../../public/avatar.png';
+import Link from 'next/link';
 
 // const avatarImage = require('./avatar.png');
 
@@ -66,7 +67,13 @@ const HelloBlock = () => {
 						<div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
 
 							<Join />
+
 						</div>
+						<div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+
+						<Link href="/newpage">newpage</Link>
+
+</div>
 
 						{/* <QRsvg /> */}
 						{/* <Avatars /> */}

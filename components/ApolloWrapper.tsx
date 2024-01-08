@@ -1,5 +1,5 @@
 "use client";
-// ^ this file needs the "use client" pragma
+
 import React, { ReactNode } from "react";
 
 import { ApolloLink, HttpLink } from "@apollo/client";

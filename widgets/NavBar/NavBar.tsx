@@ -5,7 +5,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import Brightness4Icon from '@mui/icons-material/Brightness4';
 import Brightness7Icon from '@mui/icons-material/Brightness7';
-import ThemeContext from './ThemeContext'; // Import the ThemeContext
+import ThemeContext from '../../components/ThemeContext'; // Import the ThemeContext
 import StarRateIcon from '@mui/icons-material/StarRate';
 import styled from '@mui/material/styles/styled';
 
@@ -35,8 +35,8 @@ const NavBar = () => {
           </Grid>
           <Grid item>
             <IconButton color="error" aria-label="star">
-            <RotatingStarIcon />         
-              </IconButton>
+              <RotatingStarIcon />
+            </IconButton>
           </Grid>
           <Grid item>
             {/* <IconButton color="inherit" aria-label="login">
