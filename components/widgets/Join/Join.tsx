@@ -4,14 +4,14 @@ import React from 'react';
 import { observer } from 'mobx-react';
 
 // Import store and services
-import userStore from '../../components/Store/userStore';
-import { logout } from '../../components/Store/userStore';
+import userStore from '../../Store/userStore';
+import { logout } from '../../Store/userStore';
 import { useRegister, useLogin } from './authService';
 
 // Import Material UI components
-import {TransitionProps} from '@mui/material/transitions';
+import { TransitionProps } from '@mui/material/transitions';
 import {
-  Button, Dialog, DialogActions, DialogContent, DialogTitle, Slide, Box, Divider, Typography, 
+  Button, Dialog, DialogActions, DialogContent, DialogTitle, Slide, Box, Divider, Typography,
   useMediaQuery, TextField, Grid, useTheme
 } from '@mui/material';
 

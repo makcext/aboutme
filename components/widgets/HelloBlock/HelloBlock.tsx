@@ -11,7 +11,7 @@ import fetchWeatherData from "../Weather/WeatherController";
 import WeatherDialog from '../Weather/WeatherDialog'
 import Join from "../Join/Join";
 import Image from 'next/image';
-import avatarImage from '../../public/avatar.png';
+import avatarImage from '../../widgets/HelloBlock/avatar.png';
 import Link from 'next/link';
 
 // const avatarImage = require('./avatar.png');

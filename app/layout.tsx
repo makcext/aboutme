@@ -1,7 +1,7 @@
 import ThemeProvider from '../components/ThemeProvider'
 import CssBaseline from '@mui/material/CssBaseline'
 import { ApolloWrapper } from "../components/ApolloWrapper";
-import NavBar from '@/widgets/NavBar/NavBar';
+import NavBar from '@/components/widgets/NavBar/NavBar';
 
 
 export const metadata = {

@@ -3,7 +3,7 @@ import React, { useState, useEffect, ChangeEvent } from 'react';
 import { useMutation, useQuery } from '@apollo/client';
 import Cookies from 'js-cookie';
 import { jwtDecode } from 'jwt-decode';
-import userStore from '../../components/Store/userStore';
+import userStore from '../../Store/userStore';
 import { observer } from 'mobx-react';
 import {
   Alert, Box, Paper, TextField, Typography, IconButton,
@@ -13,8 +13,8 @@ import AddIcon from '@mui/icons-material/Add';
 import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 import { CREATE_BOOK, DELETE_BOOK, GET_USER_BOOKS } from './GraphQLQueries';
 import { BookInput } from './BookTypes';
-import BookCollectionDialog from '../BookCollection/components/BookCollectionDialog';
-import BookList from '../BookCollection/components/BookList'; // Import the new component
+import BookCollectionDialog from './components/BookCollectionDialog';
+import BookList from './components/BookList'; // Import the new component
 import { loadErrorMessages, loadDevMessages } from "@apollo/client/dev";
 import { useMemo } from 'react';
 import { ApolloClient, InMemoryCache } from '@apollo/client';

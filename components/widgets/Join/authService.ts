@@ -1,7 +1,7 @@
 // authService.ts
 import { gql, useMutation } from '@apollo/client';
 import Cookies from 'js-cookie';
-import userStore from '../../components/Store/userStore'; 
+import userStore from '../../Store/userStore';
 
 const REGISTER_USER = gql`
   mutation Register($email: String!, $password: String!) {
@@ -31,7 +31,7 @@ export const useRegister = () => {
       console.error(error);
     }
   };
-  
+
   return { register, data, error };
 };
 
