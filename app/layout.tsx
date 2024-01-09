@@ -4,16 +4,28 @@ import { ApolloWrapper } from "../components/ApolloWrapper";
 import NavBar from '@/components/widgets/NavBar/NavBar';
 
 
+
 export const metadata = {
   title: 'abtme',
   description: 'abtme',
+  icons: {
+    icon: [
+      {
+        url: '/favicon.ico',
+        href: '/favicon.ico',
+      },
+    ],
+  },
+
 }
+
 
 export default function RootLayout({
   children,
 }: {
   children: React.ReactNode
 }) {
+
 
   return (
 
