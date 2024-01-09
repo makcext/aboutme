@@ -76,7 +76,7 @@ const HelloBlock = () => {
 						<div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
 
 							<Link 
-								href="/newpage" 
+								href="/weather" 
 								style={{ textDecoration: 'none', color: 'inherit' }}
 							>
 								<Typography variant="h4" fontSize={14} sx={{ textAlign: 'left' }} gutterBottom>
