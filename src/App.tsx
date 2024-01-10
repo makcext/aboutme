@@ -35,6 +35,7 @@ function App() {
   const isSmScreen = useMediaQuery(theme.breakpoints.down("sm"));
   const isMdScreen = useMediaQuery(theme.breakpoints.between("md", "lg"));
   const isLgScreen = useMediaQuery(theme.breakpoints.up("lg"));
+  
   const [currentMediaQuery, setCurrentMediaQuery] = useState(() => {
     if (isSmScreen) {
       return "sm";

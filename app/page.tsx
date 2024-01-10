@@ -1,15 +1,15 @@
-import dynamic from "next/dynamic";
 
+import dynamic from "next/dynamic";
 
 // Dynamic import components
 const PageIndex = dynamic(() => import("./pageIndex"), { ssr: false });
 
+
+
 export default function Page() {
-
   return (
-    <>
-    <PageIndex />
-
-    </>
+      <div>
+        <PageIndex />
+      </div>
   );
 }
