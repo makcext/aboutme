@@ -21,6 +21,7 @@ const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
         xl: 1536,
       },
     },
+    spacing: 8,
     palette: {
       mode: darkMode ? 'dark' : 'light',
     },
@@ -29,10 +30,6 @@ const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
   const isSmScreen = useMediaQuery(theme.breakpoints.down("sm"));
   const isMdScreen = useMediaQuery(theme.breakpoints.between("md", "lg"));
   const isLgScreen = useMediaQuery(theme.breakpoints.up("lg"));
-
-  // const breakpointStatus = { isSmScreen, isMdScreen, isLgScreen };
-  
-  // console.log(breakpointStatus);
 
   const [currentMediaQuery, setCurrentMediaQuery] = useState(() => {
     if (isSmScreen) {
