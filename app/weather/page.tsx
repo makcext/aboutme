@@ -52,7 +52,7 @@ const Page = () => {
   }, []);
 
   const handleBackClick = () => {
-    window.location.assign('/aboutme');
+    window.location.assign('/');
   };
 
 
