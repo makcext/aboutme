@@ -57,19 +57,19 @@ const Page = () => {
     });
   }, []);
 
-  const handleBackClick = () => {
-    //use Link from next/link to navigate to the home page
+  // const handleBackClick = () => {
+  //   //use Link from next/link to navigate to the home page
 
-    <Link
-      href="/"
-      style={{ textDecoration: 'none', color: 'inherit' }}
-    >
-      <Typography variant="h4" fontSize={14} sx={{ textAlign: 'left' }} gutterBottom>
-        'Loading weather data...'
-      </Typography>
-    </Link>
+  //   <Link
+  //     href="/"
+  //     style={{ textDecoration: 'none', color: 'inherit' }}
+  //   >
+  //     <Typography variant="h4" fontSize={14} sx={{ textAlign: 'left' }} gutterBottom>
+  //       'Loading weather data...'
+  //     </Typography>
+  //   </Link>
 
-  };
+  // };
 
 
   const handleGPSClick = () => {

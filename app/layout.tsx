@@ -2,7 +2,7 @@ import ThemeProvider from '../components/ThemeProvider'
 import CssBaseline from '@mui/material/CssBaseline'
 import { ApolloWrapper } from "../components/ApolloWrapper";
 import NavBar from '@/components/widgets/NavBar/NavBar';
-import Head from 'next/head'
+// import Head from 'next/head'
 
 
 
