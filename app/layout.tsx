@@ -9,14 +9,14 @@ import Head from 'next/head'
 export const metadata = {
   title: 'abtme',
   description: 'abtme',
-  // icons: {
-  //   icon: [
-  //     {
-  //       url: '/build/favicon.ico',
-  //       href: '/build/favicon.ico',
-  //     },
-  //   ],
-  // },
+  icons: {
+    icon: [
+      {
+        url: '/build/favicon.ico',
+        href: '/build/favicon.ico',
+      },
+    ],
+  },
 
 }
 
@@ -31,9 +31,7 @@ export default function RootLayout({
   return (
 
     <html lang="en">
-      <Head>
-        <link rel="icon" href="./out/favicon.ico" />
-      </Head>
+
       <body>
         <ApolloWrapper>
           <ThemeProvider>
