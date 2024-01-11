@@ -32,7 +32,7 @@ export default function RootLayout({
 
     <html lang="en">
       <Head>
-        <link rel="icon" href="./public/favicon.ico" />
+        <link rel="icon" href="./out/favicon.ico" />
       </Head>
       <body>
         <ApolloWrapper>
