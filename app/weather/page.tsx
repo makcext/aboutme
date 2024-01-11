@@ -10,6 +10,9 @@ import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import Typography from '@mui/material/Typography';
 
+import Link from 'next/link';
+
+
 import ThermostatIcon from '@mui/icons-material/Thermostat';
 import OpacityIcon from '@mui/icons-material/Opacity';
 import AirIcon from '@mui/icons-material/Air';
@@ -52,7 +55,17 @@ const Page = () => {
   }, []);
 
   const handleBackClick = () => {
-    window.location.assign('/');
+    //use Link from next/link to navigate to the home page
+
+    <Link
+      href="/"
+      style={{ textDecoration: 'none', color: 'inherit' }}
+    >
+      <Typography variant="h4" fontSize={14} sx={{ textAlign: 'left' }} gutterBottom>
+        'Loading weather data...'
+      </Typography>
+    </Link>
+
   };
 
 
@@ -72,7 +85,7 @@ const Page = () => {
           console.error('Failed to fetch weather data:', error);
         });
     }, (error) => {
-      switch(error.code) {
+      switch (error.code) {
         case error.PERMISSION_DENIED:
           console.error("User denied the request for Geolocation.");
           break;
@@ -97,9 +110,11 @@ const Page = () => {
   return (
     <>
       <Box>
-        <Button startIcon={<ArrowBackIcon />} onClick={handleBackClick}>
-          Back
-        </Button>
+        <Link href="/">
+          <Button startIcon={<ArrowBackIcon />}>
+            Back
+          </Button>
+        </Link>
         <Button startIcon={<LocationOnIcon />} onClick={handleGPSClick}>
           Use GPS
         </Button>
