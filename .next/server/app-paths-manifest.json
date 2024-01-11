@@ -1,3 +1,5 @@
 {
-  "/weather/page": "app/weather/page.js"
+  "/not-found": "app/not-found.js",
+  "/weather/page": "app/weather/page.js",
+  "/page": "app/page.js"
 }
