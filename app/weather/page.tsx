@@ -9,6 +9,7 @@ import Button from '@mui/material/Button';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import Typography from '@mui/material/Typography';
+import Chip from '@mui/material/Chip';
 
 import Link from 'next/link';
 
@@ -18,6 +19,8 @@ import OpacityIcon from '@mui/icons-material/Opacity';
 import AirIcon from '@mui/icons-material/Air';
 
 import fetchForecastWeatherData from "./forecast";
+
+import { Grid } from "@mui/material";
 
 interface WeatherData {
   main: {
@@ -85,23 +88,10 @@ const Page = () => {
           console.error('Failed to fetch weather data:', error);
         });
     }, (error) => {
-      switch (error.code) {
-        case error.PERMISSION_DENIED:
-          console.error("User denied the request for Geolocation.");
-          break;
-        case error.POSITION_UNAVAILABLE:
-          console.error("Location information is unavailable.");
-          break;
-        case error.TIMEOUT:
-          console.error("The request to get user location timed out.");
-          break;
-        default:
-          console.error("An unknown error occurred.");
-          break;
-      }
-    });
+      console.error('Failed to get location:', error);
+    }
+    );
   };
-
 
 
 
@@ -110,51 +100,74 @@ const Page = () => {
   return (
     <>
       <Box>
-        <Link href="/">
-          <Button startIcon={<ArrowBackIcon />}>
-            Back
-          </Button>
-        </Link>
-        <Button startIcon={<LocationOnIcon />} onClick={handleGPSClick}>
-          Use GPS
-        </Button>
+        <Grid container spacing={4}>
+          <Grid  item xs={6} container >
+            <Link href="/">
+              <Button>
+                <Chip icon={<ArrowBackIcon />} label="Back" clickable color="warning" variant="outlined" />
+              </Button>
+            </Link>
+          </Grid>
+
+          <Grid item xs={6} container >
+            <Button onClick={handleGPSClick}>
+              <Chip  icon={<LocationOnIcon />} label="Use GPS" clickable color="success" variant="outlined" />
+            </Button>
+          </Grid>
+
+        </Grid>
+
+
+
+
+
+
+
+
+
         {data && data.map((item: any, index: number) => (
           <Card key={index} sx={{ margin: 2 }}>
-            <CardHeader
-              avatar={
-                <Avatar>
-                  <img src={`http://openweathermap.org/img/w/${item.weather[0].icon}.png`} alt={item.weather[0].description} />
-                </Avatar>
-              }
-              title={`Weather in ${city} on ${new Date(item.dt * 1000).toLocaleDateString()} at ${new Date(item.dt * 1000).toLocaleTimeString()}`}
-              subheader={item.weather[0].description}
-            />
-            <CardContent>
-              <Box display="flex" alignItems="center">
-                <ThermostatIcon />
-                <Typography variant="h6">
-                  {item.main.temp}°C
-                </Typography>
-              </Box>
-              <Box display="flex" alignItems="center">
-                <ThermostatIcon />
-                <Typography variant="body2">
-                  Feels like: {item.main.feels_like}°C
-                </Typography>
-              </Box>
-              <Box display="flex" alignItems="center">
-                <OpacityIcon />
-                <Typography variant="body2">
-                  {item.main.humidity}%
-                </Typography>
-              </Box>
-              <Box display="flex" alignItems="center">
-                <AirIcon />
-                <Typography variant="body2">
-                  {item.wind.speed} m/s
-                </Typography>
-              </Box>
-            </CardContent>
+            <Grid container spacing={2}>
+              <Grid item xs={6}>
+                <CardContent>
+                  <Box display="flex" alignItems="center">
+                    <ThermostatIcon />
+                    <Typography variant="h6">
+                      {item.main.temp}°C
+                    </Typography>
+                  </Box>
+                  <Box display="flex" alignItems="center">
+                    <ThermostatIcon />
+                    <Typography variant="body2">
+                      Feels like: {item.main.feels_like}°C
+                    </Typography>
+                  </Box>
+                  <Box display="flex" alignItems="center">
+                    <OpacityIcon />
+                    <Typography variant="body2">
+                      {item.main.humidity}%
+                    </Typography>
+                  </Box>
+                  <Box display="flex" alignItems="center">
+                    <AirIcon />
+                    <Typography variant="body2">
+                      {item.wind.speed} m/s
+                    </Typography>
+                  </Box>
+                </CardContent>
+              </Grid>
+              <Grid item xs={6}>
+                <CardHeader
+                  avatar={
+                    <Avatar>
+                      <img src={`http://openweathermap.org/img/w/${item.weather[0].icon}.png`} alt={item.weather[0].description} />
+                    </Avatar>
+                  }
+                  title={`Weather in ${city} on ${new Date(item.dt * 1000).toLocaleDateString()} at ${new Date(item.dt * 1000).toLocaleTimeString()}`}
+                  subheader={item.weather[0].description}
+                />
+              </Grid>
+            </Grid>
           </Card>
         ))}
       </Box>
