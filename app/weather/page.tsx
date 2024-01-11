@@ -52,7 +52,7 @@ const Page = () => {
   }, []);
 
   const handleBackClick = () => {
-    window.location.assign('/');
+    window.location.assign('/aboutme');
   };
 
 
@@ -72,9 +72,27 @@ const Page = () => {
           console.error('Failed to fetch weather data:', error);
         });
     }, (error) => {
-      console.error('Failed to get GPS coordinates:', error.message);
+      switch(error.code) {
+        case error.PERMISSION_DENIED:
+          console.error("User denied the request for Geolocation.");
+          break;
+        case error.POSITION_UNAVAILABLE:
+          console.error("Location information is unavailable.");
+          break;
+        case error.TIMEOUT:
+          console.error("The request to get user location timed out.");
+          break;
+        default:
+          console.error("An unknown error occurred.");
+          break;
+      }
     });
   };
+
+
+
+
+
 
   return (
     <>
