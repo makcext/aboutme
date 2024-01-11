@@ -173,8 +173,9 @@ const AuthBooks = observer(() => {
   return (
 
     <Box paddingTop={0} justifyContent="space-around" textAlign="left">
-      <Paper variant="outlined" sx={{ borderColor: 'gray', padding: 1 }}>
-        <Grid container alignItems="center" justifyContent="space-between">
+        <Paper elevation={4}>
+      <Paper variant="outlined" sx={{ borderColor: 'gray', padding: 1 }}>  
+            <Grid container alignItems="center" justifyContent="space-between">
           <Typography variant="h5">Books collection</Typography>
           <InfoOutlinedIcon color='success' onClick={handleInfoIconClick} />
           <BookCollectionDialog open={infoDialogOpen} onClose={handleInfoIconClick} />
@@ -206,6 +207,7 @@ const AuthBooks = observer(() => {
             <Alert severity="warning">please login to view list</Alert>
           )}
         </Box>
+      </Paper>
       </Paper>
     </Box>
   );

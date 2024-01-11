@@ -7,7 +7,7 @@ const LoadSkeleton = React.lazy(() => import('../Skeleton/index'));
 const Footer = () => {
 	return (
 		<div>
-		<Box display="block" justifyContent="Left" textAlign={'justify'} >
+		<Box display="block" justifyContent="Left" textAlign={'justify'} paddingTop={2} >
             <Typography variant="body1"
               sx={{
                 background: 'linear-gradient(to bottom, #555, #999)',

@@ -26,6 +26,7 @@ const Avatar: React.FC<AvatarProps> = () => {
 
   return (
     <Box paddingBottom={0} justifyContent="space-around">
+        <Paper elevation={4}>
       <Paper variant="outlined" sx={{ borderColor: 'gray', padding: 1 }}>
         <Grid container alignItems="center" justifyContent="space-between">
           <Typography variant="h5">Avatars</Typography>
@@ -37,6 +38,7 @@ const Avatar: React.FC<AvatarProps> = () => {
             </Paper>
           </Grid>
         </Grid>
+      </Paper>
       </Paper>
     </Box>
   );

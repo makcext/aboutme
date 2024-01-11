@@ -52,11 +52,11 @@ const Education = () => {
               {shuffledImages.map(image => (
                 <Grid item key={image.id} xs={6} sm={6} p={1} height={"10%"}>
                   <Paper elevation={1} sx={{ display: 'flex', justifyContent: 'center', padding: '8px' }}>
-                  {image.src ? (
-  <Image src={image.src} alt='aueb logo' width={50} height={50} />
-) : (
-  <Typography variant="body2" align="center">{image.text}</Typography>
-)}
+                    {image.src ? (
+                      <Image src={image.src} alt='aueb logo' width={50} height={50} />
+                    ) : (
+                      <Typography variant="body2" align="center">{image.text}</Typography>
+                    )}
                   </Paper>
                 </Grid>
               ))}

@@ -18,9 +18,9 @@ export default function Page() {
   return (
     <>
       <div style={{ display: 'grid', placeItems: 'center' }}>
-      <Box maxWidth="lg" padding={1} sx={{ overflowX: "hidden" }}>
+      <Box maxWidth="lg" padding={2} sx={{ overflowX: "hidden" }}>
         <HelloBlock />
-        <Grid container spacing={1} alignItems="stretch" padding={1}>
+        <Grid container spacing={3} alignItems="stretch" padding={1}>
           <Grid  item xs={12} sm={12} md={6}>
             <BookCollection />
           </Grid>

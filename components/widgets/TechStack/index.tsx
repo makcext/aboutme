@@ -11,8 +11,8 @@ const TechStack: React.FC = () => {
 
   return (
     <Box paddingBottom={0} justifyContent="space-around" textAlign="left">
-      {/* <Paper sx={{ height: 222 }}> */}
-        <Paper elevation={0}  variant="outlined" sx={{ borderColor: 'gray', height: 'auto' }}>
+      <Paper elevation={4}>
+        <Paper elevation={0} variant="outlined" sx={{ borderColor: 'gray', height: 'auto' }}>
           <Button
             sx={{
               width: '100%',
@@ -41,7 +41,7 @@ const TechStack: React.FC = () => {
             spacing={0}
             justifyItems="center"
             alignItems="center"
-            // sx={{ height: '100%' }}
+          // sx={{ height: '100%' }}
           >
             {TechText.map((tech) => (
               <Grid
@@ -69,7 +69,7 @@ const TechStack: React.FC = () => {
             ))}
           </Grid>
         </Paper>
-      {/* </Paper> */}
+      </Paper>
     </Box>
   );
 };

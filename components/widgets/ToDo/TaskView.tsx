@@ -71,7 +71,7 @@ const TaskView: React.FC = observer(() => {
   const handleTaskTitleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setNewTaskTitle(event.target.value.trim());
   };
-  
+
   const handleCreateTask = () => {
     if (newTaskTitle !== '') {
       taskStore.addTask(newTaskTitle);
@@ -120,6 +120,7 @@ const TaskView: React.FC = observer(() => {
 
   return (
     <Box paddingTop={0} justifyContent="space-around" textAlign="left">
+        <Paper elevation={4}>
       <Paper variant="outlined" sx={{ borderColor: 'gray', padding: 1 }}>
         <Grid container alignItems="center" justifyContent="space-between">
           <Typography variant="h5">Todo List</Typography>
@@ -170,16 +171,16 @@ const TaskView: React.FC = observer(() => {
             ))}
           </List>
           <Grid container spacing={2}>
-      <Grid item xs={4}>
-        <Button variant="text" fullWidth size="small" color="info" onClick={() => handleSetFilterType(FilterType.All)}>All</Button>
-      </Grid>
-      <Grid item xs={4}>
-        <Button variant="text" fullWidth size="small" color="info" onClick={() => handleSetFilterType(FilterType.NotDone)}>Some</Button>
-      </Grid>
-      <Grid item xs={4}>
-        <Button variant="text" fullWidth size="small" color="info" onClick={() => handleSetFilterType(FilterType.Done)}>Done</Button>
-      </Grid>
-    </Grid>
+            <Grid item xs={4}>
+              <Button variant="text" fullWidth size="small" color="info" onClick={() => handleSetFilterType(FilterType.All)}>All</Button>
+            </Grid>
+            <Grid item xs={4}>
+              <Button variant="text" fullWidth size="small" color="info" onClick={() => handleSetFilterType(FilterType.NotDone)}>Some</Button>
+            </Grid>
+            <Grid item xs={4}>
+              <Button variant="text" fullWidth size="small" color="info" onClick={() => handleSetFilterType(FilterType.Done)}>Done</Button>
+            </Grid>
+          </Grid>
         </Box>
       </Paper>
 
@@ -202,7 +203,7 @@ const TaskView: React.FC = observer(() => {
           <Button variant="outlined" color='warning' onClick={handleUpdateTask}>Submit</Button>
         </DialogActions>
       </Dialog>
-
+</Paper>
     </Box>
 
 

@@ -96,6 +96,7 @@ const ScreenShareIdentification = () => {
 
   return (
     <Box paddingBottom={0} sx={{ minHeight: '214px' }}>
+        <Paper elevation={4}>
       <Paper variant="outlined" sx={{ borderColor: 'gray', padding: 1, minHeight: '214px'  }}>
         {/* <Typography variant="h4">Stream Indetificator</Typography> */}
         <Grid container alignItems="center" justifyContent="space-between">
@@ -166,6 +167,7 @@ const ScreenShareIdentification = () => {
           </Grid>
         </Box>
         {showAlert && <Alert severity="info">Screen capture started</Alert>}
+      </Paper>
       </Paper>
     </Box>
   );
