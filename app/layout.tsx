@@ -8,14 +8,14 @@ import NavBar from '@/components/widgets/NavBar/NavBar';
 export const metadata = {
   title: 'abtme',
   description: 'abtme',
-  icons: {
-    icon: [
-      {
-        url: '/app/favicon.ico',
-        href: '/app/favicon.ico',
-      },
-    ],
-  },
+  // icons: {
+  //   icon: [
+  //     {
+  //       url: '/build/favicon.ico',
+  //       href: '/build/favicon.ico',
+  //     },
+  //   ],
+  // },
 
 }
 
