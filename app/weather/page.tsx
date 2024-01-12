@@ -14,6 +14,7 @@ import Chip from '@mui/material/Chip';
 import Link from 'next/link';
 
 
+
 import ThermostatIcon from '@mui/icons-material/Thermostat';
 import OpacityIcon from '@mui/icons-material/Opacity';
 import AirIcon from '@mui/icons-material/Air';
@@ -69,6 +70,8 @@ const Page = () => {
 
   const [weatherData, setWeatherData] = useState<WeatherData[] | null>(null);
 
+
+
   console.log(weatherData);
 
 
@@ -122,6 +125,13 @@ const Page = () => {
     }
     );
   };
+
+
+  const handleBackClick = () => {
+    window.history.back();
+  };
+
+
 
   return (
     <>
@@ -192,11 +202,11 @@ const Page = () => {
       <Box padding={0} >
         <Grid container spacing={0}>
           <Grid item xs={6}  >
-            <Link href="/">
-              <Button>
+            {/* <Link href="/"> */}
+              <Button onClick={handleBackClick}>
                 <Chip icon={<ArrowBackIcon />} label="Back" clickable color="warning" variant="outlined" />
               </Button>
-            </Link>
+            {/* </Link> */}
           </Grid>
 
           <Grid item xs={6}>
