@@ -19,10 +19,11 @@ import OpacityIcon from '@mui/icons-material/Opacity';
 import AirIcon from '@mui/icons-material/Air';
 
 import fetchForecastWeatherData from "./forecast";
+import fetchWeatherData from "@/components/widgets/Weather/WeatherController";
 
 import { Grid } from "@mui/material";
 
-interface WeatherData {
+interface ForecastWeatherData {
   main: {
     temp: number;
     feels_like: number;
@@ -41,12 +42,14 @@ interface WeatherData {
 }
 
 
-
-
-
 const Page = () => {
-  const [data, setData] = useState<WeatherData[] | null>(null);
+  const [data, setData] = useState<ForecastWeatherData[] | null>(null);
   const [city, setCity] = useState(null);
+
+  const [weatherData, setWeatherData] = useState(null);
+
+  console.log(weatherData);
+
 
   useEffect(() => {
     fetchForecastWeatherData().then((fetchedData: any) => {
@@ -57,20 +60,13 @@ const Page = () => {
     });
   }, []);
 
-  // const handleBackClick = () => {
-  //   //use Link from next/link to navigate to the home page
-
-  //   <Link
-  //     href="/"
-  //     style={{ textDecoration: 'none', color: 'inherit' }}
-  //   >
-  //     <Typography variant="h4" fontSize={14} sx={{ textAlign: 'left' }} gutterBottom>
-  //       'Loading weather data...'
-  //     </Typography>
-  //   </Link>
-
-  // };
-
+  useEffect(() => {
+    fetchWeatherData().then((fetchedData: any) => {
+      setWeatherData(fetchedData);
+    }, (error: any) => {
+      console.log(error);
+    });
+  }, []);
 
   const handleGPSClick = () => {
     navigator.geolocation.getCurrentPosition((position) => {
@@ -93,15 +89,65 @@ const Page = () => {
     );
   };
 
-
-
-
-
   return (
     <>
+
+
+
+      {weatherData && (
+
+        <Card sx={{ margin: 1 }}>
+          <Grid container spacing={4}>
+            <Grid item xs={6} container >
+              <Typography variant="h4" fontSize={14} sx={{ textAlign: 'left' }} gutterBottom>
+                {weatherData.name}
+              </Typography>
+            </Grid>
+
+
+            <Grid item xs={6} container >
+              <Box>
+                <Avatar>
+                  <img src={`http://openweathermap.org/img/w/${weatherData.weather[0].icon}.png`} alt={weatherData.weather[0].description} />
+                </Avatar>
+
+                <Box>
+                  <Typography variant="h4" fontSize={14} sx={{ textAlign: 'left' }} gutterBottom>
+                    temperature:{weatherData.main.temp}°C
+                  </Typography>
+                </Box>
+              </Box>
+
+
+
+              <Typography variant="h4" fontSize={14} sx={{ textAlign: 'left' }} gutterBottom>
+                description: {weatherData.weather[0].description} <br />
+                feels like: {weatherData.main.feels_like}°C <br />
+                min/max: {weatherData.main.temp_min} - {weatherData.main.temp_max}°C <br />
+                pressure: {weatherData?.main.pressure} hPa <br />
+                humidity: {weatherData?.main.humidity} % <br />
+              </Typography>
+            </Grid>
+
+          </Grid>
+        </Card>
+
+
+
+      )
+      }
+
+
+
+
+
+
+
+
+
       <Box>
         <Grid container spacing={4}>
-          <Grid  item xs={6} container >
+          <Grid item xs={6} container >
             <Link href="/">
               <Button>
                 <Chip icon={<ArrowBackIcon />} label="Back" clickable color="warning" variant="outlined" />
@@ -111,11 +157,18 @@ const Page = () => {
 
           <Grid item xs={6} container >
             <Button onClick={handleGPSClick}>
-              <Chip  icon={<LocationOnIcon />} label="Use GPS" clickable color="success" variant="outlined" />
+              <Chip icon={<LocationOnIcon />} label="Use GPS" clickable color="success" variant="outlined" />
             </Button>
           </Grid>
 
         </Grid>
+
+
+
+
+
+
+
 
 
 
