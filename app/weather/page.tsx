@@ -127,7 +127,7 @@ const Page = () => {
     <>
 
 
-      {weatherData && (
+      {/* {weatherData && (
 
         <Card sx={{ margin: 2 }}>
           <Box padding={1} display="block" >
@@ -179,7 +179,7 @@ const Page = () => {
 
 
       )
-      }
+      } */}
 
 
 
