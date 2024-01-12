@@ -12,6 +12,19 @@ const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
   const [darkMode, setDarkMode] = useState<boolean>(true);
 
   const theme = createTheme({
+    components: {
+      MuiCssBaseline: {
+        styleOverrides: `
+          body::-webkit-scrollbar {
+            display: none;
+          }
+          body {
+            -ms-overflow-style: none;  /* IE and Edge */
+            scrollbar-width: none;  /* Firefox */
+          }
+        `,
+      },
+    },
     breakpoints: {
       values: {
         xs: 0,
