@@ -11,7 +11,6 @@ import LocationOnIcon from '@mui/icons-material/LocationOn';
 import Typography from '@mui/material/Typography';
 import Chip from '@mui/material/Chip';
 
-import Link from 'next/link';
 
 
 
@@ -21,6 +20,7 @@ import AirIcon from '@mui/icons-material/Air';
 
 import fetchForecastWeatherData from "./forecast";
 import fetchWeatherData from "@/components/widgets/Weather/WeatherController";
+
 
 import { Grid } from "@mui/material";
 
@@ -53,26 +53,23 @@ interface WeatherData {
     pressure: number;
     humidity: number;
   };
-  weather: [];
-  // Add other properties as needed
+
+  weather: {
+    id: number,
+    description: string;
+    icon: string;
+  }[];
+
+
 }
-
-
-
-
-
-
-
-
 const Page = () => {
   const [data, setData] = useState<ForecastWeatherData[] | null>(null);
   const [city, setCity] = useState(null);
 
-  const [weatherData, setWeatherData] = useState<WeatherData[] | null>(null);
+  const [weatherData, setWeatherData] = useState<WeatherData | null>(null);
 
 
-
-  console.log(weatherData);
+  // console.log(weatherData);
 
 
   useEffect(() => {
@@ -137,7 +134,7 @@ const Page = () => {
     <>
 
 
-      {/* {weatherData && (
+      {weatherData && (
 
         <Card sx={{ margin: 2 }}>
           <Box padding={1} display="block" >
@@ -150,10 +147,14 @@ const Page = () => {
 
               </Grid>
 
-              <Grid item xs={6} container >
-                <Avatar>
-                  <img src={`http://openweathermap.org/img/w/${weatherData.weather[0].icon}.png`} alt={weatherData.weather[0].description} />
-                </Avatar>
+              <Grid item xs={6} alignSelf={"center"} >
+
+                <Box display="flex" justifyContent="center">
+                  <Avatar>
+                    <img src={`http://openweathermap.org/img/w/${weatherData.weather[0].icon}.png`} alt={weatherData.weather[0].description} />
+                  </Avatar>
+                </Box>
+
               </Grid>
 
 
@@ -189,8 +190,7 @@ const Page = () => {
 
 
       )
-      } */}
-
+      }
 
 
 
@@ -203,9 +203,9 @@ const Page = () => {
         <Grid container spacing={0}>
           <Grid item xs={6}  >
             {/* <Link href="/"> */}
-              <Button onClick={handleBackClick}>
-                <Chip icon={<ArrowBackIcon />} label="Back" clickable color="warning" variant="outlined" />
-              </Button>
+            <Button onClick={handleBackClick}>
+              <Chip icon={<ArrowBackIcon />} label="Back" clickable color="warning" variant="outlined" />
+            </Button>
             {/* </Link> */}
           </Grid>
 
@@ -233,7 +233,11 @@ const Page = () => {
 
 
 
-
+      <Box margin={2}>
+      <Typography variant="h4" sx={{ textAlign: 'left' }} gutterBottom>
+        {city} forecast 3 hours
+      </Typography>
+      </Box>
 
       {data && data.map((item: any, index: number) => (
         <Card key={index} sx={{ margin: 2 }}>
@@ -280,7 +284,6 @@ const Page = () => {
           </Grid>
         </Card>
       ))}
-      {/* </Box> */}
     </>
   );
 }
