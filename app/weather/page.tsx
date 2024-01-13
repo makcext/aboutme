@@ -203,9 +203,12 @@ const Page = () => {
         <Grid container spacing={0}>
           <Grid item xs={6}  >
             {/* <Link href="/"> */}
+            <Box display="flex" justifyContent="center" alignItems="center" style={{ height: '100%' }}>
+
             <Button onClick={handleBackClick}>
               <Chip icon={<ArrowBackIcon />} label="Back" clickable color="warning" variant="outlined" />
             </Button>
+            </Box>
             {/* </Link> */}
           </Grid>
 
