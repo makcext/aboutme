@@ -1,6 +1,6 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import { Avatar, Box, Chip, Grid, Grow, Typography } from "@mui/material";
+import { Avatar, Box, Button, Chip, Grid, Grow, Typography } from "@mui/material";
 // import QRsvg from '../svg/qrsvg';
 import PlaceIcon from '@mui/icons-material/Place';
 import TwitterIcon from '@mui/icons-material/Twitter';
@@ -30,12 +30,54 @@ const InfoBlock: React.FC<InfoBlockProps> = ({ icon, text }) => (
 
 const HelloBlock = () => {
 	const [weather, setWeather] = useState<WeatherData | null>(null);
+	const [weatherData, setWeatherData] = useState<WeatherData | null>(null);
+
+
 
 	useEffect(() => {
 		fetchWeatherData()
 			.then((data) => setWeather(data))
 			.catch((error) => console.error(error));
 	}, []);
+
+	console.log('weatherData', weatherData);
+
+
+
+
+
+	const handleGPSClick = () => {
+    navigator.geolocation.getCurrentPosition((position) => {
+      const { latitude, longitude } = position.coords;
+			console.log('latitude', latitude);
+			console.log('longitude', longitude);
+			
+
+      fetchWeatherData(latitude, longitude)
+        .then((fetchedData: any) => {
+          if (fetchedData && fetchedData.name) {
+            setWeatherData(fetchedData);
+          } else {
+            console.error('Invalid data format:', fetchedData);
+          }
+        })
+        .catch((error: any) => {
+          console.error('Failed to fetch weather data:', error);
+        });
+
+
+    }, (error) => {
+      console.error('Failed to get location:', error);
+    }
+    );
+  };
+
+
+
+
+
+
+
 
 	return (
 		<div>
@@ -84,12 +126,27 @@ const HelloBlock = () => {
 								</Typography>
 							</Link>
 
+							<Grid item xs={6}>
+
+          </Grid>
+
+
+
 						</div>
 
 						{/* <QRsvg /> */}
 						{/* <Avatars /> */}
 
 					</Grid>
+					<Box display="flex" justifyContent="center" alignItems="center" style={{ height: '100%' }}>
+              <Button onClick={handleGPSClick}>
+                <Chip  label="Use GPS" clickable color="success" variant="outlined" />
+              </Button>
+<Typography variant="h4" fontSize={14} sx={{ textAlign: 'left' }} gutterBottom>
+									{weatherData ? `${weatherData.main.temp}°C [ ${weatherData.weather[0].description} ]` : 'Loading weather data...'}
+
+								</Typography>
+            </Box>
 				</Grid>
 			</Box>
 		</div>

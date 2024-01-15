@@ -23,6 +23,7 @@ import fetchWeatherData from "@/components/widgets/Weather/WeatherController";
 
 
 import { Grid } from "@mui/material";
+import { set } from "mobx";
 
 interface ForecastWeatherData {
   main: {
@@ -65,12 +66,13 @@ interface WeatherData {
 const Page = () => {
   const [data, setData] = useState<ForecastWeatherData[] | null>(null);
   const [city, setCity] = useState(null);
+  const [gps, setGps] = useState<GeolocationCoordinates | null>(null);
 
   const [weatherData, setWeatherData] = useState<WeatherData | null>(null);
 
 
   // console.log(weatherData);
-
+console.log("gps", gps);
 
   useEffect(() => {
     fetchForecastWeatherData().then((fetchedData: any) => {
@@ -92,6 +94,7 @@ const Page = () => {
   const handleGPSClick = () => {
     navigator.geolocation.getCurrentPosition((position) => {
       const { latitude, longitude } = position.coords;
+      setGps(position.coords);
 
       fetchWeatherData(latitude, longitude)
         .then((fetchedData: any) => {
@@ -170,7 +173,7 @@ const Page = () => {
 
 
                 </Box>
-
+<Typography>{gps?.latitude}{gps?.longitude}</Typography>
 
                 <Box padding={1}>
                   <Typography variant="h4" fontSize={14} sx={{ textAlign: 'left' }} gutterBottom>
