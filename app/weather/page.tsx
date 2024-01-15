@@ -154,7 +154,7 @@ console.log("gps", gps);
 
                 <Box display="flex" justifyContent="center">
                   <Avatar>
-                    <img src={`http://openweathermap.org/img/w/${weatherData.weather[0].icon}.png`} alt={weatherData.weather[0].description} />
+                    <img src={`https://openweathermap.org/img/w/${weatherData.weather[0].icon}.png`} alt={weatherData.weather[0].description} />
                   </Avatar>
                 </Box>
 
@@ -280,7 +280,7 @@ console.log("gps", gps);
               <CardHeader
                 avatar={
                   <Avatar>
-                    <img src={`http://openweathermap.org/img/w/${item.weather[0].icon}.png`} alt={item.weather[0].description} />
+                    <img src={`https://openweathermap.org/img/w/${item.weather[0].icon}.png`} alt={item.weather[0].description} />
                   </Avatar>
                 }
                 title={`Weather in ${city} on ${new Date(item.dt * 1000).toLocaleDateString()} at ${new Date(item.dt * 1000).toLocaleTimeString()}`}
