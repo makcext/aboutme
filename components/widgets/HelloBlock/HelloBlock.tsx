@@ -14,6 +14,9 @@ import Image from 'next/image';
 import avatarImage from '../../widgets/HelloBlock/avatar.png';
 import Link from 'next/link';
 
+
+import DoneIcon from '@mui/icons-material/Done';
+
 // const avatarImage = require('./avatar.png');
 
 type InfoBlockProps = {
@@ -46,31 +49,31 @@ const HelloBlock = () => {
 
 
 
-	const handleGPSClick = () => {
-    navigator.geolocation.getCurrentPosition((position) => {
-      const { latitude, longitude } = position.coords;
-			console.log('latitude', latitude);
-			console.log('longitude', longitude);
-			
-
-      fetchWeatherData(latitude, longitude)
-        .then((fetchedData: any) => {
-          if (fetchedData && fetchedData.name) {
-            setWeatherData(fetchedData);
-          } else {
-            console.error('Invalid data format:', fetchedData);
-          }
-        })
-        .catch((error: any) => {
-          console.error('Failed to fetch weather data:', error);
-        });
+	// const handleGPSClick = () => {
+	//   navigator.geolocation.getCurrentPosition((position) => {
+	//     const { latitude, longitude } = position.coords;
+	// 		console.log('latitude', latitude);
+	// 		console.log('longitude', longitude);
 
 
-    }, (error) => {
-      console.error('Failed to get location:', error);
-    }
-    );
-  };
+	//     fetchWeatherData(latitude, longitude)
+	//       .then((fetchedData: any) => {
+	//         if (fetchedData && fetchedData.name) {
+	//           setWeatherData(fetchedData);
+	//         } else {
+	//           console.error('Invalid data format:', fetchedData);
+	//         }
+	//       })
+	//       .catch((error: any) => {
+	//         console.error('Failed to fetch weather data:', error);
+	//       });
+
+
+	//   }, (error) => {
+	//     console.error('Failed to get location:', error);
+	//   }
+	//   );
+	// };
 
 
 
@@ -90,8 +93,25 @@ const HelloBlock = () => {
 						<InfoBlock icon={<PlaceIcon />} text="ath, att, gr" />
 						<InfoBlock icon={<AccessTimeIcon />} text="UTC +03:00" />
 						<InfoBlock icon={<TwitterIcon />} text="@makcext" />
-						<Box>
-							<WeatherDialog weather={weather} />
+						<Box padding={1}>
+							{/* <WeatherDialog weather={weather} /> */}
+
+
+							<Link href="/weather">
+									<Chip
+									color="success"
+										label="Weather"
+										component="a"
+										variant="outlined"
+										clickable
+									/>
+							</Link>
+
+
+
+
+
+
 						</Box>
 						<Box>
 
@@ -115,30 +135,35 @@ const HelloBlock = () => {
 							<Join />
 
 						</div>
-						<div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
 
-							<Link 
-								href="/weather" 
+						{/* <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+
+							<Link
+								href="/weather"
 								style={{ textDecoration: 'none', color: 'inherit' }}
 							>
 								<Typography variant="h4" fontSize={14} sx={{ textAlign: 'left' }} gutterBottom>
 									{weather ? `${weather.main.temp}°C [ ${weather.weather[0].description} ]` : 'Loading weather data...'}
+
+									weather service
+
+
 								</Typography>
 							</Link>
 
 							<Grid item xs={6}>
 
-          </Grid>
+							</Grid>
 
 
 
-						</div>
+						</div> */}
 
 						{/* <QRsvg /> */}
 						{/* <Avatars /> */}
 
 					</Grid>
-					<Box display="flex" justifyContent="center" alignItems="center" style={{ height: '100%' }}>
+					{/* <Box display="flex" justifyContent="center" alignItems="center" style={{ height: '100%' }}>
               <Button onClick={handleGPSClick}>
                 <Chip  label="Use GPS" clickable color="success" variant="outlined" />
               </Button>
@@ -146,7 +171,7 @@ const HelloBlock = () => {
 									{weatherData ? `${weatherData.main.temp}°C [ ${weatherData.weather[0].description} ]` : 'Loading weather data...'}
 
 								</Typography>
-            </Box>
+            </Box> */}
 				</Grid>
 			</Box>
 		</div>

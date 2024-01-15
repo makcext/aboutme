@@ -166,16 +166,11 @@ console.log("gps", gps);
 
 
                   <Box>
-                    <Typography variant="h4" fontSize={14} sx={{ textAlign: 'left' }} gutterBottom>
+                    <Typography variant="h3" fontSize={14} sx={{ textAlign: 'left' }} gutterBottom>
                       temperature:{weatherData.main.temp}°C
                     </Typography>
                   </Box>
-
-
-                </Box>
-<Typography>{gps?.latitude}{gps?.longitude}</Typography>
-
-                <Box padding={1}>
+                  <Box padding={1}>
                   <Typography variant="h4" fontSize={14} sx={{ textAlign: 'left' }} gutterBottom>
                     description: {weatherData.weather[0].description} <br />
                     feels like: {weatherData.main.feels_like}°C <br />
@@ -184,6 +179,18 @@ console.log("gps", gps);
                     humidity: {weatherData?.main.humidity} % <br />
                   </Typography>
                 </Box>
+
+                </Box>
+
+
+
+{/* <Typography>{gps?.latitude}{gps?.longitude}</Typography> */}
+
+
+
+
+
+                
               </Grid>
 
             </Grid>
