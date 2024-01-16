@@ -34,8 +34,13 @@ interface ForecastWeatherData {
   wind: {
     speed: number;
   };
+  clouds: {
+    all: number;
+  };
+  visibility: number;
   weather: [
     {
+      id: number;
       icon: string;
       description: string;
     }
@@ -57,9 +62,23 @@ interface WeatherData {
 
   weather: {
     id: number,
+    main: string;
     description: string;
     icon: string;
   }[];
+
+  wind: {
+    speed: number;
+  };
+  clouds: {
+    all: number;
+  };
+  visibility: number;
+  sys: {
+    country: string;
+    sunrise: number;
+    sunset: number;
+  };
 
 
 }
@@ -72,7 +91,7 @@ const Page = () => {
 
 
   // console.log(weatherData);
-console.log("gps", gps);
+  console.log("gps", gps);
 
   useEffect(() => {
     fetchForecastWeatherData().then((fetchedData: any) => {
@@ -140,63 +159,62 @@ console.log("gps", gps);
       {weatherData && (
 
         <Card sx={{ margin: 2 }}>
-          <Box padding={1} display="block" >
+          <Box padding={2} display="block" >
 
             <Grid container spacing={1}>
-              <Grid item xs={6} container >
-              <Box display="flex" justifyContent="center">
-
-                  
-                  <Typography variant="h5" >
-                    {weatherData.name}
-                  </Typography> 
-                  <Typography variant="h6"  sx={{ textAlign: 'left' }} >
-                      {weatherData.main.temp}°C
-                    </Typography>
-</Box>
-
+              <Grid item xs={6}  >
+                <Typography variant="h5" align="center" >
+                  {weatherData.name} <br />
+                </Typography>
+                <Typography variant="h4" align="center">
+                  {`${Math.floor(weatherData.main.temp)}°C`}
+                </Typography>
+                <Typography variant="body1" align="center">
+                  {`${weatherData.weather[0].description}`}
+                </Typography>
               </Grid>
 
               <Grid item xs={6} alignSelf={"center"} >
-
                 <Box display="flex" justifyContent="center">
-                  <Avatar>
-                    <img src={`https://openweathermap.org/img/w/${weatherData.weather[0].icon}.png`} alt={weatherData.weather[0].description} />
+                  <Avatar style={{ height: '96px', width: '96px' }}>
+                    <img src={`https://openweathermap.org/img/wn/${weatherData.weather[0].icon}@2x.png`} alt={weatherData.weather[0].description} />
                   </Avatar>
                 </Box>
-
               </Grid>
-
 
               <Grid item xs={6} container >
-                <Box>
-
-
-                  <Box>
-
-                  </Box>
-                  <Box padding={1}>
-                  <Typography variant="h4" fontSize={14} sx={{ textAlign: 'left' }} gutterBottom>
-                    description: {weatherData.weather[0].description} <br />
-                    feels like: {weatherData.main.feels_like}°C <br />
-                    min/max: {weatherData.main.temp_min} - {weatherData.main.temp_max}°C <br />
-                    pressure: {weatherData?.main.pressure} hPa <br />
+                <Box padding={0}>
+                  <Typography variant="inherit">
+                    -/+ {weatherData.main.temp_min} – {weatherData.main.temp_max}°C <br />
                     humidity: {weatherData?.main.humidity} % <br />
+                    feels like: {weatherData.main.feels_like}°C <br />
+                    pressure: {weatherData?.main.pressure} hPa <br />
                   </Typography>
                 </Box>
-
-                </Box>
-
-
-
-{/* <Typography>{gps?.latitude}{gps?.longitude}</Typography> */}
-
-
-
-
-
-                
               </Grid>
+
+              <Grid item xs={6} container >
+                <Box padding={0}>
+                  <Typography variant="inherit">
+                    wind: {weatherData?.wind.speed} m/s <br />
+                    clouds: {weatherData?.clouds.all} % <br />
+                    visibility: {weatherData?.visibility / 1000} km <br />
+                    ⬆︎{new Date(weatherData?.sys.sunrise * 1000).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })} ―
+                    ⬇︎{new Date(weatherData?.sys.sunset * 1000).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })} 
+                  </Typography>
+                </Box>
+              </Grid>
+
+
+
+
+
+
+
+
+
+
+
 
             </Grid>
           </Box>
@@ -220,9 +238,9 @@ console.log("gps", gps);
             {/* <Link href="/"> */}
             <Box display="flex" justifyContent="center" alignItems="center" style={{ height: '100%' }}>
 
-            <Button onClick={handleBackClick}>
-              <Chip icon={<ArrowBackIcon />} label="Back" clickable color="warning" variant="outlined" />
-            </Button>
+              <Button onClick={handleBackClick}>
+                <Chip icon={<ArrowBackIcon />} label="Back" clickable color="warning" variant="outlined" />
+              </Button>
             </Box>
             {/* </Link> */}
           </Grid>
@@ -252,9 +270,9 @@ console.log("gps", gps);
 
 
       <Box margin={2}>
-      <Typography variant="h4" sx={{ textAlign: 'left' }} gutterBottom>
-        {city} forecast 3 hours
-      </Typography>
+        <Typography variant="h4" sx={{ textAlign: 'left' }} gutterBottom>
+          {city} forecast 3 hours
+        </Typography>
       </Box>
 
       {data && data.map((item: any, index: number) => (
@@ -292,7 +310,7 @@ console.log("gps", gps);
               <CardHeader
                 avatar={
                   <Avatar>
-                    <img src={`https://openweathermap.org/img/w/${item.weather[0].icon}.png`} alt={item.weather[0].description} />
+                    <img src={`https://openweathermap.org/img/wn/${item.weather[0].icon}.png`} alt={item.weather[0].description} />
                   </Avatar>
                 }
                 title={`Weather in ${city} on ${new Date(item.dt * 1000).toLocaleDateString()} at ${new Date(item.dt * 1000).toLocaleTimeString()}`}
