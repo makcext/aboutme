@@ -144,9 +144,16 @@ console.log("gps", gps);
 
             <Grid container spacing={1}>
               <Grid item xs={6} container >
-                <Typography variant="h4"  >
-                  {weatherData.name}
-                </Typography>
+              <Box display="flex" justifyContent="center">
+
+                  
+                  <Typography variant="h5" >
+                    {weatherData.name}
+                  </Typography> 
+                  <Typography variant="h6"  sx={{ textAlign: 'left' }} >
+                      {weatherData.main.temp}°C
+                    </Typography>
+</Box>
 
               </Grid>
 
@@ -166,9 +173,7 @@ console.log("gps", gps);
 
 
                   <Box>
-                    <Typography variant="h3" fontSize={14} sx={{ textAlign: 'left' }} gutterBottom>
-                      temperature:{weatherData.main.temp}°C
-                    </Typography>
+
                   </Box>
                   <Box padding={1}>
                   <Typography variant="h4" fontSize={14} sx={{ textAlign: 'left' }} gutterBottom>
