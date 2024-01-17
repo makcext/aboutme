@@ -5,7 +5,7 @@
 /ENV
 # dependencies
 /node_modules
-.next
+.next/
 /.next
 /.pnp
 .pnp.js
