@@ -177,8 +177,7 @@ const Page = () => {
                   <Avatar style={{ height: '96px', width: '96px' }}>
                     {/* <img src={`https://openweathermap.org/img/wn/${weatherData.weather[0].icon}.png`} alt={weatherData.weather[0].description} /> */}
                     {/* <img src={`/weatherIcons/${weatherData.weather[0].icon}.png`} alt={weatherData.weather[0].description} /> */}
-                      <Image src={`/weatherIcons/${weatherData.weather[0].icon}.png`} alt={weatherData.weather[0].description} width={16} height={16}/>
-
+                    <Image src={`/weatherIcons/${weatherData.weather[0].icon}.png`} alt={weatherData.weather[0].description} width={96} height={96}/>
 
 
                   </Avatar> 
