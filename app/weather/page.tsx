@@ -10,8 +10,9 @@ import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import Typography from '@mui/material/Typography';
 import Chip from '@mui/material/Chip';
+import Image from "next/image";
 
-
+// import { StaticImageData } from 'next/image';
 
 
 import ThermostatIcon from '@mui/icons-material/Thermostat';
@@ -23,7 +24,6 @@ import fetchWeatherData from "@/components/widgets/Weather/WeatherController";
 
 
 import { Grid } from "@mui/material";
-import { set } from "mobx";
 
 interface ForecastWeatherData {
   main: {
@@ -91,7 +91,7 @@ const Page = () => {
 
 
   // console.log(weatherData);
-  console.log("gps", gps);
+  // console.log("gps", gps);
 
   useEffect(() => {
     fetchForecastWeatherData().then((fetchedData: any) => {
@@ -155,12 +155,10 @@ const Page = () => {
   return (
     <>
 
-
       {weatherData && (
 
         <Card sx={{ margin: 2 }}>
           <Box padding={2} display="block" >
-
             <Grid container spacing={1}>
               <Grid item xs={6}  >
                 <Typography variant="h5" align="center" >
@@ -177,8 +175,18 @@ const Page = () => {
               <Grid item xs={6} alignSelf={"center"} >
                 <Box display="flex" justifyContent="center">
                   <Avatar style={{ height: '96px', width: '96px' }}>
-                    <img src={`https://openweathermap.org/img/wn/${weatherData.weather[0].icon}@2x.png`} alt={weatherData.weather[0].description} />
-                  </Avatar>
+                    {/* <img src={`https://openweathermap.org/img/wn/${weatherData.weather[0].icon}.png`} alt={weatherData.weather[0].description} /> */}
+                    {/* <img src={`/weatherIcons/${weatherData.weather[0].icon}.png`} alt={weatherData.weather[0].description} /> */}
+                      <Image src={`/weatherIcons/${weatherData.weather[0].icon}.png`} alt={weatherData.weather[0].description} width={16} height={16}/>
+
+
+
+                  </Avatar> 
+                
+                
+                
+                
+                
                 </Box>
               </Grid>
 
