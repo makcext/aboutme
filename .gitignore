@@ -5,14 +5,16 @@
 /ENV
 # dependencies
 /node_modules
+.next
 /.pnp
 .pnp.js
+/.next
 .next
 # testing
 /coverage
 
 # production
-
+.next
 
 # misc
 .DS_Store
