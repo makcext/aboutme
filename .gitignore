@@ -6,15 +6,15 @@
 # dependencies
 /node_modules
 .next
+/.next
 /.pnp
 .pnp.js
-/.next
-.next
+
 # testing
 /coverage
 
 # production
-.next
+
 
 # misc
 .DS_Store
