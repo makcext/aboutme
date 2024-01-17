@@ -11,7 +11,7 @@ import fetchWeatherData from "../Weather/WeatherController";
 import WeatherDialog from '../Weather/WeatherDialog'
 import Join from "../Join/Join";
 import Image from 'next/image';
-import avatarImage from '../../widgets/HelloBlock/avatar.png';
+import avatarImage from '../../../public/avatar.png';
 import Link from 'next/link';
 
 
@@ -88,7 +88,20 @@ const HelloBlock = () => {
 				<Grid container justifyContent={"space-evenly"}>
 					<Grid item xs={6} md={6} paddingTop={0}>
 						<Avatar alt="ext - route" sx={{ width: 96, height: 96 }}>
-							<Image src={avatarImage} alt="ext - route" width={128} height={96} />
+							{/* <Image placeholder="blur" src={avatarImage} alt="ext - route" width={128} height={96} /> */}
+							{/* <Image placeholder="blur" src="/avatar.png" alt="Avatar" width={128} height={96} /> */}
+
+							<Image
+								placeholder="blur"
+								blurDataURL="data:image/gif;base64,..."
+								src="/avatar.png"
+								alt="Avatar"
+								width={128}
+								height={96}
+							/>
+
+
+
 						</Avatar>
 						<InfoBlock icon={<PlaceIcon />} text="ath, att, gr" />
 						<InfoBlock icon={<AccessTimeIcon />} text="UTC +03:00" />
@@ -98,13 +111,13 @@ const HelloBlock = () => {
 
 
 							<Link href="/weather">
-									<Chip
+								<Chip
 									color="success"
-										label="Weather"
-										component="a"
-										variant="outlined"
-										clickable
-									/>
+									label="Weather"
+									// component={'a'}
+									variant="outlined"
+									clickable
+								/>
 							</Link>
 
 
