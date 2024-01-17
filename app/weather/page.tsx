@@ -174,13 +174,13 @@ const Page = () => {
 
               <Grid item xs={6} alignSelf={"center"} >
                 <Box display="flex" justifyContent="center">
-                  <Avatar style={{ height: '96px', width: '96px' }}>
+                  {/* <Avatar style={{ height: '96px', width: '96px' }}> */}
                     {/* <img src={`https://openweathermap.org/img/wn/${weatherData.weather[0].icon}.png`} alt={weatherData.weather[0].description} /> */}
                     {/* <img src={`/weatherIcons/${weatherData.weather[0].icon}.png`} alt={weatherData.weather[0].description} /> */}
                     <Image src={`/aboutme/weatherIcons/${weatherData.weather[0].icon}.png`} alt={weatherData.weather[0].description} width={96} height={96}/>
 
 
-                  </Avatar> 
+                  {/* </Avatar>  */}
                 
                 
                 
@@ -192,9 +192,9 @@ const Page = () => {
               <Grid item xs={6} container >
                 <Box padding={0}>
                   <Typography variant="inherit">
-                    -/+ {weatherData.main.temp_min} – {weatherData.main.temp_max}°C <br />
+                    min/max {Math.floor(weatherData.main.temp_min)} – {Math.floor(weatherData.main.temp_max)}°C <br />
                     humidity: {weatherData?.main.humidity} % <br />
-                    feels like: {weatherData.main.feels_like}°C <br />
+                    feels like: {Math.floor(weatherData.main.feels_like)}°C <br />      
                     pressure: {weatherData?.main.pressure} hPa <br />
                   </Typography>
                 </Box>
@@ -203,7 +203,7 @@ const Page = () => {
               <Grid item xs={6} container >
                 <Box padding={0}>
                   <Typography variant="inherit">
-                    wind: {weatherData?.wind.speed} m/s <br />
+                    wind: {Math.floor(weatherData?.wind.speed)} m/s <br />
                     clouds: {weatherData?.clouds.all} % <br />
                     visibility: {weatherData?.visibility / 1000} km <br />
                     ⬆︎{new Date(weatherData?.sys.sunrise * 1000).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })} ―
@@ -316,9 +316,8 @@ const Page = () => {
             <Grid item xs={6}>
               <CardHeader
                 avatar={
-                  <Avatar>
-                    <img src={`https://openweathermap.org/img/wn/${item.weather[0].icon}.png`} alt={item.weather[0].description} />
-                  </Avatar>
+                  // <Avatar>
+                    <Image src={`/aboutme/weatherIcons/${item?.weather[0]?.icon || 'unknown'}.png`} alt={weatherData?.weather[0]?.description || ''} width={64} height={64}/>                  // </Avatar>
                 }
                 title={`Weather in ${city} on ${new Date(item.dt * 1000).toLocaleDateString()} at ${new Date(item.dt * 1000).toLocaleTimeString()}`}
                 subheader={item.weather[0].description}
