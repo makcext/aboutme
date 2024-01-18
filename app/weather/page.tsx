@@ -9,6 +9,7 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Chip from '@mui/material/Chip';
 import Grid from "@mui/material/Grid";
+import Paper from '@mui/material/Paper';
 
 
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
@@ -169,53 +170,63 @@ const Page = () => {
 
       {weatherData && (
 
-        <Card sx={{ margin: 2 }}>
-          <Box padding={2} display="block" >
-            <Grid container spacing={1}>
-              <Grid item xs={6}  >
-                <Typography variant="h5" align="center" >
-                  {weatherData.name} <br />
-                </Typography>
-                <Typography variant="h4" align="center">
-                  {`${Math.floor(weatherData.main.temp)}°`}
-                </Typography>
-                <Typography variant="body1" align="center">
-                  {`${weatherData.weather[0].description}`}
-                </Typography>
-              </Grid>
 
-              <Grid item xs={6} alignSelf={"center"} >
-                <Box display="flex" justifyContent="center">
-                  <Image src={`/aboutme/weatherIcons/${weatherData.weather[0].icon}.png`} alt={weatherData.weather[0].description} width={96} height={96} />
-                </Box>
-              </Grid>
+            
+                      <Paper elevation={6} sx={{ margin: 2 }}>
+          <Card >
+          
+              <Box padding={2} display="block" >
+                <Grid container spacing={1}>
+                  <Grid item xs={6}  >
+                    <Typography variant="h5" align="center" >
+                      {weatherData.name} <br />
+                    </Typography>
+                    <Typography variant="h4" align="center">
+                      {`${Math.floor(weatherData.main.temp)}°`}
+                    </Typography>
+                    <Typography variant="body1" align="center">
+                      {`${weatherData.weather[0].description}`}
+                    </Typography>
+                  </Grid>
 
-              <Grid item xs={6} container >
-                <Box padding={0}>
-                  <Typography variant="inherit">
-                    ⬇︎{Math.floor(weatherData.main.temp_min)}° ― ⬆︎{Math.floor(weatherData.main.temp_max)}° <br />
-                    humidity: {weatherData?.main.humidity} % <br />
-                    feels like: {Math.floor(weatherData.main.feels_like)}° <br />
-                    pressure: {weatherData?.main.pressure} hPa <br />
-                  </Typography>
-                </Box>
-              </Grid>
+                  <Grid item xs={6} alignSelf={"center"} >
+                    <Box display="flex" justifyContent="center">
+                      <Image src={`/aboutme/weatherIcons/${weatherData.weather[0].icon}.png`} alt={weatherData.weather[0].description} width={96} height={96} />
+                    </Box>
+                  </Grid>
 
-              <Grid item xs={6} container >
-                <Box padding={0}>
-                  <Typography variant="inherit">
-                    wind: {Math.floor(weatherData?.wind.speed)} m/s <br />
-                    clouds: {weatherData?.clouds.all} % <br />
-                    visibility: {weatherData?.visibility / 1000} km <br />
-                    ⬆︎{new Date(weatherData?.sys.sunrise * 1000).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })} ―
-                    ⬇︎{new Date(weatherData?.sys.sunset * 1000).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
-                  </Typography>
-                </Box>
-              </Grid>
-            </Grid>
-          </Box>
-        </Card>
+                  <Grid item xs={6} container >
+                    <Box padding={0}>
+                      <Typography variant="inherit">
+                        ⬇︎{Math.floor(weatherData.main.temp_min)}° ― ⬆︎{Math.floor(weatherData.main.temp_max)}° <br />
+                        humidity: {weatherData?.main.humidity} % <br />
+                        feels like: {Math.floor(weatherData.main.feels_like)}° <br />
+                        pressure: {weatherData?.main.pressure} hPa <br />
+                      </Typography>
+                    </Box>
+                  </Grid>
+
+                  <Grid item xs={6} container >
+                    <Box padding={0}>
+                      <Typography variant="inherit">
+                        wind: {Math.floor(weatherData?.wind.speed)} m/s <br />
+                        clouds: {weatherData?.clouds.all} % <br />
+                        visibility: {weatherData?.visibility / 1000} km <br />
+                        ⬆︎{new Date(weatherData?.sys.sunrise * 1000).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })} ―
+                        ⬇︎{new Date(weatherData?.sys.sunset * 1000).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+                      </Typography>
+                    </Box>
+                  </Grid>
+                </Grid>
+              </Box>
+              </Card>
+        </Paper >
+            
+
       )}
+
+
+
 
       <Box padding={0} >
         <Grid container spacing={0}>
@@ -251,10 +262,10 @@ const Page = () => {
           {/* {` ${new Date(item.dt * 1000).toLocaleDateString()} at ${new Date(item.dt * 1000).toLocaleTimeString()}`} */}
 
 
-          <Grid container  spacing={0}>
+          <Grid container spacing={0}>
 
 
-            <CardContent  sx={{ width: '100%' }}>
+            <CardContent sx={{ width: '100%' }}>
               <Grid item xs={12}>
                 <CardHeader
                   classes={{ root: classes.root }}
