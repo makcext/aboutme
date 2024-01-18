@@ -20,6 +20,17 @@ import AirIcon from '@mui/icons-material/Air';
 import fetchForecastWeatherData from "./forecast";
 import fetchWeatherData from "@/components/widgets/Weather/WeatherController";
 
+
+import { makeStyles } from '@mui/styles';
+
+
+
+const useStyles = makeStyles({
+  root: {
+    padding: '1', // Change this to the desired padding
+  },
+});
+
 interface WeatherData {
   name: string;
   main: {
@@ -140,6 +151,19 @@ const Page = () => {
 
 
 
+
+
+
+
+
+
+
+
+  const classes = useStyles();
+
+
+
+
   return (
     <>
 
@@ -153,7 +177,7 @@ const Page = () => {
                   {weatherData.name} <br />
                 </Typography>
                 <Typography variant="h4" align="center">
-                  {`${Math.floor(weatherData.main.temp)}°C`}
+                  {`${Math.floor(weatherData.main.temp)}°`}
                 </Typography>
                 <Typography variant="body1" align="center">
                   {`${weatherData.weather[0].description}`}
@@ -169,9 +193,9 @@ const Page = () => {
               <Grid item xs={6} container >
                 <Box padding={0}>
                   <Typography variant="inherit">
-                    min/max {Math.floor(weatherData.main.temp_min)} – {Math.floor(weatherData.main.temp_max)}°C <br />
+                    ⬇︎{Math.floor(weatherData.main.temp_min)}° ― ⬆︎{Math.floor(weatherData.main.temp_max)}° <br />
                     humidity: {weatherData?.main.humidity} % <br />
-                    feels like: {Math.floor(weatherData.main.feels_like)}°C <br />
+                    feels like: {Math.floor(weatherData.main.feels_like)}° <br />
                     pressure: {weatherData?.main.pressure} hPa <br />
                   </Typography>
                 </Box>
@@ -216,16 +240,83 @@ const Page = () => {
       </Box>
 
       <Box margin={2}>
-        <Typography variant="h4" sx={{ textAlign: 'left' }} gutterBottom>
+        <Typography variant="h6">
           {city} forecast 3 hours
         </Typography>
       </Box>
+
+
+      {data && data.map((item: any, index: number) => (
+        <Card key={index} sx={{ margin: 2 }}>
+          {/* {` ${new Date(item.dt * 1000).toLocaleDateString()} at ${new Date(item.dt * 1000).toLocaleTimeString()}`} */}
+
+
+          <Grid container  spacing={0}>
+
+
+            <CardContent  sx={{ width: '100%' }}>
+              <Grid item xs={12}>
+                <CardHeader
+                  classes={{ root: classes.root }}
+                  avatar={
+                    <Image src={`/aboutme/weatherIcons/${item?.weather[0]?.icon || 'unknown'}.png`} alt={weatherData?.weather[0]?.description || ''} width={48} height={48} />
+                  }
+                  subheader={`${item.weather[0].description} at ${new Date(item.dt * 1000).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}`}
+                />
+
+                <Box display="flex" justifyContent="center">
+                  <Grid item xs={4} container justifyContent="center">
+                    <ThermostatIcon />
+                    <Typography variant="body2">
+                      {item.main.temp}°C
+                    </Typography>
+                  </Grid>
+                  <Grid item xs={4} container justifyContent="center">
+                    <OpacityIcon />
+                    <Typography variant="body2">
+                      {item.main.humidity}%
+                    </Typography>
+                  </Grid>
+                  <Grid item xs={4} container justifyContent="center">
+                    <AirIcon />
+                    <Typography variant="body2">
+                      {item.wind.speed} m/s
+                    </Typography>
+                  </Grid>
+                </Box>
+
+              </Grid>
+
+            </CardContent>
+
+
+            {/* <Grid item xs={6}>
+              <CardHeader
+                avatar={
+                  <Image src={`/aboutme/weatherIcons/${item?.weather[0]?.icon || 'unknown'}.png`} alt={weatherData?.weather[0]?.description || ''} width={64} height={64} />                  // </Avatar>
+                }
+                // title={`Weather in ${city} on ${new Date(item.dt * 1000).toLocaleDateString()} at ${new Date(item.dt * 1000).toLocaleTimeString()}`}
+                subheader={item.weather[0].description}
+                title={`Weather in ${city} on ${new Date(item.dt * 1000).toLocaleDateString()} at ${new Date(item.dt * 1000).toLocaleTimeString()}`}
+
+              />
+            </Grid> */}
+          </Grid>
+        </Card>
+      ))}
+
+
+
+
+      {/* 
 
       {data && data.map((item: any, index: number) => (
         <Card key={index} sx={{ margin: 2 }}>
           <Grid container spacing={2}>
             <Grid item xs={6}>
+
               <CardContent>
+
                 <Box display="flex" alignItems="center">
                   <ThermostatIcon />
                   <Typography variant="h6">
@@ -250,20 +341,26 @@ const Page = () => {
                     {item.wind.speed} m/s
                   </Typography>
                 </Box>
+
               </CardContent>
+
             </Grid>
             <Grid item xs={6}>
               <CardHeader
                 avatar={
                   <Image src={`/aboutme/weatherIcons/${item?.weather[0]?.icon || 'unknown'}.png`} alt={weatherData?.weather[0]?.description || ''} width={64} height={64} />                  // </Avatar>
                 }
-                title={`Weather in ${city} on ${new Date(item.dt * 1000).toLocaleDateString()} at ${new Date(item.dt * 1000).toLocaleTimeString()}`}
+                // title={`Weather in ${city} on ${new Date(item.dt * 1000).toLocaleDateString()} at ${new Date(item.dt * 1000).toLocaleTimeString()}`}
                 subheader={item.weather[0].description}
+                title={`Weather in ${city} on ${new Date(item.dt * 1000).toLocaleDateString()} at ${new Date(item.dt * 1000).toLocaleTimeString()}`}
+
               />
             </Grid>
           </Grid>
         </Card>
-      ))}
+      ))} */}
+
+
     </>
   );
 }
