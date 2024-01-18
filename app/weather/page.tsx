@@ -258,7 +258,8 @@ const Page = () => {
 
 
       {data && data.map((item: any, index: number) => (
-        <Card key={index} sx={{ margin: 2 }}>
+        <Paper elevation={4} sx={{ margin: 2 }}>
+        <Card key={index} >
           {/* {` ${new Date(item.dt * 1000).toLocaleDateString()} at ${new Date(item.dt * 1000).toLocaleTimeString()}`} */}
 
 
@@ -314,6 +315,7 @@ const Page = () => {
             </Grid> */}
           </Grid>
         </Card>
+        </Paper>
       ))}
 
 
