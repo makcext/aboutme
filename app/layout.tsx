@@ -5,20 +5,19 @@ import NavBar from '@/components/widgets/NavBar/NavBar';
 import Analytics from 'next/script';
 import Head from 'next/head';
 
-export const metadata = {
-  "google-site-verification": 'qDLU6tnn0I7QTjPm7gHfv7O5u7L-xlhNcKF1O3OU3Ow',
-  title: 'abtme',
-  description: 'abtme',
-  icons: {
-    icon: [
-      {
-        url: '/build/favicon.ico',
-        href: '/build/favicon.ico',
-      },
-    ],
-  },
+// export const metadata = {
+//   title: 'abtme',
+//   description: 'abtme',
+//   icons: {
+//     icon: [
+//       {
+//         url: '/build/favicon.ico',
+//         href: '/build/favicon.ico',
+//       },
+//     ],
+//   },
 
-}
+// }
 
 export default function RootLayout({
   children,
@@ -29,10 +28,6 @@ export default function RootLayout({
     <html lang="en">
       <Head>
         <meta name="google-site-verification" content="qDLU6tnn0I7QTjPm7gHfv7O5u7L-xlhNcKF1O3OU3Ow" />
-        <Analytics
-          strategy="afterInteractive"
-          src="https://www.googletagmanager.com/gtag/js?id=G-WN0YMDN8RR"
-        />
       </Head>
       <body>
         <ApolloWrapper>
@@ -42,7 +37,10 @@ export default function RootLayout({
             {children}
           </ThemeProvider>
         </ApolloWrapper>
-
+        <Analytics
+          strategy="afterInteractive"
+          src="https://www.googletagmanager.com/gtag/js?id=G-WN0YMDN8RR"
+        />
         {/* <Analytics
           strategy="afterInteractive"
           dangerouslySetInnerHTML={{
