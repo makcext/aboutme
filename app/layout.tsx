@@ -7,7 +7,6 @@ import  Analytics  from 'next/script';
 export const metadata = {
   title: 'abtme',
   description: 'abtme',
-  googleSiteVerification: 'qDLU6tnn0I7QTjPm7gHfv7O5u7L',
   icons: {
     icon: [
       {
