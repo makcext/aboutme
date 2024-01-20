@@ -9,12 +9,6 @@ export const metadata = {
   "google-site-verification": 'qDLU6tnn0I7QTjPm7gHfv7O5u7L-xlhNcKF1O3OU3Ow',
   title: 'abtme',
   description: 'abtme',
-  additionalMetaTags={[
-    {
-      name: 'google-site-verification',
-      content: 'qDLU6tnn0I7QTjPm7gHfv7O5u7L-xlhNcKF1O3OU3Ow',
-    },
-  ]}
   icons: {
     icon: [
       {
