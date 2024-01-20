@@ -2,7 +2,8 @@ import ThemeProvider from '../components/ThemeProvider'
 import CssBaseline from '@mui/material/CssBaseline'
 import { ApolloWrapper } from "../components/ApolloWrapper";
 import NavBar from '@/components/widgets/NavBar/NavBar';
-import  Analytics  from 'next/script';
+import Analytics from 'next/script';
+import Head from 'next/head';
 
 export const metadata = {
   title: 'abtme',
@@ -25,6 +26,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
+      <Head>
+        <meta name="google-site-verification" content="qDLU6tnn0I7QTjPm7gHfv7O5u7L-xlhNcKF1O3OU3Ow" />
+      </Head>
       <body>
         <ApolloWrapper>
           <ThemeProvider>
