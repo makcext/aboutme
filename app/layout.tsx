@@ -37,7 +37,7 @@ export default function RootLayout({
           strategy="afterInteractive"
           src="https://www.googletagmanager.com/gtag/js?id=G-WN0YMDN8RR"
         />
-        <Analytics
+        {/* <Analytics
           strategy="afterInteractive"
           dangerouslySetInnerHTML={{
             __html: `
@@ -49,7 +49,7 @@ export default function RootLayout({
               });
             `,
           }}
-        />
+        /> */}
       </body>
     </html>
   )
