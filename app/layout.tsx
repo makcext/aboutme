@@ -6,6 +6,7 @@ import Analytics from 'next/script';
 import Head from 'next/head';
 
 export const metadata = {
+  "google-site-verification": 'qDLU6tnn0I7QTjPm7gHfv7O5u7L-xlhNcKF1O3OU3Ow',
   title: 'abtme',
   description: 'abtme',
   icons: {
