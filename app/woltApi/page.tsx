@@ -64,6 +64,15 @@ export default async function Page() {
 				))
 			}
 
+<h4>Browse categories</h4>
+			{
+				data.sections[0].items.map((items: any, index: number) => (
+					<Box key={index} m={1} display="inline-block" >
+						<Chip variant="outlined" color="success" label={items.title} />
+					</Box>
+				))
+			}
+
 			
 </Box>
 		</div>
