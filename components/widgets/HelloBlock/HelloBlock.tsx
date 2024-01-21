@@ -106,27 +106,28 @@ const HelloBlock = () => {
 						<InfoBlock icon={<PlaceIcon />} text="ath, att, gr" />
 						<InfoBlock icon={<AccessTimeIcon />} text="UTC +03:00" />
 						<InfoBlock icon={<TwitterIcon />} text="@makcext" />
-						<Box padding={1}>
-							{/* <WeatherDialog weather={weather} /> */}
 
-
+						<Box padding={1} display="inline-block">
 							<Link href="/weather">
 								<Chip
 									color="success"
 									label="Weather"
-									// component={'a'}
 									variant="outlined"
 									clickable
 								/>
 							</Link>
-
-
-
-
-
-
 						</Box>
-						<Box>
+						<Box padding={1} display="inline-block">
+							<Link href="/woltApi">
+								<Chip
+									color="success"
+									label="wolt api"
+									variant="outlined"
+									clickable
+								/>
+							</Link>
+						</Box>
+						<Box display="inline-block">
 
 						</Box>
 					</Grid>
