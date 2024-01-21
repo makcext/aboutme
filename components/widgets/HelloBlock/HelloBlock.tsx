@@ -43,7 +43,7 @@ const HelloBlock = () => {
 			.catch((error) => console.error(error));
 	}, []);
 
-	console.log('weatherData', weatherData);
+	// console.log('weatherData', weatherData);
 
 
 

@@ -57,7 +57,7 @@ const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
   });
 
   useEffect(() => {
-    console.log("Current media query:", currentMediaQuery);
+    // console.log("Current media query:", currentMediaQuery);
   }, [currentMediaQuery]);
 
   const toggleDarkMode = () => {
