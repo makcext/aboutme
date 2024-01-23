@@ -9,7 +9,7 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardHeader from '@mui/material/CardHeader';
 import CardMedia from '@mui/material/CardMedia';
-import { Typography } from '@mui/material';
+import { Paper, Typography } from '@mui/material';
 import Grid from '@mui/material/Grid';
 import Switch from '@mui/material/Switch';
 
@@ -85,8 +85,12 @@ export default async function Page() {
 					}
 
 
-					<Box style={{ display: 'flex' , overflowX: 'scroll', overflowY:'hidden',   }}>
-						{data.sections[0].items.map((item: any) => (
+<Paper style={{ 
+    display: 'grid',
+		gridAutoFlow: 'column', 
+    overflowX: 'scroll', 
+}}>		
+				{data.sections[0].items.map((item: any) => (
 							<Grid p={1} item key={item.content_id} style={{ flexShrink: 0,  width: '150px'}}>
 								<Card elevation={3}>
 									<CardMedia
@@ -107,7 +111,7 @@ export default async function Page() {
 								</Card>
 							</Grid>
 						))}
-					</Box>
+					</Paper>
 
 
 
