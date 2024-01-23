@@ -1,8 +1,19 @@
 // import dynamic from "next/dynamic";
 import React, { Suspense } from 'react';
+import Image from 'next/image';
 
 import Chip from '@mui/material/Chip';
 import Box from '@mui/material/Box';
+
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
+import CardHeader from '@mui/material/CardHeader';
+import CardMedia from '@mui/material/CardMedia';
+import { Typography } from '@mui/material';
+import Grid from '@mui/material/Grid';
+import Switch from '@mui/material/Switch';
+
+
 
 
 async function getData() {
@@ -27,7 +38,14 @@ interface Filter {
 export default async function Page() {
 	const data = await getData()
 
-	console.log(data)
+	// console.log(data.sections[0].end_of_section)
+	// console.log(data.sections[0].items)
+
+	// console.log(data.sections[1].title)
+
+	// data.sections[0].items.forEach(item => {
+	// 	console.log(item);
+	// });
 
 	return (
 		<Suspense fallback={<div>Loading...</div>}>
@@ -56,9 +74,41 @@ export default async function Page() {
 						data.filtering.filters[2].values.map((filter: Filter, index: number) => (
 							<Box key={index} m={1} display="inline-block" >
 								<Chip variant="outlined" color="success" label={filter.name} />
+								<Switch
+									edge="end"
+									inputProps={{
+										'aria-labelledby': 'switch-list-label-bluetooth',
+									}}
+								/>
 							</Box>
 						))
 					}
+
+
+					<Box style={{ display: 'flex' , overflowX: 'scroll', overflowY:'hidden',   }}>
+						{data.sections[0].items.map((item: any) => (
+							<Grid p={1} item key={item.content_id} style={{ flexShrink: 0,  width: '150px'}}>
+								<Card elevation={3}>
+									<CardMedia
+										component="img"
+										alt={item.title}
+										height="140"
+										image={item.image.url}
+									/>
+									<CardContent>
+										<Typography variant="body1" component="div">
+											{item.title}
+										</Typography>
+										<Typography variant="body2" color="text.secondary">
+											{item.quantity_str}
+										</Typography>
+										<a href={item.link.target}>{item.link.title}</a>
+									</CardContent>
+								</Card>
+							</Grid>
+						))}
+					</Box>
+
 
 
 					<h4>filter multi select</h4>
@@ -79,14 +129,35 @@ export default async function Page() {
 						))
 					}
 
-					<h4>Browse </h4>
-					{
-						data.sections[1].items.map((items: any, index: number) => (
-							<Box key={index} m={1} display="inline-block" >
-								<Chip variant="outlined" color="success" label={items.title} />
-							</Box>
-						))
-					}
+					<h4>Categories</h4>
+
+					<div style={{ display: 'flex', overflowX: 'auto', width: '100%' }}>
+						{data.sections[0].items.map((item: any) => (
+							<Grid item xs={6} key={item.content_id} style={{ flex: '0 0 auto', margin: '0 10px' }}>
+								<Card>
+									<CardMedia
+										component="img"
+										alt={item.title}
+										height="140"
+										image={item.image.url}
+									/>
+									<CardContent>
+										<Typography variant="h5" component="div">
+											{item.title}
+										</Typography>
+										<Typography variant="body2" color="text.secondary">
+											{item.quantity_str}
+										</Typography>
+										<a href={item.link.target}>{item.link.title}</a>
+									</CardContent>
+								</Card>
+							</Grid>
+						))}
+					</div>
+
+
+
+
 
 
 				</Box>
