@@ -1,6 +1,5 @@
 // import dynamic from "next/dynamic";
-
-import { values } from "mobx"
+import React, { Suspense } from 'react';
 
 import Chip from '@mui/material/Chip';
 import Box from '@mui/material/Box';
@@ -31,50 +30,68 @@ export default async function Page() {
 	console.log(data)
 
 	return (
-		<div>
-			<Box m={1}>
-			<h1>Wolt API restaurants</h1>
+		<Suspense fallback={<div>Loading...</div>}>
 
-			
-			<h4>filter by €</h4>
-			{
-				data.filtering.filters[1].values.map((filter: Filter, index: number) => (
-					<Box key={index} m={1} display="inline-block" >
-						<Chip variant="outlined" color="success" label={filter.name} />
-					</Box>
-				))
-			}
-
-			<h4>filter Wolt+</h4>
-			{
-				data.filtering.filters[2].values.map((filter: Filter, index: number) => (
-					<Box key={index} m={1} display="inline-block" >
-						<Chip variant="outlined" color="success" label={filter.name} />
-					</Box>
-				))
-			}
+			<div>
+				<Box m={1}>
+					<h1>Wolt API restaurants</h1>
 
 
-			<h4>filter multi select</h4>
-			{
-				data.filtering.filters[0].values.map((filter: Filter, index: number) => (
-					<Box key={index} m={1} display="inline-block" >
-						<Chip variant="outlined" color="success" label={filter.name} />
-					</Box>
-				))
-			}
+					<h4>filter by €</h4>
+					<Suspense fallback={<div>Loading2...</div>}>
 
-<h4>Browse categories</h4>
-			{
-				data.sections[0].items.map((items: any, index: number) => (
-					<Box key={index} m={1} display="inline-block" >
-						<Chip variant="outlined" color="success" label={items.title} />
-					</Box>
-				))
-			}
+						{
+							data.filtering.filters[1].values.map((filter: Filter, index: number) => (
+								<Box key={index} m={1} display="inline-block" >
+									<Chip variant="outlined" color="success" label={filter.name} />
+								</Box>
+							))
+						}
 
-			
-</Box>
-		</div>
+					</Suspense>
+
+
+					<h4>filter Wolt+</h4>
+					{
+						data.filtering.filters[2].values.map((filter: Filter, index: number) => (
+							<Box key={index} m={1} display="inline-block" >
+								<Chip variant="outlined" color="success" label={filter.name} />
+							</Box>
+						))
+					}
+
+
+					<h4>filter multi select</h4>
+					{
+						data.filtering.filters[0].values.map((filter: Filter, index: number) => (
+							<Box key={index} m={1} display="inline-block" >
+								<Chip variant="outlined" color="success" label={filter.name} />
+							</Box>
+						))
+					}
+
+					<h4>Browse categories</h4>
+					{
+						data.sections[0].items.map((items: any, index: number) => (
+							<Box key={index} m={1} display="inline-block" >
+								<Chip variant="outlined" color="success" label={items.title} />
+							</Box>
+						))
+					}
+
+					<h4>Browse </h4>
+					{
+						data.sections[1].items.map((items: any, index: number) => (
+							<Box key={index} m={1} display="inline-block" >
+								<Chip variant="outlined" color="success" label={items.title} />
+							</Box>
+						))
+					}
+
+
+				</Box>
+			</div>
+		</Suspense>
+
 	);
 } 
