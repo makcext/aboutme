@@ -38,22 +38,14 @@ interface Filter {
 export default async function Page() {
 	const data = await getData()
 
-	// console.log(data.sections[0].end_of_section)
-	// console.log(data.sections[0].items)
-
-	// console.log(data.sections[1].title)
-
-	// data.sections[0].items.forEach(item => {
-	// 	console.log(item);
-	// });
-
-	// Function to handle chip click
-
-
-
-
-
-
+	  // // Server Action
+		// async function create() {
+		// 	'use server'
+	 
+		// 	// apply filters
+			
+		// }
+	 
 
 
 
@@ -71,7 +63,7 @@ export default async function Page() {
 						{
 							data.filtering.filters[1].values.map((filter: Filter, index: number) => (
 								<Box key={index} m={1} display="inline-block" >
-									<Chip variant="outlined" color="success" label={filter.name} />
+									<Chip  variant="outlined" color="success" label={filter.name} />
 								</Box>
 							))
 						}
