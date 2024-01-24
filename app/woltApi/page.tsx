@@ -65,7 +65,7 @@ export default async function Page() {
 					<h1>Wolt API restaurants</h1>
 
 
-					<h4>filter by €</h4>
+					<h4>Filter by €</h4>
 					<Suspense fallback={<div>Loading2...</div>}>
 
 						{
@@ -79,7 +79,7 @@ export default async function Page() {
 					</Suspense>
 
 
-					<h4>filter Wolt+</h4>
+					<h4>Filter Wolt+</h4>
 					{
 						data.filtering.filters[2].values.map((filter: Filter, index: number) => (
 							<Box key={index} m={1} display="inline-block" >
