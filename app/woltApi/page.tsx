@@ -47,6 +47,16 @@ export default async function Page() {
 	// 	console.log(item);
 	// });
 
+	// Function to handle chip click
+
+
+
+
+
+
+
+
+
 	return (
 		<Suspense fallback={<div>Loading...</div>}>
 
@@ -84,14 +94,15 @@ export default async function Page() {
 						))
 					}
 
+					<h4>Categories</h4>
 
-<Paper style={{ 
-    display: 'grid',
-		gridAutoFlow: 'column', 
-    overflowX: 'scroll', 
-}}>		
-				{data.sections[0].items.map((item: any) => (
-							<Grid p={1} item key={item.content_id} style={{ flexShrink: 0,  width: '150px'}}>
+					<Paper style={{
+						display: 'grid',
+						gridAutoFlow: 'column',
+						overflowX: 'scroll',
+					}}>
+						{data.sections[0].items.map((item: any) => (
+							<Grid p={1} item key={item.content_id} style={{ flexShrink: 0, width: '150px' }}>
 								<Card elevation={3}>
 									<CardMedia
 										component="img"
@@ -135,29 +146,7 @@ export default async function Page() {
 
 					<h4>Categories</h4>
 
-					<div style={{ display: 'flex', overflowX: 'auto', width: '100%' }}>
-						{data.sections[0].items.map((item: any) => (
-							<Grid item xs={6} key={item.content_id} style={{ flex: '0 0 auto', margin: '0 10px' }}>
-								<Card>
-									<CardMedia
-										component="img"
-										alt={item.title}
-										height="140"
-										image={item.image.url}
-									/>
-									<CardContent>
-										<Typography variant="h5" component="div">
-											{item.title}
-										</Typography>
-										<Typography variant="body2" color="text.secondary">
-											{item.quantity_str}
-										</Typography>
-										<a href={item.link.target}>{item.link.title}</a>
-									</CardContent>
-								</Card>
-							</Grid>
-						))}
-					</div>
+
 
 
 
