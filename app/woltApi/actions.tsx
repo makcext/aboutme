@@ -1,4 +1,4 @@
-"use server"
+
 import Button from '@mui/material/Button';
 
 async function getData() {
