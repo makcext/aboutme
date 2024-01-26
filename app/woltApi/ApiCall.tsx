@@ -2,7 +2,7 @@ import axios from 'axios';
 
 async function getData() {
   try {
-    const res = await axios.get('https://restaurant-api.wolt.com/v1/pages/restaurants?lat=60.170187&lon=24.930599');
+    const res = await axios.get('https://restaurant-api.wolt.com/v1/pages/restaurants?lat=37.983810&lon=23.727539');
     return res.data;
   } catch (error) {
     console.error('An error occurred:', error);

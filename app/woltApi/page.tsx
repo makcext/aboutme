@@ -40,7 +40,7 @@ export default async function Page() {
 
 					<h4>filter Wolt+</h4>
 					{
-						data.filtering.filters[2].values.map((filter: Filter, index: number) => (
+						data.filtering.filters[1].values.map((filter: Filter, index: number) => (
 							<Box key={index} m={1} display="inline-block" >
 								<Chip variant="outlined" color="success" label={filter.name} />
 								<Switch
