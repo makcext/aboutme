@@ -13,26 +13,8 @@ import { Paper, Typography } from '@mui/material';
 import Grid from '@mui/material/Grid';
 import Switch from '@mui/material/Switch';
 
-import FetchData from './actions'
-
-
-
-
-// async function getData() {
-// 	const res = await fetch('https://restaurant-api.wolt.com/v1/pages/restaurants?lat=60.170187&lon=24.930599')
-// 	// The return value is *not* serialized
-// 	// You can return Date, Map, Set, etc.
-
-// 	if (!res.ok) {
-// 		// This will activate the closest `error.js` Error Boundary
-// 		throw new Error('Failed to fetch data')
-// 	}
-
-// 	return res.json()
-// }
-
-// async function getData() {
-// 	const res = await FetchData()
+import FetchData from './ApiCall'
+import FilterPrice from './filterPrice';
 
 interface Filter {
 	name: string;
@@ -43,25 +25,6 @@ interface Filter {
 export default async function Page() {
 	const data = await FetchData()
 
-	// console.log(data.sections[0].end_of_section)
-	// console.log(data.sections[0].items)
-
-	// console.log(data.sections[1].title)
-
-	// data.sections[0].items.forEach(item => {
-	// 	console.log(item);
-	// });
-
-	// Function to handle chip click
-
-
-
-
-
-
-
-
-
 	return (
 		<Suspense fallback={<div>Loading...</div>}>
 
@@ -70,18 +33,9 @@ export default async function Page() {
 					<h1>Wolt API restaurants</h1>
 
 
+
 					<h4>filter by €</h4>
-					<Suspense fallback={<div>Loading2...</div>}>
-
-						{
-							data.filtering.filters[1].values.map((filter: Filter, index: number) => (
-								<Box key={index} m={1} display="inline-block" >
-									<Chip variant="outlined" color="success" label={filter.name} />
-								</Box>
-							))
-						}
-
-					</Suspense>
+					<FilterPrice data={data} />
 
 
 					<h4>filter Wolt+</h4>
@@ -150,13 +104,6 @@ export default async function Page() {
 					}
 
 					<h4>Categories</h4>
-
-
-
-
-
-
-
 
 				</Box>
 			</div>
