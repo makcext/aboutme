@@ -1,6 +1,7 @@
-"use server"
+
 
 async function getData() {
+  'use server'
   try {
     const res = await fetch('https://restaurant-api.wolt.com/v1/pages/restaurants?lat=60.170187&lon=24.930599')
     if (!res.ok) {
