@@ -1,7 +1,6 @@
 // import dynamic from "next/dynamic";
 import React, { Suspense } from 'react';
 import Image from 'next/image';
-
 import Chip from '@mui/material/Chip';
 import Box from '@mui/material/Box';
 
@@ -35,42 +34,47 @@ export default async function Page() {
 
 
 
+
+
+
+
+
+					<Typography variant='h3' p={2}>Categories</Typography>
+
+
+
+
+
+					<Grid style={{ display: 'flex', overflowX: 'auto', scrollbarWidth: 'none', msOverflowStyle: 'none', padding: 8 }}>
+						{data.sections[0].items.map((item: any) => (
+							<Card elevation={3} key={item.condent_id} style={{ flex: '0 0 auto', marginRight: '8px', width: '128px' }}>
+								<CardMedia
+									component="img"
+									alt={item.title}
+									height="128"
+									image={item.image.url}
+								/>
+								<CardContent>
+									<Typography variant="body2" >
+										{item.title}
+									</Typography>
+									<Typography variant="body2" color="text.secondary">
+										{item.quantity_str}
+									</Typography>
+								</CardContent>
+							</Card>
+						))}
+					</Grid>
+
+
+
+
+
+
+
+
 					<h4>filter by €</h4>
 					<FilterPrice data={data} />
-
-
-					
-
-					<h4>Categories</h4>
-
-					<Paper style={{
-						display: 'grid',
-						gridAutoFlow: 'column',
-						overflowX: 'scroll',
-					}}>
-						{data.sections[0].items.map((item: any) => (
-							<Grid p={1} item key={item.content_id} style={{ flexShrink: 0, width: '150px' }}>
-								<Card elevation={3}>
-									<CardMedia
-										component="img"
-										alt={item.title}
-										height="140"
-										image={item.image.url}
-									/>
-									<CardContent>
-										<Typography variant="body1" component="div">
-											{item.title}
-										</Typography>
-										<Typography variant="body2" color="text.secondary">
-											{item.quantity_str}
-										</Typography>
-										<a href={item.link.target}>{item.link.title}</a>
-									</CardContent>
-								</Card>
-							</Grid>
-						))}
-					</Paper>
-
 
 
 					<h4>filter multi select</h4>
@@ -84,7 +88,7 @@ export default async function Page() {
 
 
 
-			
+
 
 				</Box>
 			</div>

@@ -52,7 +52,7 @@ function MyComponent({ data }: { data: Filter }) {
 	// console.log(selectedFilter)
 
 	const renderCard = (item: any, index: any) => (
-		<Grid p={1} item key={index} style={{ flexShrink: 0, width: '304px' }}>
+		<Grid p={1} item key={index} style={{ flexShrink: 0, width: '304px',  }}>
 			<Card elevation={3}>
 				<CardHeader
 					title={<Typography variant="body2">{item.title}</Typography>}
