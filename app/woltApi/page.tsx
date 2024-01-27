@@ -13,8 +13,8 @@ import { Paper, Typography } from '@mui/material';
 import Grid from '@mui/material/Grid';
 import Switch from '@mui/material/Switch';
 
-// import FetchData from './ApiCall'
-import FetchData from './ApiCallNext'
+import FetchData from './ApiCall'
+// import FetchData from './ApiCallNext'
 import FilterPrice from './filterPrice';
 
 interface Filter {
