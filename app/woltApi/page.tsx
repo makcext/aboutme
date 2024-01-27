@@ -37,15 +37,8 @@ export default async function Page() {
 			<div>
 				<Box m={1}>
 					<h1>Wolt API restaurants</h1>
-
-
-
-
-
-
-
-
-					<Typography variant='h3' p={2}>Categories</Typography>
+					<Typography variant='h4' p={2}>{data.sections[0].title}</Typography>
+					<Typography variant='h4' p={2}>Categories</Typography>
 					<Grid style={{ display: 'flex', overflowX: 'auto', scrollbarWidth: 'none', msOverflowStyle: 'none', padding: 8 }}>
 						{data.sections[0].items.map((item: any) => (
 							<Card elevation={3} key={item.condent_id} style={{ flex: '0 0 auto', marginRight: '8px', width: '128px' }}>
@@ -67,13 +60,11 @@ export default async function Page() {
 						))}
 					</Grid>
 
+
 					<Typography variant='h4' p={2}>{data.sections[1].title}</Typography>
 					{data.sections[1].items.slice(0, 5).map((item: any, index: any) => (
 						<Grid p={1} item key={item.content_id} style={{ flexShrink: 0, }}>
 							<Card elevation={3}>
-								{/* <CardHeader
-									title={<Typography variant="body2">{item.title}</Typography>}
-								/> */}
 								<CardMedia
 									component="img"
 									alt={item.title}
@@ -82,75 +73,44 @@ export default async function Page() {
 								/>
 
 								<CardContent style={{ paddingBottom: 0 }}>
-
-
-									<Grid container spacing={2}>
-
-										<Grid item xs={9}>
-											<Typography variant="overline" >
+								<Typography variant="overline" >
 												{item.title}
 											</Typography>
-
-
-
+									<Grid container spacing={2}>
+										<Grid item xs={9}>
 											<Typography variant="body2" color="textSecondary" >
 												{item.venue.short_description?.substring(0, 64)}
 											</Typography>
 										</Grid>
-
-
 										<Grid item alignContent={'center'} xs={3}>
-
 											<Box>
-												<Chip color='primary' sx={{
-													height: 'auto',
-													'& .MuiChip-label': {
-														display: 'block',
-														whiteSpace: 'normal',
-
-													},
-												}}
-
-
+												<Chip style={{ backgroundColor: 'rgba(0, 157, 224, 0.08)' }}  sx={{height: 'auto', '& .MuiChip-label': {display: 'block', whiteSpace: 'normal',},}}
 													label={
 														<>
-															<Typography align="center">{`${item.venue.estimate_range}`}</Typography>
-															<Typography align="center">{`${item.venue.estimate_box.subtitle}`}</Typography>
+															<Typography variant='body2' align="center">{`${item.venue.estimate_range}`}</Typography>
+															<Typography variant='body2' align="center">{`${item.venue.estimate_box.subtitle}`}</Typography>
 														</>
 													} />
 
-
 											</Box>
-
 										</Grid>
-
-
 									</Grid>
-									<br />
-									{/* <Divider variant="fullWidth"  /> */}
 
 									<Box display="flex" alignItems="left" justifyContent="left">
 										<MopedOutlinedIcon />
-										<Typography variant='body1' marginRight={1}>
+										<Typography variant='body2' marginRight={1}>
 											{item.venue.delivery_price}
 										</Typography>
 
-										<Typography variant="body1" color="textSecondary" align='center' >
+										<Typography variant="body2" color="textSecondary" align='center' >
 											{item.venue.rating ? item.venue.rating.score : 'No rating'}
 										</Typography>
 									</Box>
-
 
 								</CardContent>
 							</Card>
 						</Grid>
 					))}
-
-
-
-
-
-
 
 					<h4>filter by €</h4>
 					<FilterPrice data={data} />
