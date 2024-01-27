@@ -13,7 +13,8 @@ import { Paper, Typography } from '@mui/material';
 import Grid from '@mui/material/Grid';
 import Switch from '@mui/material/Switch';
 
-import FetchData from './ApiCall'
+// import FetchData from './ApiCall'
+import FetchData from './ApiCallNext'
 import FilterPrice from './filterPrice';
 
 interface Filter {
@@ -38,20 +39,7 @@ export default async function Page() {
 					<FilterPrice data={data} />
 
 
-					<h4>filter Wolt+</h4>
-					{
-						data.filtering.filters[1].values.map((filter: Filter, index: number) => (
-							<Box key={index} m={1} display="inline-block" >
-								<Chip variant="outlined" color="success" label={filter.name} />
-								<Switch
-									edge="end"
-									inputProps={{
-										'aria-labelledby': 'switch-list-label-bluetooth',
-									}}
-								/>
-							</Box>
-						))
-					}
+					
 
 					<h4>Categories</h4>
 
@@ -94,16 +82,9 @@ export default async function Page() {
 						))
 					}
 
-					<h4>Browse categories</h4>
-					{
-						data.sections[0].items.map((items: any, index: number) => (
-							<Box key={index} m={1} display="inline-block" >
-								<Chip variant="outlined" color="success" label={items.title} />
-							</Box>
-						))
-					}
 
-					<h4>Categories</h4>
+
+			
 
 				</Box>
 			</div>
