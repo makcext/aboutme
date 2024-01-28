@@ -11,8 +11,8 @@ export const metadata = {
   icons: {
     icon: [
       {
-        url: '/build/favicon.ico',
-        href: '/build/favicon.ico',
+        url: '/public/favicon.ico',
+        href: '/public/favicon.ico',
       },
     ],
   },
@@ -25,6 +25,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
+    
     <html lang="en">
 
       <body>
@@ -39,20 +40,7 @@ export default function RootLayout({
           strategy="afterInteractive"
           src="https://www.googletagmanager.com/gtag/js?id=G-WN0YMDN8RR"
         />
-        {/* <Analytics
-          id="gtag-inline-script"
-          strategy="afterInteractive"
-          dangerouslySetInnerHTML={{
-            __html: `
-              window.dataLayer = window.dataLayer || [];
-              function gtag(){dataLayer.push(arguments);}
-              gtag('js', new Date());
-              gtag('config', 'G-WN0YMDN8RR', {
-                page_path: window.location.pathname,
-              });
-            `,
-          }}
-        /> */}
+
       </body>
     </html>
   )
