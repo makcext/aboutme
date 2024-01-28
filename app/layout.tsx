@@ -35,10 +35,6 @@ export default function RootLayout({
             {children}
           </ThemeProvider>
         </ApolloWrapper>
-        <Analytics
-          strategy="afterInteractive"
-          src="https://www.googletagmanager.com/gtag/js?id=G-WN0YMDN8RR"
-        />
 
       </body>
     </html>
