@@ -6,8 +6,7 @@ import { Card, CardContent, CardMedia, Typography, Grid } from '@mui/material';
 export default function Categories({ data }: any) {
 
 	return (
-		<Suspense fallback={<div>Loading Categories...</div>}>
-
+<Box>
 			<Typography variant='h4' p={2}>{data.sections[0].title}</Typography>
 			<Grid style={{ display: 'flex', overflowX: 'auto', scrollbarWidth: 'none', msOverflowStyle: 'none', padding: 8 }}>
 				{data.sections[0].items.map((item: any, index: any) => (
@@ -29,7 +28,7 @@ export default function Categories({ data }: any) {
 					</Card>
 				))}
 			</Grid>
-		</Suspense>
+			</Box>
 
 	)
 }
