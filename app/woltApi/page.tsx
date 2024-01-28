@@ -17,7 +17,7 @@ import FetchData from './ApiCall'
 
 import FilterPrice from './filterPrice';
 // import Categories from './categories';
-const Categories = dynamic(() => import("./categories"), { ssr: false });
+// const Categories = dynamic(() => import("./categories"), { ssr: false });
 
 
 export default async function Page() {
@@ -31,7 +31,7 @@ export default async function Page() {
 				<Box m={1}>
 					<Typography variant="h4">Wolt API restaurants </Typography>
 				
-				<Categories data={data} />
+				{/* <Categories data={data} /> */}
 
 					<Typography variant='h4' p={2}>{data.sections[1].title}</Typography>
 					{data.sections[1].items.slice(0, 5).map((item: any, index: any) => (
