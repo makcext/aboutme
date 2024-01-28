@@ -6,6 +6,7 @@ import { Card, CardContent, CardMedia, Typography, Grid } from '@mui/material';
 export default function Categories({ data }: any) {
 
 	return (
+		<Suspense fallback={"Loading Restaurants..."}>
 <Box>
 			<Typography variant='h4' p={2}>{data.sections[0].title}</Typography>
 			<Grid style={{ display: 'flex', overflowX: 'auto', scrollbarWidth: 'none', msOverflowStyle: 'none', padding: 8 }}>
@@ -29,6 +30,7 @@ export default function Categories({ data }: any) {
 				))}
 			</Grid>
 			</Box>
+		</Suspense>
 
 	)
 }
