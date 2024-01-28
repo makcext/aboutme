@@ -11,8 +11,8 @@ export const metadata = {
   icons: {
     icon: [
       {
-        url: '/public/favicon.ico',
-        href: '/public/favicon.ico',
+        url: '/build/favicon.ico',
+        href: '/build/favicon.ico',
       },
     ],
   },
