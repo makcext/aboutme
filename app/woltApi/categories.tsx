@@ -33,4 +33,3 @@ export default function Categories({ data }: any) {
 
 	)
 }
-

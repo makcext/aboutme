@@ -15,7 +15,7 @@ import MopedOutlinedIcon from '@mui/icons-material/MopedOutlined';
 import FetchData from './ApiCall'
 // import FetchData from './ApiCallNext'
 
-// import FilterPrice from './filterPrice';
+import FilterPrice from './filterPrice';
 // import Categories from './categories';
 const Categories = dynamic(() => import("./categories"), { ssr: false });
 
