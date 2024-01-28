@@ -24,10 +24,10 @@ export default async function Page() {
 	const data = await FetchData()
 
 	return (
-		<Suspense fallback={<div>Loading Restaurants...</div>}>
+		<Suspense fallback={"Loading Restaurants..."}>
 		{/* <FilterPrice data={data} /> */}
 
-			<div>
+			<>
 				<Box m={1}>
 					<Typography variant="h4">Wolt API restaurants </Typography>
 				
@@ -85,8 +85,8 @@ export default async function Page() {
 					))}
 
 				</Box>
-			</div>
-		</Suspense>
+			</>
+		// </Suspense>
 
 	);
 } 
