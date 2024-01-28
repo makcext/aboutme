@@ -16,8 +16,8 @@ import FetchData from './ApiCall'
 // import FetchData from './ApiCallNext'
 
 import FilterPrice from './filterPrice';
-import Categories from './categories';
-// const Categories = dynamic(() => import("./categories"), { ssr: false });
+// import Categories from './categories';
+const Categories = dynamic(() => import("./categories"), { ssr: false });
 
 
 export default async function Page() {
