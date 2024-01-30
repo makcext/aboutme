@@ -4,7 +4,7 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 
-const API_KEY = process.env.NEXT_PUBLIC_OPENWEATHERf;
+const API_KEY = process.env.NEXT_PUBLIC_OPENWEATHERF;
 
 const fetchForecastWeatherData = async (latitude: number = 37.98, longitude: number = 23.72) => {
 	try {
