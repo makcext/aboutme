@@ -1,8 +1,11 @@
 // WeatherController.ts
 import axios from 'axios';
 import WeatherData from './WeatherModel';
+import dotenv from 'dotenv';
 
-const API_KEY = '149da3eb9110b7e6ba636b8ec43ac79a';
+dotenv.config();
+
+const API_KEY = process.env.API_KEY;
 
 const fetchWeatherData = async (latitude: number = 37.98, longitude: number = 23.72): Promise<WeatherData> => {
 	try {
@@ -13,6 +16,6 @@ const fetchWeatherData = async (latitude: number = 37.98, longitude: number = 23
 	} catch (error) {
 		throw new Error('error');
 	}
-	};
+};
 
-	export default fetchWeatherData;
+export default fetchWeatherData;
