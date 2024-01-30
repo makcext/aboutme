@@ -18,17 +18,22 @@ import BookList from './components/BookList'; // Import the new component
 import { loadErrorMessages, loadDevMessages } from "@apollo/client/dev";
 import { useMemo } from 'react';
 import { ApolloClient, InMemoryCache } from '@apollo/client';
+import dotenv from 'dotenv';
+dotenv.config();
 
 if (process.env.NODE_ENV === 'development') {  // Adds messages only in a dev environment
   loadDevMessages();
   loadErrorMessages();
 }
 
+
+
+
 // Add this function anywhere in your file
 function useApollo(initialState = null) {
   const client = useMemo(() => {
     return new ApolloClient({
-      uri: 'https://abtm-c97ea3f9a33e.herokuapp.com/status', // replace with your GraphQL server URL
+      uri: process.env.NEXT_PUBLIC_GRAPHQL_SERVER_URL, // replace with your GraphQL server URL
       cache: new InMemoryCache(),
     });
   }, []);
