@@ -1,7 +1,10 @@
 // Import axios
 import axios from 'axios';
+import dotenv from 'dotenv';
+dotenv.config();
 
-const API_KEY = '149da3eb9110b7e6ba636b8ec43ac79a';
+
+const API_KEY = process.env.NEXT_PUBLIC_OPENWEATHERf;
 
 const fetchForecastWeatherData = async (latitude: number = 37.98, longitude: number = 23.72) => {
 	try {
