@@ -75,7 +75,7 @@ jobs:
       - name: Build with Next.js
         run: ${{ steps.detect-package-manager.outputs.runner }} next build
         env:
-          NEXT_PUBLIC_OPENWEATHER: ${{ process.env.NEXT_PUBLIC_OPENWEATHER }}
+          NEXT_PUBLIC_OPENWEATHER: ${{ secrets.OPENWEATHER }}
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v2
         with:
