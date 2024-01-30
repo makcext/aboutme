@@ -1,12 +1,18 @@
 "use client";
 import { useMemo } from 'react';
 import { ApolloClient, InMemoryCache } from '@apollo/client';
+import dotenv from 'dotenv';
+
+
+
+dotenv.config();
+
 
 export default function useApollo(initialState = null) {
 	const client = useMemo(() => {
 		console.log('Initializing Apollo Client');
 		return new ApolloClient({
-			uri: 'https://abtm-c97ea3f9a33e.herokuapp.com/status', // replace with your GraphQL server URL
+			uri: process.env.NEXT_PUBLIC_GRAPHQL_SERVER_URL, // replace with your GraphQL server URL
 			cache: new InMemoryCache(),
 		});
 	}, []);

@@ -18,8 +18,8 @@ import BookList from './components/BookList'; // Import the new component
 import { loadErrorMessages, loadDevMessages } from "@apollo/client/dev";
 import { useMemo } from 'react';
 import { ApolloClient, InMemoryCache } from '@apollo/client';
-import dotenv from 'dotenv';
-dotenv.config();
+// import dotenv from 'dotenv';
+// dotenv.config();
 
 if (process.env.NODE_ENV === 'development') {  // Adds messages only in a dev environment
   loadDevMessages();
@@ -30,20 +30,20 @@ if (process.env.NODE_ENV === 'development') {  // Adds messages only in a dev en
 
 
 // Add this function anywhere in your file
-function useApollo(initialState = null) {
-  const client = useMemo(() => {
-    return new ApolloClient({
-      uri: process.env.NEXT_PUBLIC_GRAPHQL_SERVER_URL, // replace with your GraphQL server URL
-      cache: new InMemoryCache(),
-    });
-  }, []);
+// function useApollo(initialState = null) {
+//   const client = useMemo(() => {
+//     return new ApolloClient({
+//       uri: process.env.NEXT_PUBLIC_GRAPHQL_SERVER_URL, // replace with your GraphQL server URL
+//       cache: new InMemoryCache(),
+//     });
+//   }, []);
 
-  if (initialState) {
-    client.cache.restore(initialState);
-  }
+//   if (initialState) {
+//     client.cache.restore(initialState);
+//   }
 
-  return client;
-}
+//   return client;
+// }
 
 
 
