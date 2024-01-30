@@ -9,7 +9,7 @@ export interface Task {
 let nextId = 1;
 const tasks: Task[] = [];
 
-addTask("Buy groceries"); // Pre-rendered as not completed
+// addTask("Buy groceries"); // Pre-rendered as not completed
 
 export function addTask(title: string): Task {
   const task: Task = {

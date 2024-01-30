@@ -42,9 +42,8 @@ class TaskStore {
 
   constructor() {
     makeAutoObservable(this);
-    this.addTask("Random Task 1");
-    this.addTask("Random Task 2");
-    this.addTask("Random Task 3");
+    this.addTask("develop");
+    this.addTask("review code");
   }
   setFilterType(filterType: FilterType) {
     this.filterType = filterType;
@@ -151,9 +150,10 @@ const TaskView: React.FC = observer(() => {
             {tasksToShow.map(task => (
               <ListItem key={task.id}>
                 <Checkbox
+                  color='success'
                   checked={task.done}
                   onChange={() => handleTaskCompletionToggle(task.id)}
-                  sx={{ padding: '0' }}
+                  sx={{ padding: '0', mr: '8px'}}
                 />
                 <ListItemText
                   primaryTypographyProps={{ variant: 'subtitle2' }}
