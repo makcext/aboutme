@@ -181,7 +181,7 @@ const AuthBooks = observer(() => {
           <BookCollectionDialog open={infoDialogOpen} onClose={handleInfoIconClick} />
         </Grid>
         <Box padding={1}>
-          <Grid container spacing={2} paddingBottom={0}>
+          <Grid container spacing={2} paddingBottom={1}>
             {fields.map(field => (
               <Grid item xs key={field.name}>
                 <TextField
@@ -204,7 +204,7 @@ const AuthBooks = observer(() => {
           {userStore.isLoggedIn ? (
             <BookList dataU={dataU} handleDeleteBook={handleDeleteBook} />
           ) : (
-            <Alert severity="warning">please login to view list</Alert>
+            <Alert sx={{width:"70%"}} severity="warning">please login to view list</Alert>
           )}
         </Box>
       </Paper>

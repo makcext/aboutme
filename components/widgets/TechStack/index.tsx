@@ -34,7 +34,7 @@ const TechStack: React.FC = () => {
 
 
           <Grow in={true} style={{ transformOrigin: '0 1 0' }} {...(true ? { timeout: 2000 } : {})} >
-            <Typography variant='subtitle1' sx={{ display: 'flex', padding: '8px' }} > Developer who wants to explore {selectedTech?.toString()} tech </Typography>
+            <Typography variant='body2' color="textSecondary" sx={{ display: 'flex', paddingLeft: '8px' }} > This stack provides powerful capabilities for developing modern web applications, ensuring high performance, flexibility, and reliability. {selectedTech?.toString()} tech </Typography>
           </Grow>
           <Grid
             container
