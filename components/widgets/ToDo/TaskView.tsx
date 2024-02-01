@@ -211,23 +211,6 @@ const TaskView: React.FC = observer(() => {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 });
 
 export default TaskView;
