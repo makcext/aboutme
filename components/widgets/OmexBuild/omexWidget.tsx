@@ -39,12 +39,12 @@ const projects = [
 	{
 		id: 0,
 		images: [
-			'/aboutme/omex/01.png',
-			'/aboutme/omex/02.png',
-			'/aboutme/omex/03.png',
-			'/aboutme/omex/04.png',
-			'/aboutme/omex/05.png',
-			'/aboutme/omex/06.png',
+			{ id: 0, url: '/aboutme/omex/01.png' },
+			{ id: 1, url: '/aboutme/omex/02.png' },
+			{ id: 2, url: '/aboutme/omex/03.png' },
+			{ id: 3, url: '/aboutme/omex/04.png' },
+			{ id: 4, url: '/aboutme/omex/05.png' },
+			{ id: 5, url: '/aboutme/omex/06.png' },
 		],
 		title: 'omex',
 		by: 1,
@@ -98,23 +98,15 @@ const OmexWidget = () => {
 									<Box component='article' sx={{ width: '100%', height: '100%', position: 'relative', p: 1 }}>
 										<Card elevation={4} sx={{ backgroundColor: 'transparent' }}>
 											<Box sx={{ display: 'flex', overflowY: 'auto', scrollSnapType: 'x mandatory', scrollbarWidth: '-moz-initial', '&::-webkit-scrollbar': { display: 'none' } }} onScroll={handleScroll(index)}>
+												{projects[0].images.map((image, index) => (
+													<Card key={index} sx={{width: '280', height: '360'}}>
+														<Image src={`${image.url}`} alt={project.title} width={280} height={360} />
+														
+													</Card>
+												))}
 
 
-
-{projects[0].images.map((image, index) => {
-  console.log(image);
-  return (
-    <Card key={index}>
-      <Image 
-        src={image} 
-        alt={projects[0].title} 
-        width={280} 
-        height={360} 
-      />
-    </Card>
-  );
-})}
-
+                     {/* <Image src={`/aboutme/weatherIcons/${item?.weather[0]?.icon || 'unknown'}.png`} alt={weatherData?.weather[0]?.description || ''} width={48} height={48} /> */}
 
 
 
