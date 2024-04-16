@@ -77,12 +77,23 @@ const OmexWidget = () => {
 
 
 
+<Box maxWidth="xs" paddingTop={0} justifyContent="space-around" textAlign="left" minHeight={460}>
+				{/* <Paper elevation={3} > */}
+					<Paper variant="outlined" sx={{ borderColor: 'gray', padding: 0 }}>
+						<Box textAlign="left" minHeight={460}>
+							{/* <Typography variant="body1">15 Apr 2024 Finished Omex Build Project: [ feb 2024 - apr 2024 ]</Typography>
+
+							<Typography variant="body2">Functional Requirements: contact form, customer review, scanning qr code notification to mail! </Typography> */}
+
+
+
+
 			{projects.map((project, index) => (
-				<Grid xs={12} md={6} item key={project.id}>
+				<Grid xs={12} md={12} item key={project.id}>
 					<Box component='article' sx={{ width: '100%', height: '100%', position: 'relative', p: 0 }}>
 
 						<Card elevation={4} sx={{ backgroundColor: 'transparent' }}>
-							<Box p={2}  justifyContent={'space-between'}>
+							<Box p={1}  justifyContent={'space-between'}>
 
 								<Typography variant="body1">15 Apr 2024 Finished Omex Build Project: [ feb 2024 - apr 2024 ]</Typography>
 								{/* <Typography variant="body2">Description: This is a project to build a web app for Omex Build ltd</Typography> */}
@@ -110,6 +121,18 @@ const OmexWidget = () => {
 					</Box>
 				</Grid>
 			))}
+
+
+
+</Box>
+					</Paper>
+				{/* </Paper> */}
+			</Box>
+
+
+
+
+
 		</>
 	);
 }
