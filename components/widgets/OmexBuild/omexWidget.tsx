@@ -44,6 +44,7 @@ const projects = [
 			'/omex/03.png',
 			'/omex/04.png',
 			'/omex/05.png',
+			'/omex/06.png',
 		],
 		title: 'omex',
 		by: 1,
@@ -95,9 +96,17 @@ const OmexWidget = () => {
 									<Box component='article' sx={{ width: '100%', height: '100%', position: 'relative', p: 1 }}>
 										<Card elevation={4} sx={{ backgroundColor: 'transparent' }}>
 											<Box sx={{ display: 'flex', overflowY: 'auto', scrollSnapType: 'x mandatory', scrollbarWidth: '-moz-initial', '&::-webkit-scrollbar': { display: 'none' } }} onScroll={handleScroll(index)}>
-												{project.images.map((image, imageIndex) => (
-													<CardMedia key={imageIndex} component="img" height="360px" image={image} alt={project.title} sx={{ flex: 'none', scrollSnapAlign: 'start', objectFit: 'contain' }} />
-												))}
+{project.images.map((image, imageIndex) => (
+  <CardMedia 
+    key={imageIndex} 
+    component="img" 
+    height="360px" 
+    image={image} 
+    alt={project.title} 
+    sx={{ flex: 'none', scrollSnapAlign: 'start', objectFit: 'contain' }} 
+  />
+))}
+																			
 											</Box>
 											<Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', mt: 0 }}>
 												{project.images.map((_, dotIndex) => (
