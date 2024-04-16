@@ -6,8 +6,6 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 const API_KEY = process.env.NEXT_PUBLIC_OPENWEATHER;
-// const API_KEY = "149da3eb9110b7e6ba636b8ec43ac79a"
-// console.log(API_KEY);
 
 const fetchWeatherData = async (latitude: number = 37.98, longitude: number = 23.72): Promise<WeatherData> => {
 	try {

@@ -39,12 +39,12 @@ const projects = [
 	{
 		id: 0,
 		images: [
-			'/omex/01.png',
-			'/omex/02.png',
-			'/omex/03.png',
-			'/omex/04.png',
-			'/omex/05.png',
-			'/omex/06.png',
+			'/aboutme/omex/01.png',
+			'/aboutme/omex/02.png',
+			'/aboutme/omex/03.png',
+			'/aboutme/omex/04.png',
+			'/aboutme/omex/05.png',
+			'/aboutme/omex/06.png',
 		],
 		title: 'omex',
 		by: 1,
