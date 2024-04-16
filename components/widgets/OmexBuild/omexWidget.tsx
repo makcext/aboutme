@@ -39,12 +39,12 @@ const projects = [
 	{
 		id: 0,
 		images: [
-			{ id: 0, url: '/aboutme/omex/01.png' },
-			{ id: 1, url: '/aboutme/omex/02.png' },
-			{ id: 2, url: '/aboutme/omex/03.png' },
-			{ id: 3, url: '/aboutme/omex/04.png' },
-			{ id: 4, url: '/aboutme/omex/05.png' },
-			{ id: 5, url: '/aboutme/omex/06.png' },
+			{ id: 0, url: '01' },
+			{ id: 1, url: '02' },
+			{ id: 2, url: '03' },
+			{ id: 3, url: '04' },
+			{ id: 4, url: '05' },
+			{ id: 5, url: '06' },
 		],
 		title: 'omex',
 		by: 1,
@@ -100,7 +100,7 @@ const OmexWidget = () => {
 											<Box sx={{ display: 'flex', overflowY: 'auto', scrollSnapType: 'x mandatory', scrollbarWidth: '-moz-initial', '&::-webkit-scrollbar': { display: 'none' } }} onScroll={handleScroll(index)}>
 												{projects[0].images.map((image, index) => (
 													<Card key={index} sx={{width: '280', height: '360'}}>
-														<Image src={`${image.url}`} alt={project.title} width={280} height={360} />
+														<Image src={`aboutme/omex/${image.url}.png`} alt={project.title} width={280} height={360} />
 														
 													</Card>
 												))}
