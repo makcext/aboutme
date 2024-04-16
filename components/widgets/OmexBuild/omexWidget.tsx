@@ -59,6 +59,8 @@ const projects = [
 
 
 
+
+
 const OmexWidget = () => {
 
 
@@ -96,17 +98,27 @@ const OmexWidget = () => {
 									<Box component='article' sx={{ width: '100%', height: '100%', position: 'relative', p: 1 }}>
 										<Card elevation={4} sx={{ backgroundColor: 'transparent' }}>
 											<Box sx={{ display: 'flex', overflowY: 'auto', scrollSnapType: 'x mandatory', scrollbarWidth: '-moz-initial', '&::-webkit-scrollbar': { display: 'none' } }} onScroll={handleScroll(index)}>
-{project.images.map((image, imageIndex) => (
-  <CardMedia 
-    key={imageIndex} 
-    component="img" 
-    height="360px" 
-    image={image} 
-    alt={project.title} 
-    sx={{ flex: 'none', scrollSnapAlign: 'start', objectFit: 'contain' }} 
-  />
-))}
-																			
+
+
+
+{projects[0].images.map((image, index) => {
+  console.log(image);
+  return (
+    <Card key={index}>
+      <Image 
+        src={image} 
+        alt={projects[0].title} 
+        width={280} 
+        height={360} 
+      />
+    </Card>
+  );
+})}
+
+
+
+
+
 											</Box>
 											<Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', mt: 0 }}>
 												{project.images.map((_, dotIndex) => (
