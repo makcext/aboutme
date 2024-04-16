@@ -107,30 +107,16 @@ const HelloBlock = () => {
 						<InfoBlock icon={<AccessTimeIcon />} text="UTC +03:00" />
 						<InfoBlock icon={<TwitterIcon />} text="@makcext" />
 
-						<Box padding={1} display="inline-block">
-							<Link href="/weather">
-								<Chip
-									color="success"
-									label="Weather"
-									variant="outlined"
-									clickable
-								/>
-							</Link>
-						</Box>
-						<Box padding={1} display="inline-block">
-							<Link href="/woltApi">
-								<Chip
-									color="success"
-									label="wolt api"
-									variant="outlined"
-									clickable
-								/>
-							</Link>
-						</Box>
-						<Box display="inline-block">
+						
 
-						</Box>
 					</Grid>
+
+
+
+
+
+
+					
 					<Grid item xs={6} md={6}>
 						<Grow in={true} style={{ transformOrigin: '0 1 0' }} {...(true ? { timeout: 1000 } : {})}>
 							<Typography variant="body1" fontSize={16} sx={{ textAlign: 'center' }}>
@@ -177,6 +163,41 @@ const HelloBlock = () => {
 						{/* <Avatars /> */}
 
 					</Grid>
+
+
+					<Box padding={1} display="inline-block">
+							<Link href="/weather">
+								<Chip
+									color="success"
+									label="Weather"
+									variant="outlined"
+									clickable
+								/>
+							</Link>
+						</Box>
+						<Box padding={1} display="inline-block">
+							<Link href="/woltApi">
+								<Chip
+									color="success"
+									label="wolt api"
+									variant="outlined"
+									clickable
+								/>
+							</Link>
+						</Box>
+						<Box padding={1} display="inline-block">
+							<Link href="https://omexbuild.uk">
+								<Chip
+									color="success"
+									label="omexbuild"
+									variant="outlined"
+									clickable
+								/>
+							</Link>
+						</Box>
+
+
+
 					{/* <Box display="flex" justifyContent="center" alignItems="center" style={{ height: '100%' }}>
               <Button onClick={handleGPSClick}>
                 <Chip  label="Use GPS" clickable color="success" variant="outlined" />
