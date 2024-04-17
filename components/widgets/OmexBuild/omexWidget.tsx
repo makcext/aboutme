@@ -96,7 +96,7 @@ const OmexWidget = () => {
 
 										<Box sx={{ display: 'flex', overflowY: 'auto', scrollSnapType: 'x mandatory', scrollbarWidth: '-moz-initial', '&::-webkit-scrollbar': { display: 'none' } }} onScroll={handleScroll(index)}>
 											{project.images.map((image, imageIndex) => (
-												<CardMedia key={imageIndex} component="img" height="420px" image={`aboutme/omex/${image}.png`} alt={project.title} sx={{ flex: 'none', scrollSnapAlign: 'start', objectFit: 'contain' }} />
+												<CardMedia key={imageIndex} component="img" height="420px" image={`aboutme/omex/${image}.webp`} alt={project.title} sx={{ flex: 'none', scrollSnapAlign: 'start', objectFit: 'contain' }} />
 											))}
 										</Box>
 
