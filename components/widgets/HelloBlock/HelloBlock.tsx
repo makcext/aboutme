@@ -107,7 +107,7 @@ const HelloBlock = () => {
 						<InfoBlock icon={<AccessTimeIcon />} text="UTC +03:00" />
 						<InfoBlock icon={<TwitterIcon />} text="@makcext" />
 
-						
+
 
 					</Grid>
 
@@ -116,7 +116,7 @@ const HelloBlock = () => {
 
 
 
-					
+
 					<Grid item xs={6} md={6}>
 						<Grow in={true} style={{ transformOrigin: '0 1 0' }} {...(true ? { timeout: 1000 } : {})}>
 							<Typography variant="body1" fontSize={16} sx={{ textAlign: 'center' }}>
@@ -164,37 +164,37 @@ const HelloBlock = () => {
 
 					</Grid>
 
-
 					<Box padding={1} display="inline-block">
-							<Link href="/weather">
-								<Chip
-									color="success"
-									label="Weather"
-									variant="outlined"
-									clickable
-								/>
-							</Link>
-						</Box>
-						<Box padding={1} display="inline-block">
-							<Link href="/woltApi">
-								<Chip
-									color="success"
-									label="wolt api"
-									variant="outlined"
-									clickable
-								/>
-							</Link>
-						</Box>
-						<Box padding={1} display="inline-block">
-							<Link href="https://omexbuild.uk">
-								<Chip
-									color="success"
-									label="omexbuild"
-									variant="outlined"
-									clickable
-								/>
-							</Link>
-						</Box>
+						<Link href="https://omexbuild.uk">
+							<Chip
+								color="success"
+								label="Omex Build"
+								variant="outlined"
+								clickable
+							/>
+						</Link>
+					</Box>
+					<Box padding={1} display="inline-block">
+						<Link href="/weather">
+							<Chip
+								color="success"
+								label="Weather"
+								variant="outlined"
+								clickable
+							/>
+						</Link>
+					</Box>
+					<Box padding={1} display="inline-block">
+						<Link href="/woltApi">
+							<Chip
+								color="success"
+								label="wolt api"
+								variant="outlined"
+								clickable
+							/>
+						</Link>
+					</Box>
+
 
 
 

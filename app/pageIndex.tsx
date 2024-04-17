@@ -5,6 +5,7 @@ import { Box, Grid } from "@mui/material";
 // Dynamic import components
 const HelloBlock = dynamic(() => import("../components/widgets/HelloBlock/HelloBlock"), { ssr: false });
 const OmexBuild = dynamic(() => import("../components/widgets/OmexBuild/omexWidget"), { ssr: false });
+const TelegramChannel = dynamic(() => import("../components/widgets/TelegramChannel/telegramChannel"), { ssr: false });
 const BookCollection = dynamic(() => import("../components/widgets/BookCollection/BookCollection"), { ssr: false });
 const ToDo = dynamic(() => import("../components/widgets/ToDo/TaskView"), { ssr: false });
 const WoltFee = dynamic(() => import("../components/widgets/WoltFee/WoltView"), { ssr: false });
@@ -26,6 +27,9 @@ export default function Page() {
 
             <Grid item xs={12} sm={12} md={6}>
               <OmexBuild />
+            </Grid>
+            <Grid item xs={12} sm={12} md={6}>
+              <TelegramChannel />
             </Grid>
 
 
