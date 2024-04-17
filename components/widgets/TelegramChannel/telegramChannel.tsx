@@ -50,7 +50,7 @@ const TelegramWidget = () => {
 								</Typography>
 							</Box>
 
-							<Box padding={0} pt={1} style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+							{/* <Box padding={0} pt={1} style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
 								<Link href="tg://resolve?domain=ola_kala">
 									<Chip
 										color='info'
@@ -59,13 +59,13 @@ const TelegramWidget = () => {
 										clickable
 									/>
 								</Link>
-							</Box>
+							</Box> */}
 
 							<Box padding={1} style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
 								<Link href="https://t.me/s/ola_kala">
 									<Chip
 										color='info'
-										label="Preview channel"
+										label="PREVIEW CHANNEL"
 										variant="outlined"
 										clickable
 									/>
