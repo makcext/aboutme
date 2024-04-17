@@ -29,19 +29,11 @@ const TelegramWidget = () => {
 
 							</Box>
 
-							<Image src={imageData[0].src} alt='aueb logo' width={50} height={50} />
 
 							<div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', padding: 4 }}>
 								<Avatar alt="ext - route" sx={{ width: 96, height: 96, padding: '8' }} >
-									<Image
-										placeholder="blur"
-										blurDataURL="data:image/gif;base64,..."
-										src={'/aboutme/telegram/logo.png'}
-										alt="Avatar"
+								<Image src={imageData[0].src} alt='aueb logo' width={96} height={96} />
 
-										width={96}
-										height={96}
-									/>
 								</Avatar>
 							</div>
 
