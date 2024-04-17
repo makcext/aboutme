@@ -6,73 +6,14 @@ import { Avatar, Alert, Box, Card, CardMedia, Chip, Paper, TextField, Typography
 import Script from 'next/script';
 import Link from 'next/link';
 
+import logo from './logo.png';
 
 const imageData = [
-	{
-		id: 0,
-		src: '/omex/01.png',
-		alt: 'Omex Build',
-	},
-	{
-		id: 1,
-		src: '/omex/02.png',
-		alt: 'Omex Build',
-	},
-	{
-		id: 2,
-		src: '/omex/03.png',
-		alt: 'Omex Build',
-	},
-	{
-		id: 3,
-		src: '/omex/04.png',
-		alt: 'Omex Build',
-	},
-	{
-		id: 4,
-		src: '/omex/05.png',
-		alt: 'Omex Build',
-	},
+	{ id: 0, src: logo },
 ];
-
-
-
-const projects = [
-	{
-		id: 0,
-		images: [
-			'01',
-			'02',
-			'03',
-			'04',
-			'05',
-			'06',
-		],
-		title: 'omex',
-		by: 1,
-		street: 'build',
-		description: 'This is a description'
-	},
-
-];
-
-
-
-
-
-
-
 
 const TelegramWidget = () => {
-	const [currentImage, setCurrentImage] = useState(Array(projects.length).fill(0));
 
-	const handleScroll = (index: any) => (event: any) => {
-		const element = event.target;
-		const visibleImageIndex = Math.ceil(element.scrollLeft / element.clientWidth);
-		setCurrentImage((prev) =>
-			prev.map((item, i) => i === index ? visibleImageIndex : item)
-		);
-	};
 
 	return (
 		<>
@@ -87,6 +28,8 @@ const TelegramWidget = () => {
 								<Typography variant="body1">Nov 3, 2023 Finished News Bot [oct 23 - nov 23]</Typography>
 
 							</Box>
+
+							<Image src={imageData[0].src} alt='aueb logo' width={50} height={50} />
 
 							<div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', padding: 4 }}>
 								<Avatar alt="ext - route" sx={{ width: 96, height: 96, padding: '8' }} >
