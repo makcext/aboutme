@@ -93,7 +93,7 @@ const TelegramWidget = () => {
 									<Image
 										placeholder="blur"
 										blurDataURL="data:image/gif;base64,..."
-										src={'/aboutme/telegramChannel/telegram-channel-logo.png'}
+										src={"/aboutme/telegramChannel/telegram-channel-logo.png"}
 										alt="Avatar"
 
 										width={96}
