@@ -91,7 +91,7 @@ const TelegramWidget = () => {
 						<div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', padding: 4 }}>
 							<Avatar alt="ext - route" sx={{ width: 96, height: 96, padding: '8' }} >
 								<Image
-									src={'/aboutme/telegramChannel/telegram-channel-logo.webp'}
+									src={`/aboutme/telegramChannel/telegram-channel-logo.webp`}
 									alt="Avatar"
 									width={96}
 									height={96}
