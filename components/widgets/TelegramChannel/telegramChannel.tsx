@@ -18,7 +18,7 @@ const TelegramWidget = () => {
 	return (
 		<>
 
-			<Box maxWidth="xs" paddingTop={0} justifyContent="space-around" textAlign="left" minHeight={360}>
+			<Box maxWidth="xs" paddingTop={0} justifyContent="space-around" textAlign="left" >
 				{/* <Paper elevation={3} > */}
 				<Paper variant="outlined" sx={{ borderColor: 'gray', padding: 0 }}>
 					<Card elevation={4} sx={{ backgroundColor: 'transparent' }}>
