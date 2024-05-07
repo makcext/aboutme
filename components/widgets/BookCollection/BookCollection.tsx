@@ -1,61 +1,34 @@
 "use client";
-import React, { useState, useEffect, ChangeEvent } from 'react';
-import { useMutation, useQuery } from '@apollo/client';
-import Cookies from 'js-cookie';
-import { jwtDecode } from 'jwt-decode';
-import userStore from '../../Store/userStore';
-import { observer } from 'mobx-react';
-import {
-  Alert, Box, Paper, TextField, Typography, IconButton,
-  Grid
-} from "@mui/material";
-import AddIcon from '@mui/icons-material/Add';
-import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
-import { CREATE_BOOK, DELETE_BOOK, GET_USER_BOOKS } from './GraphQLQueries';
-import { BookInput } from './BookTypes';
-import BookCollectionDialog from './components/BookCollectionDialog';
-import BookList from './components/BookList'; // Import the new component
-import { loadErrorMessages, loadDevMessages } from "@apollo/client/dev";
-import { useMemo } from 'react';
-import { ApolloClient, InMemoryCache } from '@apollo/client';
-// import dotenv from 'dotenv';
-// dotenv.config();
+// React imports
+import React, { useState, useEffect, ChangeEvent } from "react";
 
-if (process.env.NODE_ENV === 'development') {  // Adds messages only in a dev environment
+// Apollo Client imports
+import { useMutation, useQuery } from "@apollo/client";
+import { loadErrorMessages, loadDevMessages } from "@apollo/client/dev";
+
+// Third-party library imports
+import Cookies from "js-cookie";
+import { jwtDecode } from "jwt-decode";
+import { observer } from "mobx-react";
+import { Alert, Box, Grid, IconButton, Paper, TextField, Typography } from "@mui/material";
+import AddIcon from "@mui/icons-material/Add";
+import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
+
+// Local imports
+import userStore from "../../Store/userStore";
+import { CREATE_BOOK, DELETE_BOOK, GET_USER_BOOKS } from "./GraphQLQueries";
+import { BookInput } from "./BookTypes";
+import BookCollectionDialog from "./components/BookCollectionDialog";
+import BookList from "./components/BookList";
+
+if (process.env.NODE_ENV === "development") {
+  // Adds messages only in a dev environment
   loadDevMessages();
   loadErrorMessages();
 }
 
-
-
-
-// Add this function anywhere in your file
-// function useApollo(initialState = null) {
-//   const client = useMemo(() => {
-//     return new ApolloClient({
-//       uri: process.env.NEXT_PUBLIC_GRAPHQL_SERVER_URL, // replace with your GraphQL server URL
-//       cache: new InMemoryCache(),
-//     });
-//   }, []);
-
-//   if (initialState) {
-//     client.cache.restore(initialState);
-//   }
-
-//   return client;
-// }
-
-
-
-
-
-
-
-
-
-
 const AuthBooks = observer(() => {
-  const jwt = Cookies.get('jwt');
+  const jwt = Cookies.get("jwt");
   useEffect(() => {
     if (jwt) {
       userStore.logIn();
@@ -67,10 +40,10 @@ const AuthBooks = observer(() => {
   useEffect(() => {
     if (!userStore.isLoggedIn) {
       setBookInput({
-        author: '',
-        title: '',
+        author: "",
+        title: "",
         year: undefined,
-        userId: '',
+        userId: "",
       });
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -79,15 +52,18 @@ const AuthBooks = observer(() => {
   const [infoDialogOpen, setInfoDialogOpen] = useState(false);
 
   const [bookInput, setBookInput] = useState<BookInput>({
-    author: '',
-    title: '',
+    author: "",
+    title: "",
     year: undefined, // Changed from null to undefined
-    userId: '',
+    userId: "",
   });
 
   const [addBook] = useMutation(CREATE_BOOK, {
     update(cache, { data: { createBook } }) {
-      const existingBooks: any = cache.readQuery({ query: GET_USER_BOOKS, variables: { userId: userId } });
+      const existingBooks: any = cache.readQuery({
+        query: GET_USER_BOOKS,
+        variables: { userId: userId },
+      });
       cache.writeQuery({
         query: GET_USER_BOOKS,
         variables: { userId: userId },
@@ -98,8 +74,8 @@ const AuthBooks = observer(() => {
 
   const [deleteBook] = useMutation(DELETE_BOOK);
 
-  const token = Cookies.get('jwt');
-  let userId = '';
+  const token = Cookies.get("jwt");
+  let userId = "";
   let userLoggedIn = false;
 
   if (token) {
@@ -114,13 +90,16 @@ const AuthBooks = observer(() => {
     }
   }
 
-  const [jwtToken, setJwtToken] = useState(Cookies.get('jwt'));
+  const [jwtToken, setJwtToken] = useState(Cookies.get("jwt"));
   useEffect(() => {
-    setJwtToken(Cookies.get('jwt'));
+    setJwtToken(Cookies.get("jwt"));
   }, [jwtToken]);
 
-
-  const { loading: loadingU, error: errorU, data: dataU } = useQuery(GET_USER_BOOKS, {
+  const {
+    loading: loadingU,
+    error: errorU,
+    data: dataU,
+  } = useQuery(GET_USER_BOOKS, {
     variables: { userId: userId },
     skip: !userLoggedIn, // Skip the query if the user is not logged in
   });
@@ -134,85 +113,106 @@ const AuthBooks = observer(() => {
         bookInput: {
           author: bookInput.author,
           title: bookInput.title,
-          year: bookInput.year ?? '',
+          year: bookInput.year ?? "",
           userId: id,
         },
       },
       refetchQueries: [{ query: GET_USER_BOOKS }],
     })
-      .then(response => {
-        console.log('Book added:', response.data.createBook);
-        setBookInput({ author: '', title: '', year: null, userId: '' });
+      .then((response) => {
+        console.log("Book added:", response.data.createBook);
+        setBookInput({ author: "", title: "", year: null, userId: "" });
       })
-      .catch(error => console.error('Error adding book:', error));
+      .catch((error) => console.error("Error adding book:", error));
   };
 
   const handleDeleteBook = (id: string) => {
     deleteBook({
       variables: { id },
-      refetchQueries: [{ query: GET_USER_BOOKS, variables: { userId: userId } }],
+      refetchQueries: [
+        { query: GET_USER_BOOKS, variables: { userId: userId } },
+      ],
     })
-      .then(response => {
-        console.log('Book deleted:', response.data.deleteBook);
+      .then((response) => {
+        console.log("Book deleted:", response.data.deleteBook);
       })
-      .catch(error => console.error('Error deleting book:', error));
+      .catch((error) => console.error("Error deleting book:", error));
   };
 
   const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
-    const parsedValue = name === 'year' ? parseInt(value || '0', 10) : value;
+    const parsedValue = name === "year" ? parseInt(value || "0", 10) : value;
     setBookInput({ ...bookInput, [name]: parsedValue });
   };
 
   // Add this function to handle the click event of the InfoOutlinedIcon
   const handleInfoIconClick = () => {
-    setInfoDialogOpen(prevState => !prevState);
+    setInfoDialogOpen((prevState) => !prevState);
   };
 
   const fields = [
-    { type: "text", placeholder: "Author", name: "author", value: bookInput.author },
-    { type: "text", placeholder: "Title", name: "title", value: bookInput.title },
-    { type: "number", placeholder: "Year", name: "year", value: bookInput.year ?? '' },
+    {
+      type: "text",
+      placeholder: "Author",
+      name: "author",
+      value: bookInput.author,
+    },
+    {
+      type: "text",
+      placeholder: "Title",
+      name: "title",
+      value: bookInput.title,
+    },
+    {
+      type: "number",
+      placeholder: "Year",
+      name: "year",
+      value: bookInput.year ?? "",
+    },
   ];
 
   return (
-
     <Box paddingTop={0} justifyContent="space-around" textAlign="left">
-        <Paper elevation={4}>
-      <Paper variant="outlined" sx={{ borderColor: 'gray', padding: 1 }}>  
-            <Grid container alignItems="center" justifyContent="space-between">
-          <Typography variant="h5">Books collection</Typography>
-          <InfoOutlinedIcon color='success' onClick={handleInfoIconClick} />
-          <BookCollectionDialog open={infoDialogOpen} onClose={handleInfoIconClick} />
-        </Grid>
-        <Box padding={1}>
-          <Grid container spacing={2} paddingBottom={1}>
-            {fields.map(field => (
-              <Grid item xs key={field.name}>
-                <TextField
-                  type={field.type}
-                  placeholder={field.placeholder}
-                  name={field.name}
-                  value={field.value}
-                  onChange={handleInputChange}
-                  size="small"
-                />
-              </Grid>
-            ))}
-            <Grid item>
-              <IconButton onClick={handleAddBook}>
-                <AddIcon color="success" />
-              </IconButton>
-            </Grid>
+      <Paper elevation={4}>
+        <Paper variant="outlined" sx={{ borderColor: "gray", padding: 1 }}>
+          <Grid container alignItems="center" justifyContent="space-between">
+            <Typography variant="h5">Books collection</Typography>
+            <InfoOutlinedIcon color="success" onClick={handleInfoIconClick} />
+            <BookCollectionDialog
+              open={infoDialogOpen}
+              onClose={handleInfoIconClick}
+            />
           </Grid>
+          <Box padding={1}>
+            <Grid container spacing={2} paddingBottom={1}>
+              {fields.map((field) => (
+                <Grid item xs key={field.name}>
+                  <TextField
+                    type={field.type}
+                    placeholder={field.placeholder}
+                    name={field.name}
+                    value={field.value}
+                    onChange={handleInputChange}
+                    size="small"
+                  />
+                </Grid>
+              ))}
+              <Grid item>
+                <IconButton onClick={handleAddBook}>
+                  <AddIcon color="success" />
+                </IconButton>
+              </Grid>
+            </Grid>
 
-          {userStore.isLoggedIn ? (
-            <BookList dataU={dataU} handleDeleteBook={handleDeleteBook} />
-          ) : (
-            <Alert sx={{width:"70%"}} severity="warning">please login to view list</Alert>
-          )}
-        </Box>
-      </Paper>
+            {userStore.isLoggedIn ? (
+              <BookList dataU={dataU} handleDeleteBook={handleDeleteBook} />
+            ) : (
+              <Alert sx={{ width: "80%" }} severity="warning">
+                please login to view list
+              </Alert>
+            )}
+          </Box>
+        </Paper>
       </Paper>
     </Box>
   );
