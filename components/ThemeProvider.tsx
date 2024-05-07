@@ -15,7 +15,7 @@ const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
 
     palette: {
       mode: darkMode ? 'dark' : 'light',
-      ...(darkMode ? { background: { default: '#1a101b' } } : {}),
+      ...(darkMode ? { background: { default: '#0c2424' } } : {}),
     },
 
 

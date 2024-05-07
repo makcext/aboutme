@@ -6,8 +6,8 @@ import Analytics from 'next/script';
 import Head from 'next/head';
 
 export const metadata = {
-  title: 'abtme',
-  description: 'abtme',
+  title: 'makcext developer porfolio app',
+  description: 'makcext developer porfolio app. project and components. JavaScript Python. FrontEnd Backend developer',
   icons: {
     icon: [
       {
