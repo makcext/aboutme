@@ -12,6 +12,15 @@ const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
   const [darkMode, setDarkMode] = useState<boolean>(true);
 
   const theme = createTheme({
+
+    palette: {
+      mode: darkMode ? 'dark' : 'light',
+      ...(darkMode ? { background: { default: '#1a101b' } } : {}),
+    },
+
+
+
+
     components: {
       MuiCssBaseline: {
         styleOverrides: `
@@ -35,9 +44,9 @@ const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
       },
     },
     spacing: 8,
-    palette: {
-      mode: darkMode ? 'dark' : 'light',
-    },
+    // palette: {
+    //   mode: darkMode ? 'dark' : 'light',
+    // },
   });
 
   const isSmScreen = useMediaQuery(theme.breakpoints.down("sm"));
