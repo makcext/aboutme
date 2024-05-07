@@ -8,7 +8,8 @@ import {
   Button,
 } from "@mui/material";
 import { List, ListItem } from "@mui/material";
-import { Fullscreen } from "@mui/icons-material";
+import { useMediaQuery } from "@mui/material";
+import { useTheme } from "@mui/material/styles";
 
 interface BookCollectionDialogProps {
   open: boolean;
@@ -19,14 +20,17 @@ const BookCollectionDialog: React.FC<BookCollectionDialogProps> = ({
   open,
   onClose,
 }) => {
+  const theme = useTheme();
+  const fullScreen = useMediaQuery(theme.breakpoints.down("sm"));
+
   return (
-    <Dialog open={open} onClose={onClose} fullScreen={true}>
+    <Dialog open={open} onClose={onClose} fullScreen={fullScreen}>
       <DialogTitle>
         <Typography variant="h5">BookCollection Widget Doc</Typography>
       </DialogTitle>
 
-      <DialogContent  style={{ overflowX: "hidden", padding: 16}}>
-        <Typography variant="body2">
+      <DialogContent style={{ overflowX: "hidden", padding: 16 }}>
+        <Typography variant="body2" paddingInline={1}>
           The <code>BookCollection</code> widget is a React component that
           manages a collection of books for authenticated users. It uses Apollo
           Client for GraphQL queries and mutations, MobX for state management,
@@ -34,13 +38,13 @@ const BookCollectionDialog: React.FC<BookCollectionDialogProps> = ({
         </Typography>
 
         <Typography variant="h6">File Location</Typography>
-        <Typography variant="body2">
+        <Typography variant="body2" paddingInline={1}>
           The <code>BookCollection</code> widget is located in{" "}
           <code>components/widgets/BookCollection/BookCollection.tsx</code>.
         </Typography>
 
         <Typography variant="h6">Imports</Typography>
-        <Typography variant="body2">
+        <Typography variant="body2" paddingInline={1}>
           The component imports several hooks from React, Apollo Client, and
           MobX. It also imports various UI components from Material UI and other
           components defined in the same project, such as{" "}
@@ -48,14 +52,14 @@ const BookCollectionDialog: React.FC<BookCollectionDialogProps> = ({
         </Typography>
 
         <Typography variant="h6">Environment Variables</Typography>
-        <Typography variant="body2">
+        <Typography variant="body2" paddingInline={1}>
           The component checks if the application is running in a development
           environment and, if so, loads development and error messages from
           Apollo Client.
         </Typography>
 
         <Typography variant="h6">Component State</Typography>
-        <Typography variant="body2">
+        <Typography variant="body2" paddingInline={1}>
           The component uses React's <code>useState</code> and{" "}
           <code>useEffect</code> hooks to manage its state. It keeps track of
           the JWT token, the current book input, and whether the info dialog is
@@ -63,7 +67,7 @@ const BookCollectionDialog: React.FC<BookCollectionDialogProps> = ({
         </Typography>
 
         <Typography variant="h6">GraphQL Queries and Mutations</Typography>
-        <Typography variant="body2">
+        <Typography variant="body2" paddingInline={1}>
           The component uses the <code>useQuery</code> hook from Apollo Client
           to fetch the current user's books and the <code>useMutation</code>{" "}
           hook to add and delete books. It also updates the Apollo Client cache
@@ -90,7 +94,7 @@ const BookCollectionDialog: React.FC<BookCollectionDialogProps> = ({
             </Typography>
           </ListItem>
           <ListItem>
-            <Typography variant="body2">
+            <Typography variant="body2" >
               <code>handleInfoIconClick</code>: Opens and closes the info
               dialog.
             </Typography>
@@ -98,7 +102,7 @@ const BookCollectionDialog: React.FC<BookCollectionDialogProps> = ({
         </List>
 
         <Typography variant="h6">Render Method</Typography>
-        <Typography variant="body1">
+        <Typography variant="body2" paddingInline={1}>
           The component renders a form for adding a new book and a list of the
           current user's books. If the user is not logged in, it displays a
           warning message instead of the book list.
@@ -107,13 +111,13 @@ const BookCollectionDialog: React.FC<BookCollectionDialogProps> = ({
         <Typography variant="h6">Related Components</Typography>
         <List>
           <ListItem>
-            <Typography variant="body1">
+            <Typography variant="body2" >
               <code>BookCollectionDialog</code>: A dialog that provides
               documentation for the <code>BookCollection</code> component.
             </Typography>
           </ListItem>
           <ListItem>
-            <Typography variant="body1">
+            <Typography variant="body2">
               <code>BookList</code>: A list that displays the current user's
               books.
             </Typography>
@@ -121,14 +125,14 @@ const BookCollectionDialog: React.FC<BookCollectionDialogProps> = ({
         </List>
 
         <Typography variant="h6">Usage</Typography>
-        <Typography variant="body1">
+        <Typography variant="body2" paddingInline={1}>
           To use the <code>BookCollection</code> widget, import it from its file
           location and use it as a React component in your JSX code. The
           component does not accept any props.
         </Typography>
       </DialogContent>
-      <DialogActions sx={{ padding:2 }}>
-        <Button variant="outlined" color="warning" onClick={onClose} >
+      <DialogActions sx={{ padding: 2 }}>
+        <Button variant="outlined" color="warning" onClick={onClose}>
           Close
         </Button>
       </DialogActions>
