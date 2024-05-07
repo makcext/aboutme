@@ -6,6 +6,9 @@ import { Button, Checkbox, Grid, TextField, Box, Paper, Typography, IconButton, 
 import AddIcon from '@mui/icons-material/Add';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
+import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
+import DocumentationDialog from './doc/DocumentationDialog';
+
 
 class TaskEntity {
   taskId: number;
@@ -106,6 +109,14 @@ const TaskView: React.FC = observer(() => {
     taskManagementStore.changeFilterType(filterType);
   };
 
+  const [infoDialogOpen, setInfoDialogOpen] = useState(false);
+
+
+  const handleInfoIconClick = () => {
+    setInfoDialogOpen(prevState => !prevState);
+  };
+
+
   let tasksToShow: TaskEntity[] = [];
   switch (taskManagementStore.taskFilter) {
     case TaskFilterType.AllTasks:
@@ -125,6 +136,8 @@ const TaskView: React.FC = observer(() => {
       <Paper variant="outlined" sx={{ borderColor: 'gray', padding: 1 }}>
         <Grid container alignItems="center" justifyContent="space-between">
           <Typography variant="h5">Todo List</Typography>
+          <InfoOutlinedIcon color='success' onClick={handleInfoIconClick} />
+          <DocumentationDialog open={infoDialogOpen} onClose={handleInfoIconClick} />
         </Grid>
 
         <Box padding={1}>
