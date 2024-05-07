@@ -7,113 +7,115 @@ import AddIcon from '@mui/icons-material/Add';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 
-class Task {
-  id: number;
-  title: string;
-  done: boolean;
+class TaskEntity {
+  taskId: number;
+  taskTitle: string;
+  taskStatus: boolean;
 
-  constructor(id: number, title: string) {
-    this.id = id;
-    this.title = title;
-    this.done = false;
+  constructor(taskId: number, taskTitle: string) {
+    this.taskId = taskId;
+    this.taskTitle = taskTitle;
+    this.taskStatus = false;
     makeAutoObservable(this);
 
   }
 
-  updateTitle(title: string) {
-    this.title = title;
+  modifyTitle(taskTitle: string) {
+    this.taskTitle = taskTitle;
   }
 
-  toggleDone() {
-    this.done = !this.done;
+  switchStatus() {
+    this.taskStatus = !this.taskStatus;
   }
 }
 
-enum FilterType {
-  All = 'ALL',
-  Done = 'DONE',
-  NotDone = 'NOT_DONE'
+enum TaskFilterType {
+  AllTasks = 'ALL',
+  CompletedTasks = 'DONE',
+  IncompleteTasks = 'NOT_DONE'
 }
 
-class TaskStore {
-  tasks: Task[] = [];
+class TaskManagementStore {
+  taskList: TaskEntity[] = [];
 
-  filterType: FilterType = FilterType.All;
+  taskFilter: TaskFilterType = TaskFilterType.AllTasks;
 
   constructor() {
     makeAutoObservable(this);
-    this.addTask("develop");
-    this.addTask("review code");
-  }
-  setFilterType(filterType: FilterType) {
-    this.filterType = filterType;
+    this.addNewTask("develop");
+    this.addNewTask("review code");
   }
 
-  addTask(title: string) {
-    const id = this.tasks.length > 0 ? this.tasks[this.tasks.length - 1].id + 1 : 1;
-    this.tasks.push(new Task(id, title));
+  changeFilterType(filterType: TaskFilterType) {
+    this.taskFilter = filterType;
   }
 
-  deleteTask(id: number) {
-    this.tasks = this.tasks.filter(task => task.id !== id);
+  addNewTask(title: string) {
+    const id = this.taskList.length > 0 ? this.taskList[this.taskList.length - 1].taskId + 1 : 1;
+    this.taskList.push(new TaskEntity(id, title));
+  }
+
+  removeTask(id: number) {
+    this.taskList = this.taskList.filter(task => task.taskId !== id);
   }
 
 }
 
-const taskStore = new TaskStore();
+const taskManagementStore = new TaskManagementStore();
 
 const TaskView: React.FC = observer(() => {
   const [newTaskTitle, setNewTaskTitle] = useState('');
-  const [open, setOpen] = useState(false);
-  const [currentTask, setCurrentTask] = useState<Task | null>(null);
+  const [dialogOpen, setDialogOpen] = useState(false);
+  const [currentTask, setCurrentTask] = useState<TaskEntity | null>(null);
 
-  const handleTaskTitleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleNewTaskTitleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setNewTaskTitle(event.target.value.trim());
   };
 
-  const handleCreateTask = () => {
+  const handleCreateNewTask = () => {
     if (newTaskTitle !== '') {
-      taskStore.addTask(newTaskTitle);
+      taskManagementStore.addNewTask(newTaskTitle);
       setNewTaskTitle('');
     }
   };
 
-  const handleTaskCompletionToggle = (id: number) => {
-    taskStore.tasks.find(task => task.id === id)?.toggleDone();
+  const handleTaskCompletionToggle = (taskId: number) => {
+    taskManagementStore.taskList.find(task => task.taskId === taskId)?.switchStatus();
   };
 
-  const handleRemoveTask = (id: number) => {
-    taskStore.deleteTask(id);
+  const handleRemoveTask = (taskId: number) => {
+    taskManagementStore.removeTask(taskId);
   };
 
-  const handleOpenDialog = (task: Task) => {
+  const handleOpenDialog = (task: TaskEntity) => {
     setCurrentTask(task);
-    setOpen(true);
+    setDialogOpen(true);
   };
-  const handleCloseDialog = () => setOpen(false);
+
+  const handleCloseDialog = () => setDialogOpen(false);
 
   const handleUpdateTask = () => {
     if (currentTask) {
-      const task = taskStore.tasks.find(task => task.id === currentTask.id);
-      task?.updateTitle(currentTask.title);
+      const task = taskManagementStore.taskList.find(task => task.taskId === currentTask.taskId);
+      task?.modifyTitle(currentTask.taskTitle);
     }
-    setOpen(false);
+    setDialogOpen(false);
   };
 
-  const handleSetFilterType = (filterType: FilterType) => {
-    taskStore.setFilterType(filterType);
+  const handleSetFilterType = (filterType: TaskFilterType) => {
+    taskManagementStore.changeFilterType(filterType);
   };
 
-  let tasksToShow: Task[] = [];
-  switch (taskStore.filterType) {
-    case FilterType.All:
-      tasksToShow = taskStore.tasks;
+  let tasksToShow: TaskEntity[] = [];
+  switch (taskManagementStore.taskFilter) {
+    case TaskFilterType.AllTasks:
+      tasksToShow = taskManagementStore.taskList;
       break;
-    case FilterType.Done:
-      tasksToShow = taskStore.tasks.filter(task => task.done);
+    case TaskFilterType.CompletedTasks:
+      tasksToShow = taskManagementStore.taskList.filter(task => task.taskStatus);
       break;
-    case FilterType.NotDone:
-      tasksToShow = taskStore.tasks.filter(task => !task.done);
+    case TaskFilterType.IncompleteTasks:
+      tasksToShow = taskManagementStore.taskList.filter(task => !task.taskStatus);
       break;
   }
 
@@ -134,13 +136,13 @@ const TaskView: React.FC = observer(() => {
                 fullWidth
                 label="New Task"
                 value={newTaskTitle}
-                onChange={handleTaskTitleChange}
+                onChange={handleNewTaskTitleChange}
                 size='small'
               />
             </Grid>
 
             <Grid item xs={2} md={2} container justifyContent="flex-end">
-              <IconButton onClick={handleCreateTask}>
+              <IconButton onClick={handleCreateNewTask}>
                 <AddIcon color="success" />
               </IconButton>
             </Grid>
@@ -148,22 +150,22 @@ const TaskView: React.FC = observer(() => {
 
           <List>
             {tasksToShow.map(task => (
-              <ListItem key={task.id}>
+              <ListItem key={task.taskId}>
                 <Checkbox
                   color='success'
-                  checked={task.done}
-                  onChange={() => handleTaskCompletionToggle(task.id)}
+                  checked={task.taskStatus}
+                  onChange={() => handleTaskCompletionToggle(task.taskId)}
                   sx={{ padding: '0', mr: '8px'}}
                 />
                 <ListItemText
                   primaryTypographyProps={{ variant: 'subtitle2' }}
-                  primary={task.title}
+                  primary={task.taskTitle}
                 />
                 <ListItemSecondaryAction>
                   <IconButton onClick={() => handleOpenDialog(task)}>
                     <EditIcon />
                   </IconButton>
-                  <IconButton onClick={() => handleRemoveTask(task.id)}>
+                  <IconButton onClick={() => handleRemoveTask(task.taskId)}>
                     <DeleteIcon color="error" />
                   </IconButton>
                 </ListItemSecondaryAction>
@@ -172,19 +174,19 @@ const TaskView: React.FC = observer(() => {
           </List>
           <Grid container spacing={2}>
             <Grid item xs={4}>
-              <Button variant="text" fullWidth size="small" color="info" onClick={() => handleSetFilterType(FilterType.All)}>All</Button>
+              <Button variant="text" fullWidth size="small" color="info" onClick={() => handleSetFilterType(TaskFilterType.AllTasks)}>All</Button>
             </Grid>
             <Grid item xs={4}>
-              <Button variant="text" fullWidth size="small" color="info" onClick={() => handleSetFilterType(FilterType.NotDone)}>Some</Button>
+              <Button variant="text" fullWidth size="small" color="info" onClick={() => handleSetFilterType(TaskFilterType.IncompleteTasks)}>!Done</Button>
             </Grid>
             <Grid item xs={4}>
-              <Button variant="text" fullWidth size="small" color="info" onClick={() => handleSetFilterType(FilterType.Done)}>Done</Button>
+              <Button variant="text" fullWidth size="small" color="info" onClick={() => handleSetFilterType(TaskFilterType.CompletedTasks)}>Done</Button>
             </Grid>
           </Grid>
         </Box>
       </Paper>
 
-      <Dialog open={open} onClose={handleCloseDialog}>
+      <Dialog open={dialogOpen} onClose={handleCloseDialog}>
         <DialogTitle>Edit task</DialogTitle>
         <DialogContent>
           <TextField
@@ -195,8 +197,8 @@ const TaskView: React.FC = observer(() => {
             fullWidth
             color='warning'
             size='small'
-            value={currentTask ? currentTask.title : ''}
-            onChange={(event) => setCurrentTask(new Task(currentTask?.id || 0, event.target.value))} />
+            value={currentTask ? currentTask.taskTitle : ''}
+            onChange={(event) => setCurrentTask(new TaskEntity(currentTask?.taskId || 0, event.target.value))} />
         </DialogContent>
         <DialogActions>
           <Button variant="outlined" color='warning' onClick={handleCloseDialog}>Cancel</Button>
