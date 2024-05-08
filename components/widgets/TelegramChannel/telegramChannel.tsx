@@ -25,7 +25,7 @@ const TelegramWidget = () => {
 						<Box textAlign="left" minHeight={380}>
 							<Box p={1} justifyContent={'space-between'}>
 
-								<Typography variant="body1">Nov 3, 2023 Finished News Bot [oct 23 - nov 23]</Typography>
+								<Typography variant="body1">Python News Bot [oct 23 - nov 23]</Typography>
 
 							</Box>
 
