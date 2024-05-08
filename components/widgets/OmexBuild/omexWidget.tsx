@@ -79,13 +79,13 @@ const OmexWidget = () => {
 			<Box maxWidth="xs" paddingTop={0} justifyContent="space-around" textAlign="left" minHeight={460}>
 				{/* <Paper elevation={3} > */}
 				<Paper variant="outlined" sx={{ borderColor: 'gray', padding: 0 }}>
-					<Box textAlign="left" minHeight={460}>
+					<Box textAlign="left" >
 
 						{projects.map((project, index) => (
 							<Grid xs={12} md={12} item key={project.id}>
 								<Box component='article' sx={{ width: '100%', height: '100%', position: 'relative', p: 0 }}>
 
-									<Card elevation={4} sx={{ backgroundColor: 'transparent' }}>
+									<Card elevation={4} sx={{ backgroundColor: 'transparent', maxHeight: 540 }}>
 										<Box p={1} justifyContent={'space-between'}>
 
 											<Typography variant="body1">Apr 15, 2024 Finished Omex Build Project: [ feb 2024 - apr 2024 ]</Typography>
