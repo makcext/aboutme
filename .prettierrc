@@ -1,8 +1,18 @@
 {
-  "printWidth": 220,
-  "singleQuote": true,
-  "trailingComma": "all",
+  "arrowParens": "always",
   "bracketSpacing": true,
-  "jsxBracketSameLine": true,
-  "semi": false
+  "jsxSingleQuote": false,
+  "semi": true,
+  "singleQuote": true,
+  "tabWidth": 2,
+  "printWidth": 280,
+  "trailingComma": "es5",
+  "overrides": [
+    {
+      "files": "*.md",
+      "options": {
+        "singleQuote": false
+      }
+    }
+  ]
 }
