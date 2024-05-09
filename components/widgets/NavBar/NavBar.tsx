@@ -22,6 +22,7 @@ import StarRateIcon from '@mui/icons-material/StarRate';
 import styled from '@mui/material/styles/styled';
 import { createTheme } from '@mui/material/styles';
 import { useTheme } from '@mui/material/styles';
+import { Theme, Palette } from '@mui/material/styles';
 
 // import DrawerMenu from './DrawerMenu';
 
@@ -33,12 +34,22 @@ const NAV_ITEMS = [
   { name: 'About', route: '/1/AboutUs' },
 ];
 
+interface MyPalette extends Palette {
+  navbar: {
+    default: string;
+    // Add other properties if needed
+  }
+}
+
+interface MyTheme extends Theme {
+  palette: MyPalette;
+}
 
 
 
 
 const NavBar = () => {
-  const theme = useTheme(); // Add this line
+  const theme = useTheme<MyTheme>(); // Add this line
   const { darkMode, toggleDarkMode } = useContext(ThemeContext); // Use the useContext hook
   const [drawerOpen, setDrawerOpen] = useState(false); // State to control the Drawer
   const toggleDrawer = (open: boolean) => (event: React.KeyboardEvent | React.MouseEvent) => {
