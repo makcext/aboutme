@@ -23,9 +23,9 @@ const flip1 = () => {
     <Box p={1} justifyContent={'space-between'} sx={{ height: '100%' }}>
       <Typography component="h3" variant="h5">Software Developer</Typography>
 
-      <Link href="https://code.qtalents.co" underline="hover" color="text.primary">
+      <Link href="https://code.qtalents.co" underline="hover" color="success.main">
         <Typography variant="body2" gutterBottom={true}>
-          in: code.qtalents.co
+          in code.qtalents.co
         </Typography>
       </Link>
 
