@@ -93,10 +93,10 @@ const Flip2 = (currentImage: any, setCurrentImage: any) => {
               }}
               onScroll={handleScroll(index)}>
               {project.images.map((image, imageIndex) => (
-                <CardMedia
+                <CardMedia 
                   key={imageIndex}
                   component="img"
-                  height="360px"
+                  height="400px"
                   image={`aboutme/qt/${image}.webp`}
                   alt={project.title}
                   sx={{
@@ -114,7 +114,7 @@ const Flip2 = (currentImage: any, setCurrentImage: any) => {
                 justifyContent: 'center',
                 alignItems: 'center',
                 mt: 0,
-                paddingTop: 5,
+                paddingTop: 0,
               }}>
               
               {project.images.map((_, dotIndex) => (

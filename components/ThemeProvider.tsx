@@ -15,7 +15,7 @@ const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
     palette: {
       mode: darkMode ? 'dark' : 'light',
       ...(darkMode ? { background: { default: '#0c2424' } } : { background: { default: '#e6f2eb' } }),
-      ...(darkMode ? { navbar: { default: '#2c2424' } } : { navbar: { default: '#cee5d8' } }),
+      ...(darkMode ? { navbar: { default: '#0c2424' } } : { navbar: { default: '#cee5d8' } }),
       
 
     },
