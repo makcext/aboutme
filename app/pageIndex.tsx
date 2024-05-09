@@ -25,10 +25,11 @@ export default function Page() {
 
           <Grid container spacing={3} alignItems="stretch" padding={1}>
             <Grid item xs={12} sm={12} md={6}>
-              <OmexBuild />
+              
+              <QtWidget />
             </Grid>
             <Grid item xs={12} sm={12} md={6}>
-              <QtWidget />
+            <OmexBuild />
             </Grid>
 
             <Grid item xs={12} sm={12} md={6}>
