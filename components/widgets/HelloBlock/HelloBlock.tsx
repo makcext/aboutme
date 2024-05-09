@@ -94,7 +94,7 @@ const HelloBlock = () => {
 							<Image
 								placeholder="blur"
 								blurDataURL="data:image/gif;base64,..."
-								src={'/aboutme/avatar.webp'}
+								src={'/aboutme/avatar.png'}
 								alt="Avatar"
 								width={128}
 								height={96}
