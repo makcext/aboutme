@@ -120,7 +120,7 @@ const HelloBlock = () => {
 					<Grid item xs={6} md={6}>
 						<Grow in={true} style={{ transformOrigin: '0 1 0' }} {...(true ? { timeout: 1000 } : {})}>
 							<Typography variant="body1" component="h1" fontSize={16} sx={{ textAlign: 'center' }}>
-								mackext developer
+								makcext developer
 							</Typography>
 						</Grow>
 						<Box display="flex" justifyContent="center">
