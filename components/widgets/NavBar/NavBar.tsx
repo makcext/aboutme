@@ -1,4 +1,4 @@
-"use client"
+'use client';
 import React, { useState, useContext } from 'react';
 import { AppBar, Toolbar, Grid, IconButton, Button } from '@mui/material';
 import List from '@mui/material/List';
@@ -38,15 +38,12 @@ interface MyPalette extends Palette {
   navbar: {
     default: string;
     // Add other properties if needed
-  }
+  };
 }
 
 interface MyTheme extends Theme {
   palette: MyPalette;
 }
-
-
-
 
 const NavBar = () => {
   const theme = useTheme<MyTheme>(); // Add this line
@@ -81,12 +78,14 @@ const NavBar = () => {
             key={`${item.name}-${index}`} // Add key prop here
           >
             <ListItem button style={{ justifyContent: 'center' }}>
-              <Link color='primary' href={item.route} style={{ textDecoration: 'none' }}>
-                <ListItemText primary={
-                  <Typography variant='body1' color={''} align='center'>
-                    {item.name}
-                  </Typography>
-                } />
+              <Link color="primary" href={item.route} style={{ textDecoration: 'none' }}>
+                <ListItemText
+                  primary={
+                    <Typography variant="body1" color={''} align="center">
+                      {item.name}
+                    </Typography>
+                  }
+                />
               </Link>
             </ListItem>
           </Grow>
@@ -95,57 +94,50 @@ const NavBar = () => {
     </div>
   );
 
-
-
-
   return (
     <>
-    			<Box paddingBottom={8} sx={{ display: 'flex' }} maxWidth={'lg'}>
+      <Box paddingBottom={8} sx={{ display: 'flex' }} maxWidth={'lg'}>
+        <CssBaseline />
+        <AppBar position="absolute" color="inherit" style={{ backgroundColor: theme.palette.navbar.default }}>
+          <Container maxWidth="lg" sx={{ pb: 0 }}>
+            <Toolbar>
+              <Grid container justifyContent="space-between" alignItems="center">
+                <Grid item>
+                  <IconButton color="inherit" aria-label="menu" onClick={toggleDrawer(true)}>
+                    <MenuIcon />
+                  </IconButton>
 
-      <CssBaseline />
-<AppBar position="static" color="inherit" style={{ backgroundColor: theme.palette.navbar.default }}>
-       <Container maxWidth="lg" sx={{ pb: 0 }} >
-          <Toolbar>
-            <Grid container justifyContent="space-between" alignItems="center">
-              <Grid item>
-                <IconButton color="inherit" aria-label="menu" onClick={toggleDrawer(true)}>
-                  <MenuIcon />
-                </IconButton>
+                  <Drawer
+                    elevation={2}
+                    anchor="left"
+                    open={drawerOpen}
+                    onClose={toggleDrawer(false)}
+                    PaperProps={{ style: { width: '55vw' } }} // Set the width here
+                  >
+                    <Box p={2} sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                      <IconButton color="error" aria-label="star">
+                        <RotatingStarIcon />
+                      </IconButton>
+                    </Box>
 
-                <Drawer 
-                  elevation={2} 
-                  anchor="left" 
-                  open={drawerOpen} 
-                  onClose={toggleDrawer(false)}
-                  PaperProps={{ style: { width: '55vw' } }} // Set the width here
-                >
-                  <Box p={2} sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                    <IconButton color="error" aria-label="star">
-                      <RotatingStarIcon />
-                    </IconButton>
-                  </Box>
-
-                  {list()}
-                </Drawer>
-
-
-
+                    {list()}
+                  </Drawer>
+                </Grid>
+                <Grid item>
+                  <IconButton color="error" aria-label="star">
+                    <RotatingStarIcon />
+                  </IconButton>
+                </Grid>
+                <Grid item>
+                  <IconButton color="inherit" aria-label="toggle theme" onClick={toggleDarkMode}>
+                    {darkMode ? <Brightness7Icon /> : <Brightness4Icon />}
+                  </IconButton>
+                </Grid>
               </Grid>
-              <Grid item>
-                <IconButton color="error" aria-label="star">
-                  <RotatingStarIcon />
-                </IconButton>
-              </Grid>
-              <Grid item>
-                <IconButton color="inherit" aria-label="toggle theme" onClick={toggleDarkMode}>
-                  {darkMode ? <Brightness7Icon /> : <Brightness4Icon />}
-                </IconButton>
-              </Grid>
-            </Grid>
-          </Toolbar>
-        </Container>
-      </AppBar>
-    </Box>
+            </Toolbar>
+          </Container>
+        </AppBar>
+      </Box>
       {/* <nav>
           <DrawerMenu drawerOpen={drawerOpen} toggleDrawer={toggleDrawer} list={list} />
   
