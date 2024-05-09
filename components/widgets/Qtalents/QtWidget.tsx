@@ -21,7 +21,7 @@ const flip1 = () => {
   return (
     <Card elevation={4} sx={{ backgroundColor: 'transparent', minHeight: 500 }}>
     <Box p={1} justifyContent={'space-between'} sx={{ height: '100%' }}>
-      <Typography variant="h5">Software Developer</Typography>
+      <Typography component="h3" variant="h5">Software Developer</Typography>
 
       <Link href="https://code.qtalents.co" underline="hover" color="text.primary">
         <Typography variant="body2" gutterBottom={true}>
@@ -29,25 +29,25 @@ const flip1 = () => {
         </Typography>
       </Link>
 
-      <Typography variant="body1" gutterBottom={true} color={'primary.main'}>
+      <Typography component="p" variant="body1" gutterBottom={true} color={'primary.main'}>
         Designed and developed new features to meet user requirements and needs. Researched modern technologies and innovative solutions to optimize development processes.
       </Typography>
 
-      <Typography variant="subtitle1">Code Refactoring:</Typography>
-      <Typography variant="body2" gutterBottom={true} color={'primary.main'}>
+      <Typography component="h3" variant="subtitle1">Code Refactoring:</Typography>
+      <Typography component="p" variant="body2" gutterBottom={true} color={'primary.main'}>
         Refactored existing code to improve readability, scalability, and maintainability.
       </Typography>
 
-      <Typography variant="subtitle1">Debugging and Error Correction:</Typography>
-      <Typography variant="body2" gutterBottom={true} color={'primary.main'}>
+      <Typography component="h3" variant="subtitle1">Debugging and Error Correction:</Typography>
+      <Typography component="p" variant="body2" gutterBottom={true} color={'primary.main'}>
         Identified, analyzed, and resolved code errors to ensure system stability and smooth operation.
       </Typography>
 
-      <Typography variant="subtitle1">Implementation of New UI Components:</Typography>
+      <Typography component="h3" variant="subtitle1">Implementation of New UI Components:</Typography>
       <Typography variant="body2" gutterBottom={true} color={'primary.main'}>
         Developed and integrated a new UI component that significantly enhanced user experience. Conducted testing and optimization of the new UI component.
       </Typography>
-      <Typography variant="subtitle1">Technical Skills:</Typography>
+      <Typography component="h3" variant="subtitle1">Technical Skills:</Typography>
       <Typography variant="body2" gutterBottom={true} color={'primary.main'}>
         Programming languages: JavaScript Frameworks: Next.js Libraries: React Tools: Git
       </Typography>
