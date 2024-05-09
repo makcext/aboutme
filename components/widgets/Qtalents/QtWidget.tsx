@@ -19,7 +19,7 @@ const projects = [
 
 const flip1 = () => {
   return (
-    <Card elevation={4} sx={{ backgroundColor: 'transparent', maxHeight: 560 }}>
+    <Card elevation={4} sx={{ backgroundColor: 'transparent', minHeight: 500 }}>
     <Box p={1} justifyContent={'space-between'} sx={{ height: '100%' }}>
       <Typography variant="h5">Software Developer</Typography>
 
@@ -67,9 +67,9 @@ const Flip2 = (currentImage: any, setCurrentImage: any) => {
 
   return (
 
-    <Card>
+    <Card sx={{maxHeight: 560}}>
     {projects.map((project, index) => (
-      <Grid xs={12} md={12} item key={project.id}>
+      <Grid xs={12} md={12} item key={project.id} >
         <Box
           component="article"
           sx={{
@@ -78,9 +78,8 @@ const Flip2 = (currentImage: any, setCurrentImage: any) => {
             position: 'relative',
             p: 0,
           }}>
-          <Card elevation={4} sx={{ backgroundColor: 'transparent' }}>
+          <Card elevation={4} sx={{  minHeight: 500 }}>
             <Box p={1} justifyContent={'space-between'}>
-              <Typography variant="body1">Apr 15, 2024 Finished Omex Build Project: [ feb 2024 - apr 2024 ]</Typography>
               <Typography variant="body2">Functional Requirements: contact form, customer review, scanning qr code notification to mail </Typography>
             </Box>
 
@@ -97,8 +96,8 @@ const Flip2 = (currentImage: any, setCurrentImage: any) => {
                 <CardMedia
                   key={imageIndex}
                   component="img"
-                  height="420px"
-                  image={`aboutme/omex/${image}.webp`}
+                  height="360px"
+                  image={`aboutme/qt/${image}.webp`}
                   alt={project.title}
                   sx={{
                     flex: 'none',
@@ -115,7 +114,9 @@ const Flip2 = (currentImage: any, setCurrentImage: any) => {
                 justifyContent: 'center',
                 alignItems: 'center',
                 mt: 0,
+                paddingTop: 5,
               }}>
+              
               {project.images.map((_, dotIndex) => (
                 <Box
                   key={dotIndex}
@@ -123,8 +124,9 @@ const Flip2 = (currentImage: any, setCurrentImage: any) => {
                     width: 6,
                     height: 6,
                     borderRadius: '50%',
-                    backgroundColor: dotIndex === currentImage[index] ? 'primary.main' : 'grey.500',
+                    backgroundColor: dotIndex === currentImage[index] ? 'info.main' : 'grey.500',
                     mx: 0.5,
+                    
                   }}
                 />
               ))}

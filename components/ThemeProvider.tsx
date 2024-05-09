@@ -1,7 +1,7 @@
-"use client";
+'use client';
 import React, { useState, ReactNode, useEffect } from 'react';
 import { ThemeProvider as MuiThemeProvider, createTheme } from '@mui/material/styles';
-import { useMediaQuery } from "@mui/material";
+import { useMediaQuery } from '@mui/material';
 import ThemeContext from './ThemeContext';
 
 interface ThemeProviderProps {
@@ -12,14 +12,13 @@ const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
   const [darkMode, setDarkMode] = useState<boolean>(true);
 
   const theme = createTheme({
-
     palette: {
       mode: darkMode ? 'dark' : 'light',
-      ...(darkMode ? { background: { default: '#0c2424' } } : {}),
+      ...(darkMode ? { background: { default: '#0c2424' } } : { background: { default: '#e6f2eb' } }),
+      ...(darkMode ? { navbar: { default: '#2c2424' } } : { navbar: { default: '#cee5d8' } }),
+      
+
     },
-
-
-
 
     components: {
       MuiCssBaseline: {
@@ -49,19 +48,19 @@ const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
     // },
   });
 
-  const isSmScreen = useMediaQuery(theme.breakpoints.down("sm"));
-  const isMdScreen = useMediaQuery(theme.breakpoints.between("md", "lg"));
-  const isLgScreen = useMediaQuery(theme.breakpoints.up("lg"));
+  const isSmScreen = useMediaQuery(theme.breakpoints.down('sm'));
+  const isMdScreen = useMediaQuery(theme.breakpoints.between('md', 'lg'));
+  const isLgScreen = useMediaQuery(theme.breakpoints.up('lg'));
 
   const [currentMediaQuery, setCurrentMediaQuery] = useState(() => {
     if (isSmScreen) {
-      return "sm";
+      return 'sm';
     } else if (isMdScreen) {
-      return "md";
+      return 'md';
     } else if (isLgScreen) {
-      return "lg";
+      return 'lg';
     } else {
-      return "";
+      return '';
     }
   });
 
@@ -75,11 +74,11 @@ const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
 
   useEffect(() => {
     if (isSmScreen) {
-      setCurrentMediaQuery("sm");
+      setCurrentMediaQuery('sm');
     } else if (isMdScreen) {
-      setCurrentMediaQuery("md");
+      setCurrentMediaQuery('md');
     } else if (isLgScreen) {
-      setCurrentMediaQuery("lg");
+      setCurrentMediaQuery('lg');
     }
   }, [isSmScreen, isMdScreen, isLgScreen]);
 
