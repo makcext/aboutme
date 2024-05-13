@@ -159,9 +159,14 @@ const QtWidget = () => {
           <Box textAlign="left">
             <Box>
               <Grid container spacing={0} alignItems="center" justifyContent="space-between">
+                
                 <Typography variant="body1" color="info.main" sx={{paddingLeft: 1}}>
-                  Experience [Jan 2023 - Nov 2023]
+                  Experience [ Apr 2022 - Present ]
                 </Typography>
+
+
+
+
                 <IconButton onClick={handleIconButtonPress}>
                   <SyncAltIcon color="success" />
                 </IconButton>

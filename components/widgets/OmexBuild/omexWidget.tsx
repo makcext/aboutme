@@ -64,7 +64,13 @@ const OmexWidget = () => {
                 <Box component="article" sx={{ width: '100%', height: '100%', position: 'relative', p: 0 }}>
                   <Card elevation={4} sx={{ backgroundColor: 'transparent', maxHeight: 560 }}>
                     <Box p={1} justifyContent={'space-between'}>
-                      <Typography variant="body1"> Omex Build Project: [ feb 2024 - apr 2024 ]</Typography>
+                     
+                    <Typography variant="body1" color="info.main" sx={{paddingLeft: 1}}>
+                      Omex Build Project: [ feb 2024 - apr 2024 ]
+                    </Typography>
+                     
+                      {/* <Typography variant="body1"> Omex Build Project: [ feb 2024 - apr 2024 ]</Typography> */}
+                     
                       {/* <Typography variant="body2">Description: This is a project to build a web app for Omex Build ltd</Typography> */}
                       {/* <Typography variant="body2">Stack: nextjs reactjs </Typography> */}
                       <Typography variant="body2">Functional Requirements: contact form, customer review, scanning qr code notification to mail </Typography>
